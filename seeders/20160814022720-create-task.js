@@ -2,7 +2,7 @@
 
 const faker = require('faker');
 
-var cardObject = [];
+var taskObject = [];
 for (var i = 0; i < 10; i++){
   var temp = {
     Title: faker.lorem.word(),
@@ -10,18 +10,19 @@ for (var i = 0; i < 10; i++){
     Status: "Queue",
     CreatedBy: faker.name.lastName() + ", " + faker.name.firstName(),
     AssignedTo: faker.name.lastName() + ", " + faker.name.firstName(),
-    CreatedAt: new Date(),
-    UpdatedAt: new Date()
+    createdAt: new Date(),
+    updatedAt: new Date()
+
   }
-  cardObject.push(temp);
+  taskObject.push(temp);
 }
 
 module.exports = {
   up: function (queryInterface, Sequelize) {
-    return queryInterface.bulkInsert('Cards', cardObject, {})
+    return queryInterface.bulkInsert('Tasks', taskObject, {})
   },
 
   down: function (queryInterface, Sequelize) {
-    queryInterface.bulkDelete('Users');
+    queryInterface.bulkDelete('Tasks');
   }
 };

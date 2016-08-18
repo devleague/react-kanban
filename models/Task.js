@@ -1,6 +1,6 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
-  var Card = sequelize.define('Card', {
+  var Task = sequelize.define('Task', {
     Title: DataTypes.STRING,
     Priority: DataTypes.STRING,
     Status: DataTypes.STRING,
@@ -13,5 +13,5 @@ module.exports = function(sequelize, DataTypes) {
       }
     }
   });
-  return Card;
+  return Task;
 };
