@@ -11,8 +11,6 @@ const Card = React.createClass({
           {this.props.id}
           {this.props.Status}
         </h1>
-        <h2> Testing
-        </h2>
       </div>
     );
   }
@@ -87,6 +85,7 @@ const KanbanBoard = React.createClass({
   },
 
   handleCardSubmit: function(card) {
+    var testing = "http://10.0.1."
     $.ajax({
       url: this.props.url,
       dataType: 'json',
@@ -116,8 +115,15 @@ const KanbanBoard = React.createClass({
   render: function() {
     return (
       <div className="kanbanBoard">
-      <CardForm onCardSubmit={this.handleCardSubmit}/>
-      <CardList data={this.state.data}/>
+        <div classname="Header">
+          <h1>
+            <span> To do </span>
+            <span> Doing </span>
+            <span> Done </span>
+          </h1>
+        </div>
+          <CardForm onCardSubmit={this.handleCardSubmit}/>
+          <CardList data={this.state.data}/>
       </div>
     );
   }
