@@ -19,6 +19,17 @@ app.get('/tasks', function(req, res) {
     });
 })
 
+app.post('/tasks', function(req, res) {
+  console.log("hello");
+  console.log(req.body.Title);
+  Task.create({
+    Title: req.body.Title
+  })
+  .then(function(task) {
+    res.json(task)
+  });
+})
+
 app.listen(app.get('port'), function() {
   console.log(`Server listen on port ${app.get('port')}`);
 })
