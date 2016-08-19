@@ -1,0 +1,27 @@
+$turquoise : #40e0d0;
+$red: #ff0000;
+
+body {
+  background: $turquoise;
+}
+
+.Cards {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: space-between;
+  .Card {
+    flex: 1 1 auto;
+    background: $red;
+    border-style: solid;
+  }
+}
+
+.Header {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: space-between;
+  background: $red;
+  font-family: 'Amatic SC', cursive;
+}

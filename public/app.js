@@ -4,21 +4,37 @@ const Card = React.createClass({
   render: function() {
     var md = new Remarkable();
     return (
-      <div className="Card">
-        <h1>
+      <div className="Cards">
+        <div className="To Do">
           {this.props.Title}
           {this.props.Priority}
           {this.props.id}
           {this.props.Status}
-        </h1>
+        </div>
+        <div className="Doing">
+          {this.props.Title}
+          {this.props.Priority}
+          {this.props.id}
+          {this.props.Status}
+        </div>
+        <div className="Done">
+          {this.props.Title}
+          {this.props.Priority}
+          {this.props.id}
+          {this.props.Status}
+        </div>
       </div>
     );
   }
 });
 
 const CardList = React.createClass({
+
   render: function() {
-    const cards = this.props.data.map(function (card) {
+    const status = this.props.status;
+    const cards = this.props.data.filter(function (card, index) {
+      return card.Status === status;
+    }).map(function (card) {
       return (
         <Card
           id={card.id}
@@ -115,19 +131,27 @@ const KanbanBoard = React.createClass({
   render: function() {
     return (
       <div className="kanbanBoard">
-        <div classname="Header">
-          <h1>
-            <span> To do </span>
-            <span> Doing </span>
-            <span> Done </span>
-          </h1>
+        <CardForm onCardSubmit={this.handleCardSubmit}/>
+        <div className="Headers">
+          <div className="Header">
+            <div> To do </div>
+            <CardList
+              data={this.state.data}
+              status="Queue"
+            />
+            <div> Doing </div>
+            <CardList
+              data={this.state.data}
+              status={null}
+            />
+            <div> Done </div>
+          </div>
         </div>
-          <CardForm onCardSubmit={this.handleCardSubmit}/>
-          <CardList data={this.state.data}/>
       </div>
     );
   }
 });
+
 
 ReactDOM.render(
   <KanbanBoard url="/tasks"/>,

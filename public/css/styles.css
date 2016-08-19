@@ -1,0 +1,20 @@
+body {
+  background: #40e0d0; }
+
+.Cards {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: space-between; }
+  .Cards .Card {
+    flex: 1 1 auto;
+    background: #ff0000;
+    border-style: solid; }
+
+.Header {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: space-between;
+  background: #ff0000;
+  font-family: 'Amatic SC', cursive; }
