@@ -12,7 +12,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       Priority: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER
       },
       Status: {
         type: Sequelize.STRING

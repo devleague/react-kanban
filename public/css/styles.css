@@ -1,7 +1,8 @@
 * {
   border-style: dotted;
   padding: 2px;
-  margin: 0px; }
+  margin: 0px;
+  font-family: 'Amatic SC', cursive; }
 
 body {
   padding: 0px; }
@@ -11,9 +12,10 @@ body {
   flex-flow: row wrap;
   align-items: center;
   justify-content: space-between; }
-  .cardList .Cards {
+  .cardList .Card {
     flex: 1 1 100%;
-    border-style: solid; }
+    border-style: solid;
+    font-size: 12px; }
 
 .input {
   display: flex;
@@ -32,4 +34,5 @@ body {
 
 .Header {
   background: #ff0000;
-  font-family: 'Amatic SC', cursive; }
+  font-size: 20px;
+  text-align: center; }

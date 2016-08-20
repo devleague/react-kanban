@@ -3,11 +3,12 @@ console.log("Hi");
 const Card = React.createClass({
   render: function() {
     return (
-      <div className="Cards">
+      <div className="Card">
+          Ticket ID #{this.props.id}<br />
           {this.props.Title}<br />
           {this.props.Priority}<br />
-          {this.props.id}<br />
-          {this.props.Status} <br />
+          {this.props.Status}
+          <span style="margin-right:0em"> Test </span>
       </div>
     );
   }

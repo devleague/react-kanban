@@ -5,6 +5,7 @@ $red: #ff0000;
   border-style: dotted;
   padding: 2px;
   margin: 0px;
+  font-family: 'Amatic SC', cursive;
 }
 
 body {
@@ -16,10 +17,11 @@ body {
   flex-flow: row wrap;
   align-items: center;
   justify-content: space-between;
-  .Cards {
+  .Card {
     flex: 1 1 100%;
     //background: $turquoise;
     border-style: solid;
+    font-size: 12px;
     // background-image: url("https://c2.staticflickr.com/4/3365/3555774083_ee1e7bfb55_b.jpg");
     // background-repeat: no-repeat;
     // background-size: cover;
@@ -47,5 +49,6 @@ body {
 
 .Header {
   background: $red;
-  font-family: 'Amatic SC', cursive;
+  font-size: 20px;
+  text-align: center;
 }

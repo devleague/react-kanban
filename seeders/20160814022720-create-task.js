@@ -6,7 +6,7 @@ var taskObject = [];
 for (var i = 0; i < 10; i++){
   var temp = {
     Title: faker.lorem.word(),
-    Priority: "Low",
+    Priority: i,
     Status: "Queue",
     CreatedBy: faker.name.lastName() + ", " + faker.name.firstName(),
     AssignedTo: faker.name.lastName() + ", " + faker.name.firstName(),
