@@ -8,7 +8,6 @@ const Card = React.createClass({
           {this.props.Title}<br />
           {this.props.Priority}<br />
           {this.props.Status}
-          <span style="margin-right:0em"> Test </span>
       </div>
     );
   }
@@ -194,11 +193,15 @@ const KanbanBoard = React.createClass({
             <div className="Header"> Doing </div>
             <CardList
               data={this.state.data}
-              status={null}
+              status="Progress"
             />
           </div>
           <div className="Board" id="Done">
             <div className="Header"> Done </div>
+            <CardList
+              data={this.state.data}
+              status="Done"
+            />
           </div>
         </div>
         <CardForm onCardSubmit={this.handleCardSubmit}/>
