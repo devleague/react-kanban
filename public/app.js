@@ -2,27 +2,12 @@ console.log("Hi");
 
 const Card = React.createClass({
   render: function() {
-    var md = new Remarkable();
     return (
       <div className="Cards">
-        <div className="To Do">
-          {this.props.Title}
-          {this.props.Priority}
-          {this.props.id}
+          {this.props.Title}<br />
+          {this.props.Priority}<br />
+          {this.props.id}<br />
           {this.props.Status}
-        </div>
-        <div className="Doing">
-          {this.props.Title}
-          {this.props.Priority}
-          {this.props.id}
-          {this.props.Status}
-        </div>
-        <div className="Done">
-          {this.props.Title}
-          {this.props.Priority}
-          {this.props.id}
-          {this.props.Status}
-        </div>
       </div>
     );
   }
@@ -131,22 +116,27 @@ const KanbanBoard = React.createClass({
   render: function() {
     return (
       <div className="kanbanBoard">
-        <CardForm onCardSubmit={this.handleCardSubmit}/>
-        <div className="Headers">
-          <div className="Header">
-            <div> To do </div>
+        <div className="Header"> KanbanBoard </div>
+        <div className="Boards">
+          <div className="Board" id="To Do">
+            <div className="Header"> To do</div>
             <CardList
-              data={this.state.data}
-              status="Queue"
+            data={this.state.data}
+            status="Queue"
             />
-            <div> Doing </div>
+          </div>
+          <div className="Board" id="Doing">
+            <div className="Header"> Doing </div>
             <CardList
               data={this.state.data}
               status={null}
             />
-            <div> Done </div>
+          </div>
+          <div className="Board" id="Done">
+            <div className="Header"> Done </div>
           </div>
         </div>
+        <CardForm onCardSubmit={this.handleCardSubmit}/>
       </div>
     );
   }

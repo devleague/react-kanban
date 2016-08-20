@@ -1,27 +1,41 @@
 $turquoise : #40e0d0;
 $red: #ff0000;
 
-body {
-  background: $turquoise;
+* {
+  border-style: dotted;
+  padding: 2px;
+  margin: 0px;
 }
 
-.Cards {
+body {
+  padding: 0px;
+}
+
+.cardList {
   display: flex;
   flex-flow: row wrap;
   align-items: center;
   justify-content: space-between;
-  .Card {
-    flex: 1 1 auto;
-    background: $red;
+  .Cards {
+    flex: 1 1 100%;
+
+    background-image: url("http://www.clipartbest.com/cliparts/7Ta/K4B/7TaK4BLLc.svg");
+    background-color: #cccccc;
     border-style: solid;
   }
 }
 
-.Header {
+.Boards {
   display: flex;
   flex-flow: row wrap;
-  align-items: center;
+  align-items: top-center;
   justify-content: space-between;
+  .Board {
+    flex: 1 1 20%;
+  }
+}
+
+.Header {
   background: $red;
   font-family: 'Amatic SC', cursive;
 }
