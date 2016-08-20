@@ -18,10 +18,20 @@ body {
   justify-content: space-between;
   .Cards {
     flex: 1 1 100%;
-
-    background-image: url("http://www.clipartbest.com/cliparts/7Ta/K4B/7TaK4BLLc.svg");
-    background-color: #cccccc;
+    //background: $turquoise;
     border-style: solid;
+    // background-image: url("https://c2.staticflickr.com/4/3365/3555774083_ee1e7bfb55_b.jpg");
+    // background-repeat: no-repeat;
+    // background-size: cover;
+  }
+}
+
+.input{
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  input {
+    flex: 1 1 100%;
   }
 }
 

@@ -7,14 +7,13 @@ const Card = React.createClass({
           {this.props.Title}<br />
           {this.props.Priority}<br />
           {this.props.id}<br />
-          {this.props.Status}
+          {this.props.Status} <br />
       </div>
     );
   }
 });
 
 const CardList = React.createClass({
-
   render: function() {
     const status = this.props.status;
     const cards = this.props.data.filter(function (card, index) {
@@ -42,31 +41,91 @@ const CardList = React.createClass({
 
 const CardForm = React.createClass({
   getInitialState: function() {
-    return {Title: ''};
+    return {Title: '', Priority: '', Status: '', CreatedBy: '', AssignedTo: ''};
   },
   handleTitleChange: function(e) {
     this.setState({Title: e.target.value});
   },
+  handlePriorityChange: function(e) {
+    this.setState({Priority: e.target.value});
+  },
+  handleStatusChange: function(e) {
+    this.setState({Status: e.target.value});
+  },
+  handleCreatedByChange: function(e) {
+    this.setState({CreatedBy: e.target.value});
+  },
+  handleAssignedToChange: function(e) {
+    this.setState({AssignedTo: e.target.value});
+  },
   handleSubmit: function(e) {
     e.preventDefault();
     var Title = this.state.Title.trim();
-    if (!Title) {
+    var Priority = this.state.Priority.trim();
+    var Status = this.state.Status.trim();
+    var CreatedBy = this.state.CreatedBy.trim();
+    var AssignedTo = this.state.AssignedTo.trim();
+    if (
+      !Title ||
+      !Priority ||
+      !Status ||
+      !CreatedBy ||
+      !AssignedTo
+    ) {
       return;
     }
-    this.props.onCardSubmit({ Title: Title});
-    this.setState({Title: ''});
+    this.props.onCardSubmit({
+      Title: Title,
+      Priority: Priority,
+      Status: Status,
+      CreatedBy: CreatedBy,
+      AssignedTo: AssignedTo
+    });
+    this.setState({
+      Title: '',
+      Priority: '',
+      Status: '',
+      CreatedBy: '',
+      AssignedTo: ''
+    });
   },
   render: function() {
     return (
       <form className="cardForm" onSubmit={this.handleSubmit}>
+        <div className="input" align="center">
         <input
           type="text"
           placeholder="Title"
           value={this.state.Title}
           onChange={this.handleTitleChange}
+          align="middle"
+        />
+        <input
+          type="text"
+          placeholder="Priority"
+          value={this.state.Priority}
+          onChange={this.handlePriorityChange}
+        />
+        <input
+          type="text"
+          placeholder="Status"
+          value={this.state.Status}
+          onChange={this.handleStatusChange}
+        />
+        <input
+          type="text"
+          placeholder="Created By"
+          value={this.state.CreatedBy}
+          onChange={this.handleCreatedByChange}
+        />
+        <input
+          type="text"
+          placeholder="Assigned To"
+          value={this.state.AssignedTo}
+          onChange={this.handleAssignedToChange}
         />
         <input type="submit" value="Post" />
-        <h1>{this.state.Title}</h1>
+        </div>
       </form>
     );
   }
@@ -121,8 +180,8 @@ const KanbanBoard = React.createClass({
           <div className="Board" id="To Do">
             <div className="Header"> To do</div>
             <CardList
-            data={this.state.data}
-            status="Queue"
+              data={this.state.data}
+              status="Queue"
             />
           </div>
           <div className="Board" id="Doing">

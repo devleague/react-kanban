@@ -13,9 +13,14 @@ body {
   justify-content: space-between; }
   .cardList .Cards {
     flex: 1 1 100%;
-    background-image: url("http://www.clipartbest.com/cliparts/7Ta/K4B/7TaK4BLLc.svg");
-    background-color: #cccccc;
     border-style: solid; }
+
+.input {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center; }
+  .input input {
+    flex: 1 1 100%; }
 
 .Boards {
   display: flex;

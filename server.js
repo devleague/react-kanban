@@ -21,14 +21,29 @@ app.get('/tasks', function(req, res) {
 
 app.post('/tasks', function(req, res) {
   console.log("hello");
-  console.log(req.body.Title);
   Task.create({
-    Title: req.body.Title
+    Title: req.body.Title,
+    Priority: req.body.Priority,
+    Status: req.body.Status,
+    CreatedBy: req.body.CreatedBy,
+    AssignedTo: req.body.AssignedTo
   })
   .then(function(task) {
     res.json(task)
   });
 })
+
+// app.delete('/tasks', function (req, res) {
+//   console.log("Destroy");
+//   Task.destroy({
+//     where: {
+//       Title: req.body.Title
+//     }
+//   })
+//   .then(function(task) {
+//     res.json(task)
+//   });
+// })
 
 app.listen(app.get('port'), function() {
   console.log(`Server listen on port ${app.get('port')}`);
