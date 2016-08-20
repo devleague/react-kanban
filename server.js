@@ -21,6 +21,21 @@ app.get('/tasks', function(req, res) {
 
 app.post('/tasks', function(req, res) {
   console.log("hello");
+  if (!req.body.Title) {
+    req.body.Title = "New Task";
+  }
+  if (!req.body.Priority) {
+    req.body.Priority = 1;
+  }
+  if (!req.body.Status) {
+    req.body.Status = "Queue";
+  }
+  if (!req.body.CreatedBy) {
+    req.body.CreatedBy = " ";
+  }
+  if (!req.body.AssignedTo) {
+    req.body.AssignedTo = " ";
+  }
   Task.create({
     Title: req.body.Title,
     Priority: req.body.Priority,

@@ -65,14 +65,20 @@ const CardForm = React.createClass({
     var Status = this.state.Status.trim();
     var CreatedBy = this.state.CreatedBy.trim();
     var AssignedTo = this.state.AssignedTo.trim();
-    if (
-      !Title ||
-      !Priority ||
-      !Status ||
-      !CreatedBy ||
-      !AssignedTo
-    ) {
-      return;
+    if (!Title) {
+      Title= "New Task";
+    }
+    if (!Priority) {
+      Priority = 1;
+    }
+    if (!Status) {
+      Status = "Queue";
+    }
+    if (!CreatedBy) {
+      CreatedBy = " ";
+    }
+    if (!AssignedTo) {
+      AssignedTo = " ";
     }
     this.props.onCardSubmit({
       Title: Title,
@@ -98,7 +104,6 @@ const CardForm = React.createClass({
           placeholder="Title"
           value={this.state.Title}
           onChange={this.handleTitleChange}
-          align="middle"
         />
         <input
           type="text"
