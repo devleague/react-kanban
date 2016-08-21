@@ -100,6 +100,22 @@ const CardForm = React.createClass({
       AssignedTo: ''
     });
   },
+  handleDelete: function(e) {
+    this.props.onDeleteCard({
+      Title: Title,
+      Priority: Priority,
+      Status: Status,
+      CreatedBy: CreatedBy,
+      AssignedTo: AssignedTo
+    });
+    this.setState({
+      Title: '',
+      Priority: '',
+      Status: '',
+      CreatedBy: '',
+      AssignedTo: ''
+    });
+  },
   render: function() {
     return (
       <form className="cardForm" onSubmit={this.handleSubmit}>
@@ -151,6 +167,9 @@ const CardForm = React.createClass({
           <input type="submit" value="Post" />
         </div>
       </form>
+      <form onSubmit={this.handleDelete}>
+        DELETEEE<input type="submit" value="Delete" />
+      </form>
     );
   }
 });
@@ -191,7 +210,7 @@ const KanbanBoard = React.createClass({
       url: this.props.url,
       dataType: 'json',
       type: 'DELETE',
-      data: card,
+      data: { "Title": Title },
       success: function(card) {
         console.log(card);
         this.setState({ card: card })
@@ -241,6 +260,7 @@ const KanbanBoard = React.createClass({
           </div>
         </div>
         <CardForm onCardSubmit={this.handleCardSubmit}/>
+        <CardForm onDeleteCard={this.handleDelete}/>
       </div>
     );
   }

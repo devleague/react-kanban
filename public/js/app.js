@@ -216,7 +216,7 @@ var KanbanBoard = React.createClass({
       url: this.props.url,
       dataType: 'json',
       type: 'DELETE',
-      data: card,
+      data: { "Title": Title },
       success: function (card) {
         console.log(card);
         this.setState({ card: card });

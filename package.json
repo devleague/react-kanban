@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "npm run build -- --watch",
-    "build": "babel src --out-dir public/js",
+    "build": "webpack src/app.js public/js/app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
@@ -38,6 +38,7 @@
     "eslint-plugin-react": "^6.1.2",
     "gulp": "^3.9.1",
     "gulp-connect": "^5.0.0",
-    "gulp-sass": "^2.3.2"
+    "gulp-sass": "^2.3.2",
+    "webpack": "^1.13.2"
   }
 }

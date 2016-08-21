@@ -50,6 +50,7 @@ app.post('/tasks', function(req, res) {
 
 app.delete('/tasks', function (req, res) {
   console.log("Destroy");
+  console.log(req.body);
   Task.destroy({
     where: {
       Title: req.body.Title
