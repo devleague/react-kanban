@@ -186,6 +186,23 @@ const KanbanBoard = React.createClass({
     });
   },
 
+  deleteCard: function(card) {
+    $.ajax({
+      url: this.props.url,
+      dataType: 'json',
+      type: 'DELETE',
+      data: card,
+      success: function(card) {
+        console.log(card);
+        this.setState({ card: card })
+        this.loadCardsFromServer();
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.log("omg");
+      }.bind(this)
+    });
+  },
+
   getInitialState: function() {
       return {
           data: []

@@ -48,17 +48,17 @@ app.post('/tasks', function(req, res) {
   });
 })
 
-// app.delete('/tasks', function (req, res) {
-//   console.log("Destroy");
-//   Task.destroy({
-//     where: {
-//       Title: req.body.Title
-//     }
-//   })
-//   .then(function(task) {
-//     res.json(task)
-//   });
-// })
+app.delete('/tasks', function (req, res) {
+  console.log("Destroy");
+  Task.destroy({
+    where: {
+      Title: req.body.Title
+    }
+  })
+  .then(function(task) {
+    res.json(task)
+  });
+})
 
 app.listen(app.get('port'), function() {
   console.log(`Server listen on port ${app.get('port')}`);
