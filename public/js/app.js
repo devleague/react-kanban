@@ -16,7 +16,12 @@ var Card = React.createClass({
       React.createElement("br", null),
       this.props.Priority,
       React.createElement("br", null),
-      this.props.Status
+      this.props.Status,
+      React.createElement(
+        "form",
+        { onDeleteCard: this.handleDelete },
+        React.createElement("input", { type: "submit", value: "Delete", onDeleteCard: this.handleDelete })
+      )
     );
   }
 });
@@ -52,22 +57,38 @@ var CardForm = React.createClass({
   displayName: "CardForm",
 
   getInitialState: function getInitialState() {
-    return { Title: '', Priority: '', Status: '', CreatedBy: '', AssignedTo: '' };
+    return {
+      Title: '',
+      Priority: '',
+      Status: '',
+      CreatedBy: '',
+      AssignedTo: ''
+    };
   },
   handleTitleChange: function handleTitleChange(e) {
-    this.setState({ Title: e.target.value });
+    this.setState({
+      Title: e.target.value
+    });
   },
   handlePriorityChange: function handlePriorityChange(e) {
-    this.setState({ Priority: e.target.value });
+    this.setState({
+      Priority: e.target.value
+    });
   },
   handleStatusChange: function handleStatusChange(e) {
-    this.setState({ Status: e.target.value });
+    this.setState({
+      Status: e.target.value
+    });
   },
   handleCreatedByChange: function handleCreatedByChange(e) {
-    this.setState({ CreatedBy: e.target.value });
+    this.setState({
+      CreatedBy: e.target.value
+    });
   },
   handleAssignedToChange: function handleAssignedToChange(e) {
-    this.setState({ AssignedTo: e.target.value });
+    this.setState({
+      AssignedTo: e.target.value
+    });
   },
   handleSubmit: function handleSubmit(e) {
     e.preventDefault();
@@ -92,6 +113,22 @@ var CardForm = React.createClass({
       AssignedTo = " ";
     }
     this.props.onCardSubmit({
+      Title: Title,
+      Priority: Priority,
+      Status: Status,
+      CreatedBy: CreatedBy,
+      AssignedTo: AssignedTo
+    });
+    this.setState({
+      Title: '',
+      Priority: '',
+      Status: '',
+      CreatedBy: '',
+      AssignedTo: ''
+    });
+  },
+  handleDelete: function handleDelete(e) {
+    this.props.onDeleteCard({
       Title: Title,
       Priority: Priority,
       Status: Status,
@@ -188,7 +225,9 @@ var KanbanBoard = React.createClass({
       cache: false,
       success: function (data) {
         console.log(data);
-        this.setState({ data: data });
+        this.setState({
+          data: data
+        });
       }.bind(this)
     });
   },
@@ -202,7 +241,9 @@ var KanbanBoard = React.createClass({
       data: card,
       success: function (card) {
         console.log(card);
-        this.setState({ card: card });
+        this.setState({
+          card: card
+        });
         this.loadCardsFromServer();
       }.bind(this),
       error: function (xhr, status, err) {
@@ -216,10 +257,14 @@ var KanbanBoard = React.createClass({
       url: this.props.url,
       dataType: 'json',
       type: 'DELETE',
-      data: { "Title": Title },
+      data: {
+        "Title": Title
+      },
       success: function (card) {
         console.log(card);
-        this.setState({ card: card });
+        this.setState({
+          card: card
+        });
         this.loadCardsFromServer();
       }.bind(this),
       error: function (xhr, status, err) {
@@ -256,7 +301,7 @@ var KanbanBoard = React.createClass({
           React.createElement(
             "div",
             { className: "Header" },
-            " To do"
+            " To do "
           ),
           React.createElement(CardList, {
             data: this.state.data,
@@ -290,7 +335,8 @@ var KanbanBoard = React.createClass({
           })
         )
       ),
-      React.createElement(CardForm, { onCardSubmit: this.handleCardSubmit })
+      React.createElement(CardForm, { onCardSubmit: this.handleCardSubmit }),
+      React.createElement(CardForm, { onDeleteCard: this.handleDelete })
     );
   }
 });

@@ -4,10 +4,17 @@ const Card = React.createClass({
   render: function() {
     return (
       <div className="Card">
-          Ticket ID #{this.props.id}<br />
-          {this.props.Title}<br />
-          {this.props.Priority}<br />
+          Ticket ID #
+          {this.props.id}
+          <br />
+          {this.props.Title}
+          <br />
+          {this.props.Priority}
+            <br />
           {this.props.Status}
+          <form onDeleteCard={this.handleDelete}>
+            <input type="submit" value="Delete" onDeleteCard={this.handleDelete}/>
+          </form>
       </div>
     );
   }
@@ -38,7 +45,7 @@ const CardList = React.createClass({
       })
     return (
       <div className="cardList">
-      { cards }
+        { cards }
       </div>
     );
   }
@@ -46,22 +53,38 @@ const CardList = React.createClass({
 
 const CardForm = React.createClass({
   getInitialState: function() {
-    return {Title: '', Priority: '', Status: '', CreatedBy: '', AssignedTo: ''};
+    return {
+      Title: '',
+      Priority: '',
+      Status: '',
+      CreatedBy: '',
+      AssignedTo: ''
+    };
   },
   handleTitleChange: function(e) {
-    this.setState({Title: e.target.value});
+    this.setState({
+      Title: e.target.value
+    });
   },
   handlePriorityChange: function(e) {
-    this.setState({Priority: e.target.value});
+    this.setState({
+      Priority: e.target.value
+    });
   },
   handleStatusChange: function(e) {
-    this.setState({Status: e.target.value});
+    this.setState({
+      Status: e.target.value
+    });
   },
   handleCreatedByChange: function(e) {
-    this.setState({CreatedBy: e.target.value});
+    this.setState({
+      CreatedBy: e.target.value
+    });
   },
   handleAssignedToChange: function(e) {
-    this.setState({AssignedTo: e.target.value});
+    this.setState({
+      AssignedTo: e.target.value
+    });
   },
   handleSubmit: function(e) {
     e.preventDefault();
@@ -167,9 +190,6 @@ const CardForm = React.createClass({
           <input type="submit" value="Post" />
         </div>
       </form>
-      <form onSubmit={this.handleDelete}>
-        DELETEEE<input type="submit" value="Delete" />
-      </form>
     );
   }
 });
@@ -182,7 +202,9 @@ const KanbanBoard = React.createClass({
       cache: false,
       success: function (data) {
         console.log(data);
-        this.setState({ data: data })
+        this.setState({
+          data: data
+        })
       }.bind(this)
     });
   },
@@ -196,7 +218,9 @@ const KanbanBoard = React.createClass({
       data: card,
       success: function(card) {
         console.log(card);
-        this.setState({ card: card })
+        this.setState({
+          card: card
+        })
         this.loadCardsFromServer();
       }.bind(this),
       error: function(xhr, status, err) {
@@ -210,10 +234,14 @@ const KanbanBoard = React.createClass({
       url: this.props.url,
       dataType: 'json',
       type: 'DELETE',
-      data: { "Title": Title },
+      data: {
+        "Title": Title
+      },
       success: function(card) {
         console.log(card);
-        this.setState({ card: card })
+        this.setState({
+          card: card
+        })
         this.loadCardsFromServer();
       }.bind(this),
       error: function(xhr, status, err) {
@@ -238,7 +266,7 @@ const KanbanBoard = React.createClass({
         <div className="Header"> KanbanBoard </div>
         <div className="Boards">
           <div className="Board" id="To Do">
-            <div className="Header"> To do</div>
+            <div className="Header"> To do </div>
             <CardList
               data={this.state.data}
               status="Queue"

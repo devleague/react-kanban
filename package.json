@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "npm run build -- --watch",
-    "build": "webpack src/app.js public/js/app.js",
+    "build": "webpack src/app.js public/js/app.js --module-bind 'js=babel'",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
@@ -29,6 +29,8 @@
   },
   "devDependencies": {
     "babel-cli": "^6.11.4",
+    "babel-core": "^6.13.2",
+    "babel-loader": "^6.2.5",
     "babel-preset-es2015": "^6.13.2",
     "babel-preset-react": "^6.11.1",
     "eslint": "^3.3.1",
