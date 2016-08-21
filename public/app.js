@@ -99,31 +99,51 @@ const CardForm = React.createClass({
     return (
       <form className="cardForm" onSubmit={this.handleSubmit}>
         <div className="input" align="center">
-        <input
+        Title <input
           type="text"
           placeholder="Title"
           value={this.state.Title}
           onChange={this.handleTitleChange}
         />
-        <input
-          type="text"
+        Priority <input
+          type="range"
+          min="0"
+          max="10"
+          name="Priority"
           placeholder="Priority"
           value={this.state.Priority}
           onChange={this.handlePriorityChange}
         />
-        <input
-          type="text"
-          placeholder="Status"
-          value={this.state.Status}
-          onChange={this.handleStatusChange}
-        />
-        <input
+        <form>
+          Queue <input
+            type="radio"
+            placeholder="Status"
+            name="Queue"
+            value={this.state.Status}
+            onChange={this.handleStatusChange}
+          />
+          Progress {this.state.Status} <input
+            type="radio"
+            placeholder="Status"
+            name="Progress"
+            value={this.state.Status}
+            onChange={this.handleStatusChange}
+          />
+          Done <input
+            type="radio"
+            placeholder="Status"
+            name="Done"
+            value={this.state.Status}
+            onChange={this.handleStatusChange}
+          />
+        </form>
+        Created By<input
           type="text"
           placeholder="Created By"
           value={this.state.CreatedBy}
           onChange={this.handleCreatedByChange}
         />
-        <input
+        Assigned To<input
           type="text"
           placeholder="Assigned To"
           value={this.state.AssignedTo}
