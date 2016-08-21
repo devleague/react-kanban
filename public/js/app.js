@@ -110,65 +110,58 @@ var CardForm = React.createClass({
       { className: "cardForm", onSubmit: this.handleSubmit },
       React.createElement(
         "div",
-        { className: "input", align: "center" },
+        { className: "input" },
         "Title ",
         React.createElement("input", {
           type: "text",
-          placeholder: "Title",
           value: this.state.Title,
           onChange: this.handleTitleChange
         }),
-        "Priority ",
+        "Priority Level: ",
+        this.state.Priority,
+        " (Drag Me!) ",
         React.createElement("input", {
           type: "range",
           min: "0",
           max: "10",
           name: "Priority",
-          placeholder: "Priority",
           value: this.state.Priority,
           onChange: this.handlePriorityChange
         }),
         React.createElement(
-          "form",
+          "div",
           null,
           "Queue ",
           React.createElement("input", {
             type: "radio",
-            placeholder: "Status",
-            name: "Queue",
-            value: this.state.Status,
+            name: "status",
+            value: "Queue",
             onChange: this.handleStatusChange
           }),
           "Progress ",
-          this.state.Status,
-          " ",
           React.createElement("input", {
             type: "radio",
-            placeholder: "Status",
-            name: "Progress",
-            value: this.state.Status,
+            name: "status",
+            value: "Progress",
             onChange: this.handleStatusChange
           }),
           "Done ",
           React.createElement("input", {
             type: "radio",
-            placeholder: "Status",
-            name: "Done",
-            value: this.state.Status,
+            name: "status",
+            value: "Done",
             onChange: this.handleStatusChange
           })
         ),
         "Created By",
         React.createElement("input", {
           type: "text",
-          placeholder: "Created By",
           value: this.state.CreatedBy,
           onChange: this.handleCreatedByChange
         }),
         "Assigned To",
         React.createElement("input", {
           type: "text",
-          placeholder: "Assigned To",
           value: this.state.AssignedTo,
           onChange: this.handleAssignedToChange
         }),

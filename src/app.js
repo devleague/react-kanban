@@ -98,58 +98,51 @@ const CardForm = React.createClass({
   render: function() {
     return (
       <form className="cardForm" onSubmit={this.handleSubmit}>
-        <div className="input" align="center">
-        Title <input
-          type="text"
-          placeholder="Title"
-          value={this.state.Title}
-          onChange={this.handleTitleChange}
-        />
-        Priority <input
-          type="range"
-          min="0"
-          max="10"
-          name="Priority"
-          placeholder="Priority"
-          value={this.state.Priority}
-          onChange={this.handlePriorityChange}
-        />
-        <form>
-          Queue <input
-            type="radio"
-            placeholder="Status"
-            name="Queue"
-            value={this.state.Status}
-            onChange={this.handleStatusChange}
+        <div className="input">
+          Title <input
+            type="text"
+            value={this.state.Title}
+            onChange={this.handleTitleChange}
           />
-          Progress {this.state.Status} <input
-            type="radio"
-            placeholder="Status"
-            name="Progress"
-            value={this.state.Status}
-            onChange={this.handleStatusChange}
+          Priority Level: {this.state.Priority} (Drag Me!) <input
+            type="range"
+            min="0"
+            max="10"
+            name="Priority"
+            value={this.state.Priority}
+            onChange={this.handlePriorityChange}
           />
-          Done <input
-            type="radio"
-            placeholder="Status"
-            name="Done"
-            value={this.state.Status}
-            onChange={this.handleStatusChange}
+          <div>
+            Queue <input
+              type="radio"
+              name="status"
+              value="Queue"
+              onChange={this.handleStatusChange}
+            />
+            Progress <input
+              type="radio"
+              name="status"
+              value="Progress"
+              onChange={this.handleStatusChange}
+            />
+            Done <input
+              type="radio"
+              name="status"
+              value="Done"
+              onChange={this.handleStatusChange}
+            />
+          </div>
+            Created By<input
+              type="text"
+              value={this.state.CreatedBy}
+              onChange={this.handleCreatedByChange}
+            />
+          Assigned To<input
+            type="text"
+            value={this.state.AssignedTo}
+            onChange={this.handleAssignedToChange}
           />
-        </form>
-        Created By<input
-          type="text"
-          placeholder="Created By"
-          value={this.state.CreatedBy}
-          onChange={this.handleCreatedByChange}
-        />
-        Assigned To<input
-          type="text"
-          placeholder="Assigned To"
-          value={this.state.AssignedTo}
-          onChange={this.handleAssignedToChange}
-        />
-        <input type="submit" value="Post" />
+          <input type="submit" value="Post" />
         </div>
       </form>
     );

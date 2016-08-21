@@ -19,8 +19,9 @@ body {
 
 .input {
   display: flex;
-  flex-flow: row wrap;
-  align-items: center; }
+  flex-flow: column wrap;
+  align-items: center;
+  width: 100%; }
   .input input {
     flex: 1 1 100%; }
 

@@ -20,7 +20,7 @@ app.get('/tasks', function(req, res) {
 })
 
 app.post('/tasks', function(req, res) {
-  console.log("hello");
+  console.log(req.body.Status);
   if (!req.body.Title) {
     req.body.Title = "New Task";
   }
