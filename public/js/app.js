@@ -28,6 +28,8 @@ var CardList = React.createClass({
     var status = this.props.status;
     var cards = this.props.data.filter(function (card, index) {
       return card.Status === status;
+    }).sort(function (cardA, cardB) {
+      return cardB.Priority - cardA.Priority;
     }).map(function (card) {
       return React.createElement(Card, {
         id: card.id,
@@ -108,6 +110,11 @@ var CardForm = React.createClass({
     return React.createElement(
       "form",
       { className: "cardForm", onSubmit: this.handleSubmit },
+      React.createElement(
+        "div",
+        { className: "Header" },
+        "Create New Task!"
+      ),
       React.createElement(
         "div",
         { className: "input" },

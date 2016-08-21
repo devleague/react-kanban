@@ -16,21 +16,26 @@ const Card = React.createClass({
 const CardList = React.createClass({
   render: function() {
     const status = this.props.status;
-    const cards = this.props.data.filter(function (card, index) {
-      return card.Status === status;
-    }).map(function (card) {
-      return (
-        <Card
-          id={card.id}
-          Title={card.Title}
-          Priority={card.Priority}
-          Status={card.Status}
-          CreatedBy={card.CreatedBy}
-          AssignedTo={card.AssignedTo}
-        >
-        </Card>
-      );
-    })
+    const cards = this.props.data
+      .filter(function (card, index) {
+        return card.Status === status;
+      })
+      .sort(function(cardA, cardB) {
+        return cardB.Priority - cardA.Priority;
+      })
+      .map(function (card) {
+        return (
+          <Card
+            id={card.id}
+            Title={card.Title}
+            Priority={card.Priority}
+            Status={card.Status}
+            CreatedBy={card.CreatedBy}
+            AssignedTo={card.AssignedTo}
+          >
+          </Card>
+        );
+      })
     return (
       <div className="cardList">
       { cards }
@@ -98,6 +103,7 @@ const CardForm = React.createClass({
   render: function() {
     return (
       <form className="cardForm" onSubmit={this.handleSubmit}>
+        <div className="Header">Create New Task!</div>
         <div className="input">
           Title <input
             type="text"
