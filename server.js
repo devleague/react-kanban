@@ -48,12 +48,12 @@ app.post('/tasks', function(req, res) {
   });
 })
 
-app.delete('/tasks', function (req, res) {
+app.delete('/tasks/:id', function (req, res) {
   console.log("Destroy");
   console.log(req.body);
   Task.destroy({
     where: {
-      Title: req.body.Title
+      id: req.params.id
     }
   })
   .then(function(task) {

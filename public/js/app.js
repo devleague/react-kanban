@@ -1,344 +1,398 @@
-"use strict";
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
 
-console.log("Hi");
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
 
-var Card = React.createClass({
-  displayName: "Card",
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId])
+/******/ 			return installedModules[moduleId].exports;
 
-  render: function render() {
-    return React.createElement(
-      "div",
-      { className: "Card" },
-      "Ticket ID #",
-      this.props.id,
-      React.createElement("br", null),
-      this.props.Title,
-      React.createElement("br", null),
-      this.props.Priority,
-      React.createElement("br", null),
-      this.props.Status,
-      React.createElement(
-        "form",
-        { onDeleteCard: this.handleDelete },
-        React.createElement("input", { type: "submit", value: "Delete", onDeleteCard: this.handleDelete })
-      )
-    );
-  }
-});
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			exports: {},
+/******/ 			id: moduleId,
+/******/ 			loaded: false
+/******/ 		};
 
-var CardList = React.createClass({
-  displayName: "CardList",
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
 
-  render: function render() {
-    var status = this.props.status;
-    var cards = this.props.data.filter(function (card, index) {
-      return card.Status === status;
-    }).sort(function (cardA, cardB) {
-      return cardB.Priority - cardA.Priority;
-    }).map(function (card) {
-      return React.createElement(Card, {
-        id: card.id,
-        Title: card.Title,
-        Priority: card.Priority,
-        Status: card.Status,
-        CreatedBy: card.CreatedBy,
-        AssignedTo: card.AssignedTo
-      });
-    });
-    return React.createElement(
-      "div",
-      { className: "cardList" },
-      cards
-    );
-  }
-});
+/******/ 		// Flag the module as loaded
+/******/ 		module.loaded = true;
 
-var CardForm = React.createClass({
-  displayName: "CardForm",
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
 
-  getInitialState: function getInitialState() {
-    return {
-      Title: '',
-      Priority: '',
-      Status: '',
-      CreatedBy: '',
-      AssignedTo: ''
-    };
-  },
-  handleTitleChange: function handleTitleChange(e) {
-    this.setState({
-      Title: e.target.value
-    });
-  },
-  handlePriorityChange: function handlePriorityChange(e) {
-    this.setState({
-      Priority: e.target.value
-    });
-  },
-  handleStatusChange: function handleStatusChange(e) {
-    this.setState({
-      Status: e.target.value
-    });
-  },
-  handleCreatedByChange: function handleCreatedByChange(e) {
-    this.setState({
-      CreatedBy: e.target.value
-    });
-  },
-  handleAssignedToChange: function handleAssignedToChange(e) {
-    this.setState({
-      AssignedTo: e.target.value
-    });
-  },
-  handleSubmit: function handleSubmit(e) {
-    e.preventDefault();
-    var Title = this.state.Title.trim();
-    var Priority = this.state.Priority.trim();
-    var Status = this.state.Status.trim();
-    var CreatedBy = this.state.CreatedBy.trim();
-    var AssignedTo = this.state.AssignedTo.trim();
-    if (!Title) {
-      Title = "New Task";
-    }
-    if (!Priority) {
-      Priority = 1;
-    }
-    if (!Status) {
-      Status = "Queue";
-    }
-    if (!CreatedBy) {
-      CreatedBy = " ";
-    }
-    if (!AssignedTo) {
-      AssignedTo = " ";
-    }
-    this.props.onCardSubmit({
-      Title: Title,
-      Priority: Priority,
-      Status: Status,
-      CreatedBy: CreatedBy,
-      AssignedTo: AssignedTo
-    });
-    this.setState({
-      Title: '',
-      Priority: '',
-      Status: '',
-      CreatedBy: '',
-      AssignedTo: ''
-    });
-  },
-  handleDelete: function handleDelete(e) {
-    this.props.onDeleteCard({
-      Title: Title,
-      Priority: Priority,
-      Status: Status,
-      CreatedBy: CreatedBy,
-      AssignedTo: AssignedTo
-    });
-    this.setState({
-      Title: '',
-      Priority: '',
-      Status: '',
-      CreatedBy: '',
-      AssignedTo: ''
-    });
-  },
-  render: function render() {
-    return React.createElement(
-      "form",
-      { className: "cardForm", onSubmit: this.handleSubmit },
-      React.createElement(
-        "div",
-        { className: "Header" },
-        "Create New Task!"
-      ),
-      React.createElement(
-        "div",
-        { className: "input" },
-        "Title ",
-        React.createElement("input", {
-          type: "text",
-          value: this.state.Title,
-          onChange: this.handleTitleChange
-        }),
-        "Priority Level: ",
-        this.state.Priority,
-        " (Drag Me!) ",
-        React.createElement("input", {
-          type: "range",
-          min: "0",
-          max: "10",
-          name: "Priority",
-          value: this.state.Priority,
-          onChange: this.handlePriorityChange
-        }),
-        React.createElement(
-          "div",
-          null,
-          "Queue ",
-          React.createElement("input", {
-            type: "radio",
-            name: "status",
-            value: "Queue",
-            onChange: this.handleStatusChange
-          }),
-          "Progress ",
-          React.createElement("input", {
-            type: "radio",
-            name: "status",
-            value: "Progress",
-            onChange: this.handleStatusChange
-          }),
-          "Done ",
-          React.createElement("input", {
-            type: "radio",
-            name: "status",
-            value: "Done",
-            onChange: this.handleStatusChange
-          })
-        ),
-        "Created By",
-        React.createElement("input", {
-          type: "text",
-          value: this.state.CreatedBy,
-          onChange: this.handleCreatedByChange
-        }),
-        "Assigned To",
-        React.createElement("input", {
-          type: "text",
-          value: this.state.AssignedTo,
-          onChange: this.handleAssignedToChange
-        }),
-        React.createElement("input", { type: "submit", value: "Post" })
-      )
-    );
-  }
-});
 
-var KanbanBoard = React.createClass({
-  displayName: "KanbanBoard",
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
 
-  loadCardsFromServer: function loadCardsFromServer() {
-    $.ajax({
-      url: this.props.url,
-      dataType: 'json',
-      cache: false,
-      success: function (data) {
-        console.log(data);
-        this.setState({
-          data: data
-        });
-      }.bind(this)
-    });
-  },
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
 
-  handleCardSubmit: function handleCardSubmit(card) {
-    var testing = "http://10.0.1.";
-    $.ajax({
-      url: this.props.url,
-      dataType: 'json',
-      type: 'POST',
-      data: card,
-      success: function (card) {
-        console.log(card);
-        this.setState({
-          card: card
-        });
-        this.loadCardsFromServer();
-      }.bind(this),
-      error: function (xhr, status, err) {
-        console.error("oh no");
-      }.bind(this)
-    });
-  },
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
 
-  deleteCard: function deleteCard(card) {
-    $.ajax({
-      url: this.props.url,
-      dataType: 'json',
-      type: 'DELETE',
-      data: {
-        "Title": Title
-      },
-      success: function (card) {
-        console.log(card);
-        this.setState({
-          card: card
-        });
-        this.loadCardsFromServer();
-      }.bind(this),
-      error: function (xhr, status, err) {
-        console.log("omg");
-      }.bind(this)
-    });
-  },
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(0);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ function(module, exports) {
 
-  getInitialState: function getInitialState() {
-    return {
-      data: []
-    };
-  },
+	"use strict";
 
-  componentDidMount: function componentDidMount() {
-    this.loadCardsFromServer();
-  },
+	console.log("Hi");
 
-  render: function render() {
-    return React.createElement(
-      "div",
-      { className: "kanbanBoard" },
-      React.createElement(
-        "div",
-        { className: "Header" },
-        " KanbanBoard "
-      ),
-      React.createElement(
-        "div",
-        { className: "Boards" },
-        React.createElement(
-          "div",
-          { className: "Board", id: "To Do" },
-          React.createElement(
-            "div",
-            { className: "Header" },
-            " To do "
-          ),
-          React.createElement(CardList, {
-            data: this.state.data,
-            status: "Queue"
-          })
-        ),
-        React.createElement(
-          "div",
-          { className: "Board", id: "Doing" },
-          React.createElement(
-            "div",
-            { className: "Header" },
-            " Doing "
-          ),
-          React.createElement(CardList, {
-            data: this.state.data,
-            status: "Progress"
-          })
-        ),
-        React.createElement(
-          "div",
-          { className: "Board", id: "Done" },
-          React.createElement(
-            "div",
-            { className: "Header" },
-            " Done "
-          ),
-          React.createElement(CardList, {
-            data: this.state.data,
-            status: "Done"
-          })
-        )
-      ),
-      React.createElement(CardForm, { onCardSubmit: this.handleCardSubmit }),
-      React.createElement(CardForm, { onDeleteCard: this.handleDelete })
-    );
-  }
-});
+	//import React from 'react';
+	//import {render} from 'react-dom';
 
-ReactDOM.render(React.createElement(KanbanBoard, { url: "/tasks" }), document.getElementById('app'));
+	var Card = React.createClass({
+	  displayName: "Card",
+
+	  handleSubmit: function handleSubmit(e) {
+	    e.preventDefault();
+	    this.props.handleDelete(this.props.id);
+	  },
+	  render: function render() {
+	    return React.createElement(
+	      "div",
+	      { className: "Card" },
+	      "Ticket ID #",
+	      this.props.id,
+	      React.createElement("br", null),
+	      this.props.Title,
+	      React.createElement("br", null),
+	      this.props.Priority,
+	      React.createElement("br", null),
+	      this.props.Status,
+	      React.createElement(
+	        "form",
+	        { onSubmit: this.handleSubmit },
+	        React.createElement("input", { type: "submit", value: " Delete " })
+	      )
+	    );
+	  }
+	});
+
+	var CardList = React.createClass({
+	  displayName: "CardList",
+
+	  render: function render() {
+	    var _this = this;
+
+	    var status = this.props.status;
+	    var cards = this.props.data.filter(function (card, index) {
+	      return card.Status === status;
+	    }).sort(function (cardA, cardB) {
+	      return cardB.Priority - cardA.Priority;
+	    }).map(function (card) {
+	      return React.createElement(Card, {
+	        key: card.id,
+	        id: card.id,
+	        Title: card.Title,
+	        Priority: card.Priority,
+	        Status: card.Status,
+	        CreatedBy: card.CreatedBy,
+	        AssignedTo: card.AssignedTo,
+	        handleDelete: _this.props.deleteCard
+	      });
+	    });
+	    return React.createElement(
+	      "div",
+	      { className: "cardList" },
+	      cards
+	    );
+	  }
+	});
+
+	var CardForm = React.createClass({
+	  displayName: "CardForm",
+
+	  getInitialState: function getInitialState() {
+	    return {
+	      Title: '',
+	      Priority: '',
+	      Status: '',
+	      CreatedBy: '',
+	      AssignedTo: ''
+	    };
+	  },
+	  handleTitleChange: function handleTitleChange(e) {
+	    this.setState({
+	      Title: e.target.value
+	    });
+	  },
+	  handlePriorityChange: function handlePriorityChange(e) {
+	    this.setState({
+	      Priority: e.target.value
+	    });
+	  },
+	  handleStatusChange: function handleStatusChange(e) {
+	    this.setState({
+	      Status: e.target.value
+	    });
+	  },
+	  handleCreatedByChange: function handleCreatedByChange(e) {
+	    this.setState({
+	      CreatedBy: e.target.value
+	    });
+	  },
+	  handleAssignedToChange: function handleAssignedToChange(e) {
+	    this.setState({
+	      AssignedTo: e.target.value
+	    });
+	  },
+	  handleSubmit: function handleSubmit(e) {
+	    e.preventDefault();
+	    var Title = this.state.Title.trim();
+	    var Priority = this.state.Priority.trim();
+	    var Status = this.state.Status.trim();
+	    var CreatedBy = this.state.CreatedBy.trim();
+	    var AssignedTo = this.state.AssignedTo.trim();
+	    if (!Title) {
+	      Title = "New Task";
+	    }
+	    if (!Priority) {
+	      Priority = 1;
+	    }
+	    if (!Status) {
+	      Status = "Queue";
+	    }
+	    if (!CreatedBy) {
+	      CreatedBy = " ";
+	    }
+	    if (!AssignedTo) {
+	      AssignedTo = " ";
+	    }
+	    this.props.onCardSubmit({
+	      Title: Title,
+	      Priority: Priority,
+	      Status: Status,
+	      CreatedBy: CreatedBy,
+	      AssignedTo: AssignedTo
+	    });
+	    this.setState({
+	      Title: '',
+	      Priority: '',
+	      Status: '',
+	      CreatedBy: '',
+	      AssignedTo: ''
+	    });
+	  },
+	  handleDelete: function handleDelete(e) {
+	    this.props.onDeleteCard({
+	      Title: Title,
+	      Priority: Priority,
+	      Status: Status,
+	      CreatedBy: CreatedBy,
+	      AssignedTo: AssignedTo
+	    });
+	    this.setState({
+	      Title: '',
+	      Priority: '',
+	      Status: '',
+	      CreatedBy: '',
+	      AssignedTo: ''
+	    });
+	  },
+	  render: function render() {
+	    return React.createElement(
+	      "form",
+	      { className: "cardForm", onSubmit: this.handleSubmit },
+	      React.createElement(
+	        "div",
+	        { className: "Header" },
+	        "Create New Task!"
+	      ),
+	      React.createElement(
+	        "div",
+	        { className: "input" },
+	        "Title ",
+	        React.createElement("input", {
+	          type: "text",
+	          value: this.state.Title,
+	          onChange: this.handleTitleChange
+	        }),
+	        "Priority Level: ",
+	        this.state.Priority,
+	        " (Drag Me!) ",
+	        React.createElement("input", {
+	          type: "range",
+	          min: "0",
+	          max: "10",
+	          name: "Priority",
+	          value: this.state.Priority,
+	          onChange: this.handlePriorityChange
+	        }),
+	        React.createElement(
+	          "div",
+	          null,
+	          "Queue ",
+	          React.createElement("input", {
+	            type: "radio",
+	            name: "status",
+	            value: "Queue",
+	            onChange: this.handleStatusChange
+	          }),
+	          "Progress ",
+	          React.createElement("input", {
+	            type: "radio",
+	            name: "status",
+	            value: "Progress",
+	            onChange: this.handleStatusChange
+	          }),
+	          "Done ",
+	          React.createElement("input", {
+	            type: "radio",
+	            name: "status",
+	            value: "Done",
+	            onChange: this.handleStatusChange
+	          })
+	        ),
+	        "Created By",
+	        React.createElement("input", {
+	          type: "text",
+	          value: this.state.CreatedBy,
+	          onChange: this.handleCreatedByChange
+	        }),
+	        "Assigned To",
+	        React.createElement("input", {
+	          type: "text",
+	          value: this.state.AssignedTo,
+	          onChange: this.handleAssignedToChange
+	        }),
+	        React.createElement("input", { type: "submit", value: "Post" })
+	      )
+	    );
+	  }
+	});
+
+	var KanbanBoard = React.createClass({
+	  displayName: "KanbanBoard",
+
+	  loadCardsFromServer: function loadCardsFromServer() {
+	    $.ajax({
+	      url: this.props.url,
+	      dataType: 'json',
+	      cache: false,
+	      success: function (data) {
+	        console.log(data);
+	        this.setState({
+	          data: data
+	        });
+	      }.bind(this)
+	    });
+	  },
+
+	  handleCardSubmit: function handleCardSubmit(card) {
+	    var testing = "http://10.0.1.";
+	    $.ajax({
+	      url: this.props.url,
+	      dataType: 'json',
+	      type: 'POST',
+	      data: card,
+	      success: function (card) {
+	        console.log(card);
+	        this.setState({
+	          card: card
+	        });
+	        this.loadCardsFromServer();
+	      }.bind(this),
+	      error: function (xhr, status, err) {
+	        console.error("oh no");
+	      }.bind(this)
+	    });
+	  },
+
+	  deleteCard: function deleteCard(id) {
+	    $.ajax({
+	      url: this.props.url + "/" + id,
+	      dataType: 'json',
+	      type: 'DELETE',
+	      success: function (card) {
+	        console.log(card);
+	        this.loadCardsFromServer();
+	      }.bind(this),
+	      error: function (xhr, status, err) {
+	        console.log("omg");
+	      }.bind(this)
+	    });
+	  },
+
+	  getInitialState: function getInitialState() {
+	    return {
+	      data: []
+	    };
+	  },
+
+	  componentDidMount: function componentDidMount() {
+	    this.loadCardsFromServer();
+	  },
+
+	  render: function render() {
+	    return React.createElement(
+	      "div",
+	      { className: "kanbanBoard" },
+	      React.createElement(
+	        "div",
+	        { className: "Header" },
+	        " KanbanBoard "
+	      ),
+	      React.createElement(
+	        "div",
+	        { className: "Boards" },
+	        React.createElement(
+	          "div",
+	          { className: "Board", id: "To Do" },
+	          React.createElement(
+	            "div",
+	            { className: "Header" },
+	            " To do "
+	          ),
+	          React.createElement(CardList, {
+	            data: this.state.data,
+	            status: "Queue",
+	            deleteCard: this.deleteCard
+	          })
+	        ),
+	        React.createElement(
+	          "div",
+	          { className: "Board", id: "Doing" },
+	          React.createElement(
+	            "div",
+	            { className: "Header" },
+	            " Doing "
+	          ),
+	          React.createElement(CardList, {
+	            data: this.state.data,
+	            status: "Progress"
+	          })
+	        ),
+	        React.createElement(
+	          "div",
+	          { className: "Board", id: "Done" },
+	          React.createElement(
+	            "div",
+	            { className: "Header" },
+	            " Done "
+	          ),
+	          React.createElement(CardList, {
+	            data: this.state.data,
+	            status: "Done"
+	          })
+	        )
+	      ),
+	      React.createElement(CardForm, { onCardSubmit: this.handleCardSubmit })
+	    );
+	  }
+	});
+
+	ReactDOM.render(React.createElement(KanbanBoard, { url: "/tasks" }), document.getElementById('app'));
+
+/***/ }
+/******/ ]);

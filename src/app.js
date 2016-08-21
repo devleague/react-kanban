@@ -1,6 +1,13 @@
 console.log("Hi");
 
+//import React from 'react';
+//import {render} from 'react-dom';
+
 const Card = React.createClass({
+  handleSubmit: function(e) {
+    e.preventDefault();
+    this.props.handleDelete(this.props.id);
+  },
   render: function() {
     return (
       <div className="Card">
@@ -10,10 +17,10 @@ const Card = React.createClass({
           {this.props.Title}
           <br />
           {this.props.Priority}
-            <br />
+          <br />
           {this.props.Status}
-          <form onDeleteCard={this.handleDelete}>
-            <input type="submit" value="Delete" onDeleteCard={this.handleDelete}/>
+          <form onSubmit={this.handleSubmit}>
+            <input type="submit" value=" Delete "/>
           </form>
       </div>
     );
@@ -30,15 +37,17 @@ const CardList = React.createClass({
       .sort(function(cardA, cardB) {
         return cardB.Priority - cardA.Priority;
       })
-      .map(function (card) {
+      .map(card => {
         return (
           <Card
+            key={card.id}
             id={card.id}
             Title={card.Title}
             Priority={card.Priority}
             Status={card.Status}
             CreatedBy={card.CreatedBy}
             AssignedTo={card.AssignedTo}
+            handleDelete={this.props.deleteCard}
           >
           </Card>
         );
@@ -229,19 +238,13 @@ const KanbanBoard = React.createClass({
     });
   },
 
-  deleteCard: function(card) {
+  deleteCard: function(id) {
     $.ajax({
-      url: this.props.url,
+      url: `${this.props.url}/${id}`,
       dataType: 'json',
       type: 'DELETE',
-      data: {
-        "Title": Title
-      },
       success: function(card) {
         console.log(card);
-        this.setState({
-          card: card
-        })
         this.loadCardsFromServer();
       }.bind(this),
       error: function(xhr, status, err) {
@@ -270,6 +273,7 @@ const KanbanBoard = React.createClass({
             <CardList
               data={this.state.data}
               status="Queue"
+              deleteCard={this.deleteCard}
             />
           </div>
           <div className="Board" id="Doing">
@@ -288,7 +292,6 @@ const KanbanBoard = React.createClass({
           </div>
         </div>
         <CardForm onCardSubmit={this.handleCardSubmit}/>
-        <CardForm onDeleteCard={this.handleDelete}/>
       </div>
     );
   }
