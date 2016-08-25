@@ -61,6 +61,25 @@ app.delete('/tasks/:id', function (req, res) {
   });
 })
 
+app.put('/tasks/:id', function (req, res) {
+  console.log("edit");
+  Task.update({
+    Title: req.body.Title,
+    Priority: req.body.Priority,
+    Status: req.body.Status,
+    CreatedBy: req.body.CreatedBy,
+    AssignedTo: req.body.AssignedTo
+  }, {
+    where: {
+      id: req.params.id
+    },
+    returning: true
+  })
+  .then(function(task) {
+    res.json(task)
+  });
+})
+
 app.listen(app.get('port'), function() {
   console.log(`Server listen on port ${app.get('port')}`);
 })
