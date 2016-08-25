@@ -8,18 +8,16 @@ const Card = React.createClass({
   render: function() {
     return (
       <div className="Card">
-          Ticket ID #
-          {this.props.id}
-          <br />
-          {this.props.Title}
-          <br />
-          {this.props.Priority}
-          <br />
-          {this.props.Status}
           <form onSubmit={this.handleSubmit}>
+            Ticket ID #
+            {this.props.id}
             <input type="submit" value=" X "/>
-          </form>
-          <form onSubmit={this.handleSubmit}>
+            <br />
+            {this.props.Title}
+            <br />
+            {this.props.Priority}
+            <br />
+            {this.props.Status}
             <input type="submit" value=" Edit "/>
           </form>
       </div>

@@ -1,7 +1,7 @@
 import React from 'react';
-
 import CardList from './CardList';
 import CardForm from './CardForm';
+import $ from 'jquery';
 
 const KanbanBoard = React.createClass({
   loadCardsFromServer: function() {
