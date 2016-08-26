@@ -21543,7 +21543,7 @@
 	    });
 	  },
 
-	  statusChange: function statusChange(Status, id) {
+	  doneCard: function doneCard(Status, id) {
 	    _jquery2.default.ajax({
 	      url: this.props.url + '/' + id,
 	      dataType: 'json',
@@ -21594,7 +21594,7 @@
 	            status: 'Queue',
 	            deleteCard: this.deleteCard,
 	            editCard: this.editCard,
-	            statusChange: this.statusChange
+	            doneCard: this.doneCard
 	          })
 	        ),
 	        _react2.default.createElement(
@@ -21610,7 +21610,7 @@
 	            status: 'Progress',
 	            deleteCard: this.deleteCard,
 	            editCard: this.editCard,
-	            statusChange: this.statusChange
+	            doneCard: this.doneCard
 	          })
 	        ),
 	        _react2.default.createElement(
@@ -21626,7 +21626,7 @@
 	            status: 'Done',
 	            deleteCard: this.deleteCard,
 	            editCard: this.editCard,
-	            statusChange: this.statusChange
+	            doneCard: this.doneCard
 	          })
 	        )
 	      ),
@@ -21679,7 +21679,7 @@
 	        AssignedTo: card.AssignedTo,
 	        handleDelete: _this.props.deleteCard,
 	        handleEdit: _this.props.editCard,
-	        handleStatus: _this.props.statusChange
+	        handleDone: _this.props.doneCard
 	      });
 	    });
 	    return _react2.default.createElement(
@@ -21726,7 +21726,7 @@
 
 	    _this.handleDelete = _this.handleDelete.bind(_this);
 	    _this.handleEdit = _this.handleEdit.bind(_this);
-	    _this.handleStatus = _this.handleStatus.bind(_this);
+	    _this.handleDone = _this.handleDone.bind(_this);
 	    return _this;
 	  }
 
@@ -21744,10 +21744,10 @@
 	      this.props.handleEdit(this.props.id);
 	    }
 	  }, {
-	    key: "handleStatus",
-	    value: function handleStatus(e) {
+	    key: "handleDone",
+	    value: function handleDone(e) {
 	      e.preventDefault();
-	      this.props.handleStatus(this.props.Status, this.props.id);
+	      this.props.handleDone(this.props.Status, this.props.id);
 	    }
 	  }, {
 	    key: "render",
@@ -21762,8 +21762,8 @@
 	        ),
 	        _react2.default.createElement(
 	          "form",
-	          { onSubmit: this.handleStatus },
-	          _react2.default.createElement("input", { type: "submit", value: " > " })
+	          { onSubmit: this.handleDone },
+	          _react2.default.createElement("input", { type: "submit", value: " Done " })
 	        ),
 	        _react2.default.createElement(
 	          "form",

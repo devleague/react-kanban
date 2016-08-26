@@ -5,7 +5,7 @@ class Card extends React.Component {
     super(props);
     this.handleDelete = this.handleDelete.bind(this);
     this.handleEdit = this.handleEdit.bind(this);
-    this.handleStatus = this.handleStatus.bind(this);
+    this.handleDone = this.handleDone.bind(this);
   }
   handleDelete (e) {
     e.preventDefault();
@@ -16,9 +16,9 @@ class Card extends React.Component {
     e.preventDefault();
     this.props.handleEdit(this.props.id);
   }
-  handleStatus (e) {
+  handleDone (e) {
     e.preventDefault();
-    this.props.handleStatus(this.props.Status, this.props.id);
+    this.props.handleDone(this.props.Status, this.props.id);
   }
   render () {
     return (
@@ -26,8 +26,8 @@ class Card extends React.Component {
           <form onSubmit={this.handleEdit}>
             <input type="submit" value=" Edit " className="Edit"/>
           </form>
-          <form onSubmit={this.handleStatus}>
-            <input type="submit" value=" > "/>
+          <form onSubmit={this.handleDone}>
+            <input type="submit" value=" Done "/>
           </form>
           <form onSubmit={this.handleDelete}>
             <input type="submit" value=" X " className="Delete"/><br/><br/>

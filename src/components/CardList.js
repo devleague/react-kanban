@@ -23,7 +23,7 @@ const CardList = React.createClass({
             AssignedTo={card.AssignedTo}
             handleDelete={this.props.deleteCard}
             handleEdit={this.props.editCard}
-            handleStatus={this.props.statusChange}
+            handleDone={this.props.doneCard}
           >
           </Card>
         );

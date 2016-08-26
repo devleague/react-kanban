@@ -68,7 +68,7 @@ const KanbanBoard = React.createClass({
     });
   },
 
-  statusChange: function(Status, id) {
+  doneCard: function(Status, id) {
     $.ajax({
       url: `${this.props.url}/${id}`,
       dataType: 'json',
@@ -106,7 +106,7 @@ const KanbanBoard = React.createClass({
               status="Queue"
               deleteCard={this.deleteCard}
               editCard={this.editCard}
-              statusChange={this.statusChange}
+              doneCard={this.doneCard}
             />
           </div>
           <div className="Board" id="Doing">
@@ -116,7 +116,7 @@ const KanbanBoard = React.createClass({
               status="Progress"
               deleteCard={this.deleteCard}
               editCard={this.editCard}
-              statusChange={this.statusChange}
+              doneCard={this.doneCard}
             />
           </div>
           <div className="Board" id="Done">
@@ -126,7 +126,7 @@ const KanbanBoard = React.createClass({
               status="Done"
               deleteCard={this.deleteCard}
               editCard={this.editCard}
-              statusChange={this.statusChange}
+              doneCard={this.doneCard}
             />
           </div>
         </div>
