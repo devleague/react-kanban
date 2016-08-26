@@ -18,7 +18,7 @@ class Card extends React.Component {
   }
   handleStatus (e) {
     e.preventDefault();
-    this.props.handleStatus(this.props.Status);
+    this.props.handleStatus(this.props.Status, this.props.id);
   }
   render () {
     return (

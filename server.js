@@ -68,7 +68,7 @@ app.put('/tasks/:id', function (req, res) {
   Task.update({
     Title: req.body.Title,
     Priority: req.body.Priority,
-    Status: req.body.Status,
+    Status: 'Done',
     CreatedBy: req.body.CreatedBy,
     AssignedTo: req.body.AssignedTo
   }, {

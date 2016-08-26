@@ -70,7 +70,7 @@ const KanbanBoard = React.createClass({
 
   statusChange: function(Status, id) {
     $.ajax({
-      url: `${this.props.url}/${Status}`,
+      url: `${this.props.url}/${id}`,
       dataType: 'json',
       type: 'PUT',
       data: Status,

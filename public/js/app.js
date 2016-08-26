@@ -21545,7 +21545,7 @@
 
 	  statusChange: function statusChange(Status, id) {
 	    _jquery2.default.ajax({
-	      url: this.props.url + '/' + Status,
+	      url: this.props.url + '/' + id,
 	      dataType: 'json',
 	      type: 'PUT',
 	      data: Status,
@@ -21747,7 +21747,7 @@
 	    key: "handleStatus",
 	    value: function handleStatus(e) {
 	      e.preventDefault();
-	      this.props.handleStatus(this.props.Status);
+	      this.props.handleStatus(this.props.Status, this.props.id);
 	    }
 	  }, {
 	    key: "render",
