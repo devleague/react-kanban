@@ -63,6 +63,7 @@ app.delete('/tasks/:id', function (req, res) {
 
 app.put('/tasks/:id', function (req, res) {
   console.log("edit");
+  console.log(req.body.Title);
   Task.update({
     Title: req.body.Title,
     Priority: req.body.Priority,

@@ -59,7 +59,7 @@ const KanbanBoard = React.createClass({
       dataType: 'json',
       type: 'PUT',
       success: function(card) {
-        console.log(card);
+        console.log("wassup son");
         this.loadCardsFromServer();
       }.bind(this),
       error: function(xhr, status, err) {
