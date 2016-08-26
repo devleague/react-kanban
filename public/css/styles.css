@@ -20,10 +20,16 @@ body {
 .input {
   display: flex;
   flex-flow: column wrap;
-  align-items: center;
+  align: right;
   width: 100%; }
   .input input {
     flex: 1 1 100%; }
+
+.Edit {
+  float: none; }
+
+.Delete {
+  float: right; }
 
 .Boards {
   display: flex;

@@ -21702,16 +21702,18 @@
 	      _react2.default.createElement(
 	        "form",
 	        { onSubmit: this.handleSubmit },
+	        _react2.default.createElement("input", { type: "submit", value: " Edit ", className: "Edit" }),
+	        _react2.default.createElement("input", { type: "submit", value: " X ", className: "Delete" }),
+	        _react2.default.createElement("br", null),
+	        _react2.default.createElement("br", null),
 	        "Ticket ID #",
 	        this.props.id,
-	        _react2.default.createElement("input", { type: "submit", value: " X " }),
 	        _react2.default.createElement("br", null),
 	        this.props.Title,
 	        _react2.default.createElement("br", null),
 	        this.props.Priority,
 	        _react2.default.createElement("br", null),
-	        this.props.Status,
-	        _react2.default.createElement("input", { type: "submit", value: " Edit " })
+	        this.props.Status
 	      )
 	    );
 	  }

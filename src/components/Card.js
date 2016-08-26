@@ -9,16 +9,16 @@ const Card = React.createClass({
     return (
       <div className="Card">
           <form onSubmit={this.handleSubmit}>
+            <input type="submit" value=" Edit " className="Edit"/>
+            <input type="submit" value=" X " className="Delete"/><br/><br/>
             Ticket ID #
             {this.props.id}
-            <input type="submit" value=" X "/>
             <br />
             {this.props.Title}
             <br />
             {this.props.Priority}
             <br />
             {this.props.Status}
-            <input type="submit" value=" Edit "/>
           </form>
       </div>
     );
