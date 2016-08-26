@@ -68,6 +68,22 @@ const KanbanBoard = React.createClass({
     });
   },
 
+  statusChange: function(Status, id) {
+    $.ajax({
+      url: `${this.props.url}/${Status}`,
+      dataType: 'json',
+      type: 'PUT',
+      data: Status,
+      success: function(card) {
+        console.log("wassup son");
+        this.loadCardsFromServer();
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.log("omg");
+      }.bind(this)
+    });
+  },
+
   getInitialState: function() {
       return {
           data: []
@@ -90,6 +106,7 @@ const KanbanBoard = React.createClass({
               status="Queue"
               deleteCard={this.deleteCard}
               editCard={this.editCard}
+              statusChange={this.statusChange}
             />
           </div>
           <div className="Board" id="Doing">
@@ -99,6 +116,7 @@ const KanbanBoard = React.createClass({
               status="Progress"
               deleteCard={this.deleteCard}
               editCard={this.editCard}
+              statusChange={this.statusChange}
             />
           </div>
           <div className="Board" id="Done">
@@ -108,6 +126,7 @@ const KanbanBoard = React.createClass({
               status="Done"
               deleteCard={this.deleteCard}
               editCard={this.editCard}
+              statusChange={this.statusChange}
             />
           </div>
         </div>

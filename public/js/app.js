@@ -21543,6 +21543,22 @@
 	    });
 	  },
 
+	  statusChange: function statusChange(Status, id) {
+	    _jquery2.default.ajax({
+	      url: this.props.url + '/' + Status,
+	      dataType: 'json',
+	      type: 'PUT',
+	      data: Status,
+	      success: function (card) {
+	        console.log("wassup son");
+	        this.loadCardsFromServer();
+	      }.bind(this),
+	      error: function (xhr, status, err) {
+	        console.log("omg");
+	      }.bind(this)
+	    });
+	  },
+
 	  getInitialState: function getInitialState() {
 	    return {
 	      data: []
@@ -21577,7 +21593,8 @@
 	            data: this.state.data,
 	            status: 'Queue',
 	            deleteCard: this.deleteCard,
-	            editCard: this.editCard
+	            editCard: this.editCard,
+	            statusChange: this.statusChange
 	          })
 	        ),
 	        _react2.default.createElement(
@@ -21592,7 +21609,8 @@
 	            data: this.state.data,
 	            status: 'Progress',
 	            deleteCard: this.deleteCard,
-	            editCard: this.editCard
+	            editCard: this.editCard,
+	            statusChange: this.statusChange
 	          })
 	        ),
 	        _react2.default.createElement(
@@ -21607,7 +21625,8 @@
 	            data: this.state.data,
 	            status: 'Done',
 	            deleteCard: this.deleteCard,
-	            editCard: this.editCard
+	            editCard: this.editCard,
+	            statusChange: this.statusChange
 	          })
 	        )
 	      ),
@@ -21659,7 +21678,8 @@
 	        CreatedBy: card.CreatedBy,
 	        AssignedTo: card.AssignedTo,
 	        handleDelete: _this.props.deleteCard,
-	        handleEdit: _this.props.editCard
+	        handleEdit: _this.props.editCard,
+	        handleStatus: _this.props.statusChange
 	      });
 	    });
 	    return _react2.default.createElement(
@@ -21706,6 +21726,7 @@
 
 	    _this.handleDelete = _this.handleDelete.bind(_this);
 	    _this.handleEdit = _this.handleEdit.bind(_this);
+	    _this.handleStatus = _this.handleStatus.bind(_this);
 	    return _this;
 	  }
 
@@ -21723,6 +21744,12 @@
 	      this.props.handleEdit(this.props.id);
 	    }
 	  }, {
+	    key: "handleStatus",
+	    value: function handleStatus(e) {
+	      e.preventDefault();
+	      this.props.handleStatus(this.props.Status);
+	    }
+	  }, {
 	    key: "render",
 	    value: function render() {
 	      return _react2.default.createElement(
@@ -21732,6 +21759,11 @@
 	          "form",
 	          { onSubmit: this.handleEdit },
 	          _react2.default.createElement("input", { type: "submit", value: " Edit ", className: "Edit" })
+	        ),
+	        _react2.default.createElement(
+	          "form",
+	          { onSubmit: this.handleStatus },
+	          _react2.default.createElement("input", { type: "submit", value: " > " })
 	        ),
 	        _react2.default.createElement(
 	          "form",
