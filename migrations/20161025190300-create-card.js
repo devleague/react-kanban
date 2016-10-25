@@ -34,6 +34,6 @@ module.exports = {
     });
   },
   down: function(queryInterface, Sequelize) {
-    return queryInterface.dropTable('Cards');
+    return queryInterface.dropTable('Card');
   }
 };
