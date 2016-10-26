@@ -15,9 +15,9 @@ class KanbanPage extends React.Component {
   }
 
   onKanban(data) {
-    console.log("data###",data);
+
     const parsedData = JSON.parse(data.currentTarget.response);
-    console.log('parsedData: ',parsedData)
+    console.log('Cards****parsedData: ',parsedData);
     this.setState({ data: parsedData.cards });
   }
 
@@ -27,10 +27,8 @@ class KanbanPage extends React.Component {
 
   loadData(){
     const oReq = new XMLHttpRequest();
-    console.log("TEST",oReq);
     oReq.addEventListener("load", this.onKanban);
     oReq.addEventListener("error", this.onKanbanError);
-    console.log('this.props.kanbanUrl',this.props)
     oReq.open("GET", this.props.kanbanUrl);
     oReq.send();
   };
@@ -40,11 +38,9 @@ class KanbanPage extends React.Component {
   }
 
   render() {
-    console.log(this.props);
     return (
       <div id='header'>
         <h1>Kanban Page</h1>
-
       </div>
     )
   }
@@ -58,7 +54,6 @@ KanbanPage.defaultProps = {
 
 KanbanPage.defaultProps = {
   data: [],
-  //KanbanUrl : 'http://localhost:3000/api'
 }
 
 export default KanbanPage;
