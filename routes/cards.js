@@ -5,8 +5,9 @@ const Card = require('../models').Card;
 cardRouter.route('/')
   .get((req,res) => {
     Card.findAll()
-    .then(()=>{
-      res.json({sucess:true});
+    .then((cards)=>{
+      res.json({cards,
+        sucess:true});
     });
   })
   .delete((req,res) => {

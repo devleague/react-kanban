@@ -6,14 +6,13 @@ const webpack = require('webpack');
 const webpackMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const config = require('./webpack.config.js');
-
-const route = require('./routes/cards.js');
 const bodyParser = require('body-parser');
+const route = require('./routes/cards.js');
 const db = require('./models');
 app.use(express.static('./public'));
 app.use(bodyParser.urlencoded({extended:true}));
-const Card = db.card;
 app.use('/api', route);
+const Card = db.card;
 
 // Check to see what dev environment we are in
 const isDeveloping = process.env.NODE_ENV !== 'production';

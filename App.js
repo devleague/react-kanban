@@ -5,8 +5,8 @@ class App extends React.Component {
   render () {
     return (
       <div>
-        <KanbanP
-        KanbanUrl='https://'
+        <KanbanPage
+        kanbanUrl='http://localhost:3000/api'
         />
       </div>
     )
