@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import KanbanPage from './components/KanbanPage';
+import App from './App';
 
 ReactDOM.render(
-  <KanbanPage url='http://localhost:3000' />,
+  <App />,
   document.getElementById('root')
 );
