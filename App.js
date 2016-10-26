@@ -5,8 +5,8 @@ class App extends React.Component {
   render () {
     return (
       <div>
-        <RedditPage
-        KanbanUrl='https://www.reddit.com/r/showerthoughts.json'
+        <KanbanP
+        KanbanUrl='https://'
         />
       </div>
     )
