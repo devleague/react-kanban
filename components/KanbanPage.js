@@ -44,7 +44,7 @@ class KanbanPage extends React.Component {
     return (
       <div id='header'>
         <h1>Kanban Page</h1>
-
+        <KanbanList queue={this.state.queue} progress={this.state.progress} done={this.state.done}/>
       </div>
     )
   }
