@@ -1,5 +1,5 @@
 import React from 'react';
-//import KanbanList from './KanbanList';
+import KanbanList from './KanbanList';
 
 class KanbanPage extends React.Component {
   constructor() {
