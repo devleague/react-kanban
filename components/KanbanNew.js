@@ -56,8 +56,8 @@ class KanbanNew extends React.Component {
       <div>
         <div>
           <form method ="post" action="/new" type="text">
-            <input type="text" placeholder="Title" onChange={this.handleChange} value={this.state.Title} name='title' />
-            <br />
+            <input type="text" placeholder="Title" onChange={this.handleChange} value={this.state.Title} name='title' /> <br />
+
             <input type="text" placeholder="Priority" onChange={this.handleChange} value={this.state.Priority} name='priority' /> <br />
 
             <input type="text" placeholder="Created By" onChange={this.handleChange} value={this.state.Createdby} name='createdby' /> <br />

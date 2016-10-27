@@ -51,6 +51,7 @@ class KanbanPage extends React.Component {
     oReq.addEventListener("error", this.onKanbanError);
     console.log(`${this.props.kanbanUrl}/new`);
     oReq.open("POST", `${this.props.kanbanUrl}/new`);
+    oReq.setRequestHeader("content-type", "application/json");
     oReq.send(JSON.stringify(newCard));
   }
 
