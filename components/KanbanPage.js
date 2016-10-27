@@ -1,5 +1,6 @@
 import React from 'react';
-//import KanbanList from './KanbanList';
+import KanbanList from './KanbanList';
+import KanbanNew from './KanbanNew';
 
 class KanbanPage extends React.Component {
   constructor() {
@@ -12,17 +13,45 @@ class KanbanPage extends React.Component {
     };
     this.onKanban = this.onKanban.bind(this)
     this.loadData = this.loadData.bind(this)
+    this.createNewCard = this.createNewCard.bind(this)
   }
 
   onKanban(data) {
 
     const parsedData = JSON.parse(data.currentTarget.response);
     console.log('Cards****parsedData: ',parsedData);
-    this.setState({ data: parsedData.cards });
+
+    let queueCards =  parsedData.cards.filter( card=>{
+      return card.Status === 'Queue'
+    })
+    let progressCards =  parsedData.cards.filter( card=>{
+      return card.Status === 'Progress'
+    })
+    let doneCards =  parsedData.cards.filter( card=>{
+      return card.Status === 'Done'
+    })
+
+    this.setState({
+      queue: queueCards,
+      progress: progressCards,
+      done: doneCards
+    });
+
+
   }
 
   onKanbanError(error) {
     console.log('error: ', error);
+  }
+
+  createNewCard(newCard){
+    console.log('hit', newCard);
+    const oReq = new XMLHttpRequest();
+    oReq.addEventListener("load", this.loadData);
+    oReq.addEventListener("error", this.onKanbanError);
+    console.log(`${this.props.kanbanUrl}/new`);
+    oReq.open("POST", `${this.props.kanbanUrl}/new`);
+    oReq.send(JSON.stringify(newCard));
   }
 
   loadData(){
@@ -41,19 +70,33 @@ class KanbanPage extends React.Component {
     return (
       <div id='header'>
         <h1>Kanban Page</h1>
+        <KanbanNew
+          createNewCard={this.createNewCard}
+
+        />
+        <KanbanList
+          queue={this.state.queue}
+          progress={this.state.progress}
+          done={this.state.done}
+        />
+
+
       </div>
     )
   }
 
 }
 
-
 KanbanPage.defaultProps = {
-  data: React.PropTypes.array
+  queue: React.PropTypes.array,
+  progress: React.PropTypes.array,
+  done: React.PropTypes.array
 }
 
 KanbanPage.defaultProps = {
-  data: [],
+  queue: [],
+  progress: [],
+  done: []
 }
 
 export default KanbanPage;

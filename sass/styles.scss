@@ -2,8 +2,28 @@ $dark-color : #333333;
 
 body {
   background: $dark-color;
+
 }
 
 h1 {
  color: #F1F1F1;
+}
+
+.kanbanCardsDiv{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+
+.queueDiv{
+display: inline-block;
+}
+
+.progressDiv{
+display: inline-block;
+}
+
+.doneDiv{
+display: inline-block;
 }

@@ -16,6 +16,7 @@ cardRouter.route('/')
 
 cardRouter.route('/new')
   .post((req,res) => {
+    console.log(req.body);
     Card.create({
       Title:req.body.Title,
       Priority:req.body.Priority,
