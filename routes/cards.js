@@ -25,7 +25,13 @@ cardRouter.route('/new')
       Assignedto:req.body.Assignedto
     })
     .then(()=>{
-      res.json({sucess:true});
+      Card.findAll()
+      .then((cards) => {
+        res.json({cards,
+          success:true
+        })
+      })
+
     });
   });
 

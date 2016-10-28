@@ -1,7 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { receivePosts } from '../actions/kanbanActions'
 import KanbanList from './KanbanList';
 import KanbanNew from './KanbanNew';
 // import KanbanQueue from './KanbanQueue';
+
 
 class KanbanPage extends React.Component {
   constructor() {
@@ -29,6 +32,7 @@ class KanbanPage extends React.Component {
     let doneCards =  parsedData.cards.filter( card=>{
       return card.Status === 'Done'
     })
+    //dispatch(kanbanCards(parsedData));
     this.setState({
       queue: queueCards,
       progress: progressCards,
@@ -79,7 +83,6 @@ class KanbanPage extends React.Component {
       </div>
     )
   }
-
 }
 
 KanbanPage.defaultProps = {
@@ -94,4 +97,13 @@ KanbanPage.defaultProps = {
   done: []
 }
 
-export default KanbanPage;
+const mapStateToProps = (state, ownProps) => {
+  const { kanbanPageReducer} = state;
+  return {
+    data: kanbanPageReducer.toJS()
+  }
+}
+
+export default connect(
+  mapStateToProps
+)(KanbanPage);
