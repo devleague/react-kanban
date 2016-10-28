@@ -10,16 +10,16 @@ class KanbanList extends React.Component{
         <KanbanItem {...dataItem} key={dataItem.id}  />
       )
     })
-    const ProgressNode = this.props.progress.map((dataItem)=>{
-      return(
-        <KanbanItem {...dataItem} key={dataItem.id} />
-      )
-    })
-    const DoneNode = this.props.done.map((dataItem)=>{
-      return (
-        <KanbanItem {...dataItem} key={dataItem.id} />
-      )
-    })
+    // const ProgressNode = this.props.progress.map((dataItem)=>{
+    //   return(
+    //     <KanbanItem {...dataItem} key={dataItem.id} />
+    //   )
+    // })
+    // const DoneNode = this.props.done.map((dataItem)=>{
+    //   return (
+    //     <KanbanItem {...dataItem} key={dataItem.id} />
+    //   )
+    // })
     return(
       <div className='kanbanList'>
         <h2> Kanban List</h2>
@@ -31,11 +31,11 @@ class KanbanList extends React.Component{
             </div>
             <div className ="progressDiv">
               <h1>In Progress</h1>
-                {ProgressNode}
+                {/*ProgressNode*/}
             </div>
             <div className ="doneDiv">
               <h1>Done</h1>
-                {DoneNode}
+                {/*DoneNode*/}
             </div>
           </div>
       </div>

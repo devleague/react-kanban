@@ -1,8 +1,8 @@
-export const KANBAN_CARDS = 'KANBAN_CARDS';
+export const ADD_ALL_CARDS = 'ADD_ALL_CARDS';
 
-export const kanbanCards = (data) => {
+export const addAllCards = (data) => {
   return {
-    type: KANBAN_CARDS,
+    type: ADD_ALL_CARDS,
     data,
   }
 }

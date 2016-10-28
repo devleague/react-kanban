@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { receivePosts } from '../actions/kanbanActions'
+import { addAllCards } from '../actions/kanbanActions'
 import KanbanList from './KanbanList';
 import KanbanNew from './KanbanNew';
 // import KanbanQueue from './KanbanQueue';
@@ -10,17 +10,13 @@ class KanbanPage extends React.Component {
   constructor() {
     super();
 
-    this.state = {
-      queue: [],
-      progress: [],
-      done: []
-    };
     this.onKanban = this.onKanban.bind(this)
     this.loadData = this.loadData.bind(this)
     this.createNewCard = this.createNewCard.bind(this)
   }
 
   onKanban(data) {
+    const { dispatch } = this.props;
     const parsedData = JSON.parse(data.currentTarget.response);
     console.log('Cards****parsedData: ',parsedData);
     let queueCards =  parsedData.cards.filter( card=>{
@@ -32,12 +28,8 @@ class KanbanPage extends React.Component {
     let doneCards =  parsedData.cards.filter( card=>{
       return card.Status === 'Done'
     })
-    //dispatch(kanbanCards(parsedData));
-    this.setState({
-      queue: queueCards,
-      progress: progressCards,
-      done: doneCards
-    });
+    dispatch(addAllCards(parsedData.cards));
+
   }
 
   onKanbanError(error) {
@@ -68,6 +60,7 @@ class KanbanPage extends React.Component {
   }
 
   render() {
+    console.log('this.props',this.props)
     return (
       <div id='header'>
         <h1>Kanban Page</h1>
@@ -75,10 +68,10 @@ class KanbanPage extends React.Component {
           createNewCard={this.createNewCard}
         />
         <KanbanList
-          queue={this.state.queue}
-          progress={this.state.progress}
-          done={this.state.done}
-          load
+          queue={this.props.data.filter( card =>{
+            return card.Status === 'Queue'
+          })}
+
         />
       </div>
     )
