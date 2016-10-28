@@ -18,18 +18,8 @@ class KanbanPage extends React.Component {
   onKanban(data) {
     const { dispatch } = this.props;
     const parsedData = JSON.parse(data.currentTarget.response);
-    console.log('Cards****parsedData: ',parsedData);
-    let queueCards =  parsedData.cards.filter( card=>{
-      return card.Status === 'Queue'
-    })
-    let progressCards =  parsedData.cards.filter( card=>{
-      return card.Status === 'In Progress'
-    })
-    let doneCards =  parsedData.cards.filter( card=>{
-      return card.Status === 'Done'
-    })
-    dispatch(addAllCards(parsedData.cards));
 
+    dispatch(addAllCards(parsedData.cards));
   }
 
   onKanbanError(error) {
@@ -67,12 +57,27 @@ class KanbanPage extends React.Component {
         <KanbanNew
           createNewCard={this.createNewCard}
         />
-        <KanbanList
-          queue={this.props.data.filter( card =>{
-            return card.Status === 'Queue'
-          })}
-
-        />
+        <div className='kanbanList'>
+          <h2> Kanban List</h2>
+          <KanbanList
+            columnName = 'Queue'
+            queue={this.props.data.filter( card =>{
+              return card.Status === 'Queue'
+            })}
+          />
+          <KanbanList
+            columnName = 'In Progress'
+            queue={this.props.data.filter( card =>{
+              return card.Status === 'In Progress'
+            })}
+          />
+          <KanbanList
+            columnName = 'Done'
+            queue={this.props.data.filter( card =>{
+              return card.Status === 'Done'
+            })}
+          />
+        </div>
       </div>
     )
   }
