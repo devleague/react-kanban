@@ -12,7 +12,7 @@ cardRouter.route('/')
   })
   .delete((req,res) => {
 
-  })
+  });
 
 cardRouter.route('/new')
   .post((req,res) => {
@@ -41,15 +41,15 @@ cardRouter.route('/:id')
        res.json({sucess:true});
     });
   });
-  //edit card
 
-cardRouter.route('/:id/edit')
+  //edit card
+cardRouter.route('/edit')
   .put((req,res) => {
     Card.update({
-       Status: req.body.Status
+       Status: "progress"
     },{
       where: {
-        id: req.params.id
+        id: req.body.title
       }
     });
   })

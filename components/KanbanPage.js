@@ -1,6 +1,7 @@
 import React from 'react';
 import KanbanList from './KanbanList';
 import KanbanNew from './KanbanNew';
+// import KanbanQueue from './KanbanQueue';
 
 class KanbanPage extends React.Component {
   constructor() {
@@ -17,27 +18,22 @@ class KanbanPage extends React.Component {
   }
 
   onKanban(data) {
-
     const parsedData = JSON.parse(data.currentTarget.response);
     console.log('Cards****parsedData: ',parsedData);
-
     let queueCards =  parsedData.cards.filter( card=>{
       return card.Status === 'Queue'
     })
     let progressCards =  parsedData.cards.filter( card=>{
-      return card.Status === 'Progress'
+      return card.Status === 'In Progress'
     })
     let doneCards =  parsedData.cards.filter( card=>{
       return card.Status === 'Done'
     })
-
     this.setState({
       queue: queueCards,
       progress: progressCards,
       done: doneCards
     });
-
-
   }
 
   onKanbanError(error) {
@@ -73,15 +69,13 @@ class KanbanPage extends React.Component {
         <h1>Kanban Page</h1>
         <KanbanNew
           createNewCard={this.createNewCard}
-
         />
         <KanbanList
           queue={this.state.queue}
           progress={this.state.progress}
           done={this.state.done}
+          load
         />
-
-
       </div>
     )
   }

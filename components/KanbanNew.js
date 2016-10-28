@@ -1,22 +1,3 @@
-/*import React from 'react';
-
-class KanbanItem extends React.Component {
-  render() {
-    return (
-      <div>
-        <h4>{this.props.Title}</h4>
-        <p>{this.props.Priority}</p>
-        <p>{this.props.Status}</p>
-        <p>{this.props.Createdby}</p>
-        <p>{this.props.Assignedto}</p>
-      </div>
-    )
-  }
-}
-
-export default KanbanNew;
-*/
-
 import React from 'react';
 
 class KanbanNew extends React.Component {
@@ -36,7 +17,6 @@ class KanbanNew extends React.Component {
     console.log("event$$$",event)
   }
 
-
     //this is when button is clicked
   handleSubmit(event) {
     //prevents browser from submiting method
@@ -54,17 +34,18 @@ class KanbanNew extends React.Component {
     console.log(this.props)
     return (
       <div>
-        <div>
-          <form method ="post" action="/new" type="text">
-            <input type="text" placeholder="Title" onChange={this.handleChange} value={this.state.Title} name='title' /> <br />
+        <div id="newKanbanCard">
+          <h3>New Kanban Card</h3>
+            <form method ="post" action="/new" type="text">
+              <input type="text" placeholder="Title" onChange={this.handleChange} value={this.state.Title} name='title' /> <br />
 
-            <input type="text" placeholder="Priority" onChange={this.handleChange} value={this.state.Priority} name='priority' /> <br />
+              <input type="text" placeholder="Priority" onChange={this.handleChange} value={this.state.Priority} name='priority' /> <br />
 
-            <input type="text" placeholder="Created By" onChange={this.handleChange} value={this.state.Createdby} name='createdby' /> <br />
+              <input type="text" placeholder="Created By" onChange={this.handleChange} value={this.state.Createdby} name='createdby' /> <br />
 
-            <input type="text" placeholder="Assigned To" onChange={this.handleChange} value={this.state.Assignedto} name='assignedto' /> <br />
-            <button onClick={this.handleSubmit}>Submit</button>
-          </form>
+              <input type="text" placeholder="Assigned To" onChange={this.handleChange} value={this.state.Assignedto} name='assignedto' /> <br />
+              <button onClick={this.handleSubmit}>Submit</button>
+            </form>
         </div>
       </div>
     );

@@ -5,25 +5,29 @@ body {
 
 }
 
-h1 {
- color: #F1F1F1;
+h1, h2, h3 {
+  color: #F1F1F1;
 }
 
-.kanbanCardsDiv{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-  }
+#newKanbanCard {
 
-
-.queueDiv{
-display: inline-block;
 }
 
-.progressDiv{
-display: inline-block;
+.kanbanCardsDiv {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
-.doneDiv{
-display: inline-block;
+
+.queueDiv {
+  display: inline-block;
+}
+
+.progressDiv {
+  display: inline-block;
+}
+
+.doneDiv {
+  display: inline-block;
 }

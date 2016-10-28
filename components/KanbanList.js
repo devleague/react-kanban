@@ -30,14 +30,13 @@ class KanbanList extends React.Component{
 
             </div>
             <div className ="progressDiv">
-              <h1>Progress</h1>
+              <h1>In Progress</h1>
                 {ProgressNode}
             </div>
             <div className ="doneDiv">
               <h1>Done</h1>
                 {DoneNode}
             </div>
-
           </div>
       </div>
     )
