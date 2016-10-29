@@ -4,7 +4,7 @@ import KanbanNew from './KanbanNew';
 
 class KanbanList extends React.Component{
   render(){
-    console.log('this.props',this.props)
+    //console.log('this.props',this.props)
     const cards = this.props.queue.map((dataItem)=>{
       return(
         <KanbanItem {...dataItem} key={dataItem.id}  />

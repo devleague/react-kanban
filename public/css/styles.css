@@ -7,7 +7,7 @@ h1, h2, h3 {
   color: #F1F1F1; }
 
 /* line 16, /Users/bryanchoe/Desktop/devLeague/React-Kanban/sass/styles.scss */
-.kanbanCardsDiv {
+#list {
   display: flex;
   flex-direction: row;
   justify-content: space-between; }

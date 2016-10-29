@@ -16,7 +16,6 @@ cardRouter.route('/')
 
 cardRouter.route('/new')
   .post((req,res) => {
-    console.log(req.body);
     Card.create({
       Title:req.body.Title,
       Priority:req.body.Priority,
@@ -29,9 +28,8 @@ cardRouter.route('/new')
       .then((cards) => {
         res.json({cards,
           success:true
-        })
-      })
-
+        });
+      });
     });
   });
 
@@ -48,40 +46,39 @@ cardRouter.route('/:id')
     });
   });
 
-  //edit card
+  //edit status
 cardRouter.route('/edit')
   .put((req,res) => {
-    console.log("hit card route")
-    console.log("req.body%%%%%%",req.body);
-    if(req.body.Status === "Queue") {
+    if (req.body.Status === "Queue") {
       Status = "In Progress";
-    } else if(req.body.Status === "Done"){
+    } else if (req.body.Status === "Done"){
       Status = "In Progress";
 
-    } else if(req.body.Status === "hello"){
+    } else if (req.body.Status === "hello"){
       Status = "Queue";
 
-    }else{
+    }
+     else {
       Status = "Done";
     }
     Card.update({
-       Status: Status
+
+      Status: Status
     },{
       where: {
         Title: req.body.Title
       },
       returning: true
     })
-    .then(( card )=>{
-      console.log(card[1][0].dataValues)
+    .then((card) => {
       res.send({
         success: true,
         updatedCard: card[1][0].dataValues
-      })
+      });
     })
     .catch(err => {
-      console.error(err)
-    })
+      console.error(err);
+    });
   })
   .delete((req,res) => {
     Card.destroy({
@@ -91,6 +88,32 @@ cardRouter.route('/edit')
       }
     });
   });
+
+  cardRouter.route('/editPost')
+  .put((req,res) => {
+    console.log("req.body", req.body)
+    Card.update({
+      Title:req.body.Title,
+      Priority:req.body.Priority,
+      Status: req.body.Status,
+      Createdby:req.body.Createdby,
+      Assignedto:req.body.Assignedto
+    },{
+      where: {
+        Title: req.body.Title
+      },
+      returning: true
+    })
+    .then((card) => {
+      res.send({
+        success: true,
+        updatedCard: card[1][0].dataValues
+      });
+    })
+    .catch(err => {
+      console.error(err);
+    });
+  })
 
 
 module.exports = cardRouter;
