@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { addAllCards } from '../actions/kanbanActions'
 import KanbanList from './KanbanList';
 import KanbanNew from './KanbanNew';
+
+// export const LOAD_DATA = "LOAD_DATA";
 // import KanbanQueue from './KanbanQueue';
 
 
@@ -105,3 +107,4 @@ const mapStateToProps = (state, ownProps) => {
 export default connect(
   mapStateToProps
 )(KanbanPage);
+

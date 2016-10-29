@@ -18,7 +18,7 @@ class KanbanNew extends React.Component {
   }
 
     //this is when button is clicked
-  handleSubmit(event) {
+    handleSubmit(event) {
     //prevents browser from submiting method
     event.preventDefault()
     console.log("event@@",event)

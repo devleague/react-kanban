@@ -51,13 +51,31 @@ cardRouter.route('/:id')
   //edit card
 cardRouter.route('/edit')
   .put((req,res) => {
+    console.log("hit card route")
+    console.log("req.body%%%%%%",req.body.Status);
+    if(req.body.Status === "Queue") {
+      Status = "In Progress";
+    } else {
+      Status = "Done";
+    }
     Card.update({
-       Status: "progress"
+       Status: Status
     },{
       where: {
-        id: req.body.title
-      }
-    });
+        Title: req.body.Title
+      },
+      returning: true
+    })
+    .then(( card )=>{
+      console.log(card[1][0].dataValues)
+      res.send({
+        success: true,
+        updatedCard: card[1][0].dataValues
+      })
+    })
+    .catch(err => {
+      console.error(err)
+    })
   })
   .delete((req,res) => {
     Card.destroy({
