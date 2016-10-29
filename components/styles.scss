@@ -13,21 +13,21 @@ h1, h2, h3 {
 
 }
 
-.kanbanCardsDiv {
+#list {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
 
 
-.queueDiv {
+.queue{
   display: inline-block;
 }
 
-.progressDiv {
+.progress {
   display: inline-block;
 }
 
-.doneDiv {
+.done {
   display: inline-block;
 }

@@ -11,6 +11,6 @@ export const addAllCards = (data) => {
 export const moveCards = (data) => {
   return {
     type: MOVE_CARDS,
-    data: data.id
+    data: data
   }
 }

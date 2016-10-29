@@ -61,24 +61,27 @@ class KanbanPage extends React.Component {
         />
         <div className='kanbanList'>
           <h2> Kanban List</h2>
-          <KanbanList
-            columnName = 'Queue'
-            queue={this.props.data.filter( card =>{
-              return card.Status === 'Queue'
-            })}
-          />
-          <KanbanList
-            columnName = 'In Progress'
-            queue={this.props.data.filter( card =>{
-              return card.Status === 'In Progress'
-            })}
-          />
-          <KanbanList
-            columnName = 'Done'
-            queue={this.props.data.filter( card =>{
-              return card.Status === 'Done'
-            })}
-          />
+            <div id="list">
+              <KanbanList
+                  columnName = 'Queue'
+                  queue={this.props.data.filter( card =>{
+                    return card.Status === 'Queue'
+                  })}
+
+              />
+              <KanbanList
+                columnName = 'In Progress'
+                queue={this.props.data.filter( card =>{
+                  return card.Status === 'In Progress'
+                })}
+              />
+              <KanbanList
+                columnName = 'Done'
+                queue={this.props.data.filter( card =>{
+                  return card.Status === 'Done'
+                })}
+              />
+            </div>
         </div>
       </div>
     )

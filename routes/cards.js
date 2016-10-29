@@ -52,10 +52,16 @@ cardRouter.route('/:id')
 cardRouter.route('/edit')
   .put((req,res) => {
     console.log("hit card route")
-    console.log("req.body%%%%%%",req.body.Status);
+    console.log("req.body%%%%%%",req.body);
     if(req.body.Status === "Queue") {
       Status = "In Progress";
-    } else {
+    } else if(req.body.Status === "Done"){
+      Status = "In Progress";
+
+    } else if(req.body.Status === "hello"){
+      Status = "Queue";
+
+    }else{
       Status = "Done";
     }
     Card.update({

@@ -10,18 +10,34 @@ class KanbanItem extends React.Component{
   };
 
   handleSubmit(event) {
-    console.log("hit handleSubmit")
-    event.preventDefault()
 
+    let targetStatus = event.target.innerHTML;
+
+    event.preventDefault();
+    this.props.moveCards({
+      id:this.props.id,
+      status: targetStatus
+    });
     const oReq = new XMLHttpRequest();
     oReq.addEventListener("load", (data)=>{
-      console.log(data)
     });
     oReq.addEventListener("error", ()=>{});
     oReq.open("PUT", "http://localhost:3000/api/edit");
     oReq.setRequestHeader("content-type", "application/json");
-    oReq.send(JSON.stringify({Title:this.props.Title, Status:this.props.Status}));
-    console.log("this.props.status",this.props.Status)
+
+
+    if(targetStatus === "Queue"){
+      console.log("target queue")
+      oReq.send(JSON.stringify({
+        Title:this.props.Title,
+        Status:"hello"
+       }));
+    } else {
+       oReq.send(JSON.stringify({
+        Title:this.props.Title,
+        Status:this.props.Status
+       }));
+    }
   }
 
   render() {
@@ -31,10 +47,17 @@ class KanbanItem extends React.Component{
         <div>
           <button onClick={this.handleSubmit}>In Progress</button>
         </div>
-      )} else {
+      )} if(this.props.Status === "In Progress"){
         cardButton = (
         <div>
-          <button onClick={this.handleSubmit}>Done</button>
+          <button onClick={this.handleSubmit} >Done</button>
+          <button onClick={this.handleSubmit}  >Queue</button>
+        </div>
+        )
+      }if(this.props.Status === "Done"){
+        cardButton = (
+        <div>
+          <button onClick={this.handleSubmit}>In Progress</button>
         </div>
         )
       }
@@ -59,7 +82,7 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 export default connect(
-  mapStateToProps
+  mapStateToProps,{ moveCards }
 )(KanbanItem);
 
 // handleChange(event) {
