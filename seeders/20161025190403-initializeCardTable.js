@@ -8,7 +8,7 @@ module.exports = {
         Priority: 'High',
         Status: 'Queue',
         Createdby: 'Aaron',
-        Assignedto: 'Bryan',
+        Assignedto: 'JayPee',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -17,12 +17,30 @@ module.exports = {
         Priority: 'High',
         Status: 'Done',
         Createdby: 'Bryan',
-        Assignedto: 'Aaron',
+        Assignedto: 'Casey',
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         Title: 'Drink water',
+        Priority: 'High',
+        Status: 'In Progress',
+        Createdby: 'Bryan',
+        Assignedto: 'Aaron',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        Title: 'Get Drunk',
+        Priority: 'High',
+        Status: 'Done',
+        Createdby: 'Renee',
+        Assignedto: 'Alan',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        Title: 'Go Gym',
         Priority: 'High',
         Status: 'In Progress',
         Createdby: 'Aaron',
