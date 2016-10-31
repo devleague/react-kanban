@@ -64,7 +64,7 @@ Build an Express server which will serve your `index.html` and static assets.
 Your server will have these routes:
   - RESTful API endpoints to create, read, update, and delete kanban cards for your application.
     - Remember to use MVC architechture: Models, Views, Controllers!
-  - One route to 
+  - One route to
 
 ### Database
 MongoDB and Mongoose (ORM). Create a UML Schema for your database, consider [LucidChart](https://www.lucidchart.com/). Add these diagrams to your project.
@@ -84,3 +84,5 @@ Make It Pretty!™
 [Taiga](http://www.taiga.io)
 
 [Asana](http://www.asana.com)
+
+first pull
