@@ -1,5 +1,7 @@
 import React from 'react';
 import KanbanPage from './components/KanbanPage';
+import KanbanNew from './components/KanbanPage';
+
 
 class App extends React.Component {
   render () {

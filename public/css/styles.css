@@ -2,6 +2,24 @@
 body {
   background: #333333; }
 
-/* line 7, /Users/bryanchoe/Desktop/devLeague/React-Kanban/sass/styles.scss */
-h1 {
+/* line 8, /Users/bryanchoe/Desktop/devLeague/React-Kanban/sass/styles.scss */
+h1, h2, h3 {
   color: #F1F1F1; }
+
+/* line 16, /Users/bryanchoe/Desktop/devLeague/React-Kanban/sass/styles.scss */
+.kanbanCardsDiv {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between; }
+
+/* line 23, /Users/bryanchoe/Desktop/devLeague/React-Kanban/sass/styles.scss */
+.queueDiv {
+  display: inline-block; }
+
+/* line 27, /Users/bryanchoe/Desktop/devLeague/React-Kanban/sass/styles.scss */
+.progressDiv {
+  display: inline-block; }
+
+/* line 31, /Users/bryanchoe/Desktop/devLeague/React-Kanban/sass/styles.scss */
+.doneDiv {
+  display: inline-block; }

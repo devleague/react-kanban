@@ -12,10 +12,11 @@ cardRouter.route('/')
   })
   .delete((req,res) => {
 
-  })
+  });
 
 cardRouter.route('/new')
   .post((req,res) => {
+    console.log(req.body);
     Card.create({
       Title:req.body.Title,
       Priority:req.body.Priority,
@@ -40,15 +41,15 @@ cardRouter.route('/:id')
        res.json({sucess:true});
     });
   });
-  //edit card
 
-cardRouter.route('/:id/edit')
+  //edit card
+cardRouter.route('/edit')
   .put((req,res) => {
     Card.update({
-       Status: req.body.Status
+       Status: "progress"
     },{
       where: {
-        id: req.params.id
+        id: req.body.title
       }
     });
   })

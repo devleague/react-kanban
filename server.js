@@ -11,6 +11,7 @@ const route = require('./routes/cards.js');
 const db = require('./models');
 app.use(express.static('./public'));
 app.use(bodyParser.urlencoded({extended:true}));
+app.use(bodyParser.json());
 app.use('/api', route);
 const Card = db.card;
 
