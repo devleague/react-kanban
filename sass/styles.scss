@@ -1,16 +1,27 @@
 $dark-color : #333333;
 
 body {
-  background: $dark-color;
-
+  font-family: 'Kaushan Script', cursive;
 }
 
 h1, h2, h3 {
-  color: #F1F1F1;
+  color: black;
 }
 
-#newKanbanCard {
+h1{
+  text-align: center;
+}
+h2{
+  text-align: center;
+}
 
+div.kanbanCardField {
+  display: flex;
+}
+
+.newKanbanCard {
+  padding-top: 120px;
+  margin: 30px;
 }
 
 #list {
@@ -19,15 +30,45 @@ h1, h2, h3 {
   justify-content: space-between;
 }
 
+.Queue {
+  display: inline-block;
 
-.queueDiv {
+}
+
+.Progress {
   display: inline-block;
 }
 
-.progressDiv {
+.Done {
   display: inline-block;
 }
 
-.doneDiv {
-  display: inline-block;
+.cardBox {
+  width: 500px;
+  height: 500px;
+  margin: 0 auto;
+  background-image: url('../views/blue.jpg');
+  background-size: 500px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.kanbanCard {
+  padding-left: 50px;
+  padding-top: 120px;
+  width: 400px;
+  text-align: center;
+}
+.newCardBackground{
+  background-image: url('../views/notepad.png');
+  background-position: center;
+  background-size: 390px;
+  background-repeat: no-repeat;
+  width: 400px;
+  height:400px;
+margin: auto;
+}
+.newCardBackground{
+  padding-top: 0px;
+  text-align: center;
 }

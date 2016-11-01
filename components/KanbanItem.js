@@ -39,7 +39,7 @@ class KanbanItem extends React.Component{
         Title:this.props.Title,
         Status:this.props.Status
        }));
-    } else {
+    } if(targetStatus === "In Progress"){
       let targetStatus = event.target.innerHTML;
       event.preventDefault();
       this.props.moveCards({
@@ -47,32 +47,35 @@ class KanbanItem extends React.Component{
         status: targetStatus
       });
 
+    }else{
       const oReq = new XMLHttpRequest();
       oReq.addEventListener("load", (data)=>{});
       oReq.addEventListener("error", ()=>{});
-      oReq.open("PUT", "http://localhost:3000/api/editPost");
+      oReq.open("PUT", "http://localhost:3000/api/delete");
       oReq.setRequestHeader("content-type", "application/json");
-      console.log("target edit post")
+      console.log("target Delete post")
       console.log("this.props.title",this.props.Title);
+     }
 
-      oReq.send(JSON.stringify({
-        Title:this.props.Title,
-        Priority:this.props.Priority,
-        Status: this.props.Status,
-        Createdby:this.props.Createdby,
-        Assignedto:this.pros.Assignedto
-      }));
-
-    }
+    oReq.send(JSON.stringify({
+      Title:this.props.Title,
+      Priority:this.props.Priority,
+      Status: this.props.Status,
+      Createdby:this.props.Createdby,
+      Assignedto:this.pros.Assignedto
+    }));
   }
-
-  handleChange(event){
-    let newState =
+    handleChange(event){
+    let newState = {}
     newState[event.target.name] = event.target.value;
     this.setState(newState);
     console.log("####",this.state);
     console.log("event$$$",event)
-  }
+    }
+
+
+
+
 
   render() {
     let cardButton;
@@ -88,7 +91,7 @@ class KanbanItem extends React.Component{
           <button onClick={this.handleSubmit}>Queue</button>
         </div>
         )
-      }if(this.props.Status === "Done"){
+      } if(this.props.Status === "Done"){
         cardButton = (
         <div>
           <button onClick={this.handleSubmit}>In Progress</button>
@@ -96,25 +99,14 @@ class KanbanItem extends React.Component{
         )
       }
     return (
-      <div>
-        <h4>{this.props.Title}</h4>
-        <p>{this.props.Priority}</p>
-        <p>{this.props.Status}</p>
-        <p>{this.props.Createdby}</p>
-        <p>{this.props.Assignedto}</p>
-        { cardButton }
-         <form method ="PUT" action="/new" type="text">
-            <input type="text"  placeholder="Title" onChange={this.handleChange} value={this.props.Title} name='Title' /> <br />
-
-            <input type="text" placeholder="Priority" onChange={this.handleChange} value={this.props.Priority} name='Priority' /> <br />
-
-             <input type="text" placeholder="Status" onChange={this.handleChange} value={this.props.Status} name='Status' /> <br />
-
-            <input type="text" placeholder="Created By" onChange={this.handleChange} value={this.props.Createdby} name='Createdby' /> <br />
-
-            <input type="text" placeholder="Assigned To" onChange={this.handleChange} value={this.props.Assignedto} name='Assignedto' /> <br />
-            <button onClick={this.handleSubmit}>Change</button>
-          </form>
+      <div className="cardBox">
+        <div className="kanbanCard">
+          <h4>Task: {this.props.Title}</h4>
+          <p>Priority: {this.props.Priority}</p>
+          <p>Created By: {this.props.Createdby}</p>
+          <p>Assigned To: {this.props.Assignedto}</p>
+          { cardButton } <button onClick={this.handleSubmit}>Delete</button>
+        </div>
       </div>
     )
   }
@@ -130,24 +122,3 @@ const mapStateToProps = (state, ownProps) => {
 export default connect(
   mapStateToProps,{ moveCards }
 )(KanbanItem);
-
-// handleChange(event) {
-//     let newState = {}
-//     newState[event.target.name] = event.target.value;
-//     this.setState(newState);
-//     console.log("####",this.state);
-//     console.log("event$$$",event)
-//   }
-
-// render() {
-//   return (
-//     <div>
-//       <div id="inProgressKanbanCard">
-//         <form method ="post" action="/new" type="text">
-//           <input type="text" placeholder="Title" onChange={this.handleChange} value={this.state.Title} name='title' />
-
-//         </form>
-//       </div>
-//     </div>
-//   )
-// }

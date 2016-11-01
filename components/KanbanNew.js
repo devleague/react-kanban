@@ -33,16 +33,19 @@ class KanbanNew extends React.Component {
   render() {
     //console.log(this.props)
     return (
-      <div>
-        <div id="newKanbanCard">
-          <h3>New Kanban Card</h3>
-            <form method ="post" action="/new" type="text">
-              <input type="text" placeholder="Title" onChange={this.handleChange} value={this.state.Title} name='title' /> <br />
-              <input type="text" placeholder="Priority" onChange={this.handleChange} value={this.state.Priority} name='priority' /> <br />
-              <input type="text" placeholder="Created By" onChange={this.handleChange} value={this.state.Createdby} name='createdby' /> <br />
-              <input type="text" placeholder="Assigned To" onChange={this.handleChange} value={this.state.Assignedto} name='assignedto' /> <br />
-              <button onClick={this.handleSubmit}>Submit</button>
-            </form>
+      <div class="kanbanCardField">
+        <div class="newKanban">
+          <div className="newCardBackground">
+            <h3 className="newKanbanCard" >New Kanban Card
+              <form method ="post" action="/new" type="text">
+                <input type="text" placeholder="Title" onChange={this.handleChange} value={this.state.Title} name='title' /> <br />
+                <input type="text" placeholder="Priority" onChange={this.handleChange} value={this.state.Priority} name='priority' /> <br />
+                <input type="text" placeholder="Created By" onChange={this.handleChange} value={this.state.Createdby} name='createdby' /> <br />
+                <input type="text" placeholder="Assigned To" onChange={this.handleChange} value={this.state.Assignedto} name='assignedto' /> <br />
+                <button onClick={this.handleSubmit}>Submit</button>
+              </form>
+            </h3>
+          </div>
         </div>
       </div>
     );

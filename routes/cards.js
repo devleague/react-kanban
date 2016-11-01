@@ -79,13 +79,17 @@ cardRouter.route('/edit')
     .catch(err => {
       console.error(err);
     });
-  })
+  });
+  cardRouter.route('/delete')
   .delete((req,res) => {
     Card.destroy({
       where:{
-        id: req.params.id,
-        Status: 'Completed'
+        Title: req.body.Title,
+        Status: 'Done'
+
       }
+    }).then(data => {
+       res.json({sucess:true});
     });
   });
 

@@ -63,10 +63,12 @@ class KanbanPage extends React.Component {
           <h2> Kanban List</h2>
             <div id="list">
               <KanbanList
+
                 columnName = 'Queue'
                 queue={this.props.data.filter( card =>{
                   return card.Status === 'Queue'
                 })}
+
               />
               <KanbanList
                 columnName = 'In Progress'
