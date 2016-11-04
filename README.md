@@ -12,6 +12,10 @@ Build a Digital Kanban board using:
 - **Express** as the Server
 - **Sequelize** as your ORM for the **Postgresql** Datastore.
 
+## Layout/Style Guide
+![screen shot 2016-11-04 at 1 21 12 pm](https://cloud.githubusercontent.com/assets/4650739/20025357/afd23626-a291-11e6-9d34-667a64ead92d.png)
+
+
 ## Specifications
 
 ### Card (component)
