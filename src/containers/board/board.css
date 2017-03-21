@@ -1,16 +1,13 @@
 .Board {
 	display: flex;
 	flex-flow: row wrap;
-	height: 100%;
+	height: calc(100% - 3rem);
 }
 
 .queue, .progress, .done {
 	height: 100%;
 	width: calc(100% / 3);
-	display: flex;
-	flex-flow: column wrap;
-	justify-content: flex-start;
-	align-items: center;
+	overflow: hidden;
 }
 
 .queue, .progress {
@@ -28,6 +25,7 @@
 
 .card {
 	width: calc(100% - 2rem);
+	margin-left: 1rem;
 	padding: 1rem;
 	margin-bottom: 1rem;
 	font-size: 0.8rem;
