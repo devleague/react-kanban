@@ -12,8 +12,8 @@ app.use(methodOverride('_method'));
 
 // database
 const sequelize = require('sequelize');
-// const db = require('./models');
-// const { Card } = db;
+const db = require('./models');
+const { Card } = db;
 
 // routes
 
