@@ -1,0 +1,26 @@
+.Board {
+	display: flex;
+	flex-flow: row wrap;
+	height: 100%;
+}
+
+.queue, .progress, .done {
+	flex-grow: 1;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+	height: 100%;
+}
+
+.queue, .progress {
+	border: 0px solid #a3a3a3;
+	border-right-width: 1px;
+}
+
+.board-title {
+	width: 100%;
+	color: #555555;
+	text-align: center;
+	font-size: 1rem;
+	padding: 1rem;
+}

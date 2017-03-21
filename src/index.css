@@ -23,3 +23,7 @@ a {
 	cursor: pointer;
 	text-decoration: none;
 }
+
+html, body, #root {
+	height: 100%;
+}

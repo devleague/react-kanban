@@ -10,3 +10,17 @@
 	color: white;
 	margin: 0.5rem;
 }
+
+.menu {
+	flex-grow: 1;
+	display: flex;
+	justify-content: flex-end;
+	flex-flow: row wrap;
+}
+
+.menu-btn {
+	color: white;
+	border: 1px solid white;
+	padding: 0.3rem;
+	margin: 0.5rem;
+}
