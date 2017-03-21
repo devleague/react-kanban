@@ -6,7 +6,7 @@
 
 .queue, .progress, .done {
 	height: 100%;
-	width: 33%;
+	width: calc(100% / 3);
 	display: flex;
 	flex-flow: column wrap;
 	justify-content: flex-start;
@@ -29,6 +29,7 @@
 .card {
 	width: calc(100% - 2rem);
 	padding: 1rem;
+	margin-bottom: 1rem;
 	font-size: 0.8rem;
 	display: flex;
 	flex-flow: row wrap;
@@ -61,12 +62,28 @@
 	background-color: #fef2dd;
 }
 
+.queue-card .card-menu {
+	color: #f8b544;
+	font-weight: bold;
+}
+
 .progress-card {
 	border: 1px solid #9dda58;
 	background-color: #e5feca;
 }
 
+.progress-card .card-menu {
+	color: #9dda58;
+	font-weight: bold;
+}
+
 .done-card {
-	border: 1px solid #cbd0dc;
+	border: 1px solid #b4bac7;
 	background-color: #f7f8fc;
 }
+
+.done-card .card-menu {
+	color: #b4bac7;
+	font-weight: bold;
+}
+
