@@ -1,0 +1,12 @@
+.Header {
+	width: 100%;
+	background-color: #4c525b;
+	display: flex;
+	flex-flow: row wrap;
+}
+
+.logo {
+	font-size: 1.5rem;
+	color: white;
+	margin: 0.5rem;
+}

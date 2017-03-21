@@ -5,11 +5,11 @@
 	cursor: default;
 	user-select: none;
 	box-sizing: border-box;
+	font-family: 'Quicksand';
 }
 
 html {
 	font-size: 20px;
-	font-family: sans-serif;
 }
 
 body {
