@@ -2,7 +2,47 @@ import React, {Component} from 'react';
 import './board.css';
 import Card from '../../components/Card';
 
+// const cardAPI = 'http://127.0.0.1/api/card';
+
 class Board extends Component {
+	constructor() {
+		super();
+		this.state = {
+			queueCards: [],
+			progressCards: [],
+			doneCards: []
+		};
+	}
+	getQueue = () => {
+		let oReq = new XMLHttpRequest();
+		oReq.addEventListener('load', (event) => {
+			this.setState({
+				queueCards: JSON.parse(oReq.response)
+			});
+		});
+		oReq.open('GET', '/api/card/queue');
+		oReq.send();
+	}
+	getProgress = () => {
+		let oReq = new XMLHttpRequest();
+		oReq.addEventListener('load', (event) => {
+			this.setState({
+				progressCards: JSON.parse(oReq.response)
+			});
+		});
+		oReq.open('GET', '/api/card/progress');
+		oReq.send();
+	}
+	getDone = () => {
+		let oReq = new XMLHttpRequest();
+		oReq.addEventListener('load', (event) => {
+			this.setState({
+				doneCards: JSON.parse(oReq.response)
+			});
+		});
+		oReq.open('GET', '/api/card/done');
+		oReq.send();
+	}
 	onEdit = (event) => {
 		// edit button
 	}
@@ -10,66 +50,56 @@ class Board extends Component {
 		// delete button
 	}
 	render() {
+		if(this.state.queueCards.length === 0) this.getQueue();
 		return (
 			<div className="Board">
 				<div className="queue">
 					<div className="board-title">IN QUEUE</div>
-					<Card 
-						id="1"
-						task="Make Better Styles."
-						type="queue-card"
-						priority="Medium"
-						by="Jon"
-						to="Renee"
-						onEdit={this.onEdit}
-						onDel={this.onDel}
-					/>
-					<Card 
-						id="1"
-						task="Make Better Styles. Make Better Styles. Make Better Styles. Make Better Styles. Make Better Styles. Make Better Styles. "
-						type="queue-card"
-						priority="Medium"
-						by="Jon"
-						to="Renee"
-						onEdit={this.onEdit}
-						onDel={this.onDel}
-					/>
-				</div>
+					{
+						this.state.queueCards.map(card => {
+							const {id, title, type, priority, by, to} = card;
+							return (<Card 
+								key={id}
+								title={title}
+								type={type}
+								priority={priority}
+								by={by}
+								to={to}
+							/>);
+						})
+					}
+					</div>
 				<div className="progress">
 					<div className="board-title">IN PROGRESS</div>
-					<Card 
-						id="1"
-						task="Make Better Styles."
-						type="progress-card"
-						priority="Medium"
-						by="Jon"
-						to="Renee"
-						onEdit={this.onEdit}
-						onDel={this.onDel}
-					/>
+					{
+						this.state.progressCards.map(card => {
+							const {id, title, type, priority, by, to} = card;
+							return (<Card 
+								key={id}
+								title={title}
+								type={type}
+								priority={priority}
+								by={by}
+								to={to}
+							/>);
+						})
+					}
 				</div>
 				<div className="done">
 					<div className="board-title">DONE</div>
-					<Card 
-						id="1"
-						task="Make Better Styles."
-						type="done-card"
-						priority="Medium"
-						by="Jon"
-						to="Renee"
-						onEdit={this.onEdit}
-						onDel={this.onDel}
-					/>
-					<Card 
-						id="1"
-						task="Make Better Styles. Make Better Styles. Make Better Styles. Make Better Styles. Make Better Styles. Make Better Styles. "
-						type="done-card"
-						priority="Medium"
-						by="Jon"
-						to="Renee"
-						onEdit={this.onEdit}
-						onDel={this.onDel}
-					/>
+					{
+						this.state.doneCards.map(card => {
+							const {id, title, type, priority, by, to} = card;
+							return (<Card 
+								key={id}
+								title={title}
+								type={type}
+								priority={priority}
+								by={by}
+								to={to}
+							/>);
+						})
+					}
 				</div>
 			</div>
 		);

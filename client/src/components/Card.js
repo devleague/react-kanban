@@ -2,7 +2,7 @@ import React from 'react';
 
 const Card = (props) => (
 	<div className={'card ' + props.type}>
-		<p><b>{props.task}</b></p>
+		<p><b>{props.title}</b></p>
 		<p>Priority: {props.priority}</p>
 		<p>Assigned By: {props.by}</p>
 		<div className="card-bottom">
