@@ -7,7 +7,7 @@ const sequelize = require('sequelize');
 const db = require('../models');
 const { Card } = db;
 
-router.get('/all', (req, res) => {
+router.get('/all/:type', (req, res) => {
 	Card.findAll()
 		.then(cards => res.json({"queue": cards}))
 		.catch(_ => res.send({"success": false}));

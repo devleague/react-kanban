@@ -57,9 +57,9 @@ class Board extends Component {
 			<div className="Board">
 				{['queue', 'progress', 'done'].map(type => {
 					return (
-						<div className={type}>
+						<div key={type} className={type}>
 							<div className="board-title">
-								{((type != 'done') ? 'IN ' : '') + type.toUpperCase()}
+								{((type !== 'done') ? 'IN ' : '') + type.toUpperCase()}
 							</div>
 							{
 								this.state[`${type}Cards`].map(card => {
