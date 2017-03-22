@@ -8,25 +8,7 @@ const db = require('../models');
 const { Card } = db;
 
 router.get('/all/:type', (req, res) => {
-	Card.findAll()
-		.then(cards => res.json({"queue": cards}))
-		.catch(_ => res.send({"success": false}));
-});
-
-router.get('/queue', (req, res) => {
-	Card.findAll({where: {type: "queue-card"}})
-		.then(cards => res.send(cards))
-		.catch(_ => res.send({"success": false}));
-});
-
-router.get('/progress', (req, res) => {
-	Card.findAll({where: {type: "progress-card"}})
-		.then(cards => res.send(cards))
-		.catch(_ => res.send({"success": false}));
-});
-
-router.get('/done', (req, res) => {
-	Card.findAll({where: {type: "done-card"}})
+	Card.findAll({where: {type: req.params.type}})
 		.then(cards => res.send(cards))
 		.catch(_ => res.send({"success": false}));
 });

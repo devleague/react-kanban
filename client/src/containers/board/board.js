@@ -12,36 +12,18 @@ class Board extends Component {
 			progressCards: [],
 			doneCards: []
 		};
-	}
-	getQueue = () => {
-		let oReq = new XMLHttpRequest();
-		oReq.addEventListener('load', (event) => {
-			this.setState({
-				queueCards: JSON.parse(oReq.response)
-			});
+		['queue', 'progress', 'done'].map((type) => {
+			return (_ => {
+				let oReq = new XMLHttpRequest();
+				oReq.addEventListener('load', () => {
+					this.setState({
+						[`${type}Cards`]: JSON.parse(oReq.response)
+					});
+				});
+				oReq.open('GET', `/api/card/all/${type}-card`);
+				oReq.send();
+			})();
 		});
-		oReq.open('GET', '/api/card/queue');
-		oReq.send();
-	}
-	getProgress = () => {
-		let oReq = new XMLHttpRequest();
-		oReq.addEventListener('load', (event) => {
-			this.setState({
-				progressCards: JSON.parse(oReq.response)
-			});
-		});
-		oReq.open('GET', '/api/card/progress');
-		oReq.send();
-	}
-	getDone = () => {
-		let oReq = new XMLHttpRequest();
-		oReq.addEventListener('load', (event) => {
-			this.setState({
-				doneCards: JSON.parse(oReq.response)
-			});
-		});
-		oReq.open('GET', '/api/card/done');
-		oReq.send();
 	}
 	onEdit = (event) => {
 		// edit button
@@ -50,9 +32,6 @@ class Board extends Component {
 		// delete button
 	}
 	render() {
-		if(this.state.queueCards.length === 0) this.getQueue();
-		if(this.state.progressCards.length === 0) this.getProgress();
-		if(this.state.doneCards.length === 0) this.getDone();
 		return (
 			<div className="Board">
 				{['queue', 'progress', 'done'].map(type => {
