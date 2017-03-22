@@ -55,54 +55,28 @@ class Board extends Component {
 		if(this.state.doneCards.length === 0) this.getDone();
 		return (
 			<div className="Board">
-				<div className="queue">
-					<div className="board-title">IN QUEUE</div>
-					{
-						this.state.queueCards.map(card => {
-							const {id, title, type, priority, by, to} = card;
-							return (<Card 
-								key={id}
-								title={title}
-								type={type}
-								priority={priority}
-								by={by}
-								to={to}
-							/>);
-						})
-					}
-					</div>
-				<div className="progress">
-					<div className="board-title">IN PROGRESS</div>
-					{
-						this.state.progressCards.map(card => {
-							const {id, title, type, priority, by, to} = card;
-							return (<Card 
-								key={id}
-								title={title}
-								type={type}
-								priority={priority}
-								by={by}
-								to={to}
-							/>);
-						})
-					}
-				</div>
-				<div className="done">
-					<div className="board-title">DONE</div>
-					{
-						this.state.doneCards.map(card => {
-							const {id, title, type, priority, by, to} = card;
-							return (<Card 
-								key={id}
-								title={title}
-								type={type}
-								priority={priority}
-								by={by}
-								to={to}
-							/>);
-						})
-					}
-				</div>
+				{['queue', 'progress', 'done'].map(type => {
+					return (
+						<div className={type}>
+							<div className="board-title">
+								{((type != 'done') ? 'IN ' : '') + type.toUpperCase()}
+							</div>
+							{
+								this.state[`${type}Cards`].map(card => {
+									const {id, title, type, priority, by, to} = card;
+									return (<Card 
+										key={id}
+										title={title}
+										type={type}
+										priority={priority}
+										by={by}
+										to={to}
+									/>);
+								})
+							}
+						</div>
+					)
+				})}
 			</div>
 		);
 	}
