@@ -51,6 +51,8 @@ class Board extends Component {
 	}
 	render() {
 		if(this.state.queueCards.length === 0) this.getQueue();
+		if(this.state.progressCards.length === 0) this.getProgress();
+		if(this.state.doneCards.length === 0) this.getDone();
 		return (
 			<div className="Board">
 				<div className="queue">
