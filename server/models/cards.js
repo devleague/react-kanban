@@ -1,7 +1,7 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
-  var Card = sequelize.define('Card', {
-    task: DataTypes.STRING,
+  var Cards = sequelize.define('Card', {
+    title: DataTypes.STRING,
     type: DataTypes.STRING,
     priority: DataTypes.STRING,
     by: DataTypes.STRING,
@@ -13,5 +13,5 @@ module.exports = function(sequelize, DataTypes) {
       }
     }
   });
-  return Card;
+  return Cards;
 };

@@ -10,14 +10,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(methodOverride('_method'));
 
-// database
-const sequelize = require('sequelize');
-const db = require('./models');
-const { Card } = db;
-
 // routes
 
+const cardAPI = require('./routes/cardAPI');
+
 app.use(express.static('./public'));
+
+app.use('/api/card', cardAPI);
 
 app.get('/404', (req, res) => {
 	res.status(404);
