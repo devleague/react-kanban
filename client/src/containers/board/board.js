@@ -13,7 +13,7 @@ class Board extends Component {
 		['queue', 'progress', 'done'].map((type) => {
 			return (_ => {
 				let oReq = new XMLHttpRequest();
-				oReq.addEventListener('load', () => {
+				oReq.addEventListener('load', _ => {
 					this.setState({
 						[`${type}Cards`]: JSON.parse(oReq.response)
 					});
@@ -23,11 +23,16 @@ class Board extends Component {
 			})();
 		});
 	}
-	onEdit = (event) => {
+	onEdit(event) {
 		// edit button
 	}
-	onDel = (event) => {
+	onDel(event) {
 		// delete button
+		let ele = event.target.parentElement.parentElement.parentElement;
+		let oReq = new XMLHttpRequest();
+		oReq.addEventListener('load', _ => ele.remove());
+		oReq.open('DELETE', `/api/card/delete/${ele.dataset.id}`);
+		oReq.send();
 	}
 	render() {
 		return (
@@ -49,6 +54,7 @@ class Board extends Component {
 										priority={priority}
 										by={by}
 										to={to}
+										onDel={this.onDel}
 									/>);
 								})
 							}
