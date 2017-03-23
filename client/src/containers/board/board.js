@@ -9,7 +9,14 @@ class Board extends Component {
 			queueCards: [],
 			progressCards: [],
 			doneCards: [],
-			editing: null
+			editing: 6,
+			editBuff: {
+				title: '',
+				priority: '',
+				type: '',
+				by: '',
+				to: ''
+			}
 		};
 		['queue', 'progress', 'done'].map((type) => {
 			return (_ => {
@@ -24,10 +31,11 @@ class Board extends Component {
 			})();
 		});
 	}
-	onEdit = (id) => {
+	onEdit = ({id, title, type, priority, by, to}) => {
 		// edit button
 		return (event) => {
 			this.setState({
+				editBuff: {title, type, priority, by, to},
 				editing: (this.state.editing === id) ? null : id
 			});
 		}
@@ -38,6 +46,11 @@ class Board extends Component {
 		oReq.addEventListener('load', _ => ele.remove());
 		oReq.open('DELETE', `/api/card/delete/${ele.dataset.id}`);
 		oReq.send();
+	}
+	cTitle = (event) => {
+		this.setState({
+			editBuff: {title: event.target.value}
+		});
 	}
 	render() {
 		return (
@@ -61,7 +74,12 @@ class Board extends Component {
 										to={to}
 										editing={this.state.editing === id}
 										onDel={this.onDel}
-										onEdit={this.onEdit}
+										onEdit={this.onEdit(card)}
+										cTitle={this.cTitle}
+										cType={this.cType}
+										cPriority={this.cPriority}
+										cBy={this.cBy}
+										cTo={this.cTo}
 									/>);
 								})
 							}

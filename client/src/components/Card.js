@@ -8,7 +8,7 @@ const Card = (props) => {
 				<p>Assigned By: {props.by}</p>
 				<div className="card-bottom">
 					<div className="card-menu">
-						<div onClick={props.onEdit(props.id)}>Edit</div>
+						<div onClick={props.onEdit}>Edit</div>
 						<div onClick={props.onDel}>Delete</div>
 					</div>
 					<div>
@@ -17,13 +17,43 @@ const Card = (props) => {
 				</div>
 		</div>
 	) : (
-		<div className="editCover">
+		<div>
+			<div className="editCover"></div>
 			<div className={'card editCard ' + props.type} data-id={props.id}>
-				<div className="card-bottom">
-					<div className="card-menu">
-						<div onClick={props.onEdit(props.id)}>Edit</div>
-						<div onClick={props.onDel}>Delete</div>
-					</div>
+				<div className="editTitle">Editing</div>
+				<div>
+					<label>Title:</label>
+					<input type="text" onChange={props.cTitle} defaultValue={props.title} />
+				</div>
+				<div>
+					<label>Assigned By:</label>
+					<input type="text" onChange={props.cBy} defaultValue={props.by} />
+				</div>
+				<div>
+					<label>Assigned To:</label>
+					<input type="text" onChange={props.cTo} defaultValue={props.to} />
+				</div>
+				<div>
+					<label>Priority:</label>
+					<input type="radio" name="priority" value="Low" />
+					<label>Low</label>
+					<input type="radio" name="priority" value="Medium" />
+					<label>Medium</label>
+					<input type="radio" name="priority" value="High" />
+					<label>High</label>
+				</div>
+				<div>
+					<label>Status:</label>
+					<input type="radio" name="type" value="In Queue" />
+					<label>In Queue</label>
+					<input type="radio" name="type" value="In Progress" />
+					<label>In Progress</label>
+					<input type="radio" name="type" value="Done" />
+					<label>Done</label>
+				</div>
+				<div className="card-menu">
+					<div onClick={props.onEdit}>Done</div>
+					<div onClick={props.onDel}>Delete</div>
 				</div>
 			</div>
 		</div>
