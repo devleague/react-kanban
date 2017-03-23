@@ -7,7 +7,7 @@
 .queue, .progress, .done {
 	height: 100%;
 	width: calc(100% / 3);
-	overflow: hidden;
+	overflow-y: scroll;
 }
 
 .queue, .progress {

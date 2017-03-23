@@ -2,8 +2,6 @@ import React, {Component} from 'react';
 import './board.css';
 import Card from '../../components/Card';
 
-// const cardAPI = 'http://127.0.0.1/api/card';
-
 class Board extends Component {
 	constructor() {
 		super();
@@ -45,6 +43,7 @@ class Board extends Component {
 									const {id, title, type, priority, by, to} = card;
 									return (<Card 
 										key={id}
+										id={id}
 										title={title}
 										type={type}
 										priority={priority}
