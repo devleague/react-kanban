@@ -50,30 +50,12 @@ class Board extends Component {
 		oReq.open('DELETE', `/api/card/delete/${ele.dataset.id}`);
 		oReq.send();
 	}
-	cTitle = (event) => {
-		let newEditBuff = this.state.editBuff;
-		newEditBuff.title = event.target.value;
-		this.setState({editBuff: newEditBuff});
-	}
-	cType = (event) => {
-		let newEditBuff = this.state.editBuff;
-		newEditBuff.type = event.target.value;
-		this.setState({editBuff: newEditBuff});
-	}
-	cPriority = (event) => {
-		let newEditBuff = this.state.editBuff;
-		newEditBuff.priority = event.target.value;
-		this.setState({editBuff: newEditBuff});
-	}
-	cBy = (event) => {
-		let newEditBuff = this.state.editBuff;
-		newEditBuff.by = event.target.value;
-		this.setState({editBuff: newEditBuff});
-	}
-	cTo = (event) => {
-		let newEditBuff = this.state.editBuff;
-		newEditBuff.to = event.target.value;
-		this.setState({editBuff: newEditBuff});
+	change = (prop) => {
+		return (event) => {
+			let newEditBuff = this.state.editBuff;
+			newEditBuff[prop] = event.target.value;
+			this.setState({editBuff: newEditBuff});
+		}
 	}
 	render() {
 		return (
@@ -98,11 +80,7 @@ class Board extends Component {
 										editing={this.state.editing === id}
 										onDel={this.onDel}
 										onEdit={this.onEdit(card)}
-										cTitle={this.cTitle}
-										cType={this.cType}
-										cPriority={this.cPriority}
-										cBy={this.cBy}
-										cTo={this.cTo}
+										change={this.change}
 									/>);
 								})
 							}
