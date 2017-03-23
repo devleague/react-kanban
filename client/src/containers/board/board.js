@@ -12,19 +12,20 @@ class Board extends Component {
 			editing: null,
 			editBuff: {}
 		};
-		['queue', 'progress', 'done'].map((type) => {
-			return (_ => {
-				let oReq = new XMLHttpRequest();
-				oReq.addEventListener('load', _ => {
-					this.setState({
-						[`${type}Cards`]: JSON.parse(oReq.response)
-					});
-				});
-				oReq.open('GET', `/api/card/all/${type}-card`);
-				oReq.send();
-			})();
-		});
+		this.reload();
 	}
+	reload() {['queue', 'progress', 'done'].map((type) => {
+		return (_ => {
+			let oReq = new XMLHttpRequest();
+			oReq.addEventListener('load', _ => {
+				this.setState({
+					[`${type}Cards`]: JSON.parse(oReq.response)
+				});
+			});
+			oReq.open('GET', `/api/card/all/${type}-card`);
+			oReq.send();
+		})();
+	});}
 	onEdit = ({id, title, type, priority, by, to}) => {
 		// edit button
 		return (event) => {
@@ -45,31 +46,26 @@ class Board extends Component {
 		let newEditBuff = this.state.editBuff;
 		newEditBuff.title = event.target.value;
 		this.setState({editBuff: newEditBuff});
-		console.log(this.state.editBuff);
 	}
 	cType = (event) => {
 		let newEditBuff = this.state.editBuff;
 		newEditBuff.type = event.target.value;
 		this.setState({editBuff: newEditBuff});
-		console.log(this.state.editBuff);
 	}
 	cPriority = (event) => {
 		let newEditBuff = this.state.editBuff;
 		newEditBuff.priority = event.target.value;
 		this.setState({editBuff: newEditBuff});
-		console.log(this.state.editBuff);
 	}
 	cBy = (event) => {
 		let newEditBuff = this.state.editBuff;
 		newEditBuff.by = event.target.value;
 		this.setState({editBuff: newEditBuff});
-		console.log(this.state.editBuff);
 	}
 	cTo = (event) => {
 		let newEditBuff = this.state.editBuff;
 		newEditBuff.to = event.target.value;
 		this.setState({editBuff: newEditBuff});
-		console.log(this.state.editBuff);
 	}
 	render() {
 		return (
