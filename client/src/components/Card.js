@@ -35,20 +35,20 @@ const Card = (props) => {
 				</div>
 				<div>
 					<label>Priority:</label>
-					<input type="radio" name="priority" value="Low" />
+					<input type="radio" name="priority" value="Low" checked={props.priority==='Low'} />
 					<label>Low</label>
-					<input type="radio" name="priority" value="Medium" />
+					<input type="radio" name="priority" value="Medium" checked={props.priority==='Medium'} />
 					<label>Medium</label>
-					<input type="radio" name="priority" value="High" />
+					<input type="radio" name="priority" value="High" checked={props.priority==='High'} />
 					<label>High</label>
 				</div>
 				<div>
 					<label>Status:</label>
-					<input type="radio" name="type" value="In Queue" />
+					<input type="radio" name="type" value="queue" checked={props.type==='queue-card'} />
 					<label>In Queue</label>
-					<input type="radio" name="type" value="In Progress" />
+					<input type="radio" name="type" value="progress" checked={props.type==='progress-card'} />
 					<label>In Progress</label>
-					<input type="radio" name="type" value="Done" />
+					<input type="radio" name="type" value="done" checked={props.type==='done-card'} />
 					<label>Done</label>
 				</div>
 				<div className="card-menu">
