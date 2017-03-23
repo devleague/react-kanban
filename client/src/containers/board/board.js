@@ -31,12 +31,11 @@ class Board extends Component {
 	onEdit = ({id, title, type, priority, by, to}) => {
 		return (event) => {
 			if(this.state.editing === id) {
-				let {title, type, priority, by, to} = this.state.editBuff;
 				let oReq = new XMLHttpRequest();
 				oReq.addEventListener('load', _ => this.reload());
 				oReq.open('PUT', `/api/card/edit/${id}`);
-				oReq.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-				oReq.send(`title=${title}&type=${type}&priority=${priority}&by=${by}&to=${to}`);
+				oReq.setRequestHeader("Content-Type", "application/json");
+				oReq.send(JSON.stringify(this.state.editBuff));
 			}
 			this.setState({
 				editBuff: {title, type, priority, by, to},

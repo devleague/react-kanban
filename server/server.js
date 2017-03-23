@@ -18,7 +18,7 @@ app.use('/api/card', cardAPI);
 
 app.get('/404', (req, res) => {
 	res.status(404);
-	res.render('404');
+	res.send('404 NOT FOUND');
 });
 
 app.use((req, res) => {
