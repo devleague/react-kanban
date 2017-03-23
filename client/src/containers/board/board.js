@@ -52,6 +52,26 @@ class Board extends Component {
 			editBuff: {title: event.target.value}
 		});
 	}
+	cType = (event) => {
+		this.setState({
+			editBuff: {type: event.target.value}
+		});
+	}
+	cPriority = (event) => {
+		this.setState({
+			editBuff: {priority: event.target.value}
+		});
+	}
+	cBy = (event) => {
+		this.setState({
+			editBuff: {by: event.target.value}
+		});
+	}
+	cTo = (event) => {
+		this.setState({
+			editBuff: {to: event.target.value}
+		});
+	}
 	render() {
 		return (
 			<div className="Board">

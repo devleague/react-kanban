@@ -35,20 +35,20 @@ const Card = (props) => {
 				</div>
 				<div>
 					<label>Priority:</label>
-					<input type="radio" name="priority" value="Low" checked={props.priority==='Low'} />
+					<input type="radio" name="priority" value="Low" onChange={props.cPriority} defaultChecked={props.priority==='Low'} />
 					<label>Low</label>
-					<input type="radio" name="priority" value="Medium" checked={props.priority==='Medium'} />
+					<input type="radio" name="priority" value="Medium" onChange={props.cPriority} defaultChecked={props.priority==='Medium'} />
 					<label>Medium</label>
-					<input type="radio" name="priority" value="High" checked={props.priority==='High'} />
+					<input type="radio" name="priority" value="High" onChange={props.cPriority} defaultChecked={props.priority==='High'} />
 					<label>High</label>
 				</div>
 				<div>
 					<label>Status:</label>
-					<input type="radio" name="type" value="queue" checked={props.type==='queue-card'} />
+					<input type="radio" name="type" value="queue-card" onChange={props.cType} defaultChecked={props.type==='queue-card'} />
 					<label>In Queue</label>
-					<input type="radio" name="type" value="progress" checked={props.type==='progress-card'} />
+					<input type="radio" name="type" value="progress-card" onChange={props.cType} defaultChecked={props.type==='progress-card'} />
 					<label>In Progress</label>
-					<input type="radio" name="type" value="done" checked={props.type==='done-card'} />
+					<input type="radio" name="type" value="done-card" onChange={props.cType} defaultChecked={props.type==='done-card'} />
 					<label>Done</label>
 				</div>
 				<div className="card-menu">
