@@ -9,14 +9,8 @@ class Board extends Component {
 			queueCards: [],
 			progressCards: [],
 			doneCards: [],
-			editing: 6,
-			editBuff: {
-				title: '',
-				priority: '',
-				type: '',
-				by: '',
-				to: ''
-			}
+			editing: null,
+			editBuff: {}
 		};
 		['queue', 'progress', 'done'].map((type) => {
 			return (_ => {
@@ -48,29 +42,34 @@ class Board extends Component {
 		oReq.send();
 	}
 	cTitle = (event) => {
-		this.setState({
-			editBuff: {title: event.target.value}
-		});
+		let newEditBuff = this.state.editBuff;
+		newEditBuff.title = event.target.value;
+		this.setState({editBuff: newEditBuff});
+		console.log(this.state.editBuff);
 	}
 	cType = (event) => {
-		this.setState({
-			editBuff: {type: event.target.value}
-		});
+		let newEditBuff = this.state.editBuff;
+		newEditBuff.type = event.target.value;
+		this.setState({editBuff: newEditBuff});
+		console.log(this.state.editBuff);
 	}
 	cPriority = (event) => {
-		this.setState({
-			editBuff: {priority: event.target.value}
-		});
+		let newEditBuff = this.state.editBuff;
+		newEditBuff.priority = event.target.value;
+		this.setState({editBuff: newEditBuff});
+		console.log(this.state.editBuff);
 	}
 	cBy = (event) => {
-		this.setState({
-			editBuff: {by: event.target.value}
-		});
+		let newEditBuff = this.state.editBuff;
+		newEditBuff.by = event.target.value;
+		this.setState({editBuff: newEditBuff});
+		console.log(this.state.editBuff);
 	}
 	cTo = (event) => {
-		this.setState({
-			editBuff: {to: event.target.value}
-		});
+		let newEditBuff = this.state.editBuff;
+		newEditBuff.to = event.target.value;
+		this.setState({editBuff: newEditBuff});
+		console.log(this.state.editBuff);
 	}
 	render() {
 		return (
