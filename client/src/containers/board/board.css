@@ -53,6 +53,7 @@
 
 .card-menu div {
 	margin-right: 0.5rem;
+	cursor: pointer;
 }
 
 .queue-card {
@@ -84,4 +85,20 @@
 	color: #b4bac7;
 	font-weight: bold;
 }
+
+.editCard {
+	position: absolute;
+	left: 15%;
+	top: 15%;
+	width: 70%;
+	height: 70%;
+}
+
+input {
+	font-size: 1rem;
+	height: 1rem;
+	width: 100%;
+	line-height: 1rem;
+}
+
 

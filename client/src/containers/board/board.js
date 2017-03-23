@@ -8,7 +8,8 @@ class Board extends Component {
 		this.state = {
 			queueCards: [],
 			progressCards: [],
-			doneCards: []
+			doneCards: [],
+			editing: null
 		};
 		['queue', 'progress', 'done'].map((type) => {
 			return (_ => {
@@ -23,11 +24,15 @@ class Board extends Component {
 			})();
 		});
 	}
-	onEdit(event) {
+	onEdit = (id) => {
 		// edit button
+		return (event) => {
+			this.setState({
+				editing: (this.state.editing === id) ? null : id
+			});
+		}
 	}
-	onDel(event) {
-		// delete button
+	onDel = (event) => {
 		let ele = event.target.parentElement.parentElement.parentElement;
 		let oReq = new XMLHttpRequest();
 		oReq.addEventListener('load', _ => ele.remove());
@@ -54,7 +59,9 @@ class Board extends Component {
 										priority={priority}
 										by={by}
 										to={to}
+										editing={this.state.editing === id}
 										onDel={this.onDel}
+										onEdit={this.onEdit}
 									/>);
 								})
 							}

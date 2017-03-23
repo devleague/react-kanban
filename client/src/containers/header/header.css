@@ -10,6 +10,7 @@
 	color: white;
 	margin: 0.5rem;
 	margin-left: 1rem;
+	cursor: pointer;
 }
 
 .menu {
@@ -25,4 +26,5 @@
 	border: 1px solid white;
 	padding: 0.3rem;
 	margin: 0.5rem;
+	cursor: pointer;
 }
