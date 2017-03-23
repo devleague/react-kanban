@@ -14,21 +14,30 @@ class Board extends Component {
 		};
 		this.reload();
 	}
-	reload() {['queue', 'progress', 'done'].map((type) => {
-		return (_ => {
-			let oReq = new XMLHttpRequest();
-			oReq.addEventListener('load', _ => {
-				this.setState({
-					[`${type}Cards`]: JSON.parse(oReq.response)
+	reload() {
+		['queue', 'progress', 'done'].map((type) => {
+			return (_ => {
+				let oReq = new XMLHttpRequest();
+				oReq.addEventListener('load', _ => {
+					this.setState({
+						[`${type}Cards`]: JSON.parse(oReq.response)
+					});
 				});
-			});
-			oReq.open('GET', `/api/card/all/${type}-card`);
-			oReq.send();
-		})();
-	});}
+				oReq.open('GET', `/api/card/all/${type}-card`);
+				oReq.send();
+			})();
+		});
+	}
 	onEdit = ({id, title, type, priority, by, to}) => {
-		// edit button
 		return (event) => {
+			if(this.state.editing === id) {
+				let {title, type, priority, by, to} = this.state.editBuff;
+				let oReq = new XMLHttpRequest();
+				oReq.addEventListener('load', _ => this.reload());
+				oReq.open('PUT', `/api/card/edit/${id}`);
+				oReq.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+				oReq.send(`title=${title}&type=${type}&priority=${priority}&by=${by}&to=${to}`);
+			}
 			this.setState({
 				editBuff: {title, type, priority, by, to},
 				editing: (this.state.editing === id) ? null : id

@@ -14,8 +14,6 @@ app.use(methodOverride('_method'));
 
 const cardAPI = require('./routes/cardAPI');
 
-app.use(express.static('./public'));
-
 app.use('/api/card', cardAPI);
 
 app.get('/404', (req, res) => {
