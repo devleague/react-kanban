@@ -2,6 +2,9 @@ import React, {Component} from 'react';
 import './board.css';
 import Card from '../../components/Card';
 
+import { connect } from 'react-redux';
+import { addCard } from '../../actions';
+
 class Board extends Component {
 	constructor() {
 		super();
@@ -92,4 +95,23 @@ class Board extends Component {
 	}
 }
 
-export default Board;
+function mapStateToProps(state) {
+	return { 
+		queueCards: state.queueCards,
+		progressCards: state.progressCards,
+		doneCards: state.doneCards
+	}
+}
+
+function mapDispatchToProps(dispatch) {
+	return {
+		onAddCard: (title, type, priority, by, to) => {
+			dispatch(addCard(title, type, priority, by, to));
+		}
+	}
+}
+
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(Board);
