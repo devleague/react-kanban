@@ -1,0 +1,30 @@
+.Header {
+	width: 100%;
+	background-color: #4c525b;
+	display: flex;
+	flex-flow: row wrap;
+}
+
+.logo {
+	font-size: 1.5rem;
+	color: white;
+	margin: 0.5rem;
+	margin-left: 1rem;
+	cursor: pointer;
+}
+
+.menu {
+	flex-grow: 1;
+	display: flex;
+	justify-content: flex-end;
+	flex-flow: row wrap;
+	margin-right: 0.5rem;
+}
+
+.menu-btn {
+	color: white;
+	border: 1px solid white;
+	padding: 0.3rem;
+	margin: 0.5rem;
+	cursor: pointer;
+}

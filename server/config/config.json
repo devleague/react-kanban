@@ -1,0 +1,24 @@
+{
+  "development": {
+    "username": "Edward",
+    "password": null,
+    "database": "kanban",
+    "host": "127.0.0.1",
+    "dialect": "postgres",
+		"logging": false
+  },
+  "test": {
+    "username": "Edward",
+    "password": null,
+    "database": "kanban",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "Edward",
+    "password": null,
+    "database": "kanban",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  }
+}

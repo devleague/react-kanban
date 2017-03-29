@@ -1,0 +1,29 @@
+* {
+	top: 0; left: 0;
+	right: 0; bottom: 0;
+	margin: 0; padding: 0;
+	cursor: default;
+	user-select: none;
+	box-sizing: border-box;
+	font-family: 'Quicksand';
+}
+
+html {
+	font-size: 20px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+a {
+	color: inherit;
+	cursor: pointer;
+	text-decoration: none;
+}
+
+html, body, #root {
+	height: 100%;
+}

@@ -1,0 +1,158 @@
+.Board {
+	display: flex;
+	flex-flow: row wrap;
+	height: calc(100% - 3rem);
+}
+
+.queue, .progress, .done {
+	height: 100%;
+	width: calc(100% / 3);
+	overflow-y: scroll;
+}
+
+.queue, .progress {
+	border: 0px solid #a3a3a3;
+	border-right-width: 1px;
+}
+
+.board-title {
+	width: 100%;
+	color: #555555;
+	text-align: center;
+	font-size: 1rem;
+	padding: 1rem;
+}
+
+.card {
+	width: calc(100% - 2rem);
+	margin-left: 1rem;
+	padding: 1rem;
+	margin-bottom: 1rem;
+	font-size: 0.8rem;
+	display: flex;
+	flex-flow: row wrap;
+}
+
+.card p {
+	width: 100%;
+	margin-bottom: 0.2rem;
+}
+
+.card-bottom {
+	width: 100%;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-between;
+}
+
+.card-menu {
+	flex-grow: 1;
+	display: flex;
+	flex-flow: row wrap;
+}
+
+.card-menu div {
+	margin-right: 0.5rem;
+	cursor: pointer;
+}
+
+.queue-card {
+	border: 1px solid #f8b544;
+	background-color: #fef2dd;
+}
+
+.queue-card .card-menu {
+	color: #f8b544;
+	font-weight: bold;
+}
+
+.progress-card {
+	border: 1px solid #9dda58;
+	background-color: #e5feca;
+}
+
+.progress-card .card-menu {
+	color: #9dda58;
+	font-weight: bold;
+}
+
+.done-card {
+	border: 1px solid #b4bac7;
+	background-color: #f7f8fc;
+}
+
+.done-card .card-menu {
+	color: #b4bac7;
+	font-weight: bold;
+}
+
+.editCover {
+	position: absolute;
+	left: 0; top: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #4c525b;
+	opacity: 0.7;
+}
+
+.editCard {
+	display: initial !important;
+	position: absolute;
+	left: 15%;
+	top: 20%;
+	width: 70%;
+	height: 60%;
+	padding: 2rem;
+	overflow-y: scroll;
+}
+
+.editCard div {
+	width: 100%;
+	display: flex;
+	flex-flow: row wrap;
+	margin-top: 1rem;
+}
+
+.editTitle {
+	width: 100%;
+	font-size: 2rem;
+	text-align: center;
+}
+
+label {
+	font-size: 1rem;
+	margin-right: 1rem;
+}
+
+input {
+	height: 1rem;
+	flex-grow: 1;
+	color: black;
+	font-size: 0.9rem;
+	line-height: 0.9rem;
+	background: none;
+	border: 0px solid black;
+	border-bottom-width: 1px;
+	margin-top: 0.1rem;
+}
+
+input[type="radio"] {
+	flex-grow: 0 !important;
+	margin-right: 0.5rem;
+	margin-top: 0.2rem;
+}
+
+select {
+	height: 1rem;
+	font-size: 1rem;
+	line-height: 1rem;
+	display: block;
+}
+
+.editCard .card-menu {
+	margin-bottom: 1rem;
+}
+
+.editCard .card-menu div {
+	width: 3rem;
+}
