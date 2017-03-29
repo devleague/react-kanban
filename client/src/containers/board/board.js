@@ -18,18 +18,29 @@ class Board extends Component {
 		this.reload();
 	}
 	reload() {
+		let oReq = new XMLHttpRequest();
+		oReq.addEventListener('load', _ => {
+			let Cards = JSON.parse(oReq.response);
+			Cards.forEach(({id, title, type, priority, by, to}) => {
+				this.props.onAddCard(id, title, type, priority, by, to);
+			});
+		});
+		oReq.open('GET', `/api/card/all`);
+		oReq.send();
+		/*
 		['queue', 'progress', 'done'].map((type) => {
 			return (_ => {
 				let oReq = new XMLHttpRequest();
 				oReq.addEventListener('load', _ => {
-					this.setState({
-						[`${type}Cards`]: JSON.parse(oReq.response)
-					});
+					let {title, type, priority, by, to} = JSON.parse(oReq.response);
+					console.log(oReq.response);
+					this.props.onAddCard(title, type, priority, by, to);
 				});
 				oReq.open('GET', `/api/card/all/${type}-card`);
 				oReq.send();
 			})();
 		});
+		*/
 	}
 	onEdit = ({id, title, type, priority, by, to}) => {
 		return (event) => {
@@ -70,22 +81,24 @@ class Board extends Component {
 								{((type !== 'done') ? 'IN ' : '') + type.toUpperCase()}
 							</div>
 							{
-								this.state[`${type}Cards`].map(card => {
-									const {id, title, type, priority, by, to} = card;
-									return (<Card 
-										key={id}
-										id={id}
-										title={title}
-										type={type}
-										priority={priority}
-										by={by}
-										to={to}
-										editing={this.state.editing === id}
-										onDel={this.onDel}
-										onEdit={this.onEdit(card)}
-										change={this.change}
-									/>);
-								})
+								this.props.cards
+									.filter(({type: cardType}) => cardType === `${type}-card`)
+									.map(card => {
+										const {id, title, type, priority, by, to} = card;
+										return (<Card 
+											key={id}
+											id={id}
+											title={title}
+											type={type}
+											priority={priority}
+											by={by}
+											to={to}
+											editing={this.state.editing === id}
+											onDel={this.onDel}
+											onEdit={this.onEdit(card)}
+											change={this.change}
+										/>);
+									})
 							}
 						</div>
 					)
@@ -97,16 +110,14 @@ class Board extends Component {
 
 function mapStateToProps(state) {
 	return { 
-		queueCards: state.queueCards,
-		progressCards: state.progressCards,
-		doneCards: state.doneCards
+		cards: state.cards
 	}
 }
 
 function mapDispatchToProps(dispatch) {
 	return {
-		onAddCard: (title, type, priority, by, to) => {
-			dispatch(addCard(title, type, priority, by, to));
+		onAddCard: (id, title, type, priority, by, to) => {
+			dispatch(addCard(id, title, type, priority, by, to));
 		}
 	}
 }

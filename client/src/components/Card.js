@@ -11,6 +11,8 @@ const Card = (props) => {
 						<div onClick={props.onEdit}>Edit</div>
 						<div onClick={props.onDel}>Delete</div>
 					</div>
+
+
 					<div>
 						<p>{props.to}</p>
 					</div>

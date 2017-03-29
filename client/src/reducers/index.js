@@ -1,9 +1,8 @@
 import {ADD_CARD} from '../actions';
+//const ADD_CARD = 'ADD_CARD';
 
 const initialState = {
-	queueCards: [],
-	progressCards: [],
-	doneCards: []
+	cards: []
 };
 
 function cards(state = initialState, action) {
@@ -13,6 +12,7 @@ function cards(state = initialState, action) {
 				cards: [
 					...state.cards,
 					{
+						id: action.id,
 						title: action.title,
 						type: action.type,
 						status: action.status,

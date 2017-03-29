@@ -13,7 +13,6 @@ app.use(methodOverride('_method'));
 // routes
 
 const cardAPI = require('./routes/cardAPI');
-
 app.use('/api/card', cardAPI);
 
 app.get('/404', (req, res) => {

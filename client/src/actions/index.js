@@ -1,10 +1,13 @@
 export const ADD_CARD = 'ADD_CARD';
 
-export const addCard = (title, type, priority, by, to) => ({
-	actType: ADD_CARD,
-	title,
-	type,
-	priority,
-	by,
-	to
-});
+export function addCard (id, title, type, priority, by, to) {
+	return {
+		actType: ADD_CARD,
+		id,
+		title,
+		type,
+		priority,
+		by,
+		to
+	}
+}

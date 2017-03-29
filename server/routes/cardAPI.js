@@ -7,6 +7,11 @@ const sequelize = require('sequelize');
 const db = require('../models');
 const { Card } = db;
 
+router.get('/all', (req, res) => {
+	Card.findAll().then(cards => res.send(cards))
+	.catch(_ => res.send({"success": false}));
+});
+
 router.get('/all/:type', (req, res) => {
 	Card.findAll({where: {type: req.params.type}})
 		.then(cards => res.send(cards))
