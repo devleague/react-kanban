@@ -3,18 +3,11 @@ import './board.css';
 import Card from '../../components/Card';
 
 import { connect } from 'react-redux';
-import { addCard } from '../../actions';
+import { addCard, updateCard, updateEditBuff, updateEditing } from '../../actions';
 
 class Board extends Component {
 	constructor() {
 		super();
-		this.state = {
-			queueCards: [],
-			progressCards: [],
-			doneCards: [],
-			editing: null,
-			editBuff: {}
-		};
 		this.reload();
 	}
 	reload() {
@@ -27,34 +20,18 @@ class Board extends Component {
 		});
 		oReq.open('GET', `/api/card/all`);
 		oReq.send();
-		/*
-		['queue', 'progress', 'done'].map((type) => {
-			return (_ => {
-				let oReq = new XMLHttpRequest();
-				oReq.addEventListener('load', _ => {
-					let {title, type, priority, by, to} = JSON.parse(oReq.response);
-					console.log(oReq.response);
-					this.props.onAddCard(title, type, priority, by, to);
-				});
-				oReq.open('GET', `/api/card/all/${type}-card`);
-				oReq.send();
-			})();
-		});
-		*/
 	}
 	onEdit = ({id, title, type, priority, by, to}) => {
 		return (event) => {
-			if(this.state.editing === id) {
+			if(this.props.editing === id) {
 				let oReq = new XMLHttpRequest();
 				oReq.addEventListener('load', _ => this.reload());
 				oReq.open('PUT', `/api/card/edit/${id}`);
 				oReq.setRequestHeader("Content-Type", "application/json");
-				oReq.send(JSON.stringify(this.state.editBuff));
+				oReq.send(JSON.stringify(this.props.editBuff));
 			}
-			this.setState({
-				editBuff: {title, type, priority, by, to},
-				editing: (this.state.editing === id) ? null : id
-			});
+			this.props.onUpdateEditBuff(id, title, type, priority, by, to);
+			this.props.onUpdateEditing((this.props.editing===id)?null:id);
 		}
 	}
 	onDel = (event) => {
@@ -66,9 +43,11 @@ class Board extends Component {
 	}
 	change = (prop) => {
 		return (event) => {
-			let newEditBuff = this.state.editBuff;
+			let newEditBuff = this.props.editBuff;
 			newEditBuff[prop] = event.target.value;
-			this.setState({editBuff: newEditBuff});
+			let {id, title, type, priority, by, to} = newEditBuff;
+			this.props.onUpdateEditBuff(id, title, type, priority, by, to);
+			console.log(this.props.editBuff);
 		}
 	}
 	render() {
@@ -93,7 +72,7 @@ class Board extends Component {
 											priority={priority}
 											by={by}
 											to={to}
-											editing={this.state.editing === id}
+											editing={this.props.editing === id}
 											onDel={this.onDel}
 											onEdit={this.onEdit(card)}
 											change={this.change}
@@ -110,7 +89,9 @@ class Board extends Component {
 
 function mapStateToProps(state) {
 	return { 
-		cards: state.cards
+		cards: state.cards,
+		editing: state.editing,
+		editBuff: state.editBuff
 	}
 }
 
@@ -118,6 +99,15 @@ function mapDispatchToProps(dispatch) {
 	return {
 		onAddCard: (id, title, type, priority, by, to) => {
 			dispatch(addCard(id, title, type, priority, by, to));
+		},
+		onUpdateCard: (id, title, type, priority, by, to) => {
+			dispatch(updateCard(id, title, type, priority, by, to));
+		},
+		onUpdateEditBuff: (id, title, type, priority, by, to) => {
+			dispatch(updateEditBuff(id, title, type, priority, by, to));
+		},
+		onUpdateEditing: (id) => {
+			dispatch(updateEditing(id));
 		}
 	}
 }

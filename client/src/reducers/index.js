@@ -1,8 +1,16 @@
-import {ADD_CARD} from '../actions';
-//const ADD_CARD = 'ADD_CARD';
+import {ADD_CARD, UPDATE_CARD, UPDATE_EDIT_BUFF, UPDATE_EDITING} from '../actions';
 
 const initialState = {
-	cards: []
+	cards: [],
+	editing: null,
+	editBuff: {
+		id: null,
+		title: null,
+		type: null,
+		priority: null,
+		by: null,
+		to: null
+	}
 };
 
 function cards(state = initialState, action) {
@@ -15,11 +23,25 @@ function cards(state = initialState, action) {
 						id: action.id,
 						title: action.title,
 						type: action.type,
-						status: action.status,
+						priority: action.priority,
 						to: action.to,
 						by: action.by
 					}
 				]
+			});
+		case UPDATE_CARD:
+			let editCard = state.cards.map(card => {
+				return Object.assign({}, state, (card.id === action.id)?action:card);
+			});
+			return Object.assign({}, state, editCard);
+		case UPDATE_EDIT_BUFF:
+			let newEditBuff = Object.assign({}, action);
+			return Object.assign({}, state, {
+				editBuff: newEditBuff
+			});
+		case UPDATE_EDITING:
+			return Object.assign({}, state, {
+				editing: action.id
 			});
 		default: 
 			return state;
