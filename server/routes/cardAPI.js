@@ -30,7 +30,8 @@ router.put('/edit/:id', (req, res) => {
 		{title, type, priority, by, to},
 		{where: {id: req.params.id}}
 	)
-		.then(card => res.send(card))
+		.then(_ => Card.findOne({where: {id: req.params.id}}))
+		.then(card => res.json(card))
 		.catch(_ => res.send({"success": false}));
 });
 

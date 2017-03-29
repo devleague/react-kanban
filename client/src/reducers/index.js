@@ -1,4 +1,4 @@
-import {ADD_CARD, UPDATE_CARD, UPDATE_EDIT_BUFF, UPDATE_EDITING} from '../actions';
+import {ADD_CARD, UPDATE_CARD, UPDATE_EDIT_BUFF, UPDATE_EDITING, EDIT_CARD} from '../actions';
 
 const initialState = {
 	cards: [],
@@ -43,6 +43,16 @@ function cards(state = initialState, action) {
 			return Object.assign({}, state, {
 				editing: action.id
 			});
+		case EDIT_CARD:
+			let newCards = state.cards.map(card => {
+				if(card.id === action.id) {
+					let {id, title, type, priority, to, by} = action;
+					return {id, title, type, priority, to, by};
+				}else{
+					return Object.assign({}, card);
+				}
+			});
+			return Object.assign({}, state, {cards: newCards});
 		default: 
 			return state;
 	}

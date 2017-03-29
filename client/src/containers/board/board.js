@@ -3,7 +3,7 @@ import './board.css';
 import Card from '../../components/Card';
 
 import { connect } from 'react-redux';
-import { addCard, updateCard, updateEditBuff, updateEditing } from '../../actions';
+import { addCard, updateCard, updateEditBuff, updateEditing, editCard } from '../../actions';
 
 class Board extends Component {
 	constructor() {
@@ -25,7 +25,11 @@ class Board extends Component {
 		return (event) => {
 			if(this.props.editing === id) {
 				let oReq = new XMLHttpRequest();
-				oReq.addEventListener('load', _ => this.reload());
+				oReq.addEventListener('load', _ => {
+					let data = JSON.parse(oReq.response);
+					let {id, title, type, priority, by, to} = data;
+					this.props.onEditCard(id, title, type, priority, by, to);
+				});
 				oReq.open('PUT', `/api/card/edit/${id}`);
 				oReq.setRequestHeader("Content-Type", "application/json");
 				oReq.send(JSON.stringify(this.props.editBuff));
@@ -47,7 +51,6 @@ class Board extends Component {
 			newEditBuff[prop] = event.target.value;
 			let {id, title, type, priority, by, to} = newEditBuff;
 			this.props.onUpdateEditBuff(id, title, type, priority, by, to);
-			console.log(this.props.editBuff);
 		}
 	}
 	render() {
@@ -108,6 +111,9 @@ function mapDispatchToProps(dispatch) {
 		},
 		onUpdateEditing: (id) => {
 			dispatch(updateEditing(id));
+		},
+		onEditCard: (id, title, type, priority, by, to) => {
+			dispatch(editCard(id, title, type, priority, by, to));
 		}
 	}
 }
