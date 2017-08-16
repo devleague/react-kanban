@@ -1,9 +1,18 @@
 import React from 'react'
 
-const Card = () => ({ onClick, completed, text }) => (
-  <li onClick={onClick} style={{ textDecoration: completed ? 'line-through' : 'none' }} >
-    {text}
+const Card = ({ title, status, priority, createdBy, assignedTo }) => (
+
+  <div>
+  <li >
+    {title}
   </li>
+  <li >
+    {priority}
+  </li>
+  <li >
+    {assignedTo}
+  </li>
+  </div>
 )
 
 export default Card

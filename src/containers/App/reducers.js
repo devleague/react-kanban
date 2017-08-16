@@ -1,8 +1,8 @@
-import { ADD_CARD, EDIT_CARD, DELETE_CARD, MOVE_CARD } from './actions';
+import { ADD_CARD, EDIT_CARD, DELETE_CARD, MOVE_CARD, TOGGLE_TODO } from './actions';
 
 let id = 0;
 
-const cardReducer = (state = [], action) => {
+const cardReducers = (state = [], action) => {
   switch (action.type) {
     case ADD_CARD:
       return addCard(state, action);
@@ -17,6 +17,13 @@ const cardReducer = (state = [], action) => {
         }
         return todo;
       });
+    case TOGGLE_TODO:
+      return state.map(todo => {
+        if (todo.id === action.id) {
+          todo.completed = !todo.completed;
+        }
+        return todo;
+      });
     default:
       return state;
   }
@@ -24,7 +31,7 @@ const cardReducer = (state = [], action) => {
 
 function addCard(state, action) {
   id = ++id;
-
+console.log('boop', action);
   return [
     ...state,
     {
@@ -70,4 +77,4 @@ function deleteCard(state, action) {
   ];
 }
 
-export default cardReducer
+export default cardReducers
