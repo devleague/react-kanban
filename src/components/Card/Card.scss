@@ -1,5 +1,14 @@
 .card {
-  width: 80%;
+  width: 95%;
   margin: 0 auto;
+  padding: 10px;
+  box-sizing: border-box;
   border: 1px solid black;
+  margin: 10px;
+
+  &.hidden {
+    display: none;
+  }
 }
+
+
