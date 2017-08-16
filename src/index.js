@@ -1,4 +1,4 @@
-import './index.css';
+import './App.css';
 
 // React
 import React from 'react';

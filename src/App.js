@@ -1,28 +1,27 @@
 import React from 'react'
-// import AddTodo from './AddTodo'
-// import TodoList from './TodoList'
+import SetCards from './QueueCards'
+// import DoneCards from './DoneCards'
 
 const App = () => (
-  <div class="kanban_board">
-    <div class="todo_container">
-      <div class="todo_header">To Do</div>
-      <div class="todo_column">
-
+  <div className="kanban_board">
+    <div className="queue_container">
+      <div className="queue_header">Queue</div>
+      <div className="queue_column">
+        <SetCards columnName={"in-queue"}/>
       </div>
     </div>
-    <div class="doing_container">
-      <div class="doing_header">Doing</div>
-      <div class="doing_column">
-
+    <div className="inProgress_container">
+      <div className="inProgress_header">In Progress</div>
+      <div className="inProgress_column">
+          <SetCards columnName={"in-progress"}/>
       </div>
     </div>
-    <div class="done_container">
-      <div class="done_header">Done</div>
-      <div class="done_column">
-
+    <div className="done_container">
+      <div className="done_header">Done</div>
+      <div className="inProgress_column">
+        <SetCards columnName={"done"}/>
       </div>
     </div>
-
   </div>
 )
 

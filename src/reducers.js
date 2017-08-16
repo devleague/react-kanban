@@ -1,21 +1,25 @@
-// import { ADD_TODO, TOGGLE_TODO } from './actions';
+import { CHANGE_STATUS } from './actions';
 
 let id = 0;
 
 const kanbanReducers = (state = [], action) => {
-  // switch (action.type) {
+  switch (action.type) {
   //   case ADD_TODO:
   //     return add(state, action);
-  //   case TOGGLE_TODO:
-  //     return state.map(todo => {
-  //       if (todo.id === action.id) {
-  //         todo.completed = !todo.completed;
-  //       }
-  //       return todo;
-  //     });
-  //   default:
-  //     return state;
-  // }
+    case CHANGE_STATUS:
+      return state.map(card => {
+        if (card.id === action.id) {
+          if (card.status = 'in-queue'){
+            card.status = 'in-progress';
+          } else if (card.status = "in-progress") {
+            card.status = 'done';
+          }
+        }
+        return card;
+      });
+    default:
+      return state;
+  }
 }
 
 // function add(state, action) {
