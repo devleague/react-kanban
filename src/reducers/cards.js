@@ -7,14 +7,12 @@ export default function(state = [], action) {
       return [...state, action.payload];
     case MOVE_CARD:
       const { _id, targetColumn } = action.payload;
-      const newState = state.slice();
-
-      const indexOfCard = newState.findIndex(card => {
-        return card._id == _id;
+      return state.map(card => {
+        if(card._id == _id) {
+          card.status = targetColumn;
+        }
+        return card;
       });
-
-      newState[indexOfCard].status = targetColumn;
-      return newState;
     default:
       return state;
   }
