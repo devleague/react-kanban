@@ -1,9 +1,10 @@
 import { ADD_CARD } from './actions';
 import { PRIORITY, STATUS } from './constants';
 
+let nextId = 0;
+
 export const addCard = (
   {
-    _id = null,
     title = '',
     priority = PRIORITY.LOW,
     status = STATUS.LOW,
@@ -11,7 +12,8 @@ export const addCard = (
     assignedTo = ''
   } = {}
 ) => {
-  if (!_id) return;
+
+  let _id = ++nextId;
 
   return {
     type: ADD_CARD,
