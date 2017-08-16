@@ -21,9 +21,9 @@ export const addCard = (
   };
 };
 
-export const moveCard = (_id, currentColumn, targetColumn) => {
+export const moveCard = (_id, targetColumn) => {
   return {
     type: MOVE_CARD,
-    payload: { _id, currentColumn, targetColumn }
+    payload: { _id, targetColumn }
   }
 }

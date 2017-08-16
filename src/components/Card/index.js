@@ -17,9 +17,7 @@ class Card extends Component {
 
   _onDragStart(e) {
     console.log(this.state._id)
-    console.log(this.cardNode)
     e.dataTransfer.setData('text', this.state._id);
-    e.dataTransfer.setData('application/x-moz-node type', this.cardNode);
   }
 
   _onDrag(e) {

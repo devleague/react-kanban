@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import "./Column.css";
 import Card from '../../components/Card/';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { moveCard } from '../../actions/cardActions';
 
 class Column extends Component {
   constructor() {
@@ -15,8 +18,9 @@ class Column extends Component {
   }
 
   _onDrop(e) {
-    let data = e.dataTransfer.getData('text');
-    console.log(data);
+    const cardId = e.dataTransfer.getData('text');
+    this.props.moveCard(cardId, this.props.type);
+    console.log(cardId);
   }
   render() {
     const { type, cards } = this.props;
@@ -28,4 +32,10 @@ class Column extends Component {
   }
 }
 
-export default Column;
+export const mapDispatchToProps = (dispatch) => {
+  return {
+    moveCard: bindActionCreators(moveCard, dispatch)
+  }
+}
+
+export default connect(null, mapDispatchToProps)(Column);

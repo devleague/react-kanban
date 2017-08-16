@@ -39,9 +39,9 @@ class App extends Component {
     return (
       <div>
         <div className="app">
-          <Column type="in_queue" cards={sortedCards.inQueue} />
-          <Column type="in_progress" cards={sortedCards.inProgress} />
-          <Column type="done" cards={sortedCards.done} />
+          <Column type={STATUS.QUEUE} cards={sortedCards.inQueue} />
+          <Column type={STATUS.PROGRESS} cards={sortedCards.inProgress} />
+          <Column type={STATUS.DONE} cards={sortedCards.done} />
         </div>
         <AddCardForm />
       </div>
