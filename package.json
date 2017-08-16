@@ -6,12 +6,12 @@
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-redux": "^5.0.6",
-    "redux": "^3.7.2",
-    "redux-devtools": "^3.4.0"
+    "redux": "^3.7.2"
   },
   "devDependencies": {
     "node-sass-chokidar": "0.0.3",
-    "react-scripts": "1.0.11"
+    "react-scripts": "1.0.11",
+    "redux-devtools": "^3.4.0"
   },
   "scripts": {
     "start": "react-scripts start",
