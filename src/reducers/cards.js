@@ -1,5 +1,4 @@
-import { ADD_CARD, MOVE_CARD } from '../actions/actions';
-import { STATUS } from '../actions/constants';
+import { ADD_CARD, MOVE_CARD, DEL_CARD } from '../actions/actions';
 
 export default function(state = [], action) {
   switch (action.type) {
@@ -12,6 +11,11 @@ export default function(state = [], action) {
           card.status = targetColumn;
         }
         return card;
+      });
+    case DEL_CARD:
+      const delId = action.payload._id;
+      return state.filter(card => {
+        return card._id != delId
       });
     default:
       return state;

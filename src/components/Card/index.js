@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import './Card.css';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { delCard } from '../../actions/cardActions';
 
 class Card extends Component {
   constructor(props) {
@@ -7,36 +10,52 @@ class Card extends Component {
 
     this.state = {
       ...this.props,
-      isDragging: false
+      isDragging: false,
+      showDelBtn: false
     };
 
+    this._onMouseEnter = this._onMouseEnter.bind(this);
+    this._onMouseLeave = this._onMouseLeave.bind(this);
     this._onDragStart = this._onDragStart.bind(this);
+
+    this._onDelClick = this._onDelClick.bind(this);
+
     this._onDrag = this._onDrag.bind(this);
     this._onDragEnd = this._onDragEnd.bind(this);
   }
 
+  _onMouseEnter() {
+    this.setState({ showDelBtn: true });
+  }
+
+  _onMouseLeave() {
+    this.setState({ showDelBtn: false });
+  }
+
+  _onDelClick() {
+    this.props.delCard(this.state._id);
+  }
+
   _onDragStart(e) {
-    console.log(this.state._id)
     e.dataTransfer.setData('text', this.state._id);
   }
 
-  _onDrag(e) {
+  _onDrag() {
     this.setState({ isDragging: true });
   }
 
-  _onDragEnd(e) {
+  _onDragEnd() {
     this.setState({ isDragging: false});
   }
 
   render() {
     const {
-      _id,
       title,
       priority,
-      status,
       createdBy,
       assignedTo,
-      isDragging
+      isDragging,
+      showDelBtn
     } = this.state;
 
     const className = isDragging ? 'card hidden' : 'card';
@@ -44,12 +63,14 @@ class Card extends Component {
     return (
       <div
         className={className}
-        ref={node => this.cardNode = node}
         draggable={true}
         onDragStart={this._onDragStart}
         onDrag={this._onDrag}
         onDragEnd={this._onDragEnd}
+        onMouseEnter={this._onMouseEnter}
+        onMouseLeave={this._onMouseLeave}
       >
+      {showDelBtn ? <button className="delBtn" onClick={this._onDelClick}>DEL</button> : null}
         <h3>
           {title}
         </h3>
@@ -67,4 +88,10 @@ class Card extends Component {
   }
 }
 
-export default Card;
+export const mapDispatchToProps = (dispatch) => {
+  return {
+    delCard: bindActionCreators(delCard, dispatch)
+  }
+}
+
+export default connect(null, mapDispatchToProps)(Card);

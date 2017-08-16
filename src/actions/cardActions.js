@@ -1,4 +1,4 @@
-import { ADD_CARD, MOVE_CARD } from './actions';
+import { ADD_CARD, MOVE_CARD, DEL_CARD } from './actions';
 import { PRIORITY, STATUS } from './constants';
 
 let nextId = 0;
@@ -12,7 +12,6 @@ export const addCard = (
     assignedTo = ''
   } = {}
 ) => {
-
   let _id = ++nextId;
 
   return {
@@ -25,5 +24,12 @@ export const moveCard = (_id, targetColumn) => {
   return {
     type: MOVE_CARD,
     payload: { _id, targetColumn }
-  }
-}
+  };
+};
+
+export const delCard = _id => {
+  return {
+    type: DEL_CARD,
+    payload: { _id }
+  };
+};
