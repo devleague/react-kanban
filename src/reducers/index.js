@@ -1,16 +1,6 @@
-import * as action from '../actions';
+import { combineReducers } from "redux";
+import cards from "./cards";
 
-const initialState = {
-  'in-queue': [],
-  'in-progress': [],
-  'done': []
-};
+const reducer = combineReducers({ cards });
 
-export default function(state = initialState, action) {
-  switch (action.type) {
-    case action.ADD_CARD:
-      return [...state, action.payload];
-    default:
-      return state;
-  }
-}
+export default reducer;

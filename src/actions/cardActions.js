@@ -1,7 +1,7 @@
-import * as action from './actions';
+import { ADD_CARD } from './actions';
 import { PRIORITY, STATUS } from './constants';
 
-const ADD_CARD = (
+export const addCard = (
   {
     _id = null,
     title = '',
@@ -14,7 +14,7 @@ const ADD_CARD = (
   if (!_id) return;
 
   return {
-    type: action.ADD_CARD,
+    type: ADD_CARD,
     payload: { _id, title, priority, status, createdBy, assignedTo }
   };
 };
