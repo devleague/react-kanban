@@ -1,17 +1,14 @@
-import { ADD_CARD } from '../actions/actions';
+import { ADD_CARD, MOVE_CARD } from '../actions/actions';
 
-const initialState = {
-  in_queue: [],
-  in_progress: [],
-  done: []
-};
-
-export default function(state = initialState, action) {
+export default function(state = [], action) {
   switch (action.type) {
     case ADD_CARD:
-      return Object.assign({}, state, {
-        in_queue: [...state.in_queue, action.payload]
-      });
+      return [...state, action.payload];
+    case MOVE_CARD:
+      const { _id, currentColumn, targetColumn } = action;
+      let fromColumn = [...state[currentColumn]];
+      let toColumn = [...state[targetColumn]];
+    // let cardToMove =
     default:
       return state;
   }

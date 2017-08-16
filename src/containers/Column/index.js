@@ -20,7 +20,6 @@ class Column extends Component {
   }
   render() {
     const { type, cards } = this.props;
-
     return (
       <div id={type} onDrop={this._onDrop} onDragOver={this._onDragOver} className="column">
         {cards.map(card => <Card key={card._id} {...card} />)}
