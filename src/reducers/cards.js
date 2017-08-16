@@ -1,15 +1,17 @@
-import { ADD_CARD } from '../actions/actions'
+import { ADD_CARD } from '../actions/actions';
 
 const initialState = {
-  'in-queue': [],
-  'in-progress': [],
-  'done': []
+  in_queue: [],
+  in_progress: [],
+  done: []
 };
 
 export default function(state = initialState, action) {
   switch (action.type) {
     case ADD_CARD:
-      return [...state, action.payload];
+      return Object.assign({}, state, {
+        in_queue: [...state.in_queue, action.payload]
+      });
     default:
       return state;
   }
