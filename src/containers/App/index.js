@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Column from '../Column';
+import AddCardForm from '../AddCardForm';
 
 class App extends Component {
   render() {
@@ -9,6 +10,7 @@ class App extends Component {
         <Column />
         <Column />
         <Column />
+        <AddCardForm />
       </div>
     );
   }
