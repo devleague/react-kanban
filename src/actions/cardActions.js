@@ -1,11 +1,29 @@
-import { ADD_CARD, MOVE_CARD, DEL_CARD, REQUEST_CARDS, RECEIVE_CARDS } from './actions';
+import {
+  ADD_CARD,
+  REQ_ADD_CARD,
+  MOVE_CARD,
+  DEL_CARD,
+  REQUEST_CARDS,
+  RECEIVE_CARDS
+} from './actions';
 import { PRIORITY, STATUS } from './constants';
 //replace with isomorphic fetch later
 import { getFakeDbReq, addToFakeDb } from '../fakeDb/data.js';
 
-let nextId = 0;
+export const addCard = newCard => {
+  return {
+    type: ADD_CARD,
+    payload: newCard
+  };
+};
 
-export const addCard = (
+export const reqAddCard = () => {
+  return {
+    type: REQ_ADD_CARD
+  };
+};
+
+export const fetchAddCard = (
   {
     title = '',
     priority = PRIORITY.LOW,
@@ -13,13 +31,15 @@ export const addCard = (
     createdBy = '',
     assignedTo = ''
   } = {}
-) => {
-  let _id = ++nextId;
+) => dispatch => {
+  dispatch(reqAddCard());
 
-  return {
-    type: ADD_CARD,
-    payload: { _id, title, priority, status, createdBy, assignedTo }
-  };
+  addToFakeDb({ title, priority, status, createdBy, assignedTo }).then(
+    addedCard => {
+      dispatch(addCard(addedCard));
+    },
+    error => console.log('An error occured.', error)
+  );
 };
 
 export const moveCard = (_id, targetColumn) => {
@@ -36,28 +56,29 @@ export const delCard = _id => {
   };
 };
 
+//get all cards
 export const requestCards = () => {
   return {
     type: REQUEST_CARDS
-  }
-}
+  };
+};
 
-export const receiveCards = (cards) => {
+export const receiveCards = cards => {
   return {
     type: RECEIVE_CARDS,
     payload: cards
-  }
-}
+  };
+};
 
 export const fetchCards = () => {
   return function(dispatch) {
+    dispatch(requestCards());
 
-    dispatch(requestCards);
-
-    return getFakeDbReq()
-    .then(cards => {
-      dispatch(receiveCards(cards))
-    },
-    error => console.log('An error occured.', error))
-  }
-}
+    return getFakeDbReq().then(
+      cards => {
+        dispatch(receiveCards(cards));
+      },
+      error => console.log('An error occured.', error)
+    );
+  };
+};

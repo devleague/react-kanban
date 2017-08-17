@@ -1,5 +1,6 @@
 import {
   ADD_CARD,
+  REQ_ADD_CARD,
   MOVE_CARD,
   DEL_CARD,
   REQUEST_CARDS,
@@ -16,8 +17,11 @@ export default function(state = initialState, action) {
   switch (action.type) {
     case ADD_CARD:
       return Object.assign({}, state, {
-        cards: [...state.cards, action.payload]
+        cards: [...state.cards, action.payload],
+        isAddingCard: false
       });
+    case REQ_ADD_CARD:
+      return Object.assign({}, state, { isAddingCard : true })
     case MOVE_CARD:
       const { _id, targetColumn } = action.payload;
       return Object.assign({}, state, {
