@@ -1,7 +1,7 @@
 import React from 'react'
 
-const Card = ({ title, priority, createdBy, assignedTo }) => (
-  <div className="card">
+const Card = ({ title, priority, createdBy, assignedTo, onClick }) => (
+  <div onClick={onClick} className="card">
     <div className="card_title">TASK: {title}</div>
     <div className="card_priority">PRIORITY: {priority}</div>
     <div className="created_by">CREATED BY: {createdBy}</div>

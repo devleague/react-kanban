@@ -4,33 +4,21 @@ import { changeStatus } from './actions'
 import Card from './Card'
 
 class QueueCards extends React.Component {
-  constructor(props) {
-    super(props);
 
-    this.state = {
-      cards: [],
-    };
-  };
+  componentDidMount() {}
 
-  componentDidMount() {
-    this.setState({
-        cards: cardList
-      });
-    console.log(this.props, this.state);
-   }
+  componentWillMount() {}
 
-  componentWillMount() { }
-
-  onClick(id) {
+  clickMe(id) {
     this.props.onQueueClick(id);
   }
 
   render() {
     return (
       <div className='cards'>
-        { this.state.cards.map( card => {
+        { this.props.cards.map( card => {
           if (card.status === this.props.columnName ){
-            return <Card key={ card.id } { ...card } onClick={() => this.onClick(card.id)} />
+            return <Card key={ card._id } { ...card } onClick={this.clickMe.bind(this, card._id)} />
           }
         })}
       </div>
@@ -39,9 +27,7 @@ class QueueCards extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return {
-    cards: state
-  };
+  return state;
 }
 
 const mapDispatchToProps = (dispatch) => {
@@ -53,44 +39,10 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 QueueCards = connect(
-  mapStateToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(QueueCards)
 
 
 export default QueueCards
 
-let cardList = [
-
-      {
-        "_id": 1,
-        "title": "Fix CSS",
-        "priority": "medium",
-        "status": "in-queue",
-        "createdBy": "John",
-        "assignedTo": "Dorie"
-      },
-      {
-        "_id": 2,
-        "title": "Improve UI",
-        "priority": "low",
-        "status": "in-queue",
-        "createdBy": "Dorie",
-        "assignedTo": "Emilie"
-      },
-      {
-        "_id": 4,
-        "title": "Delete console logs",
-        "priority": "high",
-        "status": "in-progress",
-        "createdBy": "Emilie",
-        "assignedTo": "Frank"
-      },
-      {
-        "_id": 5,
-        "title": "East Do-nuts",
-        "priority": "blocker",
-        "status": "done",
-        "createdBy": "Frank",
-        "assignedTo": "John"
-      }
-  ]
