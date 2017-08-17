@@ -57,10 +57,17 @@ export const delCard = _id => {
 };
 
 export const fetchDelCard = _id => dispatch => {
+  dispatch(delCard(_id))
+
   delFromFakeDb(_id).then(
     id => {
-      dispatch(delCard(id));
+      console.log(id)
+      if(id) {
+        console.log('card deleted')
+        return Promise.resolve();
+      }
     },
+    //TODO: flash msg to user
     error => console.log(error)
   );
 };

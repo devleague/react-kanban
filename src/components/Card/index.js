@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './Card.css';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { delCard } from '../../actions/cardActions';
+import { fetchDelCard } from '../../actions/cardActions';
 
 class Card extends Component {
   constructor(props) {
@@ -90,7 +90,7 @@ class Card extends Component {
 
 export const mapDispatchToProps = (dispatch) => {
   return {
-    delCard: bindActionCreators(delCard, dispatch)
+    delCard: bindActionCreators(fetchDelCard, dispatch)
   }
 }
 
