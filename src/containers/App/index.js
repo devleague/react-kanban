@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import './App.css';
+import Navbar from '../../components/Navbar';
 import Column from '../Column';
 import AddCardForm from '../AddCardForm';
 import { STATUS } from '../../actions/constants';
@@ -43,12 +44,15 @@ class App extends Component {
   render() {
     const sortedCards = this.sortCards(this.props.cards);
     return (
-      <div>
         <div className="app">
-          <Column type={STATUS.QUEUE} cards={sortedCards.inQueue} />
-          <Column type={STATUS.PROGRESS} cards={sortedCards.inProgress} />
-          <Column type={STATUS.DONE} cards={sortedCards.done} />
-        </div>
+          <Navbar>
+            <h2>asdf</h2>
+          </Navbar>
+          <div className="column-container">
+            <Column type={STATUS.QUEUE} cards={sortedCards.inQueue} />
+            <Column type={STATUS.PROGRESS} cards={sortedCards.inProgress} />
+            <Column type={STATUS.DONE} cards={sortedCards.done} />
+          </div>
         <AddCardForm />
       </div>
     );
