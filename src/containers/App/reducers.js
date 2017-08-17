@@ -45,19 +45,23 @@ function addCard(state, action) {
 }
 
 function editCard(state, action) {
-  id = ++id;
+  var cardEdits = action.card
+  var newState = state.filter(card=> {
+    if(card.id !== action.card.id){
+      return true
+    }
+  });
 
   return [
-    ...state,
-    {
-      id: id,
-      title: action.title,
-      priority: action.priority,
-      status: action.status,
-      createdBy: action.createdBy,
-      assignedTo: action.assignedTo
-    }
-  ];
+  ...newState, {
+      id: cardEdits.id,
+      title: cardEdits.title,
+      priority: cardEdits.priority,
+      status: cardEdits.status,
+      createdBy: cardEdits.createdBy,
+      assignedTo: cardEdits.assignedTo
+    }]
+
 }
 
 function deleteCard(state, action) {

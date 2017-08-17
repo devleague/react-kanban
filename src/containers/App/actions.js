@@ -10,14 +10,13 @@ export function addCard(card) {
          }
 }
 
-/*export function editCard(card) {
+export function editCard(card) {
   return { type: EDIT_CARD,
            card: card
          }
-}*/
+}
 
 export function deleteCard(card) {
-         console.log(card)
   return { type: DELETE_CARD,
            card: card
          }

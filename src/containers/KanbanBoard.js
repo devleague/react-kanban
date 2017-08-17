@@ -10,10 +10,6 @@ class KanbanBoard extends React.Component {
     super(props);
   }
 
-  onClick(id) {
-    this.props.onCardClick(id);
-  }
-
   render() {
     return (
         <div className ="parent">
