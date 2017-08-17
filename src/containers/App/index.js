@@ -6,7 +6,7 @@ import Navbar from '../../components/Navbar';
 import Column from '../Column';
 import AddCardForm from '../AddCardForm';
 import { STATUS } from '../../actions/constants';
-import { fetchCards } from '../../actions/asyncCardActions';
+import { fetchCards } from '../../actions/cardActions';
 
 class App extends Component {
   constructor() {
