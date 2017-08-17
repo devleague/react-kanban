@@ -3,7 +3,7 @@ import "./Column.css";
 import Card from '../../components/Card/';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { moveCard } from '../../actions/cardActions';
+import { fetchMoveCard } from '../../actions/cardActions';
 
 class Column extends Component {
   constructor() {
@@ -34,7 +34,7 @@ class Column extends Component {
 
 export const mapDispatchToProps = (dispatch) => {
   return {
-    moveCard: bindActionCreators(moveCard, dispatch)
+    moveCard: bindActionCreators(fetchMoveCard, dispatch)
   }
 }
 

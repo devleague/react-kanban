@@ -68,4 +68,11 @@ export const delFromFakeDb = id => new Promise(resolve => {
   fakeDb.splice(i, 1);
 
   setTimeout(() => resolve(id), 2000);
+});
+
+export const moveFromFakeDb = (id, status) => new Promise(resolve => {
+  let i = fakeDb.findIndex(card => card._id == id)
+  fakeDb[i].status = status;
+
+  setTimeout(() => resolve(fakeDb[i]), 2000);
 })

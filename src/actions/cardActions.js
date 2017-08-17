@@ -8,7 +8,7 @@ import {
 } from './actions';
 import { PRIORITY, STATUS } from './constants';
 //replace with isomorphic fetch later
-import { getFakeDbReq, addToFakeDb, delFromFakeDb } from '../fakeDb/data.js';
+import { getFakeDbReq, addToFakeDb, delFromFakeDb, moveFromFakeDb } from '../fakeDb/data.js';
 
 export const addCard = newCard => {
   return {
@@ -48,6 +48,20 @@ export const moveCard = (_id, targetColumn) => {
     payload: { _id, targetColumn }
   };
 };
+
+export const fetchMoveCard = (_id, targetColumn) => dispatch => {
+  dispatch(moveCard(_id, targetColumn));
+
+  moveFromFakeDb(_id, targetColumn)
+  .then(card => {
+    if(card) {
+      console.log(card);
+      return Promise.resolve(card);
+    }
+  },
+  error => console.log(error)
+  );
+}
 
 export const delCard = _id => {
   return {
