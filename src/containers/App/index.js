@@ -3,10 +3,11 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import './App.css';
 import Navbar from '../../components/Navbar';
+import AddCardButton from '../../components/AddCardButton';
 import Column from '../Column';
 import AddCardForm from '../AddCardForm';
 import { STATUS } from '../../actions/constants';
-import { fetchCards } from '../../actions/cardActions';
+import { fetchCards, fetchAddCard } from '../../actions/cardActions';
 
 class App extends Component {
   constructor() {
@@ -46,7 +47,7 @@ class App extends Component {
     return (
         <div className="app">
           <Navbar>
-            <h2>asdf</h2>
+            <AddCardButton addCard={this.props.addCard} />
           </Navbar>
           <div className="column-container">
             <Column type={STATUS.QUEUE} cards={sortedCards.inQueue} />
@@ -65,7 +66,8 @@ export const mapStateToProps = state => {
 
 export const mapDispatchToProps = dispatch => {
   return {
-    fetchCards: bindActionCreators(fetchCards, dispatch)
+    fetchCards: bindActionCreators(fetchCards, dispatch),
+    addCard: bindActionCreators(fetchAddCard, dispatch)
   };
 };
 
