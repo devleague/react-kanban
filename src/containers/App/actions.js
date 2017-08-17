@@ -14,15 +14,17 @@ export function addCard(card) {
   return { type: EDIT_CARD,
            card: card
          }
-}
+}*/
 
 export function deleteCard(card) {
+         console.log(card)
   return { type: DELETE_CARD,
            card: card
          }
+
 }
 
-export function moveCard(card) {
+/*export function moveCard(card) {
   return { type: MOVE_CARD,
            card: card
          }

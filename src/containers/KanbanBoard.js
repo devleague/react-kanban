@@ -8,7 +8,6 @@ import { toggleTodo } from './App/actions'
 class KanbanBoard extends React.Component {
   constructor(props) {
     super(props);
-    console.log('props', props);
   }
 
   onClick(id) {
@@ -17,18 +16,19 @@ class KanbanBoard extends React.Component {
 
   render() {
     return (
-        <div>
-        <ul>
-        <div>
+        <div className ="parent">
+        <div className ="queueColumn">
+        <h2 className ='task'> TO DO </h2>
         <QueueColumn />
         </div>
-        <div>
+        <div className ="progressColumn">
+        <h2 className ='task'> DOING </h2>
         <InProgressColumn />
         </div>
-        <div>
+        <div className ="doneColumn">
+        <h2 className ='task'> DONE </h2>
         <DoneColumn />
         </div>
-        </ul>
         </div>
     );
   }

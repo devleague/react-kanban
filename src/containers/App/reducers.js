@@ -61,19 +61,11 @@ function editCard(state, action) {
 }
 
 function deleteCard(state, action) {
-  id = ++id;
-
-  return [
-    ...state,
-    {
-      id: id,
-      title: action.title,
-      priority: action.priority,
-      status: action.status,
-      createdBy: action.createdBy,
-      assignedTo: action.assignedTo
+  return state.filter(card=> {
+    if(card.id !== action.card){
+      return true
     }
-  ];
+  })
 }
 
 export default cardReducers

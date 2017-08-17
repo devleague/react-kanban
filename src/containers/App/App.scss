@@ -1,24 +1,45 @@
-.App {
+.parent {
+
+}
+
+.queueColumn {
+    width: 33%;
+    padding: 10px;
+    display: inline-block;
+    box-sizing: border-box;
+}
+
+.progressColumn {
+    width:33%;
+    padding:10px;
+    display: inline-block;
+    box-sizing: border-box;
+}
+
+.doneColumn {
+    width: 33%;
+    padding: 10px;
+    display: inline-block;
+    box-sizing: border-box;
+}
+
+.task {
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.low {
+  background: rgba(0,191,255, 0.40);
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.medium {
+  background: rgba(0,250,154, 0.40);
 }
 
-.App-intro {
-  font-size: large;
+.high {
+  background: rgba(255,255,0, 0.40);
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.blocker {
+  background: rgba(255,0,0, 0.40);
 }
+

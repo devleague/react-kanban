@@ -1,8 +1,10 @@
 import React from 'react'
+import DeleteCard from '../containers/DeleteCard.js'
 
-const Card = ({ title, status, priority, createdBy, assignedTo }) => (
+const Card = ({ title, status, priority, createdBy, assignedTo, id }) => (
 
-  <div>
+  <div className = {priority}>
+
   <li >
     {title}
   </li>
@@ -18,6 +20,7 @@ const Card = ({ title, status, priority, createdBy, assignedTo }) => (
   <li >
     {assignedTo}
   </li>
+  <DeleteCard id={id}/>
   </div>
 )
 

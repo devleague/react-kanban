@@ -7,11 +7,11 @@ class AddCard extends React.Component {
     super(props);
 
     this.state = {
-        title: '',
-        priority: '',
-        status: '',
-        createdBy: '',
-        assignedTo: ''
+      title: '',
+      priority: 'low',
+      status: 'in-queue',
+      createdBy: '',
+      assignedTo: ''
     }
   }
 
@@ -39,11 +39,11 @@ class AddCard extends React.Component {
     e.preventDefault();
     this.props.newCardAdd({ ...this.state});
     this.setState({
-        title: '',
-        priority: '',
-        status: '',
-        createdBy: '',
-        assignedTo: ''
+      title: '',
+      priority: 'low',
+      status: 'in-queue',
+      createdBy: '',
+      assignedTo: ''
     });
 
   }
@@ -51,21 +51,24 @@ class AddCard extends React.Component {
   render() {
     return (
       <div>
-        <form onSubmit={this.handleSubmit.bind(this)} >
-         <div>
-          <input id="titleInput" placeholder= "title"value={this.state.title} onChange={this.titleChange.bind(this)} /> </div>
-          <div>
-          <input id="priorityInput" placeholder= "priority" value={this.state.priority} onChange={this.priorityChange.bind(this)} /> </div>
-          <div>
-          <input id="statusInput" placeholder= "status" value={this.state.status} onChange={this.statusChange.bind(this)} /> </div>
-          <div>
-          <input id="createdByInput" placeholder= "created by" value={this.state.createdBy} onChange={this.createdByChange.bind(this)} /> </div>
-          <div>
-          <input id="assignedToInput" placeholder= "assigned to" value={this.state.assignedTo} onChange={this.assignedToChange.bind(this)} /> </div>
-          <button type="submit">Add Card</button>
-        </form>
+      <form onSubmit={this.handleSubmit.bind(this)} >
+      <div>
+      <input id="titleInput" placeholder= "title"value={this.state.title} onChange={this.titleChange.bind(this)} />
+
+      <select id="priorityInput" onChange={this.priorityChange.bind(this)}>
+      <option value="low" >Low</option>
+      <option value="medium" >Medium</option>
+      <option value="high" >High</option>
+      <option value="blocker">Blocker</option>
+      </select>
+
+      <input id="createdByInput" placeholder= "created by" value={this.state.createdBy} onChange={this.createdByChange.bind(this)} />
+      <input id="assignedToInput" placeholder= "assigned to" value={this.state.assignedTo} onChange={this.assignedToChange.bind(this)} />
+      <button type="submit">Add Card</button>
       </div>
-    );
+      </form>
+      </div>
+      );
   }
 }
 
@@ -85,6 +88,6 @@ const mapDispatchToProps = (dispatch) => {
 AddCard = connect(
   mapStateToProps,
   mapDispatchToProps
-)(AddCard);
+  )(AddCard);
 
-export default AddCard;
+  export default AddCard;
