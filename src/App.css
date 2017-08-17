@@ -1,10 +1,10 @@
 @import url("https://fonts.googleapis.com/css?family=Gloria+Hallelujah");
-
 input {
   border: gray solid 2px;
   border-radius: 5px;
   margin: 3px;
-  width: 400px;
+  height: 40px;
+  width: 100%;
   padding: 5px;
   font-family: "Gloria Hallelujah", cursive;
   background-color: #fff4e4; }
@@ -17,20 +17,24 @@ button {
   margin: 5px; }
 
 .banner {
+  grid-column: 1/1;
   font-family: "Gloria Hallelujah", cursive;
-  text-align: center;
-  font-size: 24px;
-}
+  text-align: left; }
+
+h1 {
+  text-align: center; }
 
 .kanban_board {
   display: grid;
-  grid-template-columns: [first] 33% [second] 34% [third] 33%;
+  grid-template-columns: [first] 16% [second] 28% [third] 28% [fourth] 28%;
   font-family: "Gloria Hallelujah", cursive; }
 
 .queue_container, .inProgress_container, .done_container {
   border: black solid 2px;
   border-radius: 20px;
-  background-color: #fff4e4; }
+  background-color: #fff4e4;
+  margin: 10px;
+  margin-top: 100px; }
 
 .queue_header, .inProgress_header, .done_header {
   background-color: #f8b88b;
@@ -38,13 +42,13 @@ button {
   padding: 10px; }
 
 .queue_container {
-  grid-column: 1/1; }
-
-.inProgress_container {
   grid-column: 2/2; }
 
-.done_container {
+.inProgress_container {
   grid-column: 3/3; }
+
+.done_container {
+  grid-column: 4/5; }
 
 .card {
   padding: 10px;
@@ -53,7 +57,7 @@ button {
 
 .card_title, .card_priority, .created_by, .assigned_to {
   display: grid;
-  grid-template-columns: [first] 20% [second] 5% [third] 75%; }
+  grid-template-columns: [first] 30% [second] 5% [third] 65%; }
 
 .add_card_form {
   display: grid;
@@ -63,15 +67,11 @@ button {
 .add_card_outer {
   padding: 20px; }
 
-.add_card_container {
-  width: 40%;
-  margin: 0 auto; }
-
 .runin {
   grid-column: 1/1;
   justify-self: right;
   font-size: 12px;
-}
+  text-align: right; }
 
 .text {
   grid-column: 3/3;
@@ -99,52 +99,14 @@ button {
   text-align: center;
   font-size: 20px; }
 
-.popup {
+.arrows {
   position: relative;
-  display: inline-block;
-  cursor: pointer; }
+  display: grid;
+  grid-template-columns: [1] 15% [2] 70% [3] 15%; }
 
-/* The actual popup (appears on top) */
-.popup .popuptext {
-  visibility: hidden;
-  width: 160px;
-  background-color: #555;
-  color: #fff;
-  text-align: center;
-  border-radius: 6px;
-  padding: 8px 0;
-  position: absolute;
-  z-index: 1;
-  bottom: 125%;
-  left: 50%;
-  margin-left: -80px; }
+.left_arrow {
+  grid-column: 1/1; }
 
-/* Popup arrow */
-.popup .popuptext::after {
-  content: "";
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  margin-left: -5px;
-  border-width: 5px;
-  border-style: solid;
-  border-color: #555 transparent transparent transparent; }
-
-/* Toggle this class when clicking on the popup container (hide and show the popup) */
-.popup .show {
-  visibility: visible;
-  -webkit-animation: fadeIn 1s;
-  animation: fadeIn 1s; }
-
-/* Add animation (fade in the popup) */
-@-webkit-keyframes fadeIn {
-  from {
-    opacity: 0; }
-  to {
-    opacity: 1; } }
-
-@keyframes fadeIn {
-  from {
-    opacity: 0; }
-  to {
-    opacity: 1; } }
+.right_arrow {
+  grid-column: 3/3;
+  text-align: right; }

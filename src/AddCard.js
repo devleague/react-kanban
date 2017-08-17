@@ -15,10 +15,6 @@ class AddCard extends React.Component {
 
   }
 
-  componentDidMount() { }
-
-  componentWillMount() { }
-
   handleTaskChange(e) {
     this.setState({ title: e.target.value });
   }

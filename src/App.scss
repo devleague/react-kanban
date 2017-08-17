@@ -11,7 +11,8 @@ input {
   border: gray solid 2px;
   border-radius: 5px;
   margin: 3px;
-  width: 400px;
+  height: 40px;
+  width: 100%;
   padding: 5px;
   font-family: $main-font;
   background-color: $bg;
@@ -26,13 +27,18 @@ button {
 }
 
 .banner {
+  grid-column: 1/1;
   font-family: $main-font;
+  text-align: left;
+}
+
+h1 {
   text-align: center;
 }
 
 .kanban_board {
   display: grid;
-  grid-template-columns: [first] 33% [second] 34% [third] 33%;
+  grid-template-columns: [first] 16% [second] 28% [third] 28% [fourth] 28%;
   font-family: $main-font;
 }
 
@@ -40,6 +46,8 @@ button {
    border: black solid 2px;
    border-radius: 20px;
    background-color: $bg;
+   margin: 10px;
+   margin-top: 100px;
 }
 
 .queue_header, .inProgress_header, .done_header {
@@ -49,15 +57,15 @@ button {
 }
 
 .queue_container {
-  grid-column: 1/1;
-}
-
-.inProgress_container {
   grid-column: 2/2;
 }
 
-.done_container {
+.inProgress_container {
   grid-column: 3/3;
+}
+
+.done_container {
+  grid-column: 4/5;
 }
 
 .card {
@@ -68,7 +76,7 @@ button {
 
 .card_title, .card_priority, .created_by, .assigned_to {
   display: grid;
-  grid-template-columns: [first] 47.5% [second] 5% [third] 47.5%;
+  grid-template-columns: [first] 30% [second] 5% [third] 65%;
 }
 
 .add_card_form {
@@ -81,15 +89,11 @@ button {
   padding: 20px;
 }
 
-.add_card_container {
-  width: 40%;
-  margin: 0 auto;
-}
-
 .runin {
   grid-column: 1/1;
   justify-self: right;
   font-size: 12px;
+  text-align: right;
 }
 
 .text {
@@ -125,54 +129,17 @@ button {
   font-size: 20px;
 }
 
-.popup {
-    position: relative;
-    display: inline-block;
-    cursor: pointer;
+.arrows {
+  position: relative;
+  display: grid;
+  grid-template-columns: [1] 15% [2] 70% [3] 15%;
 }
 
-/* The actual popup (appears on top) */
-.popup .popuptext {
-    visibility: hidden;
-    width: 160px;
-    background-color: #555;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 8px 0;
-    position: absolute;
-    z-index: 1;
-    bottom: 125%;
-    left: 50%;
-    margin-left: -80px;
+.left_arrow {
+  grid-column: 1/1;
 }
 
-/* Popup arrow */
-.popup .popuptext::after {
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: #555 transparent transparent transparent;
-}
-
-/* Toggle this class when clicking on the popup container (hide and show the popup) */
-.popup .show {
-    visibility: visible;
-    -webkit-animation: fadeIn 1s;
-    animation: fadeIn 1s
-}
-
-/* Add animation (fade in the popup) */
-@-webkit-keyframes fadeIn {
-    from {opacity: 0;}
-    to {opacity: 1;}
-}
-
-@keyframes fadeIn {
-    from {opacity: 0;}
-    to {opacity:1 ;}
+.right_arrow {
+  grid-column: 3/3;
+  text-align: right;
 }

@@ -1,4 +1,4 @@
-import { CHANGE_STATUS } from './actions';
+import { CHANGE_STATUS, DROPPED, DRAGGED } from './actions';
 
 let id = 6;
 
@@ -41,7 +41,11 @@ const kanbanReducers = (state = { cards: [
       return add(state, action);
     case CHANGE_STATUS:
       return statusChange(state, action);
-
+    case DROPPED:
+      let droppedId = droppedOn(state, action);
+      return droppedId;
+    case DRAGGED:
+      return statusChange(state, action);
     default:
       return state;
   }
@@ -62,18 +66,37 @@ function add(state, action) {
   ]}
 }
 
+function droppedOn(state, action){
+  let newState = state;
+  return Object.assign({}, state, newState, {droppedId: action.id})
+}
+
 function statusChange(state, action){
-    let newCards = state.cards.map(card => {
-    if (card._id === action.id) {
-      if (card.status === 'in-queue'){
-        card.status = 'in-progress';
-      } else if (card.status === "in-progress") {
-        card.status = 'done';
+  let actionid = Number(action.id);
+
+  let newCards = state.cards.map(card => {
+      switch(Number(state.droppedId)){
+        case 1: //dropped on in-queue column
+          if ((card._id === actionid && card.status === "in-progress") || (card._id === actionid && card.status === "done")) {
+            card.status = "in-queue";
+          }
+          break;
+        case 2: //dropped on in-progress column
+          if ((card._id === actionid && card.status === "in-queue") || (card._id === actionid && card.status === "done")) {
+            card.status = "in-progress";
+          }
+          break;
+        case 3: //dropped on done column
+          if ((card._id === actionid && card.status === "in-queue") || (card._id === actionid && card.status === "in-progress")) {
+            card.status = "done";
+          }
+          break;
+        default:
+          return card;
       }
-    }
     return card;
   });
-  return Object.assign({}, state, { cards : newCards })
+  return Object.assign({}, state, { cards : newCards });
 }
 
 export default kanbanReducers

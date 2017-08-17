@@ -1,16 +1,21 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { changeStatus } from './actions'
+import { recordDraggedId } from './actions'
 import Card from './Card'
 
 class QueueCards extends React.Component {
 
   componentDidMount() {}
 
-  componentWillMount() {}
+  componentWillMount() {
+    if (!this.props.card){
 
-  clickMe(id) {
-    this.props.onQueueClick(id);
+      this.setState(this.props);
+    }
+  }
+
+  drag(e){
+    this.props.dragged(e.target.id);
   }
 
   render() {
@@ -18,7 +23,7 @@ class QueueCards extends React.Component {
       <div className='cards'>
         { this.props.cards.map( card => {
           if (card.status === this.props.columnName ){
-            return <Card key={ card._id } { ...card } onClick={this.clickMe.bind(this, card._id)} />
+            return <Card key={ card._id } { ...card } drag={this.drag.bind(this)}/>
           }
         })}
       </div>
@@ -32,8 +37,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onQueueClick: (id) => {
-      dispatch(changeStatus(id));
+    dragged: (id) => {
+      dispatch(recordDraggedId(id))
     }
   }
 }
@@ -42,7 +47,6 @@ QueueCards = connect(
   mapStateToProps,
   mapDispatchToProps
 )(QueueCards)
-
 
 export default QueueCards
 
