@@ -1,4 +1,4 @@
-const initialState = [
+const fakeDb= [
     {
       "_id": 1,
       "title": "Make Better Styles",
@@ -16,7 +16,7 @@ const initialState = [
       "assignedTo": "Merlin"
     },
     {
-      "_id": 4,
+      "_id": 3,
       "title": "Make Better Styles, Make Better Styles, Make Better Styles, Make Better Styles, Make Better Styles, Make Better Styles",
       "priority": "high",
       "status": "in-queue",
@@ -24,7 +24,7 @@ const initialState = [
       "assignedTo": "Merlin"
     },
     {
-      "_id": 22,
+      "_id": 4,
       "title": "Make Better Styles, Make Better Styles, Make Better Styles, Make Better Styles, Make Better Styles, Make Better Styles",
       "priority": "blocker",
       "status": "in-queue",
@@ -32,7 +32,7 @@ const initialState = [
       "assignedTo": "Merlin"
     },
     {
-      "_id": 7,
+      "_id": 5,
       "title": "Make Better Styles, Make Better Styles, Make Better Styles, Make Better Styles, Make Better Styles, Make Better Styles",
       "priority": "medium",
       "status": "in-progress",
@@ -40,7 +40,7 @@ const initialState = [
       "assignedTo": "Merlin"
     },
     {
-      "_id": 25,
+      "_id": 6,
       "title": "Make Better Styles, Make Better Styles, Make Better Styles, Make Better Styles, Make Better Styles, Make Better Styles",
       "priority": "Medium",
       "status": "done",
@@ -49,10 +49,16 @@ const initialState = [
     }
   ];
 
+let nextId = 7;
+
 export const getFakeDbReq = () => new Promise((resolve) => {
-  setTimeout(() => resolve(initialState), 2000);
+  setTimeout(() => resolve(fakeDb), 2000);
 });
 
-export const addToFakeDb = () => new Promise(resolve => {
-  setTimeout(() => resolve(), 2000);
+export const addToFakeDb = newCard => new Promise(resolve => {
+  nextId++;
+  newCard._id = nextId;
+  fakeDb.push(newCard);
+
+  setTimeout(() => resolve(newCard), 2000);
 });
