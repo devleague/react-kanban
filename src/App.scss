@@ -1,16 +1,55 @@
+@import url("https://fonts.googleapis.com/css?family=Gloria+Hallelujah");
+$blocker: #ffbdbd;
+$high: #e1f7d5;
+$medium: #c9c9ff;
+$low: #faf884;
+$bg: #fff4e4;
+$head: #f8b88b;
+$main-font: 'Gloria Hallelujah', cursive;
+
+input {
+  border: gray solid 2px;
+  border-radius: 5px;
+  margin: 3px;
+  width: 400px;
+  padding: 5px;
+  font-family: $main-font;
+  background-color: $bg;
+}
+
+button {
+  border-radius: 5px;
+  background-color: $head;
+  font-family: $main-font;
+  font-size: 14px;
+  margin: 5px;
+}
+
+.banner {
+  font-family: $main-font;
+  text-align: center;
+}
+
 .kanban_board {
   display: grid;
-  grid-template-columns: 3;
-  border: black solid 2px;
+  grid-template-columns: [first] 33% [second] 34% [third] 33%;
+  font-family: $main-font;
 }
 
 .queue_container, .inProgress_container, .done_container {
    border: black solid 2px;
+   border-radius: 20px;
+   background-color: $bg;
+}
+
+.queue_header, .inProgress_header, .done_header {
+  background-color: $head;
+  border-radius: 20px 20px 0px 0px;
+  padding: 10px;
 }
 
 .queue_container {
   grid-column: 1/1;
-
 }
 
 .inProgress_container {
@@ -27,11 +66,64 @@
   margin: 5px;
 }
 
+.card_title, .card_priority, .created_by, .assigned_to {
+  display: grid;
+  grid-template-columns: [first] 47.5% [second] 5% [third] 47.5%;
+}
+
+.add_card_form {
+  display: grid;
+  grid-template-columns: [first] 20% [second] 2% [third] 78%;
+  font-family: $main-font;
+}
+
+.add_card_outer {
+  padding: 20px;
+}
+
+.add_card_container {
+  width: 40%;
+  margin: 0 auto;
+}
+
+.runin {
+  grid-column: 1/1;
+  justify-self: right;
+  font-size: 12px;
+}
+
+.text {
+  grid-column: 3/3;
+  justify-self: start;
+}
+
+.blocker, .high, .medium, .low {
+  padding: 10px;
+  border: black solid 1px;
+  margin: 10px 25px 10px 25px;
+  border-radius: 20px;
+}
+
+.blocker {
+  background-color: $blocker;
+}
+
+.high {
+  background-color: $high;
+}
+
+.medium {
+  background-color: $medium;
+}
+
+.low {
+  background-color: $low;
+}
+
 .queue_header, .inProgress_header, .done_header {
   text-align: center;
   font-size: 20px;
 }
-
 
 .popup {
     position: relative;

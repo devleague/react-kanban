@@ -8,6 +8,9 @@ const App = () => (
   <div className="banner">
     <h1>JohnBan Board</h1>
   </div>
+  <div className="add_card_outer">
+    <AddCard />
+  </div>
   <div className="kanban_board">
     <div className="queue_container">
       <div className="queue_header">Queue</div>
@@ -27,9 +30,6 @@ const App = () => (
         <SetCards columnName={"done"}/>
       </div>
     </div>
-  </div>
-  <div className="add_card_form">
-    <AddCard />
   </div>
 </div>
 )

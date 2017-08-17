@@ -29,7 +29,7 @@ const kanbanReducers = (state = { cards: [
       },
       {
         "_id": 5,
-        "title": "East Do-nuts",
+        "title": "Eat Do-nuts",
         "priority": "blocker",
         "status": "done",
         "createdBy": "Frank",

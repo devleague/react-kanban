@@ -1,10 +1,41 @@
+@import url("https://fonts.googleapis.com/css?family=Gloria+Hallelujah");
+
+input {
+  border: gray solid 2px;
+  border-radius: 5px;
+  margin: 3px;
+  width: 400px;
+  padding: 5px;
+  font-family: "Gloria Hallelujah", cursive;
+  background-color: #fff4e4; }
+
+button {
+  border-radius: 5px;
+  background-color: #f8b88b;
+  font-family: "Gloria Hallelujah", cursive;
+  font-size: 14px;
+  margin: 5px; }
+
+.banner {
+  font-family: "Gloria Hallelujah", cursive;
+  text-align: center;
+  font-size: 24px;
+}
+
 .kanban_board {
   display: grid;
-  grid-template-columns: 3;
-  border: black solid 2px; }
+  grid-template-columns: [first] 33% [second] 34% [third] 33%;
+  font-family: "Gloria Hallelujah", cursive; }
 
 .queue_container, .inProgress_container, .done_container {
-  border: black solid 2px; }
+  border: black solid 2px;
+  border-radius: 20px;
+  background-color: #fff4e4; }
+
+.queue_header, .inProgress_header, .done_header {
+  background-color: #f8b88b;
+  border-radius: 20px 20px 0px 0px;
+  padding: 10px; }
 
 .queue_container {
   grid-column: 1/1; }
@@ -19,6 +50,50 @@
   padding: 10px;
   border: black solid 1px;
   margin: 5px; }
+
+.card_title, .card_priority, .created_by, .assigned_to {
+  display: grid;
+  grid-template-columns: [first] 20% [second] 5% [third] 75%; }
+
+.add_card_form {
+  display: grid;
+  grid-template-columns: [first] 20% [second] 2% [third] 78%;
+  font-family: "Gloria Hallelujah", cursive; }
+
+.add_card_outer {
+  padding: 20px; }
+
+.add_card_container {
+  width: 40%;
+  margin: 0 auto; }
+
+.runin {
+  grid-column: 1/1;
+  justify-self: right;
+  font-size: 12px;
+}
+
+.text {
+  grid-column: 3/3;
+  justify-self: start; }
+
+.blocker, .high, .medium, .low {
+  padding: 10px;
+  border: black solid 1px;
+  margin: 10px 25px 10px 25px;
+  border-radius: 20px; }
+
+.blocker {
+  background-color: #ffbdbd; }
+
+.high {
+  background-color: #e1f7d5; }
+
+.medium {
+  background-color: #c9c9ff; }
+
+.low {
+  background-color: #faf884; }
 
 .queue_header, .inProgress_header, .done_header {
   text-align: center;
