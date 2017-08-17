@@ -38,7 +38,13 @@ class AddCard extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     this.props.newCardAdd({ ...this.state});
-    console.log(this.state);
+    this.setState({
+        title: '',
+        priority: '',
+        status: '',
+        createdBy: '',
+        assignedTo: ''
+    });
 
   }
 

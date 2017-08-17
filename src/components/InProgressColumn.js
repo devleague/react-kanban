@@ -1,9 +1,40 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import Card from './Card'
 
-const InProgressColumn = () => ({ onClick, completed, text }) => (
-  <li onClick={onClick} style={{ textDecoration: completed ? 'line-through' : 'none' }} >
-    {text}
-  </li>
-)
+class InProgressColumn extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <div className = "in-progress">
+        {this.props.cards.filter(card => (
+          card.status === 'in-progress')
+        ).map(card => (
+          <Card key={card.id} {...card} />
+        ))}
+      </div>
+    );
+  }
+}
+
+const mapStateToProps = (state) => {
+  return {
+    cards: state
+  };
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onCardClick: (id) => {}
+  }
+}
+
+InProgressColumn = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(InProgressColumn)
 
 export default InProgressColumn

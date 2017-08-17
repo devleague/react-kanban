@@ -31,7 +31,6 @@ const cardReducers = (state = [], action) => {
 
 function addCard(state, action) {
   id = ++id;
-console.log('boop', action);
   return [
     ...state,
     {

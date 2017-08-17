@@ -7,7 +7,13 @@ const Card = ({ title, status, priority, createdBy, assignedTo }) => (
     {title}
   </li>
   <li >
+    {status}
+  </li>
+  <li >
     {priority}
+  </li>
+  <li >
+    {createdBy}
   </li>
   <li >
     {assignedTo}

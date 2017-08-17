@@ -1,6 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import Card from '../components/Card'
+import DoneColumn from '../components/DoneColumn'
+import InProgressColumn from '../components/InProgressColumn'
+import QueueColumn from '../components/QueueColumn'
 import { toggleTodo } from './App/actions'
 
 class KanbanBoard extends React.Component {
@@ -15,11 +17,19 @@ class KanbanBoard extends React.Component {
 
   render() {
     return (
-      <ul>
-        {this.props.cards.map(card => (
-          <Card key={card.id} {...card} onClick={() => this.onClick(card.id)} />
-        ))}
-      </ul>
+        <div>
+        <ul>
+        <div>
+        <QueueColumn />
+        </div>
+        <div>
+        <InProgressColumn />
+        </div>
+        <div>
+        <DoneColumn />
+        </div>
+        </ul>
+        </div>
     );
   }
 }
