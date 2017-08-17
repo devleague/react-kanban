@@ -20,7 +20,7 @@ export const addCard = newCard => {
 const cardDefaults = {
   title: '',
   priority: PRIORITY.LOW,
-  status: STATUS.LOW,
+  status: STATUS.QUEUE,
   createdBy: '',
   assignedTo: ''
 };
