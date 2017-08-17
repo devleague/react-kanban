@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import './App.css';
 import Column from '../Column';
 import AddCardForm from '../AddCardForm';
 import { STATUS } from '../../actions/constants';
+import { fetchCards } from '../../actions/asyncCardActions';
 
 class App extends Component {
   constructor() {
@@ -12,8 +14,12 @@ class App extends Component {
     this.sortCards = this.sortCards.bind(this);
   }
 
+  componentDidMount() {
+    this.props.fetchCards();
+  }
+
   sortCards(cards) {
-    return cards.reduce(
+    return cards.cards.reduce(
       (sortedCards, card) => {
         if (card.status === STATUS.QUEUE) {
           sortedCards.inQueue.push(card);
@@ -50,7 +56,13 @@ class App extends Component {
 }
 
 export const mapStateToProps = state => {
-  return { cards: state.cards };
+  return { cards: state }
 };
 
-export default connect(mapStateToProps)(App);
+export const mapDispatchToProps = dispatch => {
+  return {
+    fetchCards: bindActionCreators(fetchCards, dispatch)
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
