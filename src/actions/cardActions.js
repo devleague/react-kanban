@@ -8,7 +8,7 @@ import {
 } from './actions';
 import { PRIORITY, STATUS } from './constants';
 //replace with isomorphic fetch later
-import { getFakeDbReq, addToFakeDb } from '../fakeDb/data.js';
+import { getFakeDbReq, addToFakeDb, delFromFakeDb } from '../fakeDb/data.js';
 
 export const addCard = newCard => {
   return {
@@ -56,6 +56,15 @@ export const delCard = _id => {
   };
 };
 
+export const fetchDelCard = _id => dispatch => {
+  delFromFakeDb(_id).then(
+    id => {
+      dispatch(delCard(id));
+    },
+    error => console.log(error)
+  );
+};
+
 //get all cards
 export const requestCards = () => {
   return {
@@ -70,15 +79,13 @@ export const receiveCards = cards => {
   };
 };
 
-export const fetchCards = () => {
-  return function(dispatch) {
-    dispatch(requestCards());
+export const fetchCards = () => dispatch => {
+  dispatch(requestCards());
 
-    return getFakeDbReq().then(
-      cards => {
-        dispatch(receiveCards(cards));
-      },
-      error => console.log('An error occured.', error)
-    );
-  };
+  return getFakeDbReq().then(
+    cards => {
+      dispatch(receiveCards(cards));
+    },
+    error => console.log('An error occured.', error)
+  );
 };
