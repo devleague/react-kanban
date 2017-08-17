@@ -1,21 +1,46 @@
-import { ADD_CARD, MOVE_CARD, DEL_CARD } from '../actions/actions';
+import {
+  ADD_CARD,
+  MOVE_CARD,
+  DEL_CARD,
+  REQUEST_CARDS,
+  RECEIVE_CARDS
+} from '../actions/actions';
 
-export default function(state = [], action) {
+const initialState = {
+  cards: [],
+  isFetchingCards: false,
+  isAddingCard: false
+};
+
+export default function(state = initialState, action) {
   switch (action.type) {
     case ADD_CARD:
-      return [...state, action.payload];
+      return Object.assign({}, state, {
+        cards: [...state.cards, action.payload]
+      });
     case MOVE_CARD:
       const { _id, targetColumn } = action.payload;
-      return state.map(card => {
-        if(card._id == _id) {
-          card.status = targetColumn;
-        }
-        return card;
+      return Object.assign({}, state, {
+        cards: state.cards.map(card => {
+          if (card._id == _id) {
+            card.status = targetColumn;
+          }
+          return card;
+        })
       });
     case DEL_CARD:
       const delId = action.payload._id;
-      return state.filter(card => {
-        return card._id != delId
+      return Object.assign({}, state, {
+        cards: state.cards.filter(card => {
+          return card._id != delId;
+        })
+      });
+    case REQUEST_CARDS:
+      return Object.assign({}, state, { isFetchingCards: true });
+    case RECEIVE_CARDS:
+      return Object.assign({}, state, {
+        isFetchingCards: false,
+        cards: [...state.cards, ...action.payload]
       });
     default:
       return state;

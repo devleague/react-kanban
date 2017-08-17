@@ -1,4 +1,4 @@
-import { ADD_CARD, MOVE_CARD, DEL_CARD } from './actions';
+import { ADD_CARD, MOVE_CARD, DEL_CARD, REQUEST_CARDS, RECEIVE_CARDS } from './actions';
 import { PRIORITY, STATUS } from './constants';
 
 let nextId = 0;
