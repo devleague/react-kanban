@@ -17,27 +17,27 @@ export const addCard = newCard => {
   };
 };
 
-export const reqAddCard = () => {
-  return {
-    type: REQ_ADD_CARD
-  };
+const cardDefaults = {
+  title: '',
+  priority: PRIORITY.LOW,
+  status: STATUS.LOW,
+  createdBy: '',
+  assignedTo: ''
 };
 
-export const fetchAddCard = (
-  {
-    title = '',
-    priority = PRIORITY.LOW,
-    status = STATUS.LOW,
-    createdBy = '',
-    assignedTo = ''
-  } = {}
-) => dispatch => {
-  dispatch(reqAddCard());
+export const fetchAddCard = card => dispatch => {
+  const newCard = Object.assign({}, cardDefaults, card);
 
-  addToFakeDb({ title, priority, status, createdBy, assignedTo }).then(
+  dispatch(addCard(newCard));
+
+  addToFakeDb(newCard).then(
     addedCard => {
-      dispatch(addCard(addedCard));
+      if (addedCard) {
+        console.log('added')
+        return Promise.resolve();
+      }
     },
+    //TODO: flash msg to user
     error => console.log('An error occured.', error)
   );
 };
