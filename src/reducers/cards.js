@@ -3,6 +3,7 @@ import {
   REQ_ADD_CARD,
   MOVE_CARD,
   DEL_CARD,
+  EDIT_CARD,
   REQUEST_CARDS,
   RECEIVE_CARDS
 } from '../actions/actions';
@@ -39,6 +40,12 @@ export default function(state = initialState, action) {
           return card._id != delId;
         })
       });
+    case EDIT_CARD:
+      return state.map(card => {
+        if(card._id == action.payload.id) {
+          return Object.assign({}, card, action.payload);
+        }
+      })
     case REQUEST_CARDS:
       return Object.assign({}, state, { isFetchingCards: true });
     case RECEIVE_CARDS:

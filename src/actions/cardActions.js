@@ -3,12 +3,19 @@ import {
   REQ_ADD_CARD,
   MOVE_CARD,
   DEL_CARD,
+  EDIT_CARD,
   REQUEST_CARDS,
   RECEIVE_CARDS
 } from './actions';
 import { PRIORITY, STATUS } from './constants';
 //replace with isomorphic fetch later
-import { getFakeDbReq, addToFakeDb, delFromFakeDb, moveFromFakeDb } from '../fakeDb/data.js';
+import {
+  getFakeDbReq,
+  addToFakeDb,
+  delFromFakeDb,
+  moveFromFakeDb,
+  editFromFakeDb
+} from '../fakeDb/data.js';
 
 export const addCard = newCard => {
   return {
@@ -28,14 +35,14 @@ const cardDefaults = {
 
 export const fetchAddCard = card => dispatch => {
   const newCard = Object.assign({}, cardDefaults, card);
-  console.log(card)
-console.log(newCard)
+  console.log(card);
+  console.log(newCard);
   dispatch(addCard(newCard));
 
   addToFakeDb(newCard).then(
     addedCard => {
       if (addedCard) {
-        console.log('added')
+        console.log('added');
         return Promise.resolve();
       }
     },
@@ -54,16 +61,16 @@ export const moveCard = (_id, targetColumn) => {
 export const fetchMoveCard = (_id, targetColumn) => dispatch => {
   dispatch(moveCard(_id, targetColumn));
 
-  moveFromFakeDb(_id, targetColumn)
-  .then(card => {
-    if(card) {
-      console.log(card);
-      return Promise.resolve(card);
-    }
-  },
-  error => console.log(error)
+  moveFromFakeDb(_id, targetColumn).then(
+    card => {
+      if (card) {
+        console.log(card);
+        return Promise.resolve(card);
+      }
+    },
+    error => console.log(error)
   );
-}
+};
 
 export const delCard = _id => {
   return {
@@ -73,17 +80,38 @@ export const delCard = _id => {
 };
 
 export const fetchDelCard = _id => dispatch => {
-  dispatch(delCard(_id))
+  dispatch(delCard(_id));
 
   delFromFakeDb(_id).then(
     id => {
-      console.log(id)
-      if(id) {
-        console.log('card deleted')
+      console.log(id);
+      if (id) {
+        console.log('card deleted');
         return Promise.resolve();
       }
     },
     //TODO: flash msg to user
+    error => console.log(error)
+  );
+};
+
+export const editCard = card => {
+  return {
+    type: EDIT_CARD,
+    payload: card
+  };
+};
+
+export const fetchEditCard = card => dispatch => {
+  dispatch(editCard(card));
+
+  editFromFakeDb(card).then(
+    card => {
+      if (card) {
+        console.log('card edited');
+        return Promise.resolve();
+      }
+    },
     error => console.log(error)
   );
 };
