@@ -3,13 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "express": "^4.15.4",
     "node-sass-chokidar": "0.0.3",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-redux": "^5.0.6",
     "react-scripts": "1.0.11",
     "redux": "^3.7.2",
-    "redux-devtools": "^3.4.0"
+    "redux-devtools": "^3.4.0",
+    "sequelize": "^4.5.0",
+    "sequelize-cli": "^2.8.0"
   },
   "scripts": {
     "start": "react-scripts start",

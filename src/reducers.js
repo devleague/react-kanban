@@ -1,4 +1,4 @@
-import { CHANGE_STATUS, DROPPED, DRAGGED } from './actions';
+import { CHANGE_STATUS, DROPPED, DRAGGED, EDIT } from './actions';
 
 let id = 6;
 
@@ -35,7 +35,9 @@ const kanbanReducers = (state = { cards: [
         "createdBy": "Frank",
         "assignedTo": "John"
       }
-  ]}, action) => {
+  ],
+    editDetails: undefined
+  }, action) => {
   switch (action.type) {
     case 'ADD_CARD':
       return add(state, action);
@@ -46,6 +48,8 @@ const kanbanReducers = (state = { cards: [
       return droppedId;
     case DRAGGED:
       return statusChange(state, action);
+    case EDIT:
+      return editCard(state, action);
     default:
       return state;
   }
@@ -97,6 +101,19 @@ function statusChange(state, action){
     return card;
   });
   return Object.assign({}, state, { cards : newCards });
+}
+
+function editCard(state, action){
+  let editDetailsArray = state.cards.filter(card => {
+    if (card._id === action.id) {
+      return card;
+    }
+  });
+  let editDetails = editDetailsArray[0];
+
+  let obj = Object.assign({}, state, state, { editDetails });
+  console.log(obj);
+  return obj;
 }
 
 export default kanbanReducers

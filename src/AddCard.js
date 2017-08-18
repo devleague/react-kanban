@@ -12,7 +12,6 @@ class AddCard extends React.Component {
       createdBy: '',
       assignedTo: ''
     };
-
   }
 
   handleTaskChange(e) {
@@ -43,14 +42,15 @@ class AddCard extends React.Component {
   }
 
   render() {
+
     return (
       <div className="add_card_container">
         <form className="add_card_form" onSubmit={this.handleSubmit.bind(this)} >
           <div className="runin">Task</div><div className="text"><input id="card_new_task" placeholder="task description" value={this.state.title} onChange={this.handleTaskChange.bind(this)}/></div>
           <div className="runin">Priority</div><div className="text"><input id="card_new_priority" placeholder="priority" value={this.state.priority} onChange={this.handlePriorityChange.bind(this)} /></div>
           <div className="runin">Created By</div><div className="text"><input id="card_created_by" placeholder="created by" value={this.state.createdBy} onChange={this.handleCreatorChange.bind(this)} /></div>
-          <div className="runin">Assigned To</div><div className="text"><input id="card_assigned_to" placeholder="assign to" value={this.state.assignedTo} onChange={this.handleAssigneeChange.bind(this)} /></div>
-          <div className="runin"></div><div className="text"><button type="submit">Add Card</button></div>
+          <div className="runin">Assigned To</div><div className="text"><input id="card_assigned_to" placeholder="assign to" value={this.state.assingedTo} onChange={this.handleAssigneeChange.bind(this)} /></div>
+          <div className="runin"></div><div className="text"><button type="submit">Submit</button></div>
         </form>
       </div>
     );
@@ -58,8 +58,8 @@ class AddCard extends React.Component {
 }
 
 // even though this is doing nothing, we need this to make redux work
-const mapStateToProps = () => {
-  return {};
+const mapStateToProps = (state) => {
+  return { editDetails: state.editDetails };
 }
 
 const mapDispatchToProps = (dispatch) => {
