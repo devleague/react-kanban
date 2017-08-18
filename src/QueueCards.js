@@ -1,6 +1,5 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { recordDraggedId, editCard } from './actions'
 import Card from './Card'
 
 class QueueCards extends React.Component {
@@ -13,24 +12,12 @@ class QueueCards extends React.Component {
     }
   }
 
-  drag(e){
-    this.props.dragged(e.target.id);
-  }
-
-  doubleClick(id){
-    this.props.edit(id)
-  }
-
   render() {
     return (
       <div className='cards'>
         { this.props.cards.map( card => {
-          if (card.status === this.props.columnName ){
-            return <Card
-                    key={ card._id } { ...card }
-                    drag={this.drag.bind(this)}
-                    edit={() => { this.doubleClick(card._id)} }
-            />
+          if ( card.status === this.props.columnName ){
+            return <Card key={card._id} cardProps={card}/>
           }
         })}
       </div>
@@ -42,22 +29,13 @@ const mapStateToProps = (state) => {
   return state;
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    dragged: (id) => {
-      dispatch(recordDraggedId(id))
-    },
-    edit: (id) => {
-      dispatch(editCard(id))
-    }
-  }
-}
+// const mapDispatchToProps = (dispatch) => {
+
+// }
 
 QueueCards = connect(
   mapStateToProps,
-  mapDispatchToProps
+  // mapDispatchToProps
 )(QueueCards)
 
 export default QueueCards
-
-//look at focus & onblur

@@ -4,6 +4,7 @@ export const CHANGE_STATUS = 'CHANGE_STATUS'
 export const DROPPED = 'DROPPED'
 export const DRAGGED = 'DRAGGED'
 export const EDIT = 'EDIT'
+export const SAVE_EDIT = 'SAVE_EDIT'
 
 export function addCard(newCard) {
   return { type: ADD_CARD, newCard: newCard }
@@ -23,5 +24,9 @@ export function recordDraggedId(id) {
 
 export function editCard(id){
   return { type: EDIT, id: id }
+}
+
+export function saveEdit(text){
+  return { type: SAVE_EDIT, text: text }
 }
 

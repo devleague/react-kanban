@@ -1,4 +1,4 @@
-import { CHANGE_STATUS, DROPPED, DRAGGED, EDIT } from './actions';
+import { ADD_CARD, CHANGE_STATUS, DROPPED, DRAGGED, EDIT, SAVE_EDIT } from './actions';
 
 let id = 6;
 
@@ -39,7 +39,7 @@ const kanbanReducers = (state = { cards: [
     editDetails: undefined
   }, action) => {
   switch (action.type) {
-    case 'ADD_CARD':
+    case ADD_CARD:
       return add(state, action);
     case CHANGE_STATUS:
       return statusChange(state, action);
@@ -50,6 +50,8 @@ const kanbanReducers = (state = { cards: [
       return statusChange(state, action);
     case EDIT:
       return editCard(state, action);
+    case SAVE_EDIT:
+      return saveEdit(state, action);
     default:
       return state;
   }
@@ -104,14 +106,37 @@ function statusChange(state, action){
 }
 
 function editCard(state, action){
-  let editDetailsArray = state.cards.filter(card => {
-    if (card._id === action.id) {
-      return card;
-    }
-  });
-  let editDetails = editDetailsArray[0];
+  let buttonToEdit = action.id;
 
-  let obj = Object.assign({}, state, state, { editDetails });
+  let obj = Object.assign({}, state, state, { buttonToEdit });
+  console.log(obj);
+  return obj;
+}
+
+function saveEdit(state, action){
+  let newText = action.text;
+  let editId = state.buttonToEdit.split('_');
+
+  let newCards = state.cards.map(card => {
+    if (card.id === Number(editId[1])){
+      switch (editId[0]){
+        case 'title':
+          card.title = newText;
+          return card;
+        case 'createdby':
+          card.createdBy=newText;
+          return card;
+        case 'assignedto':
+          card.assignedTo=newText;
+          return card;
+        default:
+          return card;
+      }
+    }
+    return card;
+  });
+
+  let obj = Object.assign({}, state, state, { cards : newCards, buttonToEdit: undefined });
   console.log(obj);
   return obj;
 }

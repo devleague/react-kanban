@@ -13,7 +13,7 @@ class Main extends React.Component {
     return (
       <div className="kanban_board">
         <div className="banner">
-          <h1>John-Ban</h1>
+          <h1>John KanBan</h1>
           <div className="add_card_outer">
             <AddCard edits={this.props}/>
           </div>

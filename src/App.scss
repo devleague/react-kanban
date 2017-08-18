@@ -7,12 +7,24 @@ $bg: #fff4e4;
 $head: #f8b88b;
 $main-font: 'Gloria Hallelujah', cursive;
 
-input {
+ .input_sidebar  {
   border: gray solid 2px;
   border-radius: 5px;
   margin: 3px;
   height: 40px;
   width: 100%;
+  padding: 5px;
+  font-family: $main-font;
+  background-color: $bg;
+}
+
+ .input_in_form  {
+  border: gray solid 2px;
+  border-radius: 5px;
+  font-size: 14px;
+  margin: 3px;
+  height: 20px;
+  width: 150px;
   padding: 5px;
   font-family: $main-font;
   background-color: $bg;
