@@ -22,12 +22,14 @@ const cardDefaults = {
   priority: PRIORITY.LOW,
   status: STATUS.QUEUE,
   createdBy: '',
-  assignedTo: ''
+  assignedTo: '',
+  newCard: true
 };
 
 export const fetchAddCard = card => dispatch => {
   const newCard = Object.assign({}, cardDefaults, card);
-
+  console.log(card)
+console.log(newCard)
   dispatch(addCard(newCard));
 
   addToFakeDb(newCard).then(

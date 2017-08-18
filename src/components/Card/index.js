@@ -3,6 +3,7 @@ import './Card.css';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchDelCard } from '../../actions/cardActions';
+import EditableField from '../EditableField';
 
 class Card extends Component {
   constructor(props) {
@@ -22,6 +23,8 @@ class Card extends Component {
 
     this._onDrag = this._onDrag.bind(this);
     this._onDragEnd = this._onDragEnd.bind(this);
+
+    this._handleUpdateField = this._handleUpdateField.bind(this);
   }
 
   _onMouseEnter() {
@@ -45,7 +48,14 @@ class Card extends Component {
   }
 
   _onDragEnd() {
-    this.setState({ isDragging: false});
+    this.setState({ isDragging: false });
+  }
+
+  _handleUpdateField(fieldName, value) {
+    let updatedField = {};
+    updatedField[fieldName] = value;
+
+    this.setState(updatedField);
   }
 
   render() {
@@ -58,6 +68,7 @@ class Card extends Component {
       showDelBtn
     } = this.state;
 
+    const isNewCard = this.props.newCard || false;
     const className = isDragging ? 'card hidden' : 'card';
 
     return (
@@ -70,28 +81,47 @@ class Card extends Component {
         onMouseEnter={this._onMouseEnter}
         onMouseLeave={this._onMouseLeave}
       >
-      {showDelBtn ? <button className="delBtn" onClick={this._onDelClick}>DEL</button> : null}
-        <h3>
-          {title}
-        </h3>
-        <h5>
-          Priority: {priority}
-        </h5>
-        <h5>
-          Created by: {createdBy}
-        </h5>
-        <h5>
-          Assigned to: {assignedTo}
-        </h5>
+        {showDelBtn
+          ? <button className="delBtn" onClick={this._onDelClick}>
+              DEL
+            </button>
+          : null}
+        <EditableField
+          name="title"
+          value={title}
+          isNewCard={isNewCard}
+          updateField={this._handleUpdateField}
+        />
+        <EditableField
+          name="priority"
+          value={priority}
+          label="Priority"
+          isNewCard={isNewCard}
+          updateField={this._handleUpdateField}
+        />
+        <EditableField
+          name="createdBy"
+          value={createdBy}
+          label="Created by"
+          isNewCard={isNewCard}
+          updateField={this._handleUpdateField}
+        />
+        <EditableField
+          name="assignedTo"
+          value={assignedTo}
+          label="Assigned to"
+          isNewCard={isNewCard}
+          updateField={this._handleUpdateField}
+        />
       </div>
     );
   }
 }
 
-export const mapDispatchToProps = (dispatch) => {
+export const mapDispatchToProps = dispatch => {
   return {
     delCard: bindActionCreators(fetchDelCard, dispatch)
-  }
-}
+  };
+};
 
 export default connect(null, mapDispatchToProps)(Card);
