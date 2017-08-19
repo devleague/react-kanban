@@ -1,11 +1,10 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
-    var status = sequelize.define('status', {
+    var Status = sequelize.define('statuses', {
       name: DataTypes.STRING
-    }
-  });
-    Priority.associate = function(models) {
-    Priority.hasMany(models.tasks);
+    });
+    Status.associate = function(models) {
+    Status.hasMany(models.tasks, {foreignKey: 'status_id'});
   };
-  return status;
+  return Status;
 };

@@ -2,14 +2,11 @@ import React from 'react'
 import { connect } from 'react-redux'
 import Card from './Card'
 
+
 class QueueCards extends React.Component {
 
-  componentDidMount() {}
+  componentDidMount() {
 
-  componentWillMount() {
-    if (!this.props.card){
-      this.setState(this.props);
-    }
   }
 
   render() {
