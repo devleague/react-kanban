@@ -3,10 +3,6 @@ import { connect } from 'react-redux'
 import Card from './Card'
 
 class InProgressColumn extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <div className = "in-progress">

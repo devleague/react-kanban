@@ -3,10 +3,6 @@ import { connect } from 'react-redux'
 import { deleteCard } from './App/actions'
 
 class DeleteCard extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   handleSubmit(e) {
     e.preventDefault();
     this.props.revisedCardStack(this.props.id);

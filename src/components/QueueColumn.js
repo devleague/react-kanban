@@ -3,9 +3,6 @@ import { connect } from 'react-redux'
 import Card from './Card'
 
 class OueueColumn extends React.Component {
-  constructor(props) {
-    super(props);
-  }
 
   fetchTasks(url) {
      fetch(url)

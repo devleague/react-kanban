@@ -47,9 +47,7 @@ function addCard(state, action) {
 function editCard(state, action) {
   var cardEdits = action.card
   var newState = state.filter(card=> {
-    if(card.id !== action.card.id){
-      return true
-    }
+    return card.id !== action.card.id
   });
 
   return [
@@ -66,9 +64,7 @@ function editCard(state, action) {
 
 function deleteCard(state, action) {
   return state.filter(card=> {
-    if(card.id !== action.card){
-      return true
-    }
+    return card.id !== action.card
   })
 }
 
