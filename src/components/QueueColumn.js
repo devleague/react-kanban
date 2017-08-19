@@ -7,6 +7,18 @@ class OueueColumn extends React.Component {
     super(props);
   }
 
+  fetchTasks(url) {
+     fetch(url)
+       .then(tasks => tasks.json())
+       .then(tasks => {
+         console.log('response',tasks);
+         return tasks.json;
+       });
+   }
+   componentDidMount(){
+     this.fetchTasks('/api/test');
+   }
+
   render() {
     return (
       <div className = "in-queue">

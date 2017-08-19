@@ -1,20 +1,15 @@
-.queueColumn {
+.parent {
+  flex-wrap: wrap;
+  display: flex; }
+
+.queueColumn, .progressColumn, .doneColumn {
   width: 33%;
   padding: 10px;
-  display: inline-block;
   box-sizing: border-box; }
 
-.progressColumn {
-  width: 33%;
-  padding: 10px;
-  display: inline-block;
-  box-sizing: border-box; }
-
-.doneColumn {
-  width: 33%;
-  padding: 10px;
-  display: inline-block;
-  box-sizing: border-box; }
+li {
+  list-style-type: none;
+  list-style-position: inside; }
 
 .task {
   text-align: center; }

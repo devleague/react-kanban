@@ -1,4 +1,9 @@
-{
+const express = require('express');
+const app = express();
+const PORT = process.env.PORT || 3001;
+
+app.get('/api/test', (req, res)=> {
+  res.json({
   "in-queue": [
     {
       "_id": 1,
@@ -53,4 +58,9 @@
       "assignedTo": "Merlin"
     }
   ]
-}
+})
+})
+
+app.listen(PORT, ()=> {
+  console.log(`listening on ${PORT}`);
+})
