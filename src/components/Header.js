@@ -34,7 +34,6 @@ class Header extends Component {
         <NewCard
           closeModal={this.toggleModal}
           modalState={this.state.modalState}
-          title="New Task"
         >
 
         </NewCard>

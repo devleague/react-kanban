@@ -11,7 +11,7 @@ class App extends Component {
 
   componentWillMount(){
     let testCard = {
-      id: 123,
+      id: "123",
       title: "Work on client side first!",
       priority: "high",
       status: "inQueue",
@@ -19,7 +19,6 @@ class App extends Component {
       assignedTo: "Jeff"
     }
     this.props.cards.push(testCard);
-    console.log(this.props);
   }
 
   render() {

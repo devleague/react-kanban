@@ -1,10 +1,15 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { deleteCard } from "../actions";
 
 class InQueue extends Component {
 
   componentWillMount(){
 
+  }
+
+  handleDelete(e){
+    this.props.deleteCard(e.target.id);
   }
 
   render(){
@@ -37,7 +42,7 @@ class InQueue extends Component {
                   </div>
                   <footer className="card-footer">
                     <a className="card-footer-item">Edit</a>
-                    <a className="card-footer-item">Delete</a>
+                    <a className="card-footer-item" onClick={this.handleDelete.bind(this)} id={card.title}>Delete</a>
                     <a className="card-footer-item">Next</a>
                   </footer>
                 </div>
@@ -58,7 +63,9 @@ const mapStatetoProps = (state) => {
 
 const mapDispatchtoProps = (dispatch) => {
   return {
-
+    deleteCard: (card) => {
+      dispatch(deleteCard(card));
+    }
   }
 }
 
