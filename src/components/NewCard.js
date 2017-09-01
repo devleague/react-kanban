@@ -87,10 +87,11 @@ class Modal extends Component{
                 <div className="control">
                   <div className="select">
                     <select onChange={this.handleDropDown.bind(this)}>
-                      <option value="low">Low</option>
-                      <option value="medium">Medium</option>
-                      <option value="high">High</option>
-                      <option value="blocker">Blocker</option>
+                      <option>Select Priority</option>
+                      <option value="Low">Low</option>
+                      <option value="Medium">Medium</option>
+                      <option value="High">High</option>
+                      <option value="Blocker">Blocker</option>
                     </select>
                   </div>
                 </div>

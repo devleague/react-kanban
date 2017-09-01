@@ -1,4 +1,4 @@
-import { ADD_CARD, DELETE_CARD } from "../actions";
+import { ADD_CARD, DELETE_CARD, MOVE_CARD_LEFT, MOVE_CARD_RIGHT} from "../actions";
 const initialState = { cards: [] };
 
 const cards = (state = initialState, action ) => {
@@ -9,17 +9,36 @@ const cards = (state = initialState, action ) => {
     }
 
     case DELETE_CARD:
-    console.log("ACTION.CARDID", action.cardTitle);
-    console.log("STATE CARDS", state.cards);
-
-    let newArr = state.cards.filter((card) => {
-      return card.title !== action.cardTitle
-    })
-
-    console.log("NEW ARR", newArr)
-
     return {
-      cards: newArr
+      cards: state.cards.filter((card) => {
+        return card.title !== action.cardTitle
+      })
+    }
+
+    case MOVE_CARD_LEFT:
+    let leftArr = [...state.cards];
+    leftArr.forEach((card) => {
+      if(card.status === "inProgress" && card.title === action.cardTitle){
+        card.status = "inQueue"
+      } else if (card.status === "done" && card.title === action.cardTitle){
+        card.status = "inProgress"
+      }
+    })
+    return{
+      cards: leftArr
+    }
+
+    case MOVE_CARD_RIGHT:
+    let rightArr = [...state.cards];
+    rightArr.forEach((card) => {
+      if(card.status === "inQueue" && card.title === action.cardTitle){
+        card.status = "inProgress"
+      } else if (card.status === "inProgress" && card.title === action.cardTitle){
+        card.status = "done"
+      }
+    })
+    return{
+      cards: rightArr
     }
 
     default:

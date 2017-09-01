@@ -1,15 +1,16 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { deleteCard } from "../actions";
+import { deleteCard, moveCardRight } from "../actions";
 
 class InQueue extends Component {
 
-  componentWillMount(){
-
-  }
 
   handleDelete(e){
     this.props.deleteCard(e.target.id);
+  }
+
+  handleMoveCardRight(e){
+    this.props.moveCardRight(e.target.id)
   }
 
   render(){
@@ -18,7 +19,10 @@ class InQueue extends Component {
         <h3 className="subtitle">IN QUEUE</h3>
         <div className="cardContainer">
           {
-            this.props.cards.map((card) => {
+            this.props.cards.filter((card) => {
+              return card.status === "inQueue"
+            })
+            .map((card) => {
               return (
                 <div key={card.id} className="card" id="inQueueCard">
                   <header className="card-header">
@@ -43,7 +47,7 @@ class InQueue extends Component {
                   <footer className="card-footer">
                     <a className="card-footer-item">Edit</a>
                     <a className="card-footer-item" onClick={this.handleDelete.bind(this)} id={card.title}>Delete</a>
-                    <a className="card-footer-item">Next</a>
+                    <a className="card-footer-item" onClick={this.handleMoveCardRight.bind(this)} id={card.title}>Move Right</a>
                   </footer>
                 </div>
               )
@@ -65,6 +69,9 @@ const mapDispatchtoProps = (dispatch) => {
   return {
     deleteCard: (card) => {
       dispatch(deleteCard(card));
+    },
+    moveCardRight: (card) => {
+      dispatch(moveCardRight(card))
     }
   }
 }

@@ -50,6 +50,11 @@
   background-color: rgb(255, 228, 167);
 }
 
+#inProgressCard{
+  background-color: rgb(181, 255, 181);
+}
+
+
 #queueColumn {
   border-right: 1px solid grey;
   height: 100rem;
