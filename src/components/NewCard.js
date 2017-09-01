@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-const Modal = ({ closeModal, modalState, title }) => {
+const Modal = ({ closeModal, modalState }) => {
+
   if(!modalState) {
     return null;
   }
@@ -11,7 +12,7 @@ const Modal = ({ closeModal, modalState, title }) => {
       <div className="modal-background" onClick={closeModal} />
       <div className="modal-card">
         <header className="modal-card-head">
-          <p className="modal-card-title">{title}</p>
+          <p className="modal-card-title">New Task</p>
           <button className="delete" onClick={closeModal} />
         </header>
         <section className="modal-card-body">
