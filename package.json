@@ -3,16 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@grove/react-font-awesome": "^1.1.5",
+    "babel-runtime": "^6.26.0",
     "body-parser": "^1.17.2",
     "bulma": "^0.5.1",
     "express": "^4.15.4",
-    "font-awesome": "^4.7.0",
     "lodash": "^4.17.4",
     "method-override": "^2.3.9",
     "prop-types": "^15.5.10",
+    "radium": "^0.19.4",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
-    "react-fontawesome": "^1.6.1",
     "react-redux": "^5.0.6",
     "react-router": "^4.2.0",
     "react-scripts": "1.0.12",
@@ -25,5 +26,6 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  }
+  },
+  "proxy": "localhost:8080/api"
 }

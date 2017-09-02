@@ -11,7 +11,6 @@ import { loadCards } from "../../actions"
 class App extends Component {
 
   componentWillMount(){
-    console.log(this.props)
     this.props.loadCards();
   }
 

@@ -46,12 +46,16 @@
   margin: 5px;
 }
 
-#inQueueCard {
+#inQueue {
   background-color: rgb(255, 228, 167);
 }
 
-#inProgressCard{
+#inProgress{
   background-color: rgb(181, 255, 181);
+}
+
+#done{
+  
 }
 
 
