@@ -1,8 +1,11 @@
-import { ADD_CARD, DELETE_CARD, MOVE_CARD_LEFT, MOVE_CARD_RIGHT} from "../actions";
+import { ADD_CARD, DELETE_CARD, MOVE_CARD_LEFT, MOVE_CARD_RIGHT, LOAD_CARDS} from "../actions";
 const initialState = [];
 
 const cards = (state = initialState, action ) => {
   switch (action.type) {
+    case LOAD_CARDS:
+    return action.cards;
+
     case ADD_CARD:
     return [...state, action.card];
 

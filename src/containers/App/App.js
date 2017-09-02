@@ -6,40 +6,13 @@ import InQueue from "../../components/InQueue.js"
 import InProgress from "../../components/InProgress.js"
 import Done from "../../components/Done.js"
 import Header from "../../components/Header.js"
+import { loadCards } from "../../actions"
 
 class App extends Component {
 
   componentWillMount(){
-    let inQueueCard = {
-      id: "123",
-      title: "Work on client side first!",
-      priority: "High",
-      status: "inQueue",
-      createdBy: "DevLeague",
-      assignedTo: "Jeff"
-    }
-
-    let inProgressCard = {
-      id: "33243",
-      title: "CSS!",
-      priority: "High",
-      status: "inProgress",
-      createdBy: "DevLeague",
-      assignedTo: "Jeff"
-    }
-
-    let doneCard = {
-      id: "23432",
-      title: "NPM setup!",
-      priority: "High",
-      status: "done",
-      createdBy: "DevLeague",
-      assignedTo: "Jeff"
-    }
-
-    this.props.cards.push(inQueueCard);
-    this.props.cards.push(inProgressCard);
-    this.props.cards.push(doneCard);
+    console.log(this.props)
+    this.props.loadCards();
   }
 
   render() {
@@ -64,7 +37,9 @@ const mapStatetoProps = (state) => {
 
 const mapDispatchtoProps = (dispatch) => {
   return {
-
+    loadCards: (cards) => {
+      dispatch(loadCards(cards));
+    }
   }
 }
 

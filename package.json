@@ -6,15 +6,18 @@
     "body-parser": "^1.17.2",
     "bulma": "^0.5.1",
     "express": "^4.15.4",
+    "font-awesome": "^4.7.0",
     "lodash": "^4.17.4",
     "method-override": "^2.3.9",
     "prop-types": "^15.5.10",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
+    "react-fontawesome": "^1.6.1",
     "react-redux": "^5.0.6",
     "react-router": "^4.2.0",
     "react-scripts": "1.0.12",
     "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0",
     "sequelize": "^4.8.0"
   },
   "scripts": {
