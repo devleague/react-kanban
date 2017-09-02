@@ -44,8 +44,9 @@ class Done extends Component {
                     </div>
                   </div>
                   <footer className="card-footer">
-                    <a className="card-footer-item" onClick={this.handleMoveCardLeft.bind(this)} id={card.title}>Move Left</a>
+                    <a className="card-footer-item" onClick={this.handleMoveCardLeft.bind(this)} id={card.title}>In Progress</a>
                     <a className="card-footer-item" onClick={this.handleDelete.bind(this)} id={card.title}>Delete</a>
+                    <a className="card-footer-item">   </a>
                   </footer>
                 </div>
               )

@@ -45,9 +45,9 @@ class InQueue extends Component {
                     </div>
                   </div>
                   <footer className="card-footer">
-                    <a className="card-footer-item">Edit</a>
+                    <a className="card-footer-item">   </a>
                     <a className="card-footer-item" onClick={this.handleDelete.bind(this)} id={card.title}>Delete</a>
-                    <a className="card-footer-item" onClick={this.handleMoveCardRight.bind(this)} id={card.title}>Move Right</a>
+                    <a className="card-footer-item" onClick={this.handleMoveCardRight.bind(this)} id={card.title}>In Progress</a>
                   </footer>
                 </div>
               )
