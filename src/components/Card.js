@@ -1,10 +1,26 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { deleteCard, moveCardRight, moveCardLeft } from "../actions";
+import Edit from "./Edit";
 
 class Card extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
+
+    this.state = {
+      modalState: false
+    }
+
+    this.toggleModal = this.toggleModal.bind(this);
+
+  }
+
+  toggleModal() {
+    this.setState((prev, props) => {
+      const newState = !prev.modalState;
+
+      return { modalState: newState };
+    });
   }
 
   handleDelete(e){
@@ -24,7 +40,6 @@ class Card extends Component {
   }
 
   render() {
-    console.log(this.props)
     return (
       <div className="cardContainer">
         {
@@ -41,7 +56,7 @@ class Card extends Component {
                   </p>
                   <a className="card-header-icon">
                     <span className="icon">
-                      <i className="fa fa-angle-down"></i>
+                      <i className="fa fa-trash-o" onClick={this.handleDelete.bind(this)} id={card.title}></i>
                     </span>
                   </a>
                 </header>
@@ -56,9 +71,19 @@ class Card extends Component {
                 </div>
                 <footer className="card-footer">
                   <a className="card-footer-item" onClick={this.props.leftButton ? this.handleMoveCardLeft.bind(this) : this.handleNull.bind(this)} id={card.title}>{this.props.leftButton}</a>
-                  <a className="card-footer-item" onClick={this.handleDelete.bind(this)} id={card.title}>Delete</a>
+                  <a className="card-footer-item" onClick={this.toggleModal}>Edit</a>
                   <a className="card-footer-item" onClick={this.handleMoveCardRight.bind(this)} id={card.title}>{this.props.rightButton}</a>
                 </footer>
+                <Edit
+                  closeModal={this.toggleModal}
+                  modalState={this.state.modalState}
+                  id={card.id}
+                  title={card.title}
+                  priority={card.priority}
+                  assignedTo={card.assignedTo}
+                  createdBy={card.createdBy}
+                >
+                </Edit>
               </div>
             )
           })

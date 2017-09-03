@@ -35,7 +35,6 @@ class Header extends Component {
           closeModal={this.toggleModal}
           modalState={this.state.modalState}
         >
-
         </NewCard>
       </nav>
     )

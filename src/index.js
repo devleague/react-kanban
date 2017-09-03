@@ -7,6 +7,7 @@ import './index.css';
 import reducers from "./reducers";
 import App from './containers/App/App.js';
 import registerServiceWorker from './registerServiceWorker';
+import '../node_modules/font-awesome/css/font-awesome.min.css'; 
 
 const store = createStore(
   reducers,

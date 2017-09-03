@@ -5,14 +5,14 @@ export function getCards (){
         cards: [{
           id: "33243",
           title: "CSS!",
-          priority: "High",
+          priority: "Low",
           status: "inProgress",
           createdBy: "DevLeague",
           assignedTo: "Jeff"
         }, {
           id: "23432",
           title: "NPM setup!",
-          priority: "High",
+          priority: "Blocker",
           status: "done",
           createdBy: "DevLeague",
           assignedTo: "Jeff"
@@ -29,5 +29,6 @@ export function getCards (){
     }, 1000)
   })
 }
+
 
 export default getCards;
