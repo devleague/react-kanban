@@ -5,20 +5,23 @@ const db = require("./models");
 const Card = db.Card;
 const bp = require("body-parser");
 
-app.use(bp.urlencoded());
+app.use(bp.urlencoded( { extended: true }));
 
-app.post("/api/create", (req, res) => {
-  console.log(req.body);
+app.post("/post", (req, res) => {
+  console.log("FROM SERVER REQ", req.body);
   Card.create({
-    Title: req.body.Title,
-    Priority: req.body.Priority,
+    title: req.body.title,
+    priority: req.body.priority,
     createdBy: req.body.createdBy,
-    assignedTo: req.body.assignedTo
+    assignedTo: req.body.assignedTo,
+    status: "inQueue"
   })
     .then((data) => {
-      console.log(data.dataValues);
+      Card.findAll()
+        .then((cards) => {
+          res.json(cards);
+        })
     })
-  res.end();
 })
 
 app.get("/cards", (req, res) => {

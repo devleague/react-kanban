@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@grove/react-font-awesome": "^1.1.5",
+    "axios": "^0.16.2",
     "babel-runtime": "^6.26.0",
     "body-parser": "^1.17.2",
     "bulma": "^0.5.1",
@@ -14,6 +15,7 @@
     "pg": "^7.2.0",
     "pg-hstore": "^2.3.2",
     "prop-types": "^15.5.10",
+    "querystring": "^0.2.0",
     "radium": "^0.19.4",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",

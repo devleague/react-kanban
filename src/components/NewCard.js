@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { addCard } from "../actions"
+import { addCard, loadCards } from "../actions"
 
 class Modal extends Component{
   constructor(props) {
@@ -41,13 +41,13 @@ class Modal extends Component{
 
   handleSubmitClick(){
     let newCard = {
-      id: `${Math.random()}`,
       title: this.state.title,
       priority: this.state.priority,
       status: "inQueue",
       createdBy: this.state.createdBy,
       assignedTo: this.state.assignedTo
     }
+
     this.props.addCard(newCard);
     this.props.closeModal();
   }
@@ -131,6 +131,9 @@ const mapDispatchtoProps = (dispatch) => {
   return {
     addCard: (card) => {
       dispatch(addCard(card))
+    },
+    loadCards: (cards) => {
+      dispatch(loadCards(cards))
     }
   }
 }

@@ -12,9 +12,6 @@ class App extends Component {
 
   componentWillMount(){
     this.props.loadCards();
-    fetch("/cards").then((res) => res.json()).then((res) => {
-      console.log(res);
-    })
   }
 
   render() {
