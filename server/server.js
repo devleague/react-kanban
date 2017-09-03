@@ -31,6 +31,24 @@ app.get("/cards", (req, res) => {
     })
 })
 
+app.delete("/delete/:id", (req, res) => {
+  var cardId = parseInt(req.params.id);
+  console.log(cardId);
+
+  Card.destroy({
+    where: {
+      id: cardId
+    }
+  })
+  .then((data) => {
+    Card.findAll()
+      .then((cards) => {
+        res.json(cards);
+      })
+  })
+
+})
+
 const server = app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
   db.sequelize.sync();

@@ -24,7 +24,8 @@ class Card extends Component {
   }
 
   handleDelete(e){
-    this.props.deleteCard(e.target.id);
+    let target = parseInt(e.target.id);
+    this.props.deleteCard(target);
   }
 
   handleMoveCardRight(e){
@@ -56,7 +57,7 @@ class Card extends Component {
                   </p>
                   <a className="card-header-icon">
                     <span className="icon">
-                      <i className="fa fa-trash-o" onClick={this.handleDelete.bind(this)} id={card.title}></i>
+                      <i className="fa fa-trash-o" onClick={this.handleDelete.bind(this)} id={card.id}></i>
                     </span>
                   </a>
                 </header>
