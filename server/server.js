@@ -46,7 +46,62 @@ app.delete("/delete/:id", (req, res) => {
         res.json(cards);
       })
   })
+})
 
+app.put("/move/right/:id", (req, res) => {
+  var cardId = parseInt(req.params.id);
+  Card.findById(cardId)
+    .then((card) => {
+      if(card.dataValues.status === "inQueue"){
+        card.update({
+          status: "inProgress"
+        })
+          .then(() => {
+            Card.findAll()
+              .then((cards) => {
+                res.json(cards);
+              })
+          })
+      } else if(card.dataValues.status === "inProgress") {
+        card.update({
+          status: "done"
+        })
+          .then(() => {
+            Card.findAll()
+              .then((cards) => {
+                res.json(cards);
+              })
+          })
+      }
+    })
+})
+
+app.put("/move/left/:id", (req, res) => {
+  var cardId = parseInt(req.params.id);
+  Card.findById(cardId)
+    .then((card) => {
+      if(card.dataValues.status === "inProgress"){
+        card.update({
+          status: "inQueue"
+        })
+          .then(() => {
+            Card.findAll()
+              .then((cards) => {
+                res.json(cards);
+              })
+          })
+      } else if(card.dataValues.status === "done") {
+        card.update({
+          status: "inProgress"
+        })
+          .then(() => {
+            Card.findAll()
+              .then((cards) => {
+                res.json(cards);
+              })
+          })
+      }
+    })
 })
 
 const server = app.listen(PORT, () => {

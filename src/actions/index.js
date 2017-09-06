@@ -6,20 +6,6 @@ export const MOVE_CARD_LEFT = "MOVE_CARD_LEFT";
 export const MOVE_CARD_RIGHT = "MOVE_CARD_RIGHT";
 export const LOAD_CARDS = "LOAD_CARDS";
 
-export const moveCardLeft = (cardTitle) => {
-  return {
-    type: MOVE_CARD_LEFT,
-    cardTitle
-  }
-}
-
-export const moveCardRight = (cardTitle) => {
-  return {
-    type: MOVE_CARD_RIGHT,
-    cardTitle
-  }
-}
-
 export const loadCards = (cards) => {
   return (dispatch) => {
     return fetch("/cards")
@@ -48,6 +34,32 @@ export const addCard = (card) => {
 export const deleteCard = (cardId) => {
   return (dispatch) => {
     axios.delete(`/delete/${cardId}`)
+    .then((cards) => {
+      dispatch({
+        type: LOAD_CARDS,
+        cards: cards.data
+      })
+    })
+  }
+}
+
+export const moveCardRight = (cardId) => {
+  let moveId = parseInt(cardId);
+  return (dispatch) => {
+    axios.put(`/move/right/${moveId}`)
+    .then((cards) => {
+      dispatch({
+        type: LOAD_CARDS,
+        cards: cards.data
+      })
+    })
+  }
+}
+
+export const moveCardLeft = (cardId) => {
+  let moveId = parseInt(cardId);
+  return (dispatch) => {
+    axios.put(`/move/left/${moveId}`)
     .then((cards) => {
       dispatch({
         type: LOAD_CARDS,

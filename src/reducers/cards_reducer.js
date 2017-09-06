@@ -28,9 +28,9 @@ const cards = (state = initialState, action ) => {
     case MOVE_CARD_RIGHT:
     let rightArr = [...state];
     rightArr.forEach((card) => {
-      if(card.status === "inQueue" && card.title === action.cardTitle){
+      if(card.status === "inQueue" && card.title === action.cardId){
         card.status = "inProgress"
-      } else if (card.status === "inProgress" && card.title === action.cardTitle){
+      } else if (card.status === "inProgress" && card.title === action.cardId){
         card.status = "done"
       }
     })
