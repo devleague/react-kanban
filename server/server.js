@@ -104,6 +104,25 @@ app.put("/move/left/:id", (req, res) => {
     })
 })
 
+app.put("/edit/:id", (req, res) => {
+  var cardId = parseInt(req.params.id);
+  Card.findById(cardId)
+    .then((card) => {
+      card.update({
+        title: req.body.title,
+        priority: req.body.priority,
+        createdBy: req.body.createdBy,
+        assignedTo: req.body.assignedTo
+      })
+        .then(() => {
+          Card.findAll()
+            .then((cards) => {
+              res.json(cards);
+            })
+        })
+    })
+})
+
 const server = app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
   db.sequelize.sync();

@@ -68,3 +68,7 @@ export const moveCardLeft = (cardId) => {
     })
   }
 }
+
+export const editCard = (cardId) => {
+  let editId = parseInt(cardId);
+}
