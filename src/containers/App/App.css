@@ -1,11 +1,43 @@
+html, body, #root, .mainContainer, .fullscreen, .kanbanBoard {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  font-family: 'Lato', sans-serif; }
+
 .parent {
   flex-wrap: wrap;
-  display: flex; }
+  display: flex;
+  height: 100%;
+  width: 100%; }
+
+.header, .navbar, .navbarInput {
+  background: rgba(0, 0, 0, 0.4);
+  height: 50px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+#titleInput, #priorityInput, #createdByInput, #assignedToInput {
+  width: 15%;
+  border: 1px solid #ccc; }
+
+.submitCardBtn {
+  border: 1px solid #ccc;
+  color: black; }
+
+.submitCardBtn:hover {
+  background: green; }
 
 .queueColumn, .progressColumn, .doneColumn {
-  width: 33%;
+  width: 33.33%;
   padding: 10px;
   box-sizing: border-box; }
+
+.progressColumn {
+  border-left: 1px solid #4d525b;
+  border-right: 1px solid #4d525b; }
 
 li {
   list-style-type: none;
@@ -13,6 +45,10 @@ li {
 
 .task {
   text-align: center; }
+
+.low, .medium, .high, .blocker {
+  margin: 5px;
+  padding: 5px; }
 
 .low {
   background: rgba(0, 191, 255, 0.4); }
@@ -25,3 +61,9 @@ li {
 
 .blocker {
   background: rgba(255, 0, 0, 0.4); }
+
+.task {
+  font-family: 'Encode Sans Semi Condensed', sans-serif; }
+
+.cardStatus {
+  display: none; }

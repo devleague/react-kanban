@@ -3,15 +3,12 @@ import AddCard from '../AddCard'
 import KanbanBoard from '../KanbanBoard'
 
 const App = () => (
-  <div>
-      <div className="add">
+  <div className="fullscreen">
+      <div className="header">
         <AddCard />
       </div>
 
-<div className="kanbanBoard">
         <KanbanBoard />
-      </div>
-
   </div>
 )
 

@@ -8,18 +8,20 @@ import { toggleTodo } from './App/actions'
 class KanbanBoard extends React.Component {
   render() {
     return (
+      <div className="kanbanBoard">
         <div className ="parent">
         <div className ="queueColumn">
         <h2 className ='task'> TO DO </h2>
         <QueueColumn />
         </div>
         <div className ="progressColumn">
-        <h2 className ='task'> DOING </h2>
+        <h2 className ='task'> IN PROGRESS </h2>
         <InProgressColumn />
         </div>
         <div className ="doneColumn">
         <h2 className ='task'> DONE </h2>
         <DoneColumn />
+        </div>
         </div>
         </div>
     );

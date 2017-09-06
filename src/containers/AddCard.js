@@ -50,9 +50,9 @@ class AddCard extends React.Component {
 
   render() {
     return (
-      <div>
-      <form onSubmit={this.handleSubmit.bind(this)} >
-      <div>
+      <div className ='navbar'>
+      <form className ='navbarInput' onSubmit={this.handleSubmit.bind(this)} >
+
       <input id="titleInput" placeholder= "title"value={this.state.title} onChange={this.titleChange.bind(this)} />
 
       <select id="priorityInput" onChange={this.priorityChange.bind(this)}>
@@ -64,8 +64,8 @@ class AddCard extends React.Component {
 
       <input id="createdByInput" placeholder= "created by" value={this.state.createdBy} onChange={this.createdByChange.bind(this)} />
       <input id="assignedToInput" placeholder= "assigned to" value={this.state.assignedTo} onChange={this.assignedToChange.bind(this)} />
-      <button type="submit">Add Card</button>
-      </div>
+      <button className='submitCardBtn' type="submit">&#x0002B;</button>
+
       </form>
       </div>
       );

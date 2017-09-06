@@ -7,19 +7,19 @@ const Card = ({ title, status, priority, createdBy, assignedTo, id }) => (
   <div className = {priority}>
 
   <li >
-    {title}
+    Task: {title}
   </li>
-  <li >
+  <li className='cardStatus'>
     {status}
   </li>
   <li >
     {priority}
   </li>
   <li >
-    {createdBy}
+    Created By: {createdBy}
   </li>
   <li >
-    {assignedTo}
+    Assigned To: {assignedTo}
   </li>
   <DeleteCard id={id}/>
   <EditCard id ={id} title={title} status={status}priority={priority} createdBy={createdBy} assignedTo={assignedTo}/>
