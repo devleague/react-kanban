@@ -6,19 +6,19 @@ const Card = ({ title, status, priority, createdBy, assignedTo, id }) => (
 
   <div className = {priority}>
 
-  <li >
+  <li className ="cardInputs">
     Task: {title}
   </li>
   <li className='cardStatus'>
     {status}
   </li>
-  <li >
+  <li className ="cardInputs">
     {priority}
   </li>
-  <li >
+  <li className ="cardInputs">
     Created By: {createdBy}
   </li>
-  <li >
+  <li className ="cardInputs">
     Assigned To: {assignedTo}
   </li>
   <DeleteCard id={id}/>

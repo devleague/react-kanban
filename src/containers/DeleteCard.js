@@ -13,7 +13,7 @@ class DeleteCard extends React.Component {
       <div>
       <form onSubmit={this.handleSubmit.bind(this)} >
       <div>
-      <button type="submit">Delete Card</button>
+      <button className ="deletebtn" type="submit">&#x000D7;</button>
       </div>
       </form>
       </div>

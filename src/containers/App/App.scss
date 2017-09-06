@@ -21,14 +21,36 @@ html, body, #root, .mainContainer, .fullscreen, .kanbanBoard{
   align-items: center;
 }
 
-#titleInput, #priorityInput, #createdByInput, #assignedToInput {
+#titleInput, #priorityInput, #createdByInput, #assignedToInput{
   width: 15%;
   border: 1px solid #ccc;
+  text-transform: uppercase;
+}
+
+.cardInputs {
+  text-transform: uppercase;
 }
 
 .submitCardBtn{
   border: 1px solid #ccc;
   color: black;
+}
+
+.editbtn, .deletebtn{
+   border: 0;
+ background: none;
+ box-shadow:none;
+ border-radius: 0px;
+}
+
+.editbtn {
+  font-size: 25px;
+}
+
+.deletebtn {
+  font-size: 20px;
+  border: 2px solid black;
+  background: white;
 }
 
 .submitCardBtn:hover{

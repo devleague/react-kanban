@@ -60,7 +60,7 @@ class EditCard extends React.Component {
       <option value="done" >Done</option>
       </select>
       <input id="assignedToInput" placeholder= "assigned to" value={this.state.assignedTo} onChange={this.assignedToChange.bind(this)} />
-      <button type="submit">Edit Card</button>
+      <button className="editbtn" type="submit">&#9998;</button>
       </div>
       </form>
       </div>
