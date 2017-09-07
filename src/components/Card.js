@@ -8,7 +8,8 @@ class Card extends Component {
     super(props);
 
     this.state = {
-      modalState: false
+      modalState: false,
+      activeModal: null
     }
 
     this.toggleModal = this.toggleModal.bind(this);
@@ -16,10 +17,19 @@ class Card extends Component {
   }
 
   toggleModal() {
+
     this.setState((prev, props) => {
       const newState = !prev.modalState;
 
       return { modalState: newState };
+    });
+  }
+
+  passItemToModal(item) {
+    this.setState((prev, props) => {
+      const newState = !prev.modalState;
+
+      return { modalState: newState, item: item };
     });
   }
 
@@ -72,7 +82,7 @@ class Card extends Component {
                 </div>
                 <footer className="card-footer">
                   <a className="card-footer-item" onClick={this.props.leftButton ? this.handleMoveCardLeft.bind(this) : this.handleNull.bind(this)} id={card.id}>{this.props.leftButton}</a>
-                  <a className="card-footer-item" onClick={this.toggleModal.bind(this)}><i className="fa fa-pencil" aria-hidden="true"></i></a>
+                  <a className="card-footer-item" onClick={this.passItemToModal.bind(this)}><i className="fa fa-pencil" aria-hidden="true" id={card.id}></i></a>
                   <a className="card-footer-item" onClick={this.handleMoveCardRight.bind(this)} id={card.id}>{this.props.rightButton}</a>
                 </footer>
                 <Edit
