@@ -36,8 +36,15 @@ html, body, #root, .mainContainer, .fullscreen, .kanbanBoard{
   color: black;
 }
 
-.editbtn, .deletebtn{
-   border: 0;
+.deleteCard, .editCard, .deleteForm, .editForm {
+  display:flex;
+  overflow: hidden;
+  justify-content: flex-end;
+}
+
+.editbtn, .deletebtn {
+display: flex;
+ border: 0;
  background: none;
  box-shadow:none;
  border-radius: 0px;

@@ -11,7 +11,7 @@ class DeleteCard extends React.Component {
   render() {
     return (
       <div>
-      <form onSubmit={this.handleSubmit.bind(this)} >
+      <form className="deleteForm"onSubmit={this.handleSubmit.bind(this)} >
       <div>
       <button className ="deletebtn" type="submit">&#x000D7;</button>
       </div>

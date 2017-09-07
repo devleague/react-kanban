@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { editCard } from './App/actions'
+import { editCard, displayEdit } from './App/actions'
 
 class EditCard extends React.Component {
   constructor(props) {
@@ -11,7 +11,8 @@ class EditCard extends React.Component {
       priority: this.props.priority,
       status: this.props.status,
       createdBy: this.props.createdBy,
-      assignedTo: this.props.assignedTo
+      assignedTo: this.props.assignedTo,
+      updateCard: this.props.updateCard
     }
   }
 
@@ -37,13 +38,22 @@ class EditCard extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    this.setState({ updateCard: false });
     this.props.revisedCardStack(this.state);
   }
 
+  buttonSubmit(e) {
+    e.preventDefault();
+    this.setState({ updateCard: true });
+    this.props.displayRevisedCardInput(this.state);
+  }
+
   render() {
+     console.log('sixth sanity passed', this.state)
     return (
       <div>
-      <form onSubmit={this.handleSubmit.bind(this)}>
+      {(this.state.updateCard === true) ?
+      <form className="editForm" onSubmit={this.handleSubmit.bind(this)}>
       <div>
       <input id="titleInput" placeholder= "title"value={this.state.title} onChange={this.titleChange.bind(this)} />
 
@@ -60,9 +70,14 @@ class EditCard extends React.Component {
       <option value="done" >Done</option>
       </select>
       <input id="assignedToInput" placeholder= "assigned to" value={this.state.assignedTo} onChange={this.assignedToChange.bind(this)} />
-      <button className="editbtn" type="submit">&#9998;</button>
+      <button className="submiteditbtn" type="submit">&#9998;</button>
       </div>
       </form>
+      :null }
+
+      {(this.state.updateCard === false) ?
+      <button className="editbtn" onClick={this.buttonSubmit.bind(this)}>&#9998;</button>
+      :null}
       </div>
       );
   }
@@ -71,14 +86,18 @@ class EditCard extends React.Component {
 
 
 
-const mapStateToProps = () => {
-  return {};
+const mapStateToProps = (state) => {
+  console.log('state before mapping', state);
+  return {state}
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     revisedCardStack: (text) => {
       dispatch(editCard(text));
+    },
+    displayRevisedCardInput: (text) => {
+      dispatch(displayEdit(text));
     }
   }
 }

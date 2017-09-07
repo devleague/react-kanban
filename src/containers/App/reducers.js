@@ -1,4 +1,4 @@
-import { ADD_CARD, EDIT_CARD, DELETE_CARD, MOVE_CARD, TOGGLE_TODO } from './actions';
+import { ADD_CARD, EDIT_CARD, DELETE_CARD, MOVE_CARD, TOGGLE_TODO, TOGGLE_EDIT_CARD } from './actions';
 
 let id = 0;
 
@@ -8,6 +8,8 @@ const cardReducers = (state = [], action) => {
       return addCard(state, action);
     case EDIT_CARD:
       return editCard(state, action);
+    case TOGGLE_EDIT_CARD:
+      return toggleEdit(state, action);
     case DELETE_CARD:
       return deleteCard(state, action);
     case MOVE_CARD:
@@ -39,9 +41,29 @@ function addCard(state, action) {
       priority: action.priority,
       status: action.status,
       createdBy: action.createdBy,
-      assignedTo: action.assignedTo
+      assignedTo: action.assignedTo,
+      updateCard: false
     }
   ];
+}
+
+function toggleEdit(state, action) {
+  var cardEdits = action.card
+  var newState = state.filter(card=> {
+    return card.id !== action.card.id
+  });
+
+  return [
+  ...newState, {
+      id: cardEdits.id,
+      title: cardEdits.title,
+      priority: cardEdits.priority,
+      status: cardEdits.status,
+      createdBy: cardEdits.createdBy,
+      assignedTo: cardEdits.assignedTo,
+      updateCard: true
+    }]
+
 }
 
 function editCard(state, action) {
@@ -57,7 +79,8 @@ function editCard(state, action) {
       priority: cardEdits.priority,
       status: cardEdits.status,
       createdBy: cardEdits.createdBy,
-      assignedTo: cardEdits.assignedTo
+      assignedTo: cardEdits.assignedTo,
+      updateCard: false
     }]
 
 }

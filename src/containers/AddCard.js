@@ -11,7 +11,8 @@ class AddCard extends React.Component {
       priority: 'low',
       status: 'in-queue',
       createdBy: '',
-      assignedTo: ''
+      assignedTo: '',
+      updateCard: false
     }
   }
 
@@ -43,7 +44,8 @@ class AddCard extends React.Component {
       priority: 'low',
       status: 'in-queue',
       createdBy: '',
-      assignedTo: ''
+      assignedTo: '',
+      updateCard:false
     });
 
   }

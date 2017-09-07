@@ -2,10 +2,11 @@ import React from 'react'
 import DeleteCard from '../containers/DeleteCard.js'
 import EditCard from '../containers/EditCard.js'
 
-const Card = ({ title, status, priority, createdBy, assignedTo, id }) => (
+const Card = ({ title, status, priority, createdBy, assignedTo, id, updateCard }) => (
 
   <div className = {priority}>
 
+  <DeleteCard className="deleteCard" id={id}/>
   <li className ="cardInputs">
     Task: {title}
   </li>
@@ -21,8 +22,7 @@ const Card = ({ title, status, priority, createdBy, assignedTo, id }) => (
   <li className ="cardInputs">
     Assigned To: {assignedTo}
   </li>
-  <DeleteCard id={id}/>
-  <EditCard id ={id} title={title} status={status}priority={priority} createdBy={createdBy} assignedTo={assignedTo}/>
+  <EditCard className="editCard" id ={id} title={title} status={status}priority={priority} createdBy={createdBy} assignedTo={assignedTo} updateCard={updateCard}/>
   </div>
 )
 
