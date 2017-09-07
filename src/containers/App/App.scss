@@ -29,29 +29,52 @@ html, body, #root, .mainContainer, .fullscreen, .kanbanBoard{
 
 .cardInputs {
   text-transform: uppercase;
+  margin-left:5%;
+  margin-right:5%;
 }
 
 .submitCardBtn{
   border: 1px solid #ccc;
   color: black;
+  background:white;
 }
 
-.deleteCard, .editCard, .deleteForm, .editForm {
+.submitCardBtn:hover{
+  background: orange;
+  color:white;
+  border: 1px solid orange
+}
+
+.submitEditBtn{
+  background: url(https://image.flaticon.com/icons/png/128/126/126412.png) no-repeat;
+  background-size:contain;
+  width:40px;
+  height: 40px;
+  box-shadow:none;
+  border: 0;
+  outline: none;
+  margin-right: -7px;
+  margin-top: -5px;
+}
+
+.deleteCard, .editCard, .deleteForm, .editForm, .editDisplay {
   display:flex;
-  overflow: hidden;
   justify-content: flex-end;
+  margin: 10px;
+  margin-bottom: 0px
 }
 
 .editbtn, .deletebtn {
-display: flex;
  border: 0;
  background: none;
  box-shadow:none;
  border-radius: 0px;
+ outline: none;
 }
 
 .editbtn {
   font-size: 25px;
+  padding-bottom: 10px;;
 }
 
 .deletebtn {
@@ -60,19 +83,23 @@ display: flex;
   background: white;
 }
 
-.submitCardBtn:hover{
-  background: green;
+.deletebtn:hover {
+  font-size: 20px;
+  border: 2px solid black;
+  background: black;
+  color:white;
+}
+
+.cardElements{
+  flex-wrap: wrap;
+
 }
 
 .queueColumn, .progressColumn, .doneColumn {
   width: 33.33%;
   padding: 10px;
   box-sizing: border-box;
-}
 
-.progressColumn {
-  border-left: 1px solid #4d525b;
-  border-right: 1px solid #4d525b;
 }
 
 li {
@@ -84,9 +111,18 @@ li {
   text-align: center;
 }
 
+.progressColumn {
+  border-left: 1px solid #4d525b;
+  border-right: 1px solid #4d525b;
+}
+
 .low, .medium, .high, .blocker {
   margin: 5px;
   padding: 5px;
+  display:flex;
+  flex-direction: column;
+  max-height: 169px;
+
 }
 
 .low {
@@ -113,3 +149,14 @@ li {
   display: none;
 }
 
+.revisionForm{
+  padding-bottom: 5%;
+}
+
+#titleInput, #createdByInput, #assignedToInput{
+  width: 22%;
+}
+
+#statusInput{
+  width: 15%;
+}

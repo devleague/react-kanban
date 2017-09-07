@@ -7,6 +7,7 @@ const Card = ({ title, status, priority, createdBy, assignedTo, id, updateCard }
   <div className = {priority}>
 
   <DeleteCard className="deleteCard" id={id}/>
+  <div className="cardElements">
   <li className ="cardInputs">
     Task: {title}
   </li>
@@ -14,7 +15,7 @@ const Card = ({ title, status, priority, createdBy, assignedTo, id, updateCard }
     {status}
   </li>
   <li className ="cardInputs">
-    {priority}
+    priority: {priority}
   </li>
   <li className ="cardInputs">
     Created By: {createdBy}
@@ -22,6 +23,7 @@ const Card = ({ title, status, priority, createdBy, assignedTo, id, updateCard }
   <li className ="cardInputs">
     Assigned To: {assignedTo}
   </li>
+  </div>
   <EditCard className="editCard" id ={id} title={title} status={status}priority={priority} createdBy={createdBy} assignedTo={assignedTo} updateCard={updateCard}/>
   </div>
 )

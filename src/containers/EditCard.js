@@ -51,10 +51,10 @@ class EditCard extends React.Component {
   render() {
      console.log('sixth sanity passed', this.state)
     return (
-      <div>
+      <div className="editDisplay">
       {(this.state.updateCard === true) ?
       <form className="editForm" onSubmit={this.handleSubmit.bind(this)}>
-      <div>
+      <div className="revisionForm">
       <input id="titleInput" placeholder= "title"value={this.state.title} onChange={this.titleChange.bind(this)} />
 
       <select id="priorityInput" onChange={this.priorityChange.bind(this)}>
@@ -65,13 +65,13 @@ class EditCard extends React.Component {
       </select>
       <input id="createdByInput" placeholder= "created by" value={this.state.createdBy} onChange={this.createdByChange.bind(this)} />
       <select id="statusInput" onChange={this.statusChange.bind(this)}>
-      <option value="in-queue" >In Queue</option>
-      <option value="in-progress" >In Progress</option>
-      <option value="done" >Done</option>
+      <option value="in-queue" >TO DO</option>
+      <option value="in-progress" >IN PROGRESS</option>
+      <option value="done" >DONE</option>
       </select>
       <input id="assignedToInput" placeholder= "assigned to" value={this.state.assignedTo} onChange={this.assignedToChange.bind(this)} />
-      <button className="submiteditbtn" type="submit">&#9998;</button>
       </div>
+      <button className="submitEditBtn" type="submit"></button>
       </form>
       :null }
 
