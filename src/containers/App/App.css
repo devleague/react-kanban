@@ -1,0 +1,132 @@
+html, body, #root, .mainContainer, .fullscreen, .kanbanBoard {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  font-family: 'Lato', sans-serif; }
+
+.parent {
+  flex-wrap: wrap;
+  display: flex;
+  height: 100%;
+  width: 100%; }
+
+.header, .navbar, .navbarInput {
+  background: rgba(0, 0, 0, 0.4);
+  height: 50px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+#titleInput, #priorityInput, #createdByInput, #assignedToInput {
+  width: 15%;
+  border: 1px solid #ccc;
+  text-transform: uppercase; }
+
+.cardInputs {
+  text-transform: uppercase;
+  margin-left: 5%;
+  margin-right: 5%; }
+
+.submitCardBtn {
+  border: 1px solid #ccc;
+  color: black;
+  background: white; }
+
+.submitCardBtn:hover {
+  background: orange;
+  color: white;
+  border: 1px solid orange; }
+
+.submitEditBtn {
+  background: url(https://image.flaticon.com/icons/png/128/126/126412.png) no-repeat;
+  background-size: contain;
+  width: 40px;
+  height: 40px;
+  box-shadow: none;
+  border: 0;
+  outline: none;
+  margin-right: -7px;
+  margin-top: -5px; }
+
+.deleteCard, .editCard, .deleteForm, .editForm, .editDisplay {
+  display: flex;
+  justify-content: flex-end;
+  margin: 10px;
+  margin-bottom: 0px; }
+
+.editbtn, .deletebtn {
+  border: 0;
+  background: none;
+  box-shadow: none;
+  border-radius: 0px;
+  outline: none; }
+
+.editbtn {
+  font-size: 25px;
+  padding-bottom: 10px; }
+
+.deletebtn {
+  font-size: 20px;
+  border: 2px solid black;
+  background: white; }
+
+.deletebtn:hover {
+  font-size: 20px;
+  border: 2px solid black;
+  background: black;
+  color: white; }
+
+.cardElements {
+  flex-wrap: wrap; }
+
+.queueColumn, .progressColumn, .doneColumn {
+  width: 33.33%;
+  padding: 10px;
+  box-sizing: border-box; }
+
+li {
+  list-style-type: none;
+  list-style-position: inside; }
+
+.task {
+  text-align: center; }
+
+.progressColumn {
+  border-left: 1px solid #4d525b;
+  border-right: 1px solid #4d525b; }
+
+.low, .medium, .high, .blocker {
+  margin: 5px;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  max-height: 169px; }
+
+.low {
+  background: rgba(0, 191, 255, 0.4); }
+
+.medium {
+  background: rgba(0, 250, 154, 0.4); }
+
+.high {
+  background: rgba(255, 255, 0, 0.4); }
+
+.blocker {
+  background: rgba(255, 0, 0, 0.4); }
+
+.task {
+  font-family: 'Encode Sans Semi Condensed', sans-serif; }
+
+.cardStatus {
+  display: none; }
+
+.revisionForm {
+  padding-bottom: 5%; }
+
+#titleInput, #createdByInput, #assignedToInput {
+  width: 22%; }
+
+#statusInput {
+  width: 15%; }
