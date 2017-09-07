@@ -32,7 +32,7 @@ export const deleteCard = (cardId) => {
 }
 
 export const moveCardRight = (cardId) => {
-  let moveId = parseInt(cardId);
+  let moveId = parseInt(cardId, 10);
   return (dispatch) => {
     axios.put(`/move/right/${moveId}`)
     .then((cards) => {
@@ -45,7 +45,7 @@ export const moveCardRight = (cardId) => {
 }
 
 export const moveCardLeft = (cardId) => {
-  let moveId = parseInt(cardId);
+  let moveId = parseInt(cardId, 10);
   return (dispatch) => {
     axios.put(`/move/left/${moveId}`)
     .then((cards) => {
@@ -58,7 +58,7 @@ export const moveCardLeft = (cardId) => {
 }
 
 export const editCard = (cardId, edited) => {
-  let editId = parseInt(cardId);
+  let editId = parseInt(cardId, 10);
     return (dispatch) => {
       axios.put(`/edit/${editId}`, querystring.stringify(edited))
       .then((cards) => {

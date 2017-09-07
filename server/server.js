@@ -8,7 +8,6 @@ const bp = require("body-parser");
 app.use(bp.urlencoded( { extended: true }));
 
 app.post("/post", (req, res) => {
-  console.log("FROM SERVER REQ", req.body);
   Card.create({
     title: req.body.title,
     priority: req.body.priority,
