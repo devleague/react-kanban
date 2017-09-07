@@ -47,20 +47,20 @@ class Edit extends Component{
       assignedTo: this.state.assignedTo
     }
     this.props.editCard(this.props.id, editedCard);
-    this.props.closeModal();
+    this.props.onHide();
   }
 
   render(){
-    if(!this.props.modalState){
+    if(!this.props.show){
       return null;
     }
     return(
       <div className="modal is-active">
-        <div className="modal-background" onClick={this.props.closeModal} />
+        <div className="modal-background" onClick={this.props.onHide} />
         <div className="modal-card">
           <header className="modal-card-head">
             <p className="modal-card-title">Edit Task</p>
-            <button className="delete" onClick={this.props.closeModal} />
+            <button className="delete" onClick={this.props.onHide} />
           </header>
           <section className="modal-card-body">
             <div className="content">
@@ -99,7 +99,7 @@ class Edit extends Component{
           <footer className="modal-card-foot">
             <div className="field is-grouped">
               <div className="control">
-                <a className="button" onClick={this.props.closeModal}>Cancel</a>
+                <a className="button" onClick={this.props.onHide}>Cancel</a>
               </div>
               <div className="control">
                 <button className="button is-primary" onClick={this.handleSubmitClick.bind(this)}>Submit</button>

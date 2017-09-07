@@ -8,30 +8,22 @@ class Card extends Component {
     super(props);
 
     this.state = {
-      modalState: false,
       activeModal: null
     }
 
-    this.toggleModal = this.toggleModal.bind(this);
+  this.modalHandler = this.modalHandler.bind(this);
+  this.hideModal = this.hideModal.bind(this);
 
   }
 
-  toggleModal() {
-
-    this.setState((prev, props) => {
-      const newState = !prev.modalState;
-
-      return { modalState: newState };
-    });
+  modalHandler(e, index) {
+    this.setState({ activeModal: index })
   }
 
-  passItemToModal(item) {
-    this.setState((prev, props) => {
-      const newState = !prev.modalState;
-
-      return { modalState: newState, item: item };
-    });
+  hideModal() {
+    this.setState({ activeModal: null})
   }
+
 
   handleDelete(e){
     let target = parseInt(e.target.id);
@@ -82,17 +74,17 @@ class Card extends Component {
                 </div>
                 <footer className="card-footer">
                   <a className="card-footer-item" onClick={this.props.leftButton ? this.handleMoveCardLeft.bind(this) : this.handleNull.bind(this)} id={card.id}>{this.props.leftButton}</a>
-                  <a className="card-footer-item" onClick={this.passItemToModal.bind(this)}><i className="fa fa-pencil" aria-hidden="true" id={card.id}></i></a>
+                  <a className="card-footer-item" onClick={e => this.modalHandler(e, card.id)}><i className="fa fa-pencil" aria-hidden="true" id={card.id}></i></a>
                   <a className="card-footer-item" onClick={this.handleMoveCardRight.bind(this)} id={card.id}>{this.props.rightButton}</a>
                 </footer>
                 <Edit
-                  closeModal={this.toggleModal.bind(this)}
-                  modalState={this.state.modalState}
                   id={card.id}
                   title={card.title}
                   priority={card.priority}
                   assignedTo={card.assignedTo}
                   createdBy={card.createdBy}
+                  show={this.state.activeModal === card.id}
+                  onHide={this.hideModal}
                 >
                 </Edit>
               </div>
