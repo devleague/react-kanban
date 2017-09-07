@@ -1,12 +1,24 @@
 import React, { Component } from "react"
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { editCard } from "../actions";
 
 class Edit extends Component{
+  constructor(props) {
+    super(props);
+    this.state = ({
+      title: this.props.title,
+      priority: this.props.priority,
+      createdBy: this.props.createdBy,
+      assignedTo: this.props.assignedTo
+    })
+  }
+
   handleTitle(e){
     this.setState({
       title: e.target.value
     })
+
   }
 
   handleCreatedBy(e){
@@ -28,15 +40,13 @@ class Edit extends Component{
   }
 
   handleSubmitClick(){
-    let newCard = {
-      id: `${Math.random()}`,
+    let editedCard = {
       title: this.state.title,
       priority: this.state.priority,
-      status: "inQueue",
       createdBy: this.state.createdBy,
       assignedTo: this.state.assignedTo
     }
-    this.props.addCard(newCard);
+    this.props.editCard(this.props.id, editedCard);
     this.props.closeModal();
   }
 
@@ -57,24 +67,24 @@ class Edit extends Component{
 
               <div className="field">
                 <label className="label">Title</label>
-                <input type="text" className="input" value={this.props.title} onChange={this.handleTitle.bind(this)}/>
+                <input type="text" className="input" value={this.state.title} onChange={this.handleTitle.bind(this)}/>
               </div>
 
               <div className="field">
                 <label className="label">Created By</label>
-                <input type="text" className="input" value={this.props.createdBy} onChange={this.handleCreatedBy.bind(this)}/>
+                <input type="text" className="input" value={this.state.createdBy} onChange={this.handleCreatedBy.bind(this)}/>
               </div>
 
               <div className="field">
                 <label className="label">Assigned To</label>
-                <input type="text" className="input" value={this.props.assignedTo} onChange={this.handleAssignedTo.bind(this)}/>
+                <input type="text" className="input" value={this.state.assignedTo} onChange={this.handleAssignedTo.bind(this)}/>
               </div>
 
               <div className="field">
                 <label className="label">Priority</label>
                 <div className="control">
                   <div className="select">
-                    <select onChange={this.handleDropDown.bind(this)} value={this.props.priority}>
+                    <select onChange={this.handleDropDown.bind(this)} value={this.state.priority}>
                       <option value="Low">Low</option>
                       <option value="Medium">Medium</option>
                       <option value="High">High</option>
@@ -117,7 +127,9 @@ const mapStatetoProps = (state) => {
 
 const mapDispatchtoProps = (dispatch) => {
   return {
-
+    editCard: (cardId, edited) => {
+      dispatch(editCard(cardId, edited))
+    }
   }
 }
 

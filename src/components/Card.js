@@ -72,11 +72,11 @@ class Card extends Component {
                 </div>
                 <footer className="card-footer">
                   <a className="card-footer-item" onClick={this.props.leftButton ? this.handleMoveCardLeft.bind(this) : this.handleNull.bind(this)} id={card.id}>{this.props.leftButton}</a>
-                  <a className="card-footer-item" onClick={this.toggleModal}><i className="fa fa-pencil" aria-hidden="true"></i></a>
+                  <a className="card-footer-item" onClick={this.toggleModal.bind(this)}><i className="fa fa-pencil" aria-hidden="true"></i></a>
                   <a className="card-footer-item" onClick={this.handleMoveCardRight.bind(this)} id={card.id}>{this.props.rightButton}</a>
                 </footer>
                 <Edit
-                  closeModal={this.toggleModal}
+                  closeModal={this.toggleModal.bind(this)}
                   modalState={this.state.modalState}
                   id={card.id}
                   title={card.title}

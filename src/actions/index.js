@@ -19,18 +19,6 @@ export const loadCards = (cards) => {
   }
 }
 
-export const addCard = (card) => {
-  return (dispatch) => {
-    axios.post("/post", querystring.stringify(card))
-    .then((cards) => {
-      dispatch({
-        type: LOAD_CARDS,
-        cards: cards.data
-      })
-    })
-  }
-}
-
 export const deleteCard = (cardId) => {
   return (dispatch) => {
     axios.delete(`/delete/${cardId}`)
@@ -69,6 +57,27 @@ export const moveCardLeft = (cardId) => {
   }
 }
 
-export const editCard = (cardId) => {
+export const editCard = (cardId, edited) => {
   let editId = parseInt(cardId);
+    return (dispatch) => {
+      axios.put(`/edit/${editId}`, querystring.stringify(edited))
+      .then((cards) => {
+        dispatch({
+          type: LOAD_CARDS,
+          cards: cards.data
+        })
+      })
+    }
+}
+
+export const addCard = (card) => {
+  return (dispatch) => {
+    axios.post("/post", querystring.stringify(card))
+    .then((cards) => {
+      dispatch({
+        type: LOAD_CARDS,
+        cards: cards.data
+      })
+    })
+  }
 }
