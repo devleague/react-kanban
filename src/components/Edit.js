@@ -10,7 +10,8 @@ class Edit extends Component{
       title: this.props.title,
       priority: this.props.priority,
       createdBy: this.props.createdBy,
-      assignedTo: this.props.assignedTo
+      assignedTo: this.props.assignedTo,
+      deleteConfirm: null
     })
   }
 
@@ -19,6 +20,14 @@ class Edit extends Component{
       title: e.target.value
     })
 
+  }
+
+  deleteNotification(){
+    return (
+      <div className="notification is-danger">
+        <p>Are you sure you want to delete this task?</p>
+      </div>
+    )
   }
 
   handleCreatedBy(e){
@@ -36,6 +45,12 @@ class Edit extends Component{
   handleDropDown(e){
     this.setState({
       priority: e.target.value
+    })
+  }
+
+  handleFirstDeleteClick(){
+    this.setState({
+      deleteConfirm: true
     })
   }
 
@@ -104,8 +119,12 @@ class Edit extends Component{
               <div className="control">
                 <button className="button is-primary" onClick={this.handleSubmitClick.bind(this)}>Submit</button>
               </div>
+              <div className="control">
+                <div className="button is-danger" onClick={this.handleFirstDeleteClick.bind(this)}>Delete</div>
+              </div>
             </div>
           </footer>
+          {this.state.deleteConfirm ? this.deleteNotification() : null}
         </div>
       </div>
     );

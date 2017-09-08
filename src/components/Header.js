@@ -25,7 +25,7 @@ class Header extends Component {
 
   render(){
     return (
-      <nav className="level is-mobile">
+      <nav className="level is-mobile" id="header">
         <div className="level-left">KANBAN</div>
         <div className="level-right">
           <button onClick={this.toggleModal} className="button is-dark">New Task</button>

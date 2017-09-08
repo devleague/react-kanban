@@ -85,7 +85,6 @@ class Modal extends Component{
   }
 
   render(){
-    console.log(this)
     if(!this.props.modalState){
       return null;
     }

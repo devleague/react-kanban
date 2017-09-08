@@ -28,12 +28,14 @@
   margin-bottom: 1rem;
 }
 
-.level{
+#header{
+  background-color: rgb(74, 74, 74);
   padding: 1rem;
   border: 1px solid grey;
-  background-color: rgb(74, 74, 74);
   color: grey;
 }
+
+
 
 .subtitle{
   text-align: center;
@@ -52,10 +54,6 @@
 
 #inProgress{
   background-color: rgba(181, 255, 181, 0.7);
-}
-
-#done{
-
 }
 
 
