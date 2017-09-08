@@ -1,16 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import  { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { addCard, loadCards } from "../actions"
 
-const Notification = () => {
-  return(
-    <div className="notification is-danger">
-  <p>All fields required!</p>
-</div>
-  )
-}
 
 class Modal extends Component{
   constructor(props) {
@@ -25,9 +17,25 @@ class Modal extends Component{
     }
   }
 
+  notificationError(){
+    return (
+      <div className="notification is-danger">
+        <button className="delete" onClick={this.handleNotificationClose.bind(this)}></button>
+    <p>All fields required!</p>
+  </div>
+    )
+  }
+
   handleTitle(e){
     this.setState({
       title: e.target.value
+    })
+  }
+
+  handleNotificationClose(){
+    console.log("TEST");
+    this.setState({
+      allFieldsError: null
     })
   }
 
@@ -77,6 +85,7 @@ class Modal extends Component{
   }
 
   render(){
+    console.log(this)
     if(!this.props.modalState){
       return null;
     }
@@ -84,14 +93,13 @@ class Modal extends Component{
       <div className="modal is-active">
         <div className="modal-background" onClick={this.props.closeModal} />
         <div className="modal-card">
-
+        {this.state.allFieldsError ? this.notificationError() : null}
           <header className="modal-card-head">
             <p className="modal-card-title">New Task</p>
             <button className="delete" onClick={this.props.closeModal} />
           </header>
           <section className="modal-card-body">
             <div className="content">
-{this.state.allFieldsError ? Notification() : null}
               <div className="field">
                 <label className="label">Title</label>
                 <input type="text" className="input" placeholder="Title" onChange={this.handleTitle.bind(this)}/>
