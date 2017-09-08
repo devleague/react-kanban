@@ -42,7 +42,22 @@ class Card extends Component {
     e.preventDefault();
   }
 
+  componentWillMount(){
+
+
+  }
+
   render() {
+    let leftArrow;
+
+    if (this.props.leftButton) {
+      leftArrow = <span className="icon">
+        <i className="fa fa-long-arrow-left" aria-hidden="true"></i>
+      </span>
+    } else {
+      leftArrow = null;
+    }
+
     return (
       <div className="cardContainer">
         {
@@ -55,8 +70,12 @@ class Card extends Component {
                 <header className="card-header">
                   <p className="card-header-title">
                     {card.title}
-
                   </p>
+                  <a className="card-header-icon">
+                    <span className="icon">
+                      <i className="fa fa-pencil" onClick={e => this.modalHandler(e, card.id)} id={card.id}></i>
+                    </span>
+                  </a>
                   <a className="card-header-icon">
                     <span className="icon">
                       <i className="fa fa-trash-o" onClick={this.handleDelete.bind(this)} id={card.id}></i>
@@ -74,7 +93,7 @@ class Card extends Component {
                 </div>
                 <footer className="card-footer">
                   <a className="card-footer-item" onClick={this.props.leftButton ? this.handleMoveCardLeft.bind(this) : this.handleNull.bind(this)} id={card.id}>{this.props.leftButton}</a>
-                  <a className="card-footer-item" onClick={e => this.modalHandler(e, card.id)}><span className="fa fa-pencil" aria-hidden="true" id={card.id}></span></a>
+
                   <a className="card-footer-item" onClick={this.handleMoveCardRight.bind(this)} id={card.id}>{this.props.rightButton}</a>
                 </footer>
                 <Edit
