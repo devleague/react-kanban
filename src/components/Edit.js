@@ -65,6 +65,7 @@ class Edit extends Component{
     this.props.onHide();
   }
 
+
   render(){
     if(!this.props.show){
       return null;

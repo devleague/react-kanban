@@ -3,6 +3,7 @@ const PORT = process.env.PORT || 8080;
 const app = express();
 const db = require("./models");
 const Card = db.Card;
+const User = db.User;
 const bp = require("body-parser");
 
 app.use(bp.urlencoded( { extended: true }));
