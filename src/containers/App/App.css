@@ -1,0 +1,12 @@
+.app {
+  border: 1px solid black;
+  width: 75%;
+  height: auto;
+  margin: 0 auto; }
+
+.column-container {
+  border: 1px solid red;
+  box-sizing: border-box;
+  display: flex;
+  align-items: stretch;
+  height: auto; }
