@@ -6,11 +6,17 @@
     "@grove/react-font-awesome": "^1.1.5",
     "axios": "^0.16.2",
     "babel-runtime": "^6.26.0",
+    "bcrypt": "^1.0.3",
     "body-parser": "^1.17.2",
     "bulma": "^0.5.1",
+    "connect-redis": "^3.3.0",
     "express": "^4.15.4",
+    "express-session": "^1.15.5",
     "font-awesome": "^4.7.0",
-    "pg": "^7.2.0",
+    "jsonwebtoken": "^8.0.0",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "pg": "^6.4.2",
     "pg-hstore": "^2.3.2",
     "prop-types": "^15.5.10",
     "querystring": "^0.2.0",
@@ -21,7 +27,8 @@
     "react-scripts": "1.0.12",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
-    "sequelize": "^4.8.0"
+    "sequelize": "^4.8.0",
+    "sessions": "0.0.2-7"
   },
   "scripts": {
     "start": "react-scripts start",
