@@ -9,13 +9,7 @@ import {
 } from './actions';
 import { PRIORITY, STATUS } from './constants';
 //replace with isomorphic fetch later
-import {
-  getFakeDbReq,
-  addToFakeDb,
-  delFromFakeDb,
-  moveFromFakeDb,
-  editFromFakeDb
-} from '../fakeDb/data.js';
+import fetch from 'isomorphic-fetch';
 
 export const addCard = newCard => {
   return {
@@ -35,20 +29,22 @@ const cardDefaults = {
 
 export const fetchAddCard = card => dispatch => {
   const newCard = Object.assign({}, cardDefaults, card);
-  console.log(card);
-  console.log(newCard);
-  dispatch(addCard(newCard));
 
-  addToFakeDb(newCard).then(
-    addedCard => {
-      if (addedCard) {
-        console.log('added');
-        return Promise.resolve();
-      }
-    },
-    //TODO: flash msg to user
-    error => console.log('An error occured.', error)
-  );
+  return fetch('/api/cards', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ card: newCard })
+  })
+    .then(res => res.json())
+    .then(
+      newCard => {
+        if (newCard.status === 'success') {
+          dispatch(addCard(newCard.data));
+          return Promise.resolve()
+        }
+      },
+      err => console.log(err)
+    );
 };
 
 export const moveCard = (_id, targetColumn) => {
@@ -60,16 +56,22 @@ export const moveCard = (_id, targetColumn) => {
 
 export const fetchMoveCard = (_id, targetColumn) => dispatch => {
   dispatch(moveCard(_id, targetColumn));
-
-  moveFromFakeDb(_id, targetColumn).then(
-    card => {
-      if (card) {
-        console.log(card);
-        return Promise.resolve(card);
-      }
-    },
-    error => console.log(error)
-  );
+  return fetch(`/api/cards/${_id}`, {
+    method: 'PATCH',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ status: targetColumn })
+  })
+    .then(res => res.json())
+    .then(
+      card => {
+        if (card.status === 'success') {
+          return Promise.resolve(card.data);
+        } else {
+          console.log(card.message)
+        }
+      },
+      error => console.log(error)
+    );
 };
 
 export const delCard = _id => {
@@ -82,17 +84,18 @@ export const delCard = _id => {
 export const fetchDelCard = _id => dispatch => {
   dispatch(delCard(_id));
 
-  delFromFakeDb(_id).then(
-    id => {
-      console.log(id);
-      if (id) {
-        console.log('card deleted');
-        return Promise.resolve();
-      }
-    },
-    //TODO: flash msg to user
-    error => console.log(error)
-  );
+  return fetch(`/api/cards/${_id}`, { method: 'DELETE', body: _id })
+    .then(res => res.json())
+    .then(
+      card => {
+        if (card.status === 'success') {
+          return Promise.resolve(card);
+        } else {
+          console.log(card.message)
+        }
+      },
+      error => console.log(error)
+    );
 };
 
 export const editCard = card => {
@@ -104,16 +107,6 @@ export const editCard = card => {
 
 export const fetchEditCard = card => dispatch => {
   dispatch(editCard(card));
-
-  editFromFakeDb(card).then(
-    card => {
-      if (card) {
-        console.log('card edited');
-        return Promise.resolve();
-      }
-    },
-    error => console.log(error)
-  );
 };
 
 //get all cards
@@ -133,10 +126,16 @@ export const receiveCards = cards => {
 export const fetchCards = () => dispatch => {
   dispatch(requestCards());
 
-  return getFakeDbReq().then(
-    cards => {
-      dispatch(receiveCards(cards));
-    },
-    error => console.log('An error occured.', error)
-  );
+  return fetch('/api/cards/')
+    .then(res => res.json())
+    .then(
+      cards => {
+        if(cards.status === 'success') {
+          return dispatch(receiveCards(cards.data));
+        } else {
+          console.log(cards.message)
+        }
+      },
+      error => console.log('An error occured.', error)
+    );
 };
