@@ -40,6 +40,8 @@ class Modal extends Component{
   }
 
   handleSubmitClick(){
+    console.log(typeof this.state.title)
+    console.log(this.state.title.length)
     let newCard = {
       title: this.state.title,
       priority: this.state.priority,
