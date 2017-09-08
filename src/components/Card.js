@@ -48,15 +48,15 @@ class Card extends Component {
   }
 
   render() {
-    let leftArrow;
-
-    if (this.props.leftButton) {
-      leftArrow = <span className="icon">
-        <i className="fa fa-long-arrow-left" aria-hidden="true"></i>
-      </span>
-    } else {
-      leftArrow = null;
-    }
+    // let leftArrow;
+    //
+    // if (this.props.leftButton) {
+    //   leftArrow = <span className="icon">
+    //     <i className="fa fa-long-arrow-left" aria-hidden="true"></i>
+    //   </span>
+    // } else {
+    //   leftArrow = null;
+    // }
 
     return (
       <div className="cardContainer">

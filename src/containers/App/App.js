@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import 'bulma/css/bulma.css'
+import 'bulma/css/bulma.css';
 import './App.css';
 import InQueue from "../../components/InQueue.js"
 import InProgress from "../../components/InProgress.js"

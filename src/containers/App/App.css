@@ -47,11 +47,11 @@
 }
 
 #inQueue {
-  background-color: rgb(255, 228, 167);
+  background-color: rgba(255, 228, 167, 0.7);
 }
 
 #inProgress{
-  background-color: rgb(181, 255, 181);
+  background-color: rgba(181, 255, 181, 0.7);
 }
 
 #done{

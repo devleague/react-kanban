@@ -1,7 +1,16 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import  { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { addCard, loadCards } from "../actions"
+
+const Notification = () => {
+  return(
+    <div className="notification is-danger">
+  <p>All fields required!</p>
+</div>
+  )
+}
 
 class Modal extends Component{
   constructor(props) {
@@ -11,7 +20,8 @@ class Modal extends Component{
       title: "",
       priority: "",
       createdBy: "",
-      assignedTo: ""
+      assignedTo: "",
+      allFieldsError: null
     }
   }
 
@@ -40,8 +50,20 @@ class Modal extends Component{
   }
 
   handleSubmitClick(){
-    console.log(typeof this.state.title)
-    console.log(this.state.title.length)
+    if(this.state.title.length === 0||
+      this.state.createdBy.length === 0||
+      this.state.assignedTo.length === 0
+    ){
+      this.setState({
+        allFieldsError: "true"
+      })
+      return null;
+    }
+
+    this.setState({
+      allFieldsError: null
+    })
+
     let newCard = {
       title: this.state.title,
       priority: this.state.priority,
@@ -62,13 +84,14 @@ class Modal extends Component{
       <div className="modal is-active">
         <div className="modal-background" onClick={this.props.closeModal} />
         <div className="modal-card">
+
           <header className="modal-card-head">
             <p className="modal-card-title">New Task</p>
             <button className="delete" onClick={this.props.closeModal} />
           </header>
           <section className="modal-card-body">
             <div className="content">
-
+{this.state.allFieldsError ? Notification() : null}
               <div className="field">
                 <label className="label">Title</label>
                 <input type="text" className="input" placeholder="Title" onChange={this.handleTitle.bind(this)}/>
@@ -86,7 +109,7 @@ class Modal extends Component{
 
               <div className="field">
                 <label className="label">Priority</label>
-                <div className="control">
+                <div className="control has-icons-left">
                   <div className="select">
                     <select onChange={this.handleDropDown.bind(this)}>
                       <option>Select Priority</option>
@@ -96,6 +119,9 @@ class Modal extends Component{
                       <option value="Blocker">Blocker</option>
                     </select>
                   </div>
+                  <span className="icon is-small is-left">
+                    <i className="fa fa-bars"></i>
+                  </span>
                 </div>
               </div>
 
