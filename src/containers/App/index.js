@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import './App.css';
+import Navbar from '../../components/Navbar';
+import AddCardButton from '../../components/AddCardButton';
 import Column from '../Column';
 import AddCardForm from '../AddCardForm';
 import { STATUS } from '../../actions/constants';
+import { fetchCards, fetchAddCard } from '../../actions/cardActions';
 
 class App extends Component {
   constructor() {
@@ -12,8 +16,12 @@ class App extends Component {
     this.sortCards = this.sortCards.bind(this);
   }
 
+  componentDidMount() {
+    this.props.fetchCards();
+  }
+
   sortCards(cards) {
-    return cards.reduce(
+    return cards.cards.reduce(
       (sortedCards, card) => {
         if (card.status === STATUS.QUEUE) {
           sortedCards.inQueue.push(card);
@@ -37,12 +45,15 @@ class App extends Component {
   render() {
     const sortedCards = this.sortCards(this.props.cards);
     return (
-      <div>
         <div className="app">
-          <Column type={STATUS.QUEUE} cards={sortedCards.inQueue} />
-          <Column type={STATUS.PROGRESS} cards={sortedCards.inProgress} />
-          <Column type={STATUS.DONE} cards={sortedCards.done} />
-        </div>
+          <Navbar>
+            <AddCardButton addCard={this.props.addCard} />
+          </Navbar>
+          <div className="column-container">
+            <Column type={STATUS.QUEUE} cards={sortedCards.inQueue} />
+            <Column type={STATUS.PROGRESS} cards={sortedCards.inProgress} />
+            <Column type={STATUS.DONE} cards={sortedCards.done} />
+          </div>
         <AddCardForm />
       </div>
     );
@@ -50,7 +61,14 @@ class App extends Component {
 }
 
 export const mapStateToProps = state => {
-  return { cards: state.cards };
+  return { cards: state }
 };
 
-export default connect(mapStateToProps)(App);
+export const mapDispatchToProps = dispatch => {
+  return {
+    fetchCards: bindActionCreators(fetchCards, dispatch),
+    addCard: bindActionCreators(fetchAddCard, dispatch)
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

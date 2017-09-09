@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { addCard } from '../../actions/cardActions';
+import { fetchAddCard } from '../../actions/cardActions';
 
 class AddCardForm extends Component {
   constructor() {
@@ -88,7 +88,7 @@ class AddCardForm extends Component {
 
 export const mapDispatchToProps = dispatch => {
   return {
-    addCard: bindActionCreators(addCard, dispatch)
+    addCard: bindActionCreators(fetchAddCard, dispatch)
   };
 };
 

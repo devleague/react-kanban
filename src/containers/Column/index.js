@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import "./Column.css";
+import React, { Component } from 'react';
+import './Column.css';
 import Card from '../../components/Card/';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { moveCard } from '../../actions/cardActions';
+import { fetchMoveCard } from '../../actions/cardActions';
 
 class Column extends Component {
   constructor() {
@@ -25,17 +25,22 @@ class Column extends Component {
   render() {
     const { type, cards } = this.props;
     return (
-      <div id={type} onDrop={this._onDrop} onDragOver={this._onDragOver} className="column">
+      <div
+        id={type}
+        onDrop={this._onDrop}
+        onDragOver={this._onDragOver}
+        className="column"
+      >
         {cards.map(card => <Card key={card._id} {...card} />)}
       </div>
-    )
+    );
   }
 }
 
-export const mapDispatchToProps = (dispatch) => {
+export const mapDispatchToProps = dispatch => {
   return {
-    moveCard: bindActionCreators(moveCard, dispatch)
-  }
-}
+    moveCard: bindActionCreators(fetchMoveCard, dispatch)
+  };
+};
 
 export default connect(null, mapDispatchToProps)(Column);
