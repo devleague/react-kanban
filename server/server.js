@@ -1,17 +1,17 @@
-const express = require("express");
+const express = require('express');
 const PORT = process.env.PORT || 8080;
 const app = express();
-const db = require("./models");
+const db = require('./models');
 const Card = db.Card;
 const User = db.User;
-const bp = require("body-parser");
-const bcrypt = require("bcrypt");
+const bp = require('body-parser');
+const bcrypt = require('bcrypt');
 const saltRounds = 10;
-const passport = require("passport");
-const session = require("express-session");
-const LocalStrategy = require("passport-local").Strategy;
-const RedisStore = require("connect-redis")(session);
-const CONFIG = require("./config/config.json");
+const passport = require('passport');
+const session = require('express-session');
+const LocalStrategy = require('passport-local').Strategy;
+const RedisStore = require('connect-redis')(session);
+const CONFIG = require('./config/config.json');
 
 app.use(bp.urlencoded( { extended: true }));
 
@@ -21,19 +21,19 @@ app.use(session({
   cookie: {
     maxage: 600
   }
-}))
+}));
 
 app.use(session({
-  secret: "keyboard cat"
-}))
+  secret: 'keyboard cat'
+}));
 app.use(passport.initialize());
 app.use(passport.session());
 
 passport.use(new LocalStrategy(
   function(username, password, done) {
     // ^ client side username and password
-    console.log("client-side-username", username);
-    console.log("client-side-username", password);
+    console.log('client-side-username', username);
+    console.log('client-side-username', password);
     User.findOne({
         where: {
           username: username
@@ -46,34 +46,34 @@ passport.use(new LocalStrategy(
               return done(null, user);
             } else {
               return done(null, false, {
-                message: "Incorrect Password"
-              })
+                message: 'Incorrect Password'
+              });
             }
           })
           .catch(err => {
             console.log(err);
-          })
+          });
       })
       .catch((err) => {
-        console.log("Username not found");
+        console.log('Username not found');
         console.log(err);
-        console.log("Incorrect username");
+        console.log('Incorrect username');
         return done(null, false, {
-          message: "Incorrect Username"
-        })
-      })
+          message: 'Incorrect Username'
+        });
+      });
   }
-))
+));
 
 passport.serializeUser(function(user, done) {
   //^ received from the LocalStrategy succession
-  console.log("serializing the user into session");
+  console.log('serializing the user into session');
   done(null, user.id);
   //^ building the object/values/information to store into the session object
 });
 
 passport.deserializeUser(function(userId, done) {
-  console.log("adding user information into the req object", userId);
+  console.log('adding user information into the req object', userId);
   User.findOne({
       where: {
         id: userId
@@ -88,33 +88,33 @@ passport.deserializeUser(function(userId, done) {
     })
     .catch((user, err) => {
       done(err, user);
-    })
+    });
 });
 
-app.post("/post", (req, res) => {
+app.post('/post', (req, res) => {
   Card.create({
     title: req.body.title,
     priority: req.body.priority,
     createdBy: req.body.createdBy,
     assignedTo: req.body.assignedTo,
-    status: "inQueue"
+    status: 'inQueue'
   })
     .then((data) => {
       Card.findAll()
         .then((cards) => {
           res.json(cards);
-        })
-    })
-})
+        });
+    });
+});
 
-app.get("/cards", (req, res) => {
+app.get('/cards', (req, res) => {
   Card.findAll()
     .then((cards) => {
       res.json(cards);
-    })
-})
+    });
+});
 
-app.delete("/delete/:id", (req, res) => {
+app.delete('/delete/:id', (req, res) => {
   var cardId = parseInt(req.params.id);
   console.log(cardId);
 
@@ -127,68 +127,68 @@ app.delete("/delete/:id", (req, res) => {
     Card.findAll()
       .then((cards) => {
         res.json(cards);
-      })
-  })
-})
+      });
+  });
+});
 
-app.put("/move/right/:id", (req, res) => {
-  var cardId = parseInt(req.params.id);
+app.put('/move/right/:id', (req, res) => {
+  var cardId = parseInt(req.params.id, 10);
   Card.findById(cardId)
     .then((card) => {
-      if(card.dataValues.status === "inQueue"){
+      if(card.dataValues.status === 'inQueue'){
         card.update({
-          status: "inProgress"
+          status: 'inProgress'
         })
           .then(() => {
             Card.findAll()
               .then((cards) => {
                 res.json(cards);
-              })
-          })
-      } else if(card.dataValues.status === "inProgress") {
+              });
+          });
+      } else if(card.dataValues.status === 'inProgress') {
         card.update({
-          status: "done"
+          status: 'done'
         })
           .then(() => {
             Card.findAll()
               .then((cards) => {
                 res.json(cards);
-              })
-          })
+              });
+          });
       }
-    })
-})
+    });
+});
 
-app.put("/move/left/:id", (req, res) => {
-  var cardId = parseInt(req.params.id);
+app.put('/move/left/:id', (req, res) => {
+  var cardId = parseInt(req.params.id, 10);
   Card.findById(cardId)
     .then((card) => {
-      if(card.dataValues.status === "inProgress"){
+      if(card.dataValues.status === 'inProgress'){
         card.update({
-          status: "inQueue"
+          status: 'inQueue'
         })
           .then(() => {
             Card.findAll()
               .then((cards) => {
                 res.json(cards);
-              })
-          })
-      } else if(card.dataValues.status === "done") {
+              });
+          });
+      } else if(card.dataValues.status === 'done') {
         card.update({
-          status: "inProgress"
+          status: 'inProgress'
         })
           .then(() => {
             Card.findAll()
               .then((cards) => {
                 res.json(cards);
-              })
-          })
+              });
+          });
       }
-    })
-})
+    });
+});
 
-app.put("/edit/:id", (req, res) => {
-  var cardId = parseInt(req.params.id);
+app.put('/edit/:id', (req, res) => {
+  var cardId = parseInt(req.params.id, 10);
   Card.findById(cardId)
     .then((card) => {
       card.update({
@@ -201,12 +201,12 @@ app.put("/edit/:id", (req, res) => {
           Card.findAll()
             .then((cards) => {
               res.json(cards);
-            })
-        })
-    })
-})
+            });
+        });
+    });
+});
 
-app.post("/login/new", (req, res) => {
+app.post('/login/new', (req, res) => {
   bcrypt.hash(req.body.password, saltRounds, (err, hash) => {
     User.findOrCreate({
       where: {
@@ -223,12 +223,12 @@ app.post("/login/new", (req, res) => {
         })
         .catch((err) => {
           console.log(err);
-        })
-    })
-  })
-})
+        });
+    });
+  });
+});
 
 const server = app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
   db.sequelize.sync();
-})
+});
