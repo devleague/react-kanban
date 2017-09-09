@@ -88,6 +88,7 @@ export const fetchDelCard = _id => dispatch => {
     .then(res => res.json())
     .then(
       card => {
+        console.log(card)
         if (card.status === 'success') {
           return Promise.resolve(card);
         } else {

@@ -21,6 +21,7 @@ module.exports.delFromFakeDb = id =>
     let i = fakeDb.findIndex(card => card._id == id);
     if (i >= 0) {
       fakeDb.splice(i, 1);
+      resolve();
     } else {
       reject('Card does not exist');
     }
