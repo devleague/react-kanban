@@ -50,9 +50,9 @@ class App extends Component {
             <AddCardButton addCard={this.props.addCard} />
           </Navbar>
           <div className="column-container">
-            <Column type={STATUS.QUEUE} cards={sortedCards.inQueue} />
-            <Column type={STATUS.PROGRESS} cards={sortedCards.inProgress} />
-            <Column type={STATUS.DONE} cards={sortedCards.done} />
+            <Column status={STATUS.QUEUE} cards={sortedCards.inQueue} />
+            <Column status={STATUS.PROGRESS} cards={sortedCards.inProgress} />
+            <Column status={STATUS.DONE} cards={sortedCards.done} />
           </div>
         <AddCardForm />
       </div>

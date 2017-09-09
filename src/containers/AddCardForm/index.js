@@ -4,13 +4,13 @@ import { bindActionCreators } from 'redux';
 import { fetchAddCard } from '../../actions/cardActions';
 
 class AddCardForm extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       title: '',
       priority: 'low',
-      status: 'in-queue',
+      status: this.props.status,
       createdBy: '',
       assignedTo: ''
     };
@@ -22,6 +22,7 @@ class AddCardForm extends Component {
   handleSubmit(e) {
     e.preventDefault();
     this.props.addCard(this.state);
+    this.props.hideAddForm();
     this.setState({
       title: '',
       priority: 'low',
