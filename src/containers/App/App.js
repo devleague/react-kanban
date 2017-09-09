@@ -1,27 +1,36 @@
-import React, { Component } from 'react';
-import { connect } from "react-redux";
+import React, {Component} from 'react';
+import {connect} from "react-redux";
 import 'bulma/css/bulma.css';
 import './App.css';
-import InQueue from "../../components/InQueue.js"
-import InProgress from "../../components/InProgress.js"
-import Done from "../../components/Done.js"
-import Header from "../../components/Header.js"
-import { loadCards } from "../../actions"
+import Header from "../../components/Header.js";
+import {loadCards} from "../../actions";
+import Column from "../../components/Column.js";
 
 class App extends Component {
 
-  componentWillMount(){
-    this.props.loadCards();
+  componentWillMount() {
+    this
+      .props
+      .loadCards();
   }
 
   render() {
     return (
       <div className="container is-mobile">
-        <Header />
+        <Header/>
         <div className="columns is-mobile">
-          <InQueue/>
-          <InProgress/>
-          <Done/>
+          <Column
+          status = "inQueue"
+          rightButton = "In Progress"
+          leftButton = {null} />
+          <Column 
+          status="inProgress" 
+          rightButton="Done" 
+          leftButton="In Queue" />
+          < Column 
+          status="done" 
+          rightButton={null} 
+          leftButton="In Progress" />
         </div>
       </div>
     );
@@ -29,9 +38,7 @@ class App extends Component {
 }
 
 const mapStatetoProps = (state) => {
-  return {
-    cards: state.cards
-  }
+  return {cards: state.cards}
 }
 
 const mapDispatchtoProps = (dispatch) => {
@@ -42,9 +49,6 @@ const mapDispatchtoProps = (dispatch) => {
   }
 }
 
-const ConnectedApp = connect(
-  mapStatetoProps,
-  mapDispatchtoProps
-)(App);
+const ConnectedApp = connect(mapStatetoProps, mapDispatchtoProps)(App);
 
 export default ConnectedApp;

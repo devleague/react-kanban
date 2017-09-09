@@ -5,6 +5,7 @@ export const DELETE_CARD = "DELETE_CARD"
 export const MOVE_CARD_LEFT = "MOVE_CARD_LEFT";
 export const MOVE_CARD_RIGHT = "MOVE_CARD_RIGHT";
 export const LOAD_CARDS = "LOAD_CARDS";
+export const LOAD_USERS = "LOAD USERS";
 
 export const deleteCard = (cardId) => {
   return (dispatch) => {
@@ -69,6 +70,18 @@ export const addCard = (card) => {
   }
 }
 
+export const addUser = (user) => {
+  return (dispatch) => {
+    axios.post("/login/new", querystring.stringify(user))
+    .then((users) => {
+      dispatch({
+        type: LOAD_USERS,
+        users: users.data
+      })
+    })
+  }
+}
+
 export const loadCards = (cards) => {
   return (dispatch) => {
     axios.get("/cards")
@@ -76,6 +89,18 @@ export const loadCards = (cards) => {
       dispatch({
         type: LOAD_CARDS,
         cards: cards.data
+      })
+    })
+  }
+}
+
+export const loadUsers = (users) => {
+  return (dispatch) => {
+    axios.get("/users")
+    .then((users) => {
+      dispatch({
+        type: LOAD_USERS,
+        users: users.data
       })
     })
   }

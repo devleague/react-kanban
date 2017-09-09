@@ -114,6 +114,13 @@ app.get('/cards', (req, res) => {
     });
 });
 
+app.get('/users', (req, res) => {
+  User.findAll()
+    .then((users) => {
+      res.json(users);
+    });
+});
+
 app.delete('/delete/:id', (req, res) => {
   var cardId = parseInt(req.params.id);
   console.log(cardId);
