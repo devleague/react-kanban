@@ -57,12 +57,12 @@
 }
 
 
-#queueColumn {
+#inQueueColumn {
   border-right: 1px solid grey;
   height: 100rem;
 }
 
-#inProgresColumn {
+#inProgressColumn {
   border-right: 1px solid grey;
   height: 100rem;
 }
@@ -92,4 +92,12 @@ a span.screen-reader-text {
     height: 1px;
     width: 1px;
     overflow: hidden;
+}
+
+#login {
+  padding: 3rem;
+}
+
+#welcome {
+  margin: 3rem;
 }

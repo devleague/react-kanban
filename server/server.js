@@ -31,9 +31,6 @@ app.use(passport.session());
 
 passport.use(new LocalStrategy(
   function(username, password, done) {
-    // ^ client side username and password
-    console.log('client-side-username', username);
-    console.log('client-side-username', password);
     User.findOne({
         where: {
           username: username
@@ -55,9 +52,6 @@ passport.use(new LocalStrategy(
           });
       })
       .catch((err) => {
-        console.log('Username not found');
-        console.log(err);
-        console.log('Incorrect username');
         return done(null, false, {
           message: 'Incorrect Username'
         });
@@ -66,10 +60,7 @@ passport.use(new LocalStrategy(
 ));
 
 passport.serializeUser(function(user, done) {
-  //^ received from the LocalStrategy succession
-  console.log('serializing the user into session');
   done(null, user.id);
-  //^ building the object/values/information to store into the session object
 });
 
 passport.deserializeUser(function(userId, done) {
@@ -234,6 +225,23 @@ app.post('/login/new', (req, res) => {
     });
   });
 });
+
+app.post("/login", passport.authenticate("local"), (req, res) => {
+  console.log(res.req.headers.cookie)
+  res.json({success: true, username: req.body.username});
+})
+
+app.get("/logout", (req, res) => {
+  req.session.destroy();
+});
+
+app.get("/auth", (req, res) => {
+  if(req.user){
+    res.json({success: true, username: req.user.username})
+  } else {
+    console.log("res");
+  }
+})
 
 const server = app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

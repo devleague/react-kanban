@@ -158,7 +158,8 @@ Modal.propTypes = {
 
 const mapStatetoProps = (state) => {
   return {
-    cards: state.cards
+    cards: state.cards,
+    users: state.users
   }
 }
 
