@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
 import './Card.css';
+import EditCardForm from '../EditCardForm';
+import Field from '../Field';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchDelCard } from '../../actions/cardActions';
-import EditableField from '../EditableField';
 
 class Card extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       ...this.props,
       isDragging: false,
-      showDelBtn: false
+      showDelBtn: false,
+      isEditing: false
     };
 
     this._onMouseEnter = this._onMouseEnter.bind(this);
@@ -24,7 +25,8 @@ class Card extends Component {
     this._onDrag = this._onDrag.bind(this);
     this._onDragEnd = this._onDragEnd.bind(this);
 
-    this._handleUpdateField = this._handleUpdateField.bind(this);
+    this._enableEdit = this._enableEdit.bind(this);
+    this._disableEdit = this._disableEdit.bind(this);
   }
 
   _onMouseEnter() {
@@ -51,25 +53,35 @@ class Card extends Component {
     this.setState({ isDragging: false });
   }
 
-  _handleUpdateField(fieldName, value) {
-    let updatedField = {};
-    updatedField[fieldName] = value;
+  _enableEdit() {
+    this.setState({
+      isEditing: true
+    });
+  }
 
-    this.setState(updatedField);
+  _disableEdit() {
+    this.setState({
+      isEditing: false
+    });
   }
 
   render() {
     const {
+      _id,
       title,
       priority,
       createdBy,
       assignedTo,
       isDragging,
-      showDelBtn
+      showDelBtn,
+      isEditing
     } = this.state;
 
     const isNewCard = this.props.newCard || false;
     const className = isDragging ? 'card hidden' : 'card';
+    const fieldNames = Object.keys(this.props).filter(field =>
+      ['title', 'priority', 'createdBy', 'assignedTo'].includes(field)
+    );
 
     return (
       <div
@@ -81,38 +93,15 @@ class Card extends Component {
         onMouseEnter={this._onMouseEnter}
         onMouseLeave={this._onMouseLeave}
       >
-        {showDelBtn
-          ? <button className="delBtn" onClick={this._onDelClick}>
-              DEL
-            </button>
-          : null}
-        <EditableField
-          name="title"
-          value={title}
-          isNewCard={isNewCard}
-          updateField={this._handleUpdateField}
-        />
-        <EditableField
-          name="priority"
-          value={priority}
-          label="Priority"
-          isNewCard={isNewCard}
-          updateField={this._handleUpdateField}
-        />
-        <EditableField
-          name="createdBy"
-          value={createdBy}
-          label="Created by"
-          isNewCard={isNewCard}
-          updateField={this._handleUpdateField}
-        />
-        <EditableField
-          name="assignedTo"
-          value={assignedTo}
-          label="Assigned to"
-          isNewCard={isNewCard}
-          updateField={this._handleUpdateField}
-        />
+        {isEditing ? (
+          <EditCardForm {...this.props} disableEdit={this._disableEdit} />
+        ) : (
+          fieldNames.map((field, i) => (
+            <Field key={i} label={field} value={this.props[field]} />
+          ))
+        )}
+
+        <span onClick={() => this.setState({ isEditing: true })}>edit</span>
       </div>
     );
   }

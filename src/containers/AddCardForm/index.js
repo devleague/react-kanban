@@ -26,7 +26,7 @@ class AddCardForm extends Component {
     this.setState({
       title: '',
       priority: 'low',
-      status: 'in-queue',
+      status: this.props.status,
       createdBy: '',
       assignedTo: ''
     });

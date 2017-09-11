@@ -22,7 +22,7 @@ export default function(state = initialState, action) {
         isAddingCard: false
       });
     case REQ_ADD_CARD:
-      return Object.assign({}, state, { isAddingCard : true })
+      return Object.assign({}, state, { isAddingCard: true });
     case MOVE_CARD:
       const { _id, targetColumn } = action.payload;
       return Object.assign({}, state, {
@@ -41,11 +41,14 @@ export default function(state = initialState, action) {
         })
       });
     case EDIT_CARD:
-      return state.map(card => {
-        if(card._id == action.payload.id) {
-          return Object.assign({}, card, action.payload);
-        }
-      })
+    console.log(action.payload)
+      return Object.assign({}, state, {
+        cards: state.cards.map(card => {
+          if (card._id == action.payload._id) {
+            return Object.assign({}, card, action.payload);
+          }
+        })
+      });
     case REQUEST_CARDS:
       return Object.assign({}, state, { isFetchingCards: true });
     case RECEIVE_CARDS:
