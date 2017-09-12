@@ -40,6 +40,7 @@ class Header extends Component {
   
   handleLogoutClick(){
     this.props.logUserOut();
+    window.location.reload();
   }
 
   logInOut(status) {
@@ -56,12 +57,11 @@ class Header extends Component {
 
   render() {
     return (
-      <Router history={browserHistory}>
         <div className="container is-mobile">
           <nav className="level is-mobile" id="header">
             <div className="level-left">
               <div className="level-item">
-                <Link to="/protected" replace>KANBAN</Link>
+                KANBAN
               </div>
               {this.logInOut()}
             </div>
@@ -70,35 +70,9 @@ class Header extends Component {
             </div>
             <NewCard closeModal={this.toggleModal} modalState={this.state.modalState}></NewCard>
           </nav>
-          <Route path="/" component={Welcome}/>
-          <Route path="/login" component={Login}/>
-          <PrivateRoute authed={this.props.auth} path="/protected" component={Board}/>
-
         </div>
-      </Router>
     )
   }
-}
-
-function PrivateRoute({
-  component: Component,
-  authed,
-  ...rest
-}) {
-  return (
-    <Route
-      {...rest}
-      render={(props) => authed
-      ? <Component {...props}/>
-      : <Redirect
-        push
-        to={{
-        pathname: '/login',
-        state: {
-          from: props.location
-        }
-      }}/>}/>
-  )
 }
 
 const mapStatetoProps = (state) => {

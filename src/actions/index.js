@@ -70,6 +70,7 @@ export const checkUser = () => {
           type: LOAD_AUTH, 
           auth: res.data.success
         })
+        return res.data.username;
       })
   }
 }
