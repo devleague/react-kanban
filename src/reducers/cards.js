@@ -41,12 +41,12 @@ export default function(state = initialState, action) {
         })
       });
     case EDIT_CARD:
-    console.log(action.payload)
       return Object.assign({}, state, {
         cards: state.cards.map(card => {
           if (card._id == action.payload._id) {
             return Object.assign({}, card, action.payload);
           }
+          return card;
         })
       });
     case REQUEST_CARDS:
