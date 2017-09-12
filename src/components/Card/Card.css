@@ -6,10 +6,6 @@
   border: 1px solid black;
   margin: 10px;
   position: relative; }
-  .card.hidden {
-    visibility: hidden; }
 
-.delBtn {
-  position: absolute;
-  top: 0;
-  right: 0; }
+.card__hidden {
+  visibility: hidden; }
