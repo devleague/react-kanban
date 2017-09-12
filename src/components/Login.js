@@ -97,10 +97,7 @@ class Login extends Component {
                                 .bind(this)}>Log In</button>
                         </div>
                         <div className="control">
-                            <button className="button is-link">Cancel</button>
-                        </div>
-                        <div className="control">
-                            <button className="button is-info">New User</button>
+                            <button className="button is-link">New User?</button>
                         </div>
                     </div>
                 </div>

@@ -1,12 +1,8 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
-import {BrowserRouter as Router, Route, Link, Redirect} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import NewCard from "./NewCard";
-import Board from "./Board.js";
-import Login from "./Login.js";
-import Welcome from "./Welcome.js";
 import {logUserOut} from "../actions";
-const browserHistory = Router.browserHistory;
 
 class Header extends Component {
   constructor(props) {
@@ -37,10 +33,13 @@ class Header extends Component {
     }
   }
 
-  
-  handleLogoutClick(){
-    this.props.logUserOut();
-    window.location.reload();
+  handleLogoutClick() {
+    this
+      .props
+      .logUserOut();
+    window
+      .location
+      .reload();
   }
 
   logInOut(status) {
@@ -50,27 +49,39 @@ class Header extends Component {
       </div>
     } else {
       return <div className="level-item">
-        <a onClick={this.handleLogoutClick.bind(this)}>Log Out</a>
+        <a onClick={this
+          .handleLogoutClick
+          .bind(this)}>Log Out</a>
       </div>
+    }
+  }
+
+  newTaskButton(status) {
+    if (!status) {
+      return null;
+    } else {
+      return (
+        <div className="level-right">
+          <button onClick={this.toggleModal} className="button is-dark">New Task</button>
+        </div>
+      )
     }
   }
 
   render() {
     return (
-        <div className="container is-mobile">
-          <nav className="level is-mobile" id="header">
-            <div className="level-left">
-              <div className="level-item">
-                KANBAN
-              </div>
-              {this.logInOut()}
+      <div className="container is-mobile">
+        <nav className="level is-mobile" id="header">
+          <div className="level-left">
+            <div className="level-item">
+              KANBAN
             </div>
-            <div className="level-right">
-              <button onClick={this.toggleModal} className="button is-dark">New Task</button>
-            </div>
-            <NewCard closeModal={this.toggleModal} modalState={this.state.modalState}></NewCard>
-          </nav>
-        </div>
+            {this.logInOut(this.props.auth)}
+          </div>
+          {this.newTaskButton(this.props.auth)}
+          <NewCard closeModal={this.toggleModal} modalState={this.state.modalState}></NewCard>
+        </nav>
+      </div>
     )
   }
 }

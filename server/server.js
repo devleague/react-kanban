@@ -227,7 +227,7 @@ app.post('/login/new', (req, res) => {
 });
 
 app.post("/login", passport.authenticate("local"), (req, res) => {
-  console.log(res.req.headers.cookie)
+  console.log(req.body.username);
   res.json({success: true, username: req.body.username});
 })
 

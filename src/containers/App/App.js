@@ -1,13 +1,12 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
-import {BrowserRouter as Router, Route, Link, Redirect} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Redirect} from 'react-router-dom';
 import {loadCards, checkUser} from "../../actions";
 import 'bulma/css/bulma.css';
 import './App.css';
 import Header from "../../components/Header.js";
 import Login from "../../components/Login.js";
 import Board from "../../components/Board.js";
-import Welcome from "../../components/Welcome.js";
 const browserHistory = Router.browserHistory;
 
 class App extends Component {
@@ -19,7 +18,6 @@ class App extends Component {
   }
 
   componentDidMount() {
-    let username;
     this
       .props
       .checkUser();
@@ -69,7 +67,7 @@ const mapDispatchtoProps = (dispatch) => {
       dispatch(loadCards(cards));
     },
     checkUser: () => {
-      7 - dispatch(checkUser());
+      dispatch(checkUser());
     }
   }
 }
