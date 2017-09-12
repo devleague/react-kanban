@@ -40,7 +40,7 @@ export const fetchAddCard = card => dispatch => {
       newCard => {
         if (newCard.status === 'success') {
           dispatch(addCard(newCard.data));
-          return Promise.resolve()
+          return Promise.resolve();
         }
       },
       err => console.log(err)
@@ -67,7 +67,7 @@ export const fetchMoveCard = (_id, targetColumn) => dispatch => {
         if (card.status === 'success') {
           return Promise.resolve(card.data);
         } else {
-          console.log(card.message)
+          console.log(card.message);
         }
       },
       error => console.log(error)
@@ -88,11 +88,11 @@ export const fetchDelCard = _id => dispatch => {
     .then(res => res.json())
     .then(
       card => {
-        console.log(card)
+        console.log(card);
         if (card.status === 'success') {
           return Promise.resolve(card);
         } else {
-          console.log(card.message)
+          console.log(card.message);
         }
       },
       error => console.log(error)
@@ -108,6 +108,23 @@ export const editCard = card => {
 
 export const fetchEditCard = card => dispatch => {
   dispatch(editCard(card));
+  const { _id } = card;
+  return fetch(`/api/cards/${_id}`, {
+    headers: { 'Content-Type': 'application/json' },
+    method: 'PATCH',
+    body: JSON.stringify(card)
+  })
+    .then(res => res.json())
+    .then(
+      card => {
+        if (card.status === 'success') {
+          return Promise.resolve(card);
+        } else {
+          console.log(card.message);
+        }
+      },
+      error => console.log(error)
+    );
 };
 
 //get all cards
@@ -131,10 +148,10 @@ export const fetchCards = () => dispatch => {
     .then(res => res.json())
     .then(
       cards => {
-        if(cards.status === 'success') {
+        if (cards.status === 'success') {
           return dispatch(receiveCards(cards.data));
         } else {
-          console.log(cards.message)
+          console.log(cards.message);
         }
       },
       error => console.log('An error occured.', error)
