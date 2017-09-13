@@ -1,0 +1,39 @@
+.app {
+  border: 1px solid black;
+  width: 75%;
+  height: auto;
+  margin: 0 auto; }
+
+.column-container {
+  border: 1px solid red;
+  box-sizing: border-box;
+  display: flex;
+  align-items: stretch;
+  height: auto; }
+
+.card {
+  width: 95%;
+  margin: 0 auto;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 1px solid black;
+  margin: 10px;
+  position: relative; }
+
+.card__hidden {
+  visibility: hidden; }
+
+.column {
+  border-width: 0 1px 0 0;
+  border-color: black;
+  border-style: solid;
+  width: 33.333%;
+  min-height: 500px;
+  box-sizing: border-box;
+  vertical-align: top;
+  flex: 1; }
+  .column:last-child {
+    border: none; }
+
+.column__heading {
+  font-size: 23px; }

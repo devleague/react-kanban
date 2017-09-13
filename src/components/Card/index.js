@@ -1,5 +1,4 @@
 import React, { PureComponent } from 'react';
-import './Card.css';
 import EditCardForm from '../EditCardForm';
 import Field from '../Field';
 import { connect } from 'react-redux';
