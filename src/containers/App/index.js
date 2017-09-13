@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import './App.css';
 import Navbar from '../../components/Navbar';
-import AddCardButton from '../../components/AddCardButton';
 import Column from '../Column';
 import AddCardForm from '../AddCardForm';
 import { STATUS } from '../../actions/constants';
@@ -47,7 +45,6 @@ class App extends Component {
     return (
         <div className="app">
           <Navbar>
-            <AddCardButton addCard={this.props.addCard} />
           </Navbar>
           <div className="column-container">
             <Column status={STATUS.QUEUE} cards={sortedCards.inQueue} />
