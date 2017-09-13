@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import './Column.css';
-import Card from '../../components/Card/';
+import Heading from '../../components/Heading';
+import Card from '../../components/Card';
 import AddCardForm from '../AddCardForm';
 import AddCardButton from '../../components/AddCardButton';
 import { connect } from 'react-redux';
@@ -53,9 +53,10 @@ class Column extends Component {
         onDragOver={this._onDragOver}
         className="column"
       >
+        <Heading>{status}</Heading>
         {cards.map(card => <Card key={card._id} {...card} />)}
         {isDisplayingAddForm ? (
-          <AddCardForm hideAddForm={this.hideAddForm} status={status}/>
+          <AddCardForm hideAddForm={this.hideAddForm} status={status} />
         ) : (
           <AddCardButton displayAddForm={this.displayAddForm} />
         )}
