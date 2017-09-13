@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Input from '../Input';
+import TextArea from '../TextArea';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchEditCard } from '../../actions/cardActions';
@@ -21,7 +23,6 @@ class EditCardForm extends Component {
     const target = e.target;
     const name = target.name;
     const value = target.value;
-
     this.setState({
       [name]: value
     });
@@ -34,42 +35,37 @@ class EditCardForm extends Component {
   }
 
   render() {
-    const { title, priority, assignedTo, assignedBy } = this.state;
+    const { title, priority, assignedTo, createdBy } = this.state;
 
     return (
         <form onSubmit={this.handleSubmit}>
-          <div>
-            <input
-              type="text"
+            <TextArea
+              label="Title"
               value={title}
               name="title"
               onChange={this.handleChange}
             />
-          </div>
-          <div>
-            <input
+            <Input
+              label="Priority"
               type="text"
               value={priority}
               name="priority"
               onChange={this.handleChange}
             />
-          </div>
-          <div>
-            <input
+            <Input
+              label="Created By"
+              type="text"
+              value={createdBy}
+              name="createdBy"
+              onChange={this.handleChange}
+            />
+            <Input
+              label="Assigned To"
               type="text"
               value={assignedTo}
               name="assignedTo"
               onChange={this.handleChange}
             />
-          </div>
-          <div>
-            <input
-              type="text"
-              value={assignedBy}
-              name="assignedBy"
-              onChange={this.handleChange}
-            />
-          </div>
           <button type="submit">save</button>
         </form>
     );
