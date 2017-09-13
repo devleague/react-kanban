@@ -1,0 +1,32 @@
+{
+  "name": "react-kanban",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "classnames": "^2.2.5",
+    "express": "^4.15.4",
+    "isomorphic-fetch": "^2.2.1",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "react-redux": "^5.0.6",
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0"
+  },
+  "devDependencies": {
+    "node-sass-chokidar": "0.0.3",
+    "react-scripts": "1.0.11",
+    "redux-devtools": "^3.4.0",
+    "redux-logger": "^3.0.6"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "build-css": "node-sass-chokidar scss/ -o public/",
+    "watch-css": "npm run build-css && node-sass-chokidar scss/ -o public/ -w",
+    "start-server": "nodemon ./server/index.js"
+  },
+  "proxy": "http://localhost:8080"
+}
