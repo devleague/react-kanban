@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import {connect} from "react-redux";
 import {Redirect} from "react-router-dom";
 import {addUser, authUser} from "../actions";
+import NewUser from "./NewUser";
 
 class Login extends Component {
     constructor(props) {
@@ -9,9 +10,21 @@ class Login extends Component {
 
         this.state = {
             username: "",
-            password: ""
+            password: "",
+            newUser: null,
+            modalState: false
         }
 
+        this.toggleModal = this.toggleModal.bind(this);
+
+    }
+
+    toggleModal() {
+        this.setState((prev, props) => {
+            const newState = !prev.modalState;
+
+            return {modalState: newState};
+        })
     }
 
     handleUsername(e) {
@@ -97,16 +110,20 @@ class Login extends Component {
                                 .bind(this)}>Log In</button>
                         </div>
                         <div className="control">
-                            <button className="button is-link">New User?</button>
+                            <button className="button is-link" onClick={this.toggleModal}>New User?</button>
                         </div>
                     </div>
+                    <NewUser
+                    closeModal={this.toggleModal}
+                    modalState={this.state.modalState}
+                    ></NewUser>
                 </div>
 
             )
         }
     }
-
 }
+
 
 const mapStatetoProps = (state) => {
     return {users: state.users, auth: state.auth}
