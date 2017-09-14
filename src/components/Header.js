@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import {connect} from "react-redux";
 import {Link} from 'react-router-dom';
 import NewCard from "./NewCard";
-import {logUserOut} from "../actions";
+import {logUserOut, loadUsers} from "../actions";
 
 class Header extends Component {
   constructor(props) {
@@ -78,6 +78,7 @@ class Header extends Component {
             </div>
             {this.logInOut(this.props.auth)}
           </div>
+          <p className="level-item has-text-centered">{this.props.auth ? `Hello ${this.props.auth.username}!` : null}</p>
           {this.newTaskButton(this.props.auth)}
           <NewCard closeModal={this.toggleModal} modalState={this.state.modalState}></NewCard>
         </nav>
@@ -94,6 +95,9 @@ const mapDispatchtoProps = (dispatch) => {
   return {
     logUserOut: () => {
       dispatch(logUserOut())
+    },
+    loadUsers: () => {
+      dispatch(loadUsers())
     }
   }
 }

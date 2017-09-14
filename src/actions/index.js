@@ -68,9 +68,8 @@ export const checkUser = () => {
       .then((res) => {
         dispatch({
           type: LOAD_AUTH, 
-          auth: res.data.success
+          auth: res.data
         })
-        return res.data.username;
       })
   }
 }
@@ -122,7 +121,7 @@ export const authUser = (user) => {
     axios
       .post("/login", querystring.stringify(user))
       .then((res) => {
-        dispatch({type: LOAD_AUTH, auth: res.data.success})
+        dispatch({type: LOAD_AUTH, auth: res.data})
       })
   }
 }

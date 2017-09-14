@@ -1,10 +1,9 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { addCard, loadCards } from "../actions"
+import {connect} from "react-redux";
+import {addCard, loadCards, loadUsers} from "../actions"
 
-
-class Modal extends Component{
+class Modal extends Component {
   constructor(props) {
     super(props);
 
@@ -15,110 +14,126 @@ class Modal extends Component{
       assignedTo: "",
       allFieldsError: null
     }
+
   }
 
-  notificationError(){
+  notificationError() {
     return (
       <div className="notification is-danger">
-        <button className="delete" onClick={this.handleNotificationClose.bind(this)}></button>
-    <p>All fields required!</p>
-  </div>
+        <button
+          className="delete"
+          onClick={this
+          .handleNotificationClose
+          .bind(this)}></button>
+        <p>All fields required!</p>
+      </div>
     )
   }
 
-  handleTitle(e){
-    this.setState({
-      title: e.target.value
-    })
+  handleTitle(e) {
+    this.setState({title: e.target.value})
   }
 
-  handleNotificationClose(){
-    console.log("TEST");
-    this.setState({
-      allFieldsError: null
-    })
+  handleNotificationClose() {
+    this.setState({allFieldsError: null})
   }
 
-  handleCreatedBy(e){
-    this.setState({
-      createdBy: e.target.value
-    })
+
+  handleAssignedTo(e) {
+    this.setState({assignedTo: e.target.value})
   }
 
-  handleAssignedTo(e){
-    this.setState({
-      assignedTo: e.target.value
-    })
+  handleDropDown(e) {
+    this.setState({priority: e.target.value})
   }
 
-  handleDropDown(e){
-    this.setState({
-      priority: e.target.value
-    })
+  userList() {
+    return this.props.users
   }
 
-  handleSubmitClick(){
-    if(this.state.title.length === 0||
-      this.state.createdBy.length === 0||
-      this.state.assignedTo.length === 0
-    ){
-      this.setState({
-        allFieldsError: "true"
-      })
+  handleSubmitClick() {
+    if (this.state.title.length === 0 || this.state.assignedTo.length === 0) {
+      this.setState({allFieldsError: "true"})
       return null;
     }
 
-    this.setState({
-      allFieldsError: null
-    })
+    this.setState({allFieldsError: null})
 
     let newCard = {
       title: this.state.title,
       priority: this.state.priority,
       status: "inQueue",
-      createdBy: this.state.createdBy,
+      createdBy: this.props.auth.username,
       assignedTo: this.state.assignedTo
     }
 
-    this.props.addCard(newCard);
-    this.props.closeModal();
+    this
+      .props
+      .addCard(newCard);
+    this
+      .props
+      .closeModal();
   }
 
-  render(){
-    if(!this.props.modalState){
+  render() {
+    if (!this.props.modalState) {
       return null;
     }
-    return(
+    return (
       <div className="modal is-active">
-        <div className="modal-background" onClick={this.props.closeModal} />
+        <div className="modal-background" onClick={this.props.closeModal}/>
         <div className="modal-card">
-        {this.state.allFieldsError ? this.notificationError() : null}
+          {this.state.allFieldsError
+            ? this.notificationError()
+            : null}
           <header className="modal-card-head">
             <p className="modal-card-title">New Task</p>
-            <button className="delete" onClick={this.props.closeModal} />
+            <button className="delete" onClick={this.props.closeModal}/>
           </header>
           <section className="modal-card-body">
             <div className="content">
               <div className="field">
                 <label className="label">Title</label>
-                <input type="text" className="input" placeholder="Title" onChange={this.handleTitle.bind(this)}/>
+                <input
+                  type="text"
+                  className="input"
+                  placeholder="Title"
+                  onChange={this
+                  .handleTitle
+                  .bind(this)}/>
               </div>
 
-              <div className="field">
-                <label className="label">Created By</label>
-                <input type="text" className="input" placeholder="Created By" onChange={this.handleCreatedBy.bind(this)}/>
-              </div>
 
               <div className="field">
                 <label className="label">Assigned To</label>
-                <input type="text" className="input" placeholder="Assigned To" onChange={this.handleAssignedTo.bind(this)}/>
+                <div className="control has-icons-left">
+                  <div className="select">
+                    <select
+                      onChange={this
+                      .handleAssignedTo
+                      .bind(this)}>
+                      <option>Select User</option>
+                      {this
+                        .props
+                        .users
+                        .map((user) => {
+                          return (
+                            <option value={user.username} key={user.username}>{user.username}</option>
+                          )
+                        })}
+                    </select>
+                  </div>
+                </div>
               </div>
 
               <div className="field">
                 <label className="label">Priority</label>
                 <div className="control has-icons-left">
                   <div className="select">
-                    <select onChange={this.handleDropDown.bind(this)}>
+                    <select
+                      onChange={this
+                      .handleDropDown
+                      .bind(this)}>
                       <option>Select Priority</option>
                       <option value="Low">Low</option>
                       <option value="Medium">Medium</option>
@@ -140,7 +155,11 @@ class Modal extends Component{
                 <a className="button" onClick={this.props.closeModal}>Cancel</a>
               </div>
               <div className="control">
-                <button className="button is-primary" onClick={this.handleSubmitClick.bind(this)}>Submit</button>
+                <button
+                  className="button is-primary"
+                  onClick={this
+                  .handleSubmitClick
+                  .bind(this)}>Submit</button>
               </div>
             </div>
           </footer>
@@ -157,10 +176,7 @@ Modal.propTypes = {
 }
 
 const mapStatetoProps = (state) => {
-  return {
-    cards: state.cards,
-    users: state.users
-  }
+  return {cards: state.cards, users: state.users, auth: state.auth}
 }
 
 const mapDispatchtoProps = (dispatch) => {
@@ -170,13 +186,13 @@ const mapDispatchtoProps = (dispatch) => {
     },
     loadCards: (cards) => {
       dispatch(loadCards(cards))
+    },
+    loadUsers: () => {
+      dispatch(loadUsers())
     }
   }
 }
 
-const ConnectedModal = connect(
-  mapStatetoProps,
-  mapDispatchtoProps
-)(Modal);
+const ConnectedModal = connect(mapStatetoProps, mapDispatchtoProps)(Modal);
 
 export default ConnectedModal;

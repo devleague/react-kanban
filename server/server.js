@@ -228,7 +228,7 @@ app.post('/login/new', (req, res) => {
 
 app.post("/login", passport.authenticate("local"), (req, res) => {
   console.log(req.body.username);
-  res.json({success: true, username: req.body.username});
+  res.json({username: req.body.username});
 })
 
 app.get("/logout", (req, res) => {
@@ -237,7 +237,7 @@ app.get("/logout", (req, res) => {
 
 app.get("/auth", (req, res) => {
   if(req.user){
-    res.json({success: true, username: req.user.username})
+    res.json(req.user.username)
   } else {
     console.log("res");
   }

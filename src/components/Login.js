@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import {Redirect} from "react-router-dom";
-import {addUser, authUser} from "../actions";
+import {addUser, authUser, loadUsers} from "../actions";
 import NewUser from "./NewUser";
 
 class Login extends Component {
@@ -136,6 +136,9 @@ const mapDispatchtoProps = (dispatch) => {
         },
         addUser: (user) => {
             dispatch(addUser(user))
+        },
+        loadUsers: () => {
+            dispatch(loadUsers())
         }
     }
 }
