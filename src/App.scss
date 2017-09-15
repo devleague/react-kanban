@@ -1,0 +1,157 @@
+@import url("https://fonts.googleapis.com/css?family=Gloria+Hallelujah");
+$blocker: #ffbdbd;
+$high: #e1f7d5;
+$medium: #c9c9ff;
+$low: #faf884;
+$bg: #fff4e4;
+$head: #f8b88b;
+$main-font: 'Gloria Hallelujah', cursive;
+
+ .input_sidebar  {
+  border: gray solid 2px;
+  border-radius: 5px;
+  margin: 3px;
+  height: 40px;
+  width: 100%;
+  padding: 5px;
+  font-family: $main-font;
+  background-color: $bg;
+}
+
+ .input_in_form  {
+  border: gray solid 2px;
+  border-radius: 5px;
+  font-size: 14px;
+  margin: 3px;
+  height: 20px;
+  width: 150px;
+  padding: 5px;
+  font-family: $main-font;
+  background-color: $bg;
+}
+
+button {
+  border-radius: 5px;
+  background-color: $head;
+  font-family: $main-font;
+  font-size: 14px;
+  margin: 5px;
+}
+
+.banner {
+  grid-column: 1/1;
+  font-family: $main-font;
+  text-align: left;
+}
+
+h1 {
+  text-align: center;
+}
+
+.kanban_board {
+  display: grid;
+  grid-template-columns: [first] 20% [second] 26% [third] 27% [fourth] 26%;
+  font-family: $main-font;
+}
+
+.queue_container, .inProgress_container, .done_container {
+   border: black solid 2px;
+   border-radius: 20px;
+   background-color: $bg;
+   margin: 10px;
+   margin-top: 100px;
+}
+
+.queue_header, .inProgress_header, .done_header {
+  background-color: $head;
+  border-radius: 20px 20px 0px 0px;
+  padding: 10px;
+}
+
+.queue_container {
+  grid-column: 2/2;
+}
+
+.inProgress_container {
+  grid-column: 3/3;
+}
+
+.done_container {
+  grid-column: 4/5;
+}
+
+.card {
+  padding: 10px;
+  border: black solid 1px;
+  margin: 5px;
+}
+
+.card_title, .card_priority, .created_by, .assigned_to {
+  display: grid;
+  grid-template-columns: [first] 30% [second] 5% [third] 65%;
+}
+
+.add_card_form {
+  display: grid;
+  grid-template-columns: [first] 20% [second] 2% [third] 78%;
+  font-family: $main-font;
+}
+
+.add_card_outer {
+  padding: 20px;
+}
+
+.runin {
+  grid-column: 1/1;
+  justify-self: right;
+  font-size: 12px;
+  text-align: right;
+}
+
+.text {
+  grid-column: 3/3;
+  justify-self: start;
+}
+
+.blocker, .high, .medium, .low {
+  padding: 10px;
+  border: black solid 1px;
+  margin: 10px 25px 10px 25px;
+  border-radius: 20px;
+}
+
+.blocker {
+  background-color: $blocker;
+}
+
+.high {
+  background-color: $high;
+}
+
+.medium {
+  background-color: $medium;
+}
+
+.low {
+  background-color: $low;
+}
+
+.queue_header, .inProgress_header, .done_header {
+  text-align: center;
+  font-size: 20px;
+}
+
+.arrows {
+  position: relative;
+  display: grid;
+  grid-template-columns: [1] 15% [2] 70% [3] 15%;
+}
+
+.left_arrow {
+  grid-column: 1/1;
+}
+
+.right_arrow {
+  grid-column: 3/3;
+  text-align: right;
+}

@@ -1,0 +1,123 @@
+@import url("https://fonts.googleapis.com/css?family=Gloria+Hallelujah");
+.input_sidebar {
+  border: gray solid 2px;
+  border-radius: 5px;
+  margin: 3px;
+  height: 40px;
+  width: 100%;
+  padding: 5px;
+  font-family: "Gloria Hallelujah", cursive;
+  background-color: #fff4e4; }
+
+.input_in_form {
+  border: gray solid 2px;
+  border-radius: 5px;
+  font-size: 14px;
+  margin: 3px;
+  height: 20px;
+  width: 150px;
+  padding: 5px;
+  font-family: "Gloria Hallelujah", cursive;
+  background-color: #fff4e4; }
+
+button {
+  border-radius: 5px;
+  background-color: #f8b88b;
+  font-family: "Gloria Hallelujah", cursive;
+  font-size: 14px;
+  margin: 5px; }
+
+.banner {
+  grid-column: 1/1;
+  font-family: "Gloria Hallelujah", cursive;
+  text-align: left; }
+
+h1 {
+  text-align: center; }
+
+.kanban_board {
+  display: grid;
+  grid-template-columns: [first] 20% [second] 26% [third] 27% [fourth] 26%;
+  font-family: "Gloria Hallelujah", cursive; }
+
+.queue_container, .inProgress_container, .done_container {
+  border: black solid 2px;
+  border-radius: 20px;
+  background-color: #fff4e4;
+  margin: 10px;
+  margin-top: 100px; }
+
+.queue_header, .inProgress_header, .done_header {
+  background-color: #f8b88b;
+  border-radius: 20px 20px 0px 0px;
+  padding: 10px; }
+
+.queue_container {
+  grid-column: 2/2; }
+
+.inProgress_container {
+  grid-column: 3/3; }
+
+.done_container {
+  grid-column: 4/5; }
+
+.card {
+  padding: 10px;
+  border: black solid 1px;
+  margin: 5px; }
+
+.card_title, .card_priority, .created_by, .assigned_to {
+  display: grid;
+  grid-template-columns: [first] 30% [second] 5% [third] 65%; }
+
+.add_card_form {
+  display: grid;
+  grid-template-columns: [first] 20% [second] 2% [third] 78%;
+  font-family: "Gloria Hallelujah", cursive; }
+
+.add_card_outer {
+  padding: 20px; }
+
+.runin {
+  grid-column: 1/1;
+  justify-self: right;
+  font-size: 12px;
+  text-align: right; }
+
+.text {
+  grid-column: 3/3;
+  justify-self: start; }
+
+.blocker, .high, .medium, .low {
+  padding: 10px;
+  border: black solid 1px;
+  margin: 10px 25px 10px 25px;
+  border-radius: 20px; }
+
+.blocker {
+  background-color: #ffbdbd; }
+
+.high {
+  background-color: #e1f7d5; }
+
+.medium {
+  background-color: #c9c9ff; }
+
+.low {
+  background-color: #faf884; }
+
+.queue_header, .inProgress_header, .done_header {
+  text-align: center;
+  font-size: 20px; }
+
+.arrows {
+  position: relative;
+  display: grid;
+  grid-template-columns: [1] 15% [2] 70% [3] 15%; }
+
+.left_arrow {
+  grid-column: 1/1; }
+
+.right_arrow {
+  grid-column: 3/3;
+  text-align: right; }
