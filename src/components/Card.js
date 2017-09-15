@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {deleteCard, moveCardRight, moveCardLeft} from '../actions';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { deleteCard, moveCardRight, moveCardLeft } from '../actions';
 import Edit from './Edit';
 
 class Card extends Component {
@@ -13,40 +13,29 @@ class Card extends Component {
       rightArrow: null
     };
 
-    this.modalHandler = this
-      .modalHandler
-      .bind(this);
-    this.hideModal = this
-      .hideModal
-      .bind(this);
-
+    this.modalHandler = this.modalHandler.bind(this);
+    this.hideModal = this.hideModal.bind(this);
   }
 
   modalHandler(e, index) {
-    this.setState({activeModal: index});
+    this.setState({ activeModal: index });
   }
 
   hideModal() {
-    this.setState({activeModal: null});
+    this.setState({ activeModal: null });
   }
 
   handleDelete(e) {
     let target = parseInt(e.target.id, 10);
-    this
-      .props
-      .deleteCard(target);
+    this.props.deleteCard(target);
   }
 
   handleMoveCardRight(e) {
-    this
-      .props
-      .moveCardRight(e.target.id);
+    this.props.moveCardRight(e.target.id);
   }
 
   handleMoveCardLeft(e) {
-    this
-      .props
-      .moveCardLeft(e.target.id);
+    this.props.moveCardLeft(e.target.id);
   }
 
   handleNull(e) {
@@ -69,22 +58,17 @@ class Card extends Component {
   }
 
   render() {
-
     return (
       <div className="cardContainer">
-        {this
-          .props
-          .cards
-          .filter((card) => {
+        {this.props.cards
+          .filter(card => {
             return card.status === this.props.status;
           })
-          .map((card) => {
+          .map(card => {
             return (
               <div key={card.id} className="card" id={this.props.status}>
                 <header className="card-header">
-                  <p className="card-header-title">
-                    {card.title}
-                  </p>
+                  <p className="card-header-title">{card.title}</p>
                   <a className="card-header-icon">
                     <span className="icon">
                       <i
@@ -98,9 +82,7 @@ class Card extends Component {
                     <span className="icon">
                       <i
                         className="fa fa-trash-o"
-                        onClick={this
-                        .handleDelete
-                        .bind(this)}
+                        onClick={this.handleDelete.bind(this)}
                         id={card.id}
                       />
                     </span>
@@ -110,7 +92,7 @@ class Card extends Component {
                   <div className="level">
                     <div className="level-left">
                       Created By: {card.createdBy}
-                      <br/>
+                      <br />
                       Assigned to: {card.assignedTo}
                     </div>
                     <div className="level-right">
@@ -121,22 +103,24 @@ class Card extends Component {
                 <footer className="card-footer">
                   <a
                     className="card-footer-item"
-                    onClick={this.props.leftButton
-                    ? this
-                      .handleMoveCardLeft
-                      .bind(this)
-                    : this
-                      .handleNull
-                      .bind(this)}
+                    onClick={
+                      this.props.leftButton ? (
+                        this.handleMoveCardLeft.bind(this)
+                      ) : (
+                        this.handleNull.bind(this)
+                      )
+                    }
                     id={card.id}
-                  >{this.props.leftButton}</a>
+                  >
+                    {this.props.leftButton}
+                  </a>
                   <a
                     className="card-footer-item"
-                    onClick={this
-                    .handleMoveCardRight
-                    .bind(this)}
+                    onClick={this.handleMoveCardRight.bind(this)}
                     id={card.id}
-                  >{this.props.rightButton}</a>
+                  >
+                    {this.props.rightButton}
+                  </a>
                 </footer>
                 <Edit
                   id={card.id}
@@ -149,26 +133,25 @@ class Card extends Component {
                 />
               </div>
             );
-          })
-}
+          })}
       </div>
     );
   }
 }
 
-const mapStatetoProps = (state) => {
-  return {cards: state.cards};
+const mapStatetoProps = state => {
+  return { cards: state.cards };
 };
 
-const mapDispatchtoProps = (dispatch) => {
+const mapDispatchtoProps = dispatch => {
   return {
-    deleteCard: (card) => {
+    deleteCard: card => {
       dispatch(deleteCard(card));
     },
-    moveCardRight: (card) => {
+    moveCardRight: card => {
       dispatch(moveCardRight(card));
     },
-    moveCardLeft: (card) => {
+    moveCardLeft: card => {
       dispatch(moveCardLeft(card));
     }
   };
