@@ -1,0 +1,63 @@
+$turquoise : #40e0d0;
+$red: #ff0000;
+
+* {
+  border-style: dotted;
+  padding: 2px;
+  margin: 0px;
+  font-family: 'Amatic SC', cursive;
+}
+
+body {
+  padding: 0px;
+}
+
+.cardList {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: space-between;
+  .Card {
+    flex: 1 1 100%;
+    //background: $turquoise;
+    border-style: solid;
+    font-size: 12px;
+    // background-image: url("https://c2.staticflickr.com/4/3365/3555774083_ee1e7bfb55_b.jpg");
+    // background-repeat: no-repeat;
+    // background-size: cover;
+  }
+}
+
+.input{
+  display: flex;
+  flex-flow: column wrap;
+  align: right;
+  width: 100%;
+  input {
+    flex: 1 1 100%;
+  }
+}
+
+.Edit{
+  float: none;
+}
+
+.Delete{
+  float: right;
+}
+
+.Boards {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: top-center;
+  justify-content: space-between;
+  .Board {
+    flex: 1 1 20%;
+  }
+}
+
+.Header {
+  background: $turquoise;
+  font-size: 20px;
+  text-align: center;
+}
