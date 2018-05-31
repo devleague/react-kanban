@@ -1,0 +1,103 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.column {
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+#header{
+  background-color: rgb(74, 74, 74);
+  padding: 1rem;
+  border: 1px solid grey;
+  color: grey;
+}
+
+
+
+.subtitle{
+  text-align: center;
+  color: grey;
+  font-size: 12px;
+}
+
+.card{
+  font-size: 12px;
+  margin: 5px;
+}
+
+#inQueue {
+  background-color: rgba(255, 228, 167, 0.85);
+}
+
+#inProgress{
+  background-color: rgba(181, 255, 181, 0.85);
+}
+
+
+#inQueueColumn {
+  border-right: 1px solid grey;
+  height: 100rem;
+}
+
+#inProgressColumn {
+  border-right: 1px solid grey;
+  height: 100rem;
+}
+
+.modal{
+  opacity: 1;
+  transition: opacity 300ms ease-in-out;
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s
+}
+
+@-webkit-keyframes animatetop {
+    from {top: -300px; opacity: 0}
+    to {top: 0; opacity: 1}
+}
+
+@keyframes animatetop {
+    from {top: -300px; opacity: 0}
+    to {top: 0; opacity: 1}
+}
+
+a span.screen-reader-text {
+  clip: rect(1px, 1px, 1px, 1px);
+    position: absolute !important;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+}
+
+#login {
+  padding: 3rem;
+}
+
+#welcome {
+  margin: 3rem;
+}

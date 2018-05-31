@@ -10,7 +10,7 @@ Build a Digital Kanban board using:
 - **React** for building the front-end User-Interface (UI)
 - HTML and CSS (via [sass](https://sass-lang.com))
 - **Express** as the Server
-- **Bookshelf.js** as your ORM for the **Postgresql** Datastore.
+- **Sequelize** as your ORM for the **Postgresql** Datastore.
 
 ## Layout/Style Guide
 ![screen shot 2016-11-04 at 1 21 12 pm](https://cloud.githubusercontent.com/assets/4650739/20025357/afd23626-a291-11e6-9d34-667a64ead92d.png)
@@ -68,10 +68,10 @@ Build an Express server which will serve your `index.html` and static assets.
 Your server will have these routes:
   - RESTful API endpoints to create, read, update, and delete kanban cards for your application.
     - Remember to use MVC architechture: Models, Views, Controllers!
-  - One route to
+  - One route to 
 
 ### Database
-PostgreSQL and Bookshelf ORM. Create a UML Schema for your database, consider [LucidChart](https://www.lucidchart.com/). Add these diagrams to your project.
+MongoDB and Mongoose (ORM). Create a UML Schema for your database, consider [LucidChart](https://www.lucidchart.com/). Add these diagrams to your project.
 
 ### Styles
 Make It Pretty!™
