@@ -60,21 +60,83 @@ The board you will building will have **3 columns**:
 ### Kanban Board (Main Component)
 A Kanban board contains multiple Columns (and Columns contain Cards). This is the main application component. It is responsible for retreiving data and *passing it down* to other child components.
 
+### Schemas
+
+## Cards
+|Property|Type|Options|
+|---|---|---|
+|id(Pk)|number|serial, not null, unique|
+|title|string|not null|
+|priority_id(Fk)|number|not null|
+|status_id(Fk)|number|not null|
+|created_by(Fk)|number|not null|
+|assigned_to(Fk)|number|nullable|
+|created_at|TS w/ TZ|not null|
+|updated_at|TS w/ TZ|not null|
+
+## Users
+|Property|Type|Options|
+|---|---|---|
+|id(Pk)|number|serial, not null, unique|
+|first_name|string|not null|
+|last_name|string|not null|
+|email|string|not null|
+|created_at|TS w/ TZ|not null|
+|updated_at|TS w/ TZ|not null|
+
+## Priorities
+|Property|Type|Options|
+|---|---|---|
+|id(Pk)|number|serial, not null, unique|
+|name|string|not null|
+|rank|number|not null|
+|created_at|TS w/ TZ|not null|
+|updated_at|TS w/ TZ|not null|
+
+## Statuses 
+|Property|Type|Options|
+|---|---|---|
+|id(Pk)|number|serial, not null, unique|
+|name|string|not null|
+|rank|number|not null|
+|created_at|TS w/ TZ|not null|
+|updated_at|TS w/ TZ|not null|
+
 ### Server
 Build an Express server which will serve your `index.html` and static assets.
-
-#### Routes
-
-Your server will have these routes:
-  - RESTful API endpoints to create, read, update, and delete kanban cards for your application.
-    - Remember to use MVC architechture: Models, Views, Controllers!
-  - One route to 
 
 ### Database
 PostgreSQL and Bookshelf ORM. Create a UML Schema for your database, consider [LucidChart](https://www.lucidchart.com/). Add these diagrams to your project.
 
 ### Styles
 Make It Pretty!™
+
+### Routes
+Your server will have these routes:
+  - RESTful API endpoints to create, read, update, and delete kanban cards for your application.
+    - Remember to use MVC architechture: Models, Views, Controllers!
+  - You will use `react-router` to add FE routes to the application.
+
+|route|action|
+|---|---|
+|/|Show the kanban board|
+|/admin/users|Show a listing of users of the board|
+|/admin/users/new|Show a form to add a new user|
+|/admin/users/:id|Detail view of user **(Stretch goal)**|
+|/admin/users/:id/edit|Show form to let user update information **(Stretch goal)**|
+
+## Stretch Goals
+
+|route|action|
+|---|---|
+|/admin/priorities/|Show list of current priorities|
+|/admin/priorities/new|Show form to add new Priority|
+|/admin/priorities/:id/edit|Show form to update selected Priority|
+|/admin/statuses/|Show list of current statuses|
+|/admin/statuses/new|Show form to add new Status|
+|/admin/statuses/:id/edit|Show form to update selected Status|
+
+Add **drag and drop** functionality
 
 #### Responsive Layout
 - create a desktop and mobile view. Tablet view is not needed (possible stretch goal).
