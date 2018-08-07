@@ -1,0 +1,38 @@
+* {
+  border-style: dotted;
+  padding: 2px;
+  margin: 0px;
+  font-family: 'Amatic SC', cursive; }
+
+body {
+  padding: 0px; }
+
+.cardList {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: space-between; }
+  .cardList .Card {
+    flex: 1 1 100%;
+    border-style: solid;
+    font-size: 12px; }
+
+.input {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center; }
+  .input input {
+    flex: 1 1 100%; }
+
+.Boards {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: top-center;
+  justify-content: space-between; }
+  .Boards .Board {
+    flex: 1 1 20%; }
+
+.Header {
+  background: #ff0000;
+  font-size: 20px;
+  text-align: center; }
