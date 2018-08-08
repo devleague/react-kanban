@@ -26,6 +26,7 @@ Cards contain information about a task.
 A Card has 6 properties:
   1. A unique identifier, e.g. "Card-Id #001".
   1. A Title
+  1. A Body (task details)
   1. A priority selection
   1. A status, the status of a card. Should match the column the card can be found in. Columns: "Queue", "In Progress", or "Done".
   1. A "Created by" field. This should display name of the person who created the task.
@@ -66,7 +67,8 @@ A Kanban board contains multiple Columns (and Columns contain Cards). This is th
 |Property|Type|Options|
 |---|---|---|
 |id(Pk)|number|serial, not null, unique|
-|title|string|not null|
+|title|string(255)|not null|
+|body|string(1024)|not null|
 |priority_id(Fk)|number|not null|
 |status_id(Fk)|number|not null|
 |created_by(Fk)|number|not null|
