@@ -35,7 +35,7 @@ A Card has 6 properties:
 #### Creating a new Card
 There should be a form which is used to create a new Card. When a card is first created we need minimal information, the information needed is:
   - Title (String)
-  - Priority (low, Medium, High, Blocker)
+  - Priority (Low, Medium, High, Blocker)
   - Created By (Full Name)
   - Assigned To (Full Name)
 
@@ -103,6 +103,8 @@ A Kanban board contains multiple Columns (and Columns contain Cards). This is th
 |rank|number|not null|
 |created_at|TS w/ TZ|not null|
 |updated_at|TS w/ TZ|not null|
+
+* Rank determines the position of the Priorities and Statutes when display in either a drop down input or when displaying columns by Statuses.
 
 ### Server
 Build an Express server which will serve your `index.html` and static assets.
