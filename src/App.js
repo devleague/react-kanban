@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import logo from './giphy-4.gif';
 import './App.css';
 import { getItemsFromFakeXHR, addItemToFakeXHR, deleteItemByIdFromFakeXHR } from './db/inventory.db';
-import ItemForm from './ItemForm';
+import Logo from './giphy-4.gif'
+import AddTask from './AddTask';
 const ReactDOM = require('react-dom');
 
 
@@ -30,6 +30,14 @@ class App extends Component {
       })
   }
 
+  getItemById(itemId) {
+    getItemsFromFakeXHR(itemId)
+    .then( result => {
+      console.log('okay?', itemId)
+      console.log('GOTTEN');
+    })
+  }
+
   addItem(item) {
     addItemToFakeXHR(item)
     .then( items => {
@@ -45,50 +53,110 @@ class App extends Component {
     })
   }
 
+  onMouseEnterHandler() {
+    this.setState({
+      hover: true
+    });
+    console.log('enter hover');
+  }
+
+  onMouseLeaveHandler() {
+    this.setState({
+      hover: false
+    });
+    console.log('leave hover');
+  }
+
   render() {
     const { items } = this.state
     return (
-     <div id='kanban'>
+      <div id='kanban'>
       <div id='tasks'>
             <div className='taskCol'>
               <h1>THINGS TO DO</h1>
-              <TODO deleteItemById={this.deleteItemById} items={items}/>
+              <TODO getItemById={this.getItemById} deleteItemById={this.deleteItemById} items={items}/>
             </div>
             <div className='taskCol'>
               <h1>DOING</h1>
-              <DOING deleteItemById={this.deleteItemById} items={items}/>
+              <DOING getItemById={this.getItemById} deleteItemById={this.deleteItemById} items={items}/>
             </div>
             <div className='taskCol'>
-              <h1>DUN</h1>
-              <DONE deleteItemById={this.deleteItemById} items={items}/>
+              <h1>DONE</h1>
+              <DONE getItemById={this.getItemById} deleteItemById={this.deleteItemById} items={items}/>
             </div>
-            
       </div>
-      <button></button>
-      <div id='form' style={{display:'none'}}><ItemForm addItem={this.addItem}/></div>
+      <br/>
+    <AddTask addItem={this.addItem}/>
       </div>
     );
   }
 }
 
+// class TODO extends Component {
+//   constructor(props) {
+//     super(props)
+//     this.state = {
+//       isHidden: true
+//     }
+//   }
+
+//   showDescription() {
+//     this.setState({
+//       isHidden: !this.state.isHidden
+//     })
+//   }
+
+//   render() {
+//     return this.props.items.filter(item => item.status === 'ToDo').map( item => <div key={item.id} onClick={this.showDescription.bind(this)}>{item.name}{!this.state.isHidden && <div>{item.description}</div>}</div>)
+//   }
+// }  
+
 function TODO(props) {
-  return props.items.filter(item => item.type === 'Thing To Do').map( item => <div key={item.id} onClick={ () => props.deleteItemById(item.id)}>{item.name}</div>)
+  return props.items.filter(item => item.status === 'ToDo').map( item => <div className='toDo'>
+    <div className='taskDetails'>
+      <div className='taskName' key={item.id} onClick={ () => props.getItemById(item.id)}>
+        {item.name}
+      </div>
+      <div className='taskDescription'>{item.description}</div>
+    </div>
+    <div className='editDelete'>
+      <button className='editButton'>Edit</button>
+      <button className='deleteButton' onClick={() => props.deleteItemById(item.id)}>Delete</button>
+    </div>
+  </div>)
 }
 
 function DOING(props) {
-  return props.items.filter(item => item.type === 'Doing').map( item => <div key={item.id} onClick={ () => props.deleteItemById(item.id)}>{item.name}</div>)
+  return props.items.filter(item => item.status === 'Doing').map( item => <div className='doing'>
+  <div className='taskDetails'>
+    <div className='taskName' key={item.id} onClick={ () => props.getItemById(item.id)}>
+      {item.name}
+    </div>
+    <div className='taskDescription'>{item.description}</div>
+  </div>
+  <div className='editDelete'>
+    <button className='editButton'>Edit</button>
+    <button className='deleteButton' onClick={() => props.deleteItemById(item.id)}>Delete</button>
+  </div>
+</div>)
 }
 
 function DONE(props) {
-  return props.items.filter(item => item.type === 'Dun').map( item => <div key={item.id} onClick={ () => props.deleteItemById(item.id)}>{item.name}</div>)
+  return props.items.filter(item => item.status === 'Done').map( item => <div className='done'>
+  <div className='taskDetails'>
+    <div className='taskName' key={item.id} onClick={ () => props.getItemById(item.id)}>
+      {item.name}
+    </div>
+    <div className='taskDescription'>{item.description}</div>
+  </div>
+  <div className='editDelete'>
+    <button className='editButton'>Edit</button>
+    <button className='deleteButton' onClick={() => props.deleteItemById(item.id)}>Delete</button>
+  </div>
+</div>)
 }
 
-
 export default App;
-
-
-
-
 
 //for class App
  // <div className="App">

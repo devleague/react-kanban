@@ -1,17 +1,20 @@
 let itemsFromFakeDB = [{
     id: 1,
     name: 'Eat Fud',
-    type: 'Thing To Do'
+    description: 'CUZ IM HUNGRY',
+    status: 'ToDo'
 },
 {
     id: 2,
     name: 'Chase Paper',
-    type: 'Doing'
+    description: 'CUZ IM POOR',
+    status: 'Doing'
 },
 {
     id: 3,
     name: 'Kanak',
-    type: 'Dun'
+    description: 'CUZ IM TIRED',
+    status: 'Done'
 }]
 
 let newId = 4;
@@ -26,6 +29,7 @@ export const addItemToFakeXHR = (item) => new Promise((resolve, reject) => {
     setTimeout( () => {
         item.id = newId;
         newId++;
+        console.log(item);
         itemsFromFakeDB.push(item);
         console.log('itemFromFakeDB', itemsFromFakeDB)
         resolve(itemsFromFakeDB)
@@ -35,7 +39,16 @@ export const addItemToFakeXHR = (item) => new Promise((resolve, reject) => {
 export const getItemByIdFromFakeXHR = (itemId) => new Promise( (resolve, reject) => {
     setTimeout( () => {
       const itemResponse = itemsFromFakeDB.find( item => item.id === itemId);
-      if (itemResponse) resolve(itemResponse);
+      if (itemResponse) { console.log('hi', itemResponse);resolve(itemResponse);}
+      else reject({status: 404, message: 'item not found'})
+    }, 500)
+  })
+
+  export const editItemByIdFromFakeXHR = (itemId, info) => new Promise( (resolve, reject) => {
+    setTimeout( () => {
+      const itemResponse = itemsFromFakeDB.find( item => item.id === itemId);
+      if (itemResponse){
+      }
       else reject({status: 404, message: 'item not found'})
     }, 500)
   })
