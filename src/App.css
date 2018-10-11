@@ -1,0 +1,53 @@
+.App {
+  text-align: center;
+  height: 100px;
+}
+
+.App-logo {
+  width: 100px;
+  height: 100px;
+  animation: App-logo-spin infinite 20s linear;
+  height: 40vmin;
+}
+
+.App-header {
+  height: 100px;
+  background-color: #282c34;
+  /* min-height: 100vh; */
+  display: flex;
+  flex-direction: column;
+  /* align-items: center;
+  justify-content: center; */
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+#bigContainer {
+  display: flex;
+}
+
+.cardContainer {
+  height: 500px;
+  width: 600 px; /*why is this invalid in css?*/
+  /* padding: 100px; */
+  border: 1px solid grey;
+}
+
+.cards {
+  border: 2px solid green;
+  border-radius: 10px;
+  background-color: rgb(206, 202, 202);
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
