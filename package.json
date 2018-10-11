@@ -3,15 +3,28 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "body-parser": "^1.18.3",
+    "bookshelf": "^0.13.3",
+    "dotenv": "^6.1.0",
+    "express": "^4.16.4",
+    "knex": "^0.15.2",
+    "nodemon": "^1.18.4",
+    "pg": "^7.5.0",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
-    "react-scripts": "2.0.4"
+    "react-redux": "^5.0.7",
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "2.0.4",
+    "redux": "^4.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "migrate": "POSTGRES_HOSTNAME=localhost POSTGRES_CONTAINER_PORT=5432 npx knex migrate:latest",
+    "seed": "POSTGRES_HOSTNAME=localhost POSTGRES_CONTAINER_PORT=5432  npx knex seed:run",
+    "flushdb": "POSTGRES_HOSTNAME=localhost POSTGRES_CONTAINER_PORT=5432 npx knex migrate:rollback ; POSTGRES_HOSTNAME=localhost POSTGRES_CONTAINER_PORT=5432 npx knex migrate:latest, POSTGRES_HOSTNAME=localhost POSTGRES_CONTAINER_PORT=5432 npx knex seed:run"
   },
   "eslintConfig": {
     "extends": "react-app"

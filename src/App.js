@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
-import { getItemsFromFakeXHR, addItemToFakeXHR, deleteItemByIdFromFakeXHR } from './db/inventory.db';
-import Logo from './giphy-4.gif'
+import { getItemsFromFakeXHR, addItemToFakeXHR, deleteItemByIdFromFakeXHR, editItemByIdFromFakeXHR } from './db/inventory.db';
 import AddTask from './AddTask';
-const ReactDOM = require('react-dom');
+import EditTask from './EditTask';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { Provider } from 'react-redux';
 
 
 class App extends Component {
@@ -25,9 +26,9 @@ class App extends Component {
     getItemsFromFakeXHR()
       .then( items => {
         this.setState({items}, () => {
-          console.log('this.state', this.state)
-        })
+        console.log('this.state', this.state)
       })
+    })
   }
 
   getItemById(itemId) {
@@ -35,6 +36,13 @@ class App extends Component {
     .then( result => {
       console.log('okay?', itemId)
       console.log('GOTTEN');
+    })
+  }
+
+  editItemById(itemId) {
+    editItemByIdFromFakeXHR(itemId)
+    .then( result => {
+      console.log('UPDATED');
     })
   }
 
@@ -74,19 +82,20 @@ class App extends Component {
       <div id='tasks'>
             <div className='taskCol'>
               <h1>THINGS TO DO</h1>
-              <TODO getItemById={this.getItemById} deleteItemById={this.deleteItemById} items={items}/>
+              <TODO getItemById={this.getItemById} deleteItemById={this.deleteItemById} editItemById={this.editItemById} items={items}/>
             </div>
             <div className='taskCol'>
               <h1>DOING</h1>
-              <DOING getItemById={this.getItemById} deleteItemById={this.deleteItemById} items={items}/>
+              <DOING getItemById={this.getItemById} deleteItemById={this.deleteItemById} editItemById={this.editItemById} items={items}/>
             </div>
             <div className='taskCol'>
               <h1>DONE</h1>
-              <DONE getItemById={this.getItemById} deleteItemById={this.deleteItemById} items={items}/>
+              <DONE getItemById={this.getItemById} deleteItemById={this.deleteItemById} editItemById={this.editItemById} items={items}/>
             </div>
-      </div>
-      <br/>
-    <AddTask addItem={this.addItem}/>
+        </div>
+        <br/>
+        <AddTask addItem={this.addItem}/>
+        <EditTask addItem={this.addItem}/>
       </div>
     );
   }
@@ -144,7 +153,7 @@ function DOING(props) {
 function DONE(props) {
   return props.items.filter(item => item.status === 'Done').map( item => <div className='done'>
   <div className='taskDetails'>
-    <div className='taskName' key={item.id} onClick={ () => props.getItemById(item.id)}>
+    <div className='taskName' key={item.id}>
       {item.name}
     </div>
     <div className='taskDescription'>{item.description}</div>

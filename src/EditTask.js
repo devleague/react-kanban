@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { format } from 'path';
-import { getItemsFromFakeXHR, addItemToFakeXHR, deleteItemByIdFromFakeXHR } from './db/inventory.db';
 
 class EditTask extends Component {
   isHidden = true;
@@ -35,17 +34,20 @@ class EditTask extends Component {
     })
   }
 
-  toggleHidden() {
-    this.setState({
-      isHidden: !this.state.isHidden
-    })
+  componentWillReceiveProps(nextProps) {
+
+  }
+
+  showUpdate() {
+      this.setState({
+        isHidden: !this.state.isHidden
+      })
   }
 
   render() {
     console.log(this.isHidden);
     return (
-      <div id='addForm'>
-       {!this.state.isHidden && <button onClick={this.toggleHidden.bind(this)}>Add New Task</button>}
+      <div id='editForm'>
       {this.state.isHidden && <form onSubmit={this.handleSubmit}>
         <label> Task Name:
           <input onChange={this.handleChange} name="name" type="text" required/>
@@ -62,11 +64,17 @@ class EditTask extends Component {
           </select>
         </label>
         <input type="submit" onClick={this.handleSubmit} value="Submit"/>
-        {this.state.isHidden && <button onClick={this.toggleHidden.bind(this)}>Cancel</button>}
+        {this.state.isHidden && <button onClick={this.showUpdate.bind(this)}>Cancel</button>}
       </form>}
       </div>
     )
   }
 }
 
-export default AddTask
+export const showUpdate = () => {
+  this.setState({
+    isHidden: !this.state.isHidden
+  })
+}
+
+export default EditTask

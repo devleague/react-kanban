@@ -72,6 +72,4 @@ class AddTask extends Component {
   }
 }
 
-// onClick={() => addItemToFakeXHR(this.state)}
-
 export default AddTask;

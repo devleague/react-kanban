@@ -48,6 +48,8 @@ export const getItemByIdFromFakeXHR = (itemId) => new Promise( (resolve, reject)
     setTimeout( () => {
       const itemResponse = itemsFromFakeDB.find( item => item.id === itemId);
       if (itemResponse){
+        console.log('hello', itemResponse);
+        itemsFromFakeDB.splice(itemsFromFakeDB.indexOf(itemResponse), 1, info)
       }
       else reject({status: 404, message: 'item not found'})
     }, 500)

@@ -1,0 +1,5 @@
+version: '3'
+services:
+  react-kanban:
+    build: .
+    image: lyricnrhyme/react-kanban:local
