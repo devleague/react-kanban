@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { deleteItemByIdFromFakeXHR } from './db/inventory.db';
 import { format } from 'path';
 
 class EditTask extends Component {
@@ -38,6 +39,14 @@ class EditTask extends Component {
 
   }
 
+  deleteItemById(itemId) {
+    console.log('BALETED')
+    deleteItemByIdFromFakeXHR(itemId)
+    .then( result => {
+      this.updateStateFromDb()
+    })
+  }
+
   showUpdate() {
       this.setState({
         isHidden: !this.state.isHidden
@@ -47,7 +56,11 @@ class EditTask extends Component {
   render() {
     console.log(this.isHidden);
     return (
-      <div id='editForm'>
+      <div className='editForm'>
+      <div className='editDelete'>
+      <button className='editButton'>Edit</button>
+      <button className='deleteButton'>Delete</button>
+      </div>
       {this.state.isHidden && <form onSubmit={this.handleSubmit}>
         <label> Task Name:
           <input onChange={this.handleChange} name="name" type="text" required/>

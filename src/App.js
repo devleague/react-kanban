@@ -95,7 +95,6 @@ class App extends Component {
         </div>
         <br/>
         <AddTask addItem={this.addItem}/>
-        <EditTask addItem={this.addItem}/>
       </div>
     );
   }
@@ -127,10 +126,7 @@ function TODO(props) {
         {item.name}
       </div>
       <div className='taskDescription'>{item.description}</div>
-    </div>
-    <div className='editDelete'>
-      <button className='editButton'>Edit</button>
-      <button className='deleteButton' onClick={() => props.deleteItemById(item.id)}>Delete</button>
+      <EditTask/>
     </div>
   </div>)
 }
