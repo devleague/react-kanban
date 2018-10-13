@@ -5,6 +5,8 @@ import AddTask from './AddTask';
 import EditTask from './EditTask';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import { ADD_ITEM, GET_ALL_ITEMS } from './actions/actions';
 
 
 class App extends Component {

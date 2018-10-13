@@ -49,13 +49,13 @@ class AddTask extends Component {
        {!this.state.isHidden && <button onClick={this.toggleHidden.bind(this)}>Add New Task</button>}
       {this.state.isHidden && <form onSubmit={this.handleSubmit}>
         <label> Task Name:
-          <input onChange={this.handleChange} name="name" type="text" required/>
+          <input onChange={this.handleChange} name="name" type="text"/>
         </label> 
         <label> Task Description:
           <input onChange={this.handleChange} name="description" type="text"/>
         </label>
         <label> Task Status:
-          <select onChange={this.handleChange} name="status" required>
+          <select onChange={this.handleChange} name="status">
           <option value="" selected disabled hidden>Choose here</option>
             <option value="ToDo">Thing To Do</option>
             <option value="Doing">Doing</option>

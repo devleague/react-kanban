@@ -1,11 +1,11 @@
-import { getItemsFromFakeXHR, addItemsToFakeXHR } from '../db/inventory.db'
+import { getItemsFromFakeXHR, addItemToFakeXHR } from '../db/inventory.db'
 
 export const ADD_ITEM = 'ADD_ITEM';
 export const GET_ALL_ITEMS = 'GET_ALL_ITEMS';
 
 export function addTask(item) {
     return dispatch => {
-        addItemsToFakeXHR(item)
+        addItemToFakeXHR(item)
         .then( ({items}) => {
             dispatch({
                 type: ADD_ITEM,
