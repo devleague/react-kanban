@@ -5,7 +5,7 @@ services:
     depends_on:
       - db
       - redis-session-store
-    command: ["./node_modules/.bin/nodemon", "server.js"]
+    command: ["npm", "run", "start"]
     container_name: this-app
     volumes:
       - ".:/app/:rw"
