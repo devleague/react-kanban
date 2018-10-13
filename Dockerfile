@@ -10,8 +10,6 @@ WORKDIR ${app_directory}
 # ONLY copy over the package.json to install NPM packages
 COPY package.json .
 
-RUN npm install gulp-sass
-
 RUN npm install bcrypt
 
 RUN npm install knex

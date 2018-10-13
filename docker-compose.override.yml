@@ -5,8 +5,8 @@ services:
     depends_on:
       - db
       - redis-session-store
-    command: ["npx", "nodemon", "server.js"]
-    container_name: this-app
+    command: ["npm", "run", "start"]
+    container_name: react-app
     volumes:
       - ".:/app/:rw"
     env_file: .env
