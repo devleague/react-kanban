@@ -4,6 +4,10 @@ import './App.css';
 import { getItemsFromDB, addItemsToDB, deleteItemByIdFromDB } from './db/database.db';
 import Form from './form/Form';
 
+import Queue from './queue/Queue';
+import Progress from './progress/Progress';
+import Done from './done/Done';   
+
 class App extends Component {
   constructor(props) {
     super(props)
@@ -48,19 +52,39 @@ class App extends Component {
     const { items } = this.state
 
     return (
+      // <div className="App">
+      <header>
+        <div className="App-header">  
+          <h1 className="App-title"> Kanban</h1>  
+          {/* <ItemList deleteItemById={this.deleteItemById} items={items}/> */}
+        {/* <Form addItem={this.addItem}/> */}
+          <button type="button"> + New Task </button>
+      </div>    
       <div className="App">
-        <header className="App-header">
-          <h1 className="App-title"> Things Here:</h1>  
-          <ItemList deleteItemById={this.deleteItemById} items={items}/>
-        {/* <Form addItem={this.addItem}/> */}  
-        </header>
-      </div>
-    );
+          <div className="Queue-container">
+            <div className="Queue-title">  
+          Queue    
+          </div>
+            <ItemList deleteItemById={this.deleteItemById} items={items}/>  
+        </div>
+          <div className="Progress-container">
+            <div className="Progress-title"> 
+                Progress
+             </div>    
+        </div>
+          <div className="Done-container">
+            <div className="Done-title">  
+             Done
+            </div>  
+        </div>
+        </div>
+      </header>  
+    )
   }
 }
 
 function ItemList(props) {
-  return props.items.map(item => <div onCLick={() => props.deleteItemBId(item.id)}>{item.title} {item.body} {item.status} {item.priority}</div>)
+  return props.items.map(item => <div onCLick={() => props.deleteItemBId(item.id)}>{item.title} </div>)
 }
 
 
