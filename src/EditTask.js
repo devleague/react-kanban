@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { deleteItemByIdFromFakeXHR } from './db/inventory.db';
+import { deleteItemByIdFromFakeXHR } from './server/db/inventory.db';
 import { format } from 'path';
 
 class EditTask extends Component {

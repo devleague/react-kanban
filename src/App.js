@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import './App.css';
-import { getItemsFromFakeXHR, addItemToFakeXHR, deleteItemByIdFromFakeXHR, editItemByIdFromFakeXHR } from './db/inventory.db';
+import { getItemsFromFakeXHR, addItemToFakeXHR, deleteItemByIdFromFakeXHR, editItemByIdFromFakeXHR } from './server/db/inventory.db';
 import AddTask from './AddTask';
 import EditTask from './EditTask';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
-import { ADD_ITEM, GET_ALL_ITEMS } from './actions/actions';
+import { ADD_ITEM, GET_ALL_ITEMS } from './server/actions/actions';
 
 
 class App extends Component {
@@ -164,21 +164,3 @@ function DONE(props) {
 }
 
 export default App;
-
-//for class App
- // <div className="App">
-      //   <header className="App-header">
-      //     <a href='https://www.youtube.com/watch?v=Hm8oqlg8z4s' target='_blank'><img src={logo} className="App-logo" alt="logo" /></a>
-      //     <p>
-      //       Edit <code>src/App.js</code> and save to reload.
-      //     </p>
-      //     <a
-      //       className="App-link"
-      //       href="https://s3-us-west-2.amazonaws.com/lingscalc/index.html"
-      //       target="_blank"
-      //       rel="noopener noreferrer"
-      //     >
-      //       FREE MONEY CLICK HERE
-      //     </a>  
-      //   </header>
-      // </div>

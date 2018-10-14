@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { format } from 'path';
 import Logo from './giphy-4.gif';
-import { getItemsFromFakeXHR, addItemToFakeXHR, deleteItemByIdFromFakeXHR } from './db/inventory.db';
+import { getItemsFromFakeXHR, addItemToFakeXHR, deleteItemByIdFromFakeXHR } from './server/db/inventory.db';
 
 class AddTask extends Component {
   isHidden = true;
