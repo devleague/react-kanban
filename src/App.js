@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import './App.css';
 
-import { getItemsFromDB, addItemsToDB, deleteItemByIdFromDB } from './db/database.db';
-import Form from './form/Form';
+// import initialItemsFromDB, { getItemsFromDB, addItemsToDB, deleteItemByIdFromDB } from './db/database.db';
 
-import Queue from './queue/Queue';
+import initialItemsFromDB from './db/database.db'
+// import Form from './form/Form';
+
+import InQueue from './queue/Queue';
 import Progress from './progress/Progress';
 import Done from './done/Done';   
 
@@ -12,37 +14,37 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      items: []
+      items: initialItemsFromDB
     }
   }
 
-  componentDidMount = () => {
-    this.updateStateFromDB()
-  }
+  // componentDidMount = () => {
+  //   this.updateStateFromDB()
+  // }
 
-  updateStateFromDB = () => {
-    getItemsFromDB()
-      .then(items => {
-        this.setState({ items }, () => {
-          console.log('this.state', this.state)
-        })
-    })
-  }
+  // updateStateFromDB = () => {
+  //   getItemsFromDB()
+  //     .then(items => {
+  //       this.setState({ items }, () => {
+  //         console.log('this.state', this.state)
+  //       })
+  //   })
+  // }
 
-  addItem =(item) => {
-    addItemsToDB(item)
-      .then(items => {
-      this.setState({items})
-    })
-  }
+  // addItem =(item) => {
+  //   addItemsToDB(item)
+  //     .then(items => {
+  //     this.setState({items})
+  //   })
+  // }
 
-  deleteItemBId = (itemId) => {
-    console.log('Deleted')
-    deleteItemByIdFromDB(itemId)
-      .then(result => {
-      this.updateStateFromDB()
-    })
-  }
+  // deleteItemBId = (itemId) => {
+  //   console.log('Deleted')
+  //   deleteItemByIdFromDB(itemId)
+  //     .then(result => {
+  //     this.updateStateFromDB()
+  //   })
+  // }
 
 
   render() {
@@ -53,17 +55,18 @@ class App extends Component {
       // <div className="App">
       <header>
         <div className="App-header">  
-          <h1 className="App-title"> Kanban</h1>  
-          {/* <ItemList deleteItemById={this.deleteItemById} items={items}/> */}
-        {/* <Form addItem={this.addItem}/> */}
-          <button type="button"> + New Task </button>
+          <h1 className="App-title">       Kanban
+          </h1>  
+          <button type="button">
+            + New Task
+          </button>
       </div>    
       <div className="App">
           <div className="Queue-container">
             <div className="Queue-title">  
           Queue    
           </div>
-            <ItemList deleteItemById={this.deleteItemById} items={items}/>  
+            <InQueue items = {items} />
         </div>
           <div className="Progress-container">
             <div className="Progress-title"> 
@@ -81,13 +84,13 @@ class App extends Component {
   }
 }
 
-function ItemList(props) {
-  return props.items.map(item => <Item title={item.title}/>)
-}
+// function ItemList(props) {
+//   return props.items.map(item => <Item title={item.title}/>)
+// }
 
-function Item(props) {
-  return <div>{props.title}</div>
-}
+// function Item(props) {
+//   return <div>{props.title}</div>
+// }
 
 
 export default App;
