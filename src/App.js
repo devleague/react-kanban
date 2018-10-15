@@ -14,15 +14,13 @@ class App extends Component {
     this.state = {
       items: []
     }
-    this.addItem = this.addItem.bind(this); 
-    this.updateStateFromDB = this.updateStateFromDB.bind(this);
   }
 
-  componentDidMount() {
+  componentDidMount = () => {
     this.updateStateFromDB()
   }
 
-  updateStateFromDB() {
+  updateStateFromDB = () => {
     getItemsFromDB()
       .then(items => {
         this.setState({ items }, () => {
@@ -31,14 +29,14 @@ class App extends Component {
     })
   }
 
-  addItem(item) {
+  addItem =(item) => {
     addItemsToDB(item)
       .then(items => {
       this.setState({items})
     })
   }
 
-  deleteItemBId(itemId) {
+  deleteItemBId = (itemId) => {
     console.log('Deleted')
     deleteItemByIdFromDB(itemId)
       .then(result => {
@@ -84,7 +82,11 @@ class App extends Component {
 }
 
 function ItemList(props) {
-  return props.items.map(item => <div onCLick={() => props.deleteItemBId(item.id)}>{item.title} </div>)
+  return props.items.map(item => <Item title={item.title}/>)
+}
+
+function Item(props) {
+  return <div>{props.title}</div>
 }
 
 

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import '../App.css';
 
 class Queue extends Component {
@@ -16,4 +17,5 @@ class Queue extends Component {
 
 }
 
+ 
 export default Queue;
