@@ -1,14 +1,16 @@
-// import React, { Component } from 'react';
+
 import React from 'react';
 import '../App.css';
 
-
 const InQueue = (props) => {
-    return props.items.filter(queueItem => queueItem.status === "In Queue").map(queueItem => 
-        <div key={queueItem.id} className="InQueue-container">
+    console.log("InQueue props", props)
+    return props.items.filter(queueItem => queueItem.status === "in queue").map(queueItem => 
+        <div key={queueItem.id} className="InQueue">
             <div className="item-title">    {queueItem.title}
             </div>
-            <select classsName="priority">
+
+            {/* Priority Drop Down */}
+            <select>
                 <option value="low">
                     Low
                 </option>
@@ -19,7 +21,9 @@ const InQueue = (props) => {
                     High
                 </option>
             </select>
-            <select classname="status">
+
+            {/* Status Drop Down */}
+            <select> 
                 <option value="in-queue">
                     In Queue
                 </option>
@@ -31,10 +35,10 @@ const InQueue = (props) => {
                 </option>
             </select>
             <div className="created-by">
-                {queueItem.created_by}
+                Created By: {queueItem.created_by}
             </div>
             <div className="assigned-to">
-                {queueItem.assigned_to}
+                Assigned To: {queueItem.assigned_to}
             </div>
         </div>    
     )

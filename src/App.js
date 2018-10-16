@@ -6,15 +6,17 @@ import './App.css';
 import initialItemsFromDB from './db/database.db'
 // import Form from './form/Form';
 
-import InQueue from './queue/Queue';
-import Progress from './progress/Progress';
-import Done from './done/Done';   
+import Container from './container/Container';
+// import InQueue from './queue/Queue';
+// import Progress from './progress/Progress';
+// import Done from './done/Done';   
 
 class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      items: initialItemsFromDB
+      items: initialItemsFromDB,
+      status: initialItemsFromDB.map(card => {return card.status})
     }
   }
 
@@ -49,7 +51,7 @@ class App extends Component {
 
   render() {
     
-    const { items } = this.state
+    // const { items } = this.state
 
     return (
       // <div className="App">
@@ -62,22 +64,23 @@ class App extends Component {
           </button>
       </div>    
       <div className="App">
-          <div className="Queue-container">
+          {/* <div className="Queue-container">
             <div className="Queue-title">  
           Queue    
-          </div>
-            <InQueue items = {items} />
-        </div>
+          </div> */}
+            {/* <InQueue items = {items} /> */}
+            <Container/>
+        {/* </div>
           <div className="Progress-container">
             <div className="Progress-title"> 
-                Progress
+              <Container/>
              </div>    
         </div>
           <div className="Done-container">
             <div className="Done-title">  
              Done
             </div>  
-        </div>
+        </div> */}
         </div>
       </header>  
     )

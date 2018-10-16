@@ -6,7 +6,7 @@ const initialItemsFromDB = [
         body: '[body description here]',
         priority: 'medium',
         status: 'in queue',
-        create_by: 'Renee',
+        created_by: 'Renee',
         assigned_to: 'Jon'
     },
     {
