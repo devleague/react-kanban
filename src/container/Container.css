@@ -9,7 +9,7 @@
     
     width: 100%;
     height: 100vh;
-    border: 4px solid black;
+    /* border: 4px solid black; */
     /* padding-left: 5%; */
 
 }
@@ -18,15 +18,17 @@
     font-size: 24px;
     color: black;
     font-weight: bold;
-    border: 4px solid black; 
+    border: 1px solid darkgrey; 
+    box-shadow: 5px 5px rgba(0, 0, 0, 0.3);
     margin: 1% 3% 1% 3%;
+    background-color: whitesmoke;
 }
 
 .InQueue, .InProgress, .Done {
     text-align: center;
-    border: 1px solid darkgrey;
+    /* border: 1px solid darkgrey; */
     margin: auto;
-    padding-top: 15.5%;
+    padding-top: 20%;
     width: 40vh;
     height: 30vh;
     background-image: url('../assets/note.png');

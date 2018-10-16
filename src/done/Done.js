@@ -6,9 +6,9 @@ const Done = (props) => {
     
     return props.items.filter(doneItems => doneItems.status === "done").map(doneItems =>
         <div key={doneItems.id} className="Done">
-            <div className="item-title">
+            <h4 className="item-title">
                 {doneItems.title}
-            </div>
+            </h4>
             <div className="created-by">
                 Created By: {doneItems.created_by}
             </div>

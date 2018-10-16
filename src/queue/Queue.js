@@ -6,8 +6,8 @@ const InQueue = (props) => {
     console.log("InQueue props", props)
     return props.items.filter(queueItem => queueItem.status === "in queue").map(queueItem => 
         <div key={queueItem.id} className="InQueue">
-            <div className="item-title">    {queueItem.title}
-            </div>
+            <h4 className="item-title">    {queueItem.title}
+            </h4>
             <div className="created-by">
                 Created By: {queueItem.created_by}
             </div>

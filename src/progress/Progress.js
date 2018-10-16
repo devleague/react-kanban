@@ -6,8 +6,8 @@ const InProgress = (props) => {
     return props.items.filter(progressItem => 
         progressItem.status === "in progress").map(progressItem => 
         <div key={progressItem.id} className="InProgress">
-            <div className="item-title">    {progressItem.title}
-            </div>
+            <h4 className="item-title">    {progressItem.title}
+            </h4>
             <div className="created-by">
                 Created By: {progressItem.created_by}
             </div>
