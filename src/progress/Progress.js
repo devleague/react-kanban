@@ -8,8 +8,14 @@ const InProgress = (props) => {
         <div key={progressItem.id} className="InProgress">
             <div className="item-title">    {progressItem.title}
             </div>
+            <div className="created-by">
+                Created By: {progressItem.created_by}
+            </div>
+            <div className="assigned-to">
+                Assigned To: {progressItem.assigned_to}
+            </div>               
             <select>
-                <option value="low">
+                <option value="low" className="low">
                     Low
                 </option>
                 <option value="medium">
@@ -19,6 +25,7 @@ const InProgress = (props) => {
                     High
                 </option>
             </select>
+            <br/>    
             <select className="status">
                 <option value="in-progress">
                     In Progress
@@ -30,12 +37,6 @@ const InProgress = (props) => {
                     Done
                 </option>
             </select>
-            <div className="created-by">
-                {progressItem.created_by}
-            </div>
-            <div className="assigned-to">
-                {progressItem.assigned_to}
-            </div>
         </div>            
     )
 }

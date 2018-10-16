@@ -25,6 +25,15 @@ const initialItemsFromDB = [
         status: 'done',
         created_by: 'Renee',
         assigned_to: 'Jon'
+    },
+    {
+        id: 4,
+        title: 'Do More Of The Styling',
+        body: '[insert body description here]',
+        priority: 'low', 
+        status: 'in queue', 
+        created_by: 'Renee', 
+        assigned_to: 'Jon'
     }
 ];
 

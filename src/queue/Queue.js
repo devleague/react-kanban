@@ -8,7 +8,12 @@ const InQueue = (props) => {
         <div key={queueItem.id} className="InQueue">
             <div className="item-title">    {queueItem.title}
             </div>
-
+            <div className="created-by">
+                Created By: {queueItem.created_by}
+            </div>
+            <div className="assigned-to">
+                Assigned To: {queueItem.assigned_to}
+            </div>
             {/* Priority Drop Down */}
             <select>
                 <option value="low">
@@ -21,7 +26,7 @@ const InQueue = (props) => {
                     High
                 </option>
             </select>
-
+            <br/>
             {/* Status Drop Down */}
             <select> 
                 <option value="in-queue">
@@ -34,12 +39,6 @@ const InQueue = (props) => {
                     Done
                 </option>
             </select>
-            <div className="created-by">
-                Created By: {queueItem.created_by}
-            </div>
-            <div className="assigned-to">
-                Assigned To: {queueItem.assigned_to}
-            </div>
         </div>    
     )
 }

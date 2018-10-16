@@ -1,0 +1,51 @@
+.Container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+
+.Queue-container, .Progress-container, .Done-container {
+    
+    width: 100%;
+    height: 100vh;
+    border: 4px solid black;
+    /* padding-left: 5%; */
+
+}
+
+.Queue-title, .Progress-title, .Done-title {
+    font-size: 24px;
+    color: black;
+    font-weight: bold;
+    border: 4px solid black; 
+    margin: 1% 3% 1% 3%;
+}
+
+.InQueue, .InProgress, .Done {
+    text-align: center;
+    border: 1px solid darkgrey;
+    margin: auto;
+    padding-top: 15.5%;
+    width: 40vh;
+    height: 30vh;
+    background-image: url('../assets/note.png');
+    background-size: contain;   
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: initial;
+}
+
+    /* .Queue-items {
+        margin-top: 50%;
+    } */
+
+
+/* .InProgress select{
+    background-color: yellow;
+} */
+
+.InQueue select, .InProgress select, .Done select {
+    border: none;
+    background: transparent;
+}

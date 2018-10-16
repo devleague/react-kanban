@@ -5,11 +5,16 @@ const Done = (props) => {
     console.log("Done props", props)
     
     return props.items.filter(doneItems => doneItems.status === "done").map(doneItems =>
-        <div key={doneItem.id} className="Done">
+        <div key={doneItems.id} className="Done">
             <div className="item-title">
-                {doneItem.title}
+                {doneItems.title}
             </div>
-
+            <div className="created-by">
+                Created By: {doneItems.created_by}
+            </div>
+            <div className="assigned-to">
+                Assigned To: {doneItems.assigned_to}
+            </div>
             {/* Priority Drop Down */}
             <select>
                 <option value="low">
@@ -22,7 +27,7 @@ const Done = (props) => {
                     High
                 </option>
             </select>
-
+            <br/>
             {/* Status Drop Down */}
             <select>
                 <option value="in-queue">
@@ -35,12 +40,7 @@ const Done = (props) => {
                     Done
                 </option>
             </select>
-            <div className="created-by">
-                Created By: {doneItem.created_by}
-            </div>
-            <div className="assigned-to">
-                Assigned To: {doneItem.assigned_to}
-            </div>
+ 
         </div>
     )
 }

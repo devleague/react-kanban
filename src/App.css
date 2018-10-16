@@ -1,19 +1,12 @@
+body {
+  /* background-color: lightgrey; */
+  background-image: url('https://msr7.net/images/cork-board-14.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .App {
   text-align: center;
-  display: flex;
-  flex-direction: row; 
-  justify-content: space-around;
-}
-
-.Queue-container, .Progress-container, .Done-container {
-  width: 100%;
-  height: 100vh;
-  border: 1px solid black;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
 }
 
 .App-header {
@@ -25,23 +18,10 @@
 
 button {
   border: none;
+  background: transparent;
+  font-size: 18px;
+  font-weight: bold;
 }
-
-.Queue-title, .Progress-title, .Done-title {
-  border: 1px solid black;
-  margin: 1%;
-}
-
-/* .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: black;
-} */
 
 .App-link {
   color: #61dafb;
