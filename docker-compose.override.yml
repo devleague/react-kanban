@@ -14,6 +14,7 @@ services:
       NODE_ENV: development
     ports:
       - "${EXPRESS_HOST_PORT}:${EXPRESS_CONTAINER_PORT}"
+      - "3000:3000"
     networks:
       - this-app-network
   db: 

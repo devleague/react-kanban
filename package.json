@@ -12,6 +12,7 @@
     "seed": "POSTGRES_HOSTNAME=localhost POSTGRES_CONTAINER_PORT=5432 npx knex seed:run",
     "flushdb": "POSTGRES_HOSTNAME=localhost POSTGRES_CONTAINER_PORT=5432 npx knex migrate:rollback ; POSTGRES_HOSTNAME=localhost POSTGRES_CONTAINER_PORT=5432 npx knex migrate:latest ; POSTGRES_HOSTNAME=localhost POSTGRES_CONTAINER_PORT=5432 npx knex seed:run"
   },
+  "proxy": "http://localhost:5050",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/rcjmedia/react-kanban.git"
@@ -36,6 +37,7 @@
     "gyp": "^0.5.0",
     "knex": "^0.15.2",
     "method-override": "^3.0.0",
+    "mime": "^1.6.0",
     "morgan": "^1.9.1",
     "nodemon": "^1.18.4",
     "passport": "^0.4.0",

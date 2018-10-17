@@ -1,18 +1,11 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import axios from 'axios';
+// import helpers from './helpers/helpers.jsx';
+import ItemForm from './newTask.jsx';
 
 
 /* Syles */
-
-const catDivStyle = {
-  display: 'grid',
-  // padding: '100px',
-  // height: '900px'
-  borderRight: '1px solid gray',
-  borderLeft: '1px solid white',
-  borderBottom: '1px solid white',
-};
 
 const pCatStyle = {
   fontFamily: 'Geneva',
@@ -23,15 +16,12 @@ const pCatStyle = {
 
 const qeueuCardStyles = {
   display: 'grid',
+  marginBottom: '25px',
   padding: '10px',
   backgroundColor: '#ffbc3f',
   border: '2px solid black',
   borderRadius: '10px',
   boxShadow: '5px 10px 5px #888888'
-};
-
-const items = {
-  borderRadius: '10px'
 };
 
 /* End Syles */
@@ -41,34 +31,22 @@ class Queue extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      items: [
-          // {
-          //   id: 1,
-          //   description: 'Make Better Styles.',
-          //   priority: 'Medium',
-          //   by: 'Jon',
-          //   to: 'Renee'
-          // },
-          // {
-          //   id: 2,
-          //   description: 'Make Better Styles. Make Better Styles. Make Better Styles. Make Better Styles. Make Better Styles. Make Better Styles.',
-          //   priority: 'Medium',
-          //   by: 'Jon',
-          //   to: 'Renee'
-          // }
-      ],
+      carditems: [],
+      usernames: [],
       hasItems: true
     }
   }
 
-addItemToInventory = (item) => {
-  // addItemToFakeXHR(item)
-  //   .then( items => {
-  //     if (items) {
-  //       this.setState({ items })
-  //     }
-  //   })
-  
+addItemTask = (getNewTask) => {
+  axios
+  .post('/newtask', getNewTask)
+      .then(itemsData => {
+        console.log("\nitemsData.data:", itemsData.data);
+        this.setState({ carditems: itemsData.data })
+      })
+      .catch(err => {
+        console.log("ERROR", err);
+      })  
 }
 
 componentDidMount() {
@@ -78,46 +56,64 @@ componentDidMount() {
   //   }, function() {
   //     console.log('this.state updated', this.state)
   //   })
-axios
-  .get('/items')
-  .then( items => {
-    console.log("items", items)
-    this.setState({items: items.data})
+  axios
+  .get('/carditems')
+  .then( carditems => {
+    console.log("items", carditems)
+    this.setState({carditems: carditems.data})
   })
   .catch( err => {
     console.log('err', err)
   })
+
+  axios
+  .get('/users')
+  .then( users => {
+    console.log("items", users)
+    this.setState({users: users.data})
+  })
+  .catch( err => {
+    console.log('err', err)
+  })
+
 }
 
 renderItemList() {
   if (this.state.hasItems) {
-    return <ItemList items={this.state.items}/>
+    return <ItemList carditems={this.state.carditems}/>
   } else {
-    return null
+    return <div><p> Error </p></div>
+  }
+}
+
+renderUserList() {
+  if (this.state.hasItems) {
+    return <UserList usernames={this.state.usernames} />
+  } else {
+    return <div><p> Error </p></div>
   }
 }
 
 render() {    
 const Section = () => (
-  <div style={catDivStyle}>
+  <div>
   <p style={pCatStyle}>IN QUEUE</p>
     <div style={{padding: '40px'}}>
-        <div style={qeueuCardStyles}>
+        <div>
+          <ItemList path="/carditems" carditems={this.state.carditems}/><br />
+          <UserList path="/users" usernames={this.state.usernames}/>
           <Router>
             <div>
-                <Link className="App-title" to="/items">Items</Link>
+                <Link className="App-title" to="/carditems">Items</Link>
               <Route path="/items" component={ () => <ItemList items={this.state.items}/>}/>
-            </div>
+
+                <Link to="/newtask">
+                  <button id="newTask" type="button">+ NEW TASK</button>
+                </Link>
+                <Route path="/newtask" component={() => <ItemForm addItemTask={this.addItemTask} />} />
+                </div>
           </Router>
-          {this.state.items.map( item => <div style={items}>{item.description}</div> )}
-          {this.state.items.map( item => <div style={items}>{item.priority}</div> )}
-          {this.state.items.map( item => <div style={items}>{item.by}</div> )}
-          {this.state.items.map( item => <div style={items}>{item.to}</div> )}
-          <ItemForm />
-          <br />
-          {this.state.hasItems ? <ItemList items={this.state.items}/> : null}
-            {this.renderItemList()}
-            <ItemList items={this.state.items}/>
+          {/* <ItemForm /> */}
         </div>
     </div>
   </div>
@@ -133,69 +129,94 @@ return (
 
 function ItemList(props) {
   
-  return props.items.map( item => <Item key={item.id} description={item.description}/>)
+  return props.carditems.map( carditem => 
+    <Item 
+      key={carditem.card_id} 
+      title={carditem.title} 
+      body={carditem.body}
+      priority_id={carditem.priority_id}
+      status_id={carditem.status_id}
+      created_by={carditem.created_by}
+      assigned_to={carditem.assigned_to}
+      />)
+}
+
+function UserList(props) {
+  
+  return props.usernames.map( usernames =>     
+    <UserAssignedCreated
+      user_id={usernames.user_id}
+      first_name={usernames.first_name}
+      last_name={usernames.last_name}
+      email={usernames.email}
+     />)
 }
 
 function Item(props) {
   console.log('props', props)
-  // function navigateTo() {
-    
-  // }
-  return <div >{props.description}</div>
+
+/* Helpers */  
+function thePriority() {
+  let priorityVar = props.priority_id;
+
+  if (priorityVar === 111) {
+    return "Low"
+  } else if (priorityVar === 555) {
+      return "Medium"
+    } else if (priorityVar === 999) {
+        return "High"
+      }
 }
 
-class ItemForm extends Component {
-  constructor(props) {
-    super(props)
-    this.state ={
-      description: null,
-      priority: null,
-      by: null,
-      to: null
-    }
-  }
+function theStatus() {
+  let statusVar = props.status_id;
 
-  handleSubmit = (e) => {
-    e.preventDefault()
-    console.log('SUBMITTED!!!!', this.state)
-    this.props.addItem(this.state)
-  }
-
-  handleChange = (e) => {
-    e.preventDefault()
-
-    const { description, value } = e.target
-    this.setState({
-      [description] : value
-    })
-  }
-
-  render() {
-    return (
-      <form onSubmit={this.handleSubmit}>
-
-        <label> Description:
-          <input onChange={this.handleChange} type="text" name="description"/>
-        </label> <br />
-        <label> Priority:
-          <select onChange={this.handleChange} name="priority">
-            <option value="Low">Low</option>
-            <option value="Medium">Medium</option>
-            <option value="High">High</option>
-          </select>
-        </label> <br />
-        <label> By:
-          <input onChange={this.handleChange} type="text" name="by"/>
-        </label> <br />
-        <label> To:
-          <input onChange={this.handleChange} type="text" name="to"/>
-        </label> <br />
-
-        <input type="submit"/>
-      </form>
-    )
-  }
-
+  if (statusVar === 10) {
+    return "Queue"
+  } else if (statusVar === 50) {
+      return "In Progress"
+    } else if (statusVar === 90) {
+        return "Done"
+      }
 }
+
+
+
+
+/* End Helpers */
+
+
+/* Do not display if status is not 'Done' */
+  if (props.status_id !== 10) {
+    return null
+  } else { 
+  return  <div style={qeueuCardStyles}>
+          <h3 align="center">{props.title} </h3><br />
+          <p>Description:{props.body}</p>
+          Priority: {thePriority()} <br />
+          Status: {theStatus()} <br />
+          Created by: {props.created_by} <br />
+          Assigned to: {props.assigned_to} <br />
+         </div>
+        }
+}  
+
+function UserAssignedCreated(props) {
+
+// function UserCreatedAssigned() {
+//   let userVar = props.created_by || props.assigned_to;
+
+//   if (userVar === props.user_id) {
+//     return props.first_name && ' ' && props.last_name
+//   } 
+// }
+
+
+  
+  return  <div style={qeueuCardStyles}>
+          Created by: {props.first_name} {props.last_name} {props.email} <br />
+          Assigned to: {props.first_name} {props.last_name} {props.email} <br />
+         </div>
+}  
 
 export default Queue;

@@ -1,15 +1,9 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+// import helpers from './helpers/helpers.jsx';
+
 
 /* Syles */
-
-const catDivStyle = {
-  display: 'grid',
-  // padding: '100px',
-  // height: '900px'
-  borderRight: '1px solid gray',
-  borderLeft: '1px solid white',
-  borderBottom: '1px solid white'
-};
 
 const pCatStyle = {
   fontFamily: 'Geneva',
@@ -20,6 +14,7 @@ const pCatStyle = {
 
 const progressCardStyles = {
   display: 'grid',
+  marginBottom: '25px',
   padding: '10px',
   backgroundColor: '#74e0a5',
   border: '2px solid black',
@@ -27,51 +22,65 @@ const progressCardStyles = {
   boxShadow: '5px 10px 5px #888888'
 };
 
-const items = {
-  borderRadius: '10px'
-};
-
-
 /* End Syles */
 
 
-class inProgress extends Component {
+class InProgress extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      items: [
-          {
-            id: 1,
-            description: 'Make Better Styles.',
-            priority: 'Medium',
-            by: 'Jon',
-            to: 'Renee'
-          },
-          {
-            id: 2,
-            description: 'Make Better Styles. Make Better Styles. Make Better Styles. Make Better Styles. Make Better Styles. Make Better Styles.',
-            priority: 'Medium',
-            by: 'Jon',
-            to: 'Renee'
-          }
-      ]
+      carditems: [],
+      hasItems: true
     }
   }
 
-  render() {    
-    const Section = () => (
-        <div style={catDivStyle}>
-        <p style={pCatStyle}>IN PROGRESS</p>  
-        <div style={{padding: '40px'}}>
-          <div style={progressCardStyles}>
-              {this.state.items.map( item => <div style={items}>{item.description}</div> )}
-              {this.state.items.map( item => <div style={items}>{item.priority}</div> )}
-              {this.state.items.map( item => <div style={items}>{item.by}</div> )}
-              {this.state.items.map( item => <div style={items}>{item.to}</div> )}
-          </div>
+addItemToInventory = (item) => {
+  // addItemToFakeXHR(item)
+  //   .then( items => {
+  //     if (items) {
+  //       this.setState({ items })
+  //     }
+  //   })
+  
+}
+
+componentDidMount() {
+  // getItemsFromFakeXHR()
+  //   .then( items => {
+  //     this.setState({ items })
+  //   }, function() {
+  //     console.log('this.state updated', this.state)
+  //   })
+  axios
+  .get('/carditems')
+  .then( carditems => {
+    console.log("items", carditems)
+    this.setState({carditems: carditems.data})
+  })
+  .catch( err => {
+    console.log('err', err)
+  })
+
+renderItemList() {
+  if (this.state.hasItems) {
+    return <ItemList carditems={this.state.carditems}/>
+  } else {
+    return <div><p> Error </p></div>
+  }
+}
+
+render() {    
+  const Section = () => (
+      <div>
+      <p style={pCatStyle}>IN PROGRESS</p>  
+      <div style={{padding: '40px'}}>
+        <div>
+        <ItemList path="/carditems" carditems={this.state.carditems}/>
+
         </div>
-        </div>
-    );
+      </div>
+      </div>
+  );
     
     
     return (
@@ -82,6 +91,74 @@ class inProgress extends Component {
   }
 }
 
+function ItemList(props) {
+  
+  return props.carditems.map( carditem => 
+    <Item 
+      key={carditem.card_id} 
+      title={carditem.title} 
+      body={carditem.body}
+      priority_id={carditem.priority_id}
+      status_id={carditem.status_id}
+      created_by={carditem.created_by}
+      assigned_to={carditem.assigned_to}
+      />)
+}
+
+function Item(props) {
+  console.log('props', props)
+
+/* Helpers */  
+function thePriority() {
+  let priorityVar = props.priority_id;
+
+  if (priorityVar === 111) {
+    return "Low"
+  } else if (priorityVar === 555) {
+      return "Medium"
+    } else if (priorityVar === 999) {
+        return "High"
+      }
+}
+
+function theStatus() {
+  let statusVar = props.status_id;
+
+  if (statusVar === 10) {
+    return "Queue"
+  } else if (statusVar === 50) {
+      return "In Progress"
+    } else if (statusVar === 90) {
+        return "Done"
+      }
+}
+
+// function userCreatedAssigned() {
+//   let userVar = props.created_by || props.assigned_to;
+
+//   if (userVar === props.user_id) {
+//     return props.first_name && ' ' && props.last_name
+//   } 
+// }
 
 
-export default inProgress;
+/* End Helpers */
+
+
+/* Do not display if status is not 'Done' */
+  if (props.status_id !== 50) {
+    return null
+  } else { 
+  return  <div style={progressCardStyles}>
+          <h3 align="center">{props.title} </h3><br />
+          <p>Description:{props.body}</p>
+          Priority: {thePriority()} <br />
+          Status: {theStatus()} <br />
+          Created by: {props.created_by} <br />
+          Assigned to: {props.assigned_to} <br />
+         </div>
+        }
+  }
+
+
+export default InProgress;

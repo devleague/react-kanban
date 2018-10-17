@@ -11,9 +11,17 @@ const catWrapperDivStyle = {
   display: 'grid',
   gridTemplateColumns: '1fr 1fr 1fr'
 };
+
+const catDivStyle = {
+  display: 'grid',
+  borderRight: '1px solid gray',
+  borderLeft: 'none',
+  borderBottom: 'none'
+};
 /* End Syles */
 
 class App extends Component {
+
   render() {
     return (
       <div>
@@ -21,9 +29,15 @@ class App extends Component {
         <Top />
         </header>
         <div style={catWrapperDivStyle}>
-          <Queue />
-          <InProgress />
-          <Done />
+          <div style={catDivStyle}>
+            <Queue items={this.props.items} />
+          </div>
+          <div style={catDivStyle}>
+            <InProgress items={this.props.items} />
+          </div>
+          <div style={catDivStyle}>
+            <Done items={this.props.items} />
+          </div>
         </div>
       </div>
     );
