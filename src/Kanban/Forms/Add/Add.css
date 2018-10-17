@@ -1,0 +1,82 @@
+.inputBars{
+  border: none;
+  border-bottom: 0.2vh solid #c7c7c7;
+  outline: none;
+  width: 30vw;
+  height: 2vh;
+  margin-top: 1.5vh;
+  font-size: 3vh;
+  color: #797779;
+}
+
+#form {
+  margin-left: 3vw;
+}
+
+#submitButton {
+    width: 8vw;
+    height: 4vh;
+    /* background: linear-gradient(to bottom, #c7c7c7 0%,#c7c7c7 100%); */
+    background-image: url(/assets/box.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: none;
+    border-radius: 5px;
+    position: relative;
+    border-bottom: 0.1vw solid #c7c7c7;
+    color: white;
+    font-weight: 600;
+    text-shadow: 1px 1px 1px rgba(0,0,0,.4);
+    font-size: 3vh;
+    text-align: left;
+    text-indent: 5px;
+    box-shadow: 0px 3px 0px 0px rgba(0,0,0,0);
+    cursor: pointer;
+  
+  /* Just for presentation */  
+    display: block;
+  }
+
+button:active {
+  box-shadow: 0px 2px 0px 0px rgba(0,0,0,.2);
+  top: 1%;
+}
+
+#boxIcon {
+  height: auto;
+  width: 1.5vw;
+}
+
+#newOpen{
+  display: flex;
+  color: white;
+  align-self: center;
+}
+
+.button{
+  border: none;
+  background: transparent;
+}
+
+.select {
+  border: none;
+  background: transparent;
+  color: #797779;
+  font-size: 3vh;
+}
+
+#formTitle{
+  color: black
+}
+
+.top{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#close{
+  display: flex;
+  font-size: 5vh;
+  align-self: flex-start;
+}

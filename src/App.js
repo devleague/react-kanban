@@ -3,9 +3,11 @@ import React, { Component } from 'react';
 // import logo from './logo.svg';
 
 import './App.css';
+import './Kanban/Forms/Add/Add.css';
 
 import data from './Kanban/Data/data.js';
 import Kanban from './Kanban/Kanban.js';
+import Add from './Kanban/Forms/Add/Add.js';
 
 
 class App extends Component {
@@ -19,9 +21,10 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-Header">
+        <header className="App-Header" id="header">
           KANBAN
-          </header>
+          <Add />
+        </header>
         <Kanban />
       </div>
     );
