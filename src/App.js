@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import { getItemsFromFakeXHR, addItemToFakeXHR, deleteItemByIdFromFakeXHR, editItemByIdFromFakeXHR } from './server/db/inventory.db';
 import AddTask from './AddTask';
+import TODO from './TaskProgress';
 // import EditTask from './EditTask';
 // import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 // import { Provider, connect } from 'react-redux';
@@ -86,7 +87,8 @@ class App extends Component {
       <div id='tasks'>
             <div className='taskCol'>
               <h1>THINGS TO DO</h1>
-              <TODO getItemById={this.getItemById} deleteItemById={this.deleteItemById} editItemById={this.editItemById} items={items}/>
+              <div className='toDo'><TODO getItemById={this.getItemById} deleteItemById={this.deleteItemById} editItemById={this.editItemById} items={items}/>
+              </div>
             </div>
             <div className='taskCol'>
               <h1>DOING</h1>
@@ -104,20 +106,20 @@ class App extends Component {
   }
 }
 
-function TODO(props) {
-  return props.items.filter(item => item.status === 'ToDo').map( item => <div className='toDo'>
-    <div className='taskDetails'>
-      <div className='taskName' key={item.id} onClick={ () => props.getItemById(item.id)}>
-        {item.name}
-      </div>
-      <div className='taskDescription'>{item.description}</div>
-    </div>
-    <div className='editDelete'>
-    <button className='editButton'>Edit</button>
-    <button className='deleteButton' onClick={() => props.deleteItemById(item.id)}>Delete</button>
-  </div>
-  </div>)
-}
+// function TODO(props) {
+//   return props.items.filter(item => item.status === 'ToDo').map( item => <div className='toDo'>
+//     <div className='taskDetails'>
+//       <div className='taskName' key={item.id} onClick={ () => props.getItemById(item.id)}>
+//         {item.name}
+//       </div>
+//       <div className='taskDescription'>{item.description}</div>
+//     </div>
+//     <div className='editDelete'>
+//     <button className='editButton'>Edit</button>
+//     <button className='deleteButton' onClick={() => props.deleteItemById(item.id)}>Delete</button>
+//   </div>
+//   </div>)
+// }
 
 function DOING(props) {
   return props.items.filter(item => item.status === 'Doing').map( item => <div className='doing'>
