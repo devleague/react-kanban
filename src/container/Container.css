@@ -28,14 +28,17 @@
     text-align: center;
     /* border: 1px solid darkgrey; */
     margin: auto;
-    padding-top: 20%;
+    margin-top: 4%;
+    padding-top: 0.5%;
     width: 40vh;
     height: 30vh;
-    background-image: url('../assets/note.png');
-    background-size: contain;   
+    background-color: white;
+    box-shadow: 5px 5px rgba(0, 0, 0, 0.3);
+    /* background-image: url('../assets/note.png'); */
+    /* background-size: contain;   
     background-repeat: no-repeat;
     background-position: center;
-    background-attachment: initial;
+    background-attachment: initial; */
 }
 
     /* .Queue-items {

@@ -1,8 +1,8 @@
 body {
-  /* background-color: lightgrey; */
-  background-image: url('https://msr7.net/images/cork-board-14.jpg');
+  background-color: lightgrey;
+  /* background-image: url('https://msr7.net/images/cork-board-14.jpg');
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: cover; */
 }
 
 .App {
