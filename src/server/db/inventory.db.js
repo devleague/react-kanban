@@ -1,4 +1,4 @@
-import Cards from './models/cards';
+// import Cards from './models/cards';
 
 let itemsFromFakeDB = [{
     id: 1,
@@ -23,13 +23,13 @@ let newId = 4;
 
 export const getItemsFromFakeXHR = () => new Promise((resolve, reject) => {
     setTimeout( () => {
-        // resolve(itemsFromFakeDB.slice())
-        Cards
-        .fetchAll()
-        .then( cards => {
-          let cardstuff = cards.serialize()
-          resolve(cardstuff);        
-        })
+        resolve(itemsFromFakeDB.slice())
+        // Cards
+        // .fetchAll()
+        // .then( cards => {
+        //   let cardstuff = cards.serialize()
+        //   resolve(cardstuff);        
+        // })
     }, 500)
 })
 

@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import './App.css';
 import { getItemsFromFakeXHR, addItemToFakeXHR, deleteItemByIdFromFakeXHR, editItemByIdFromFakeXHR } from './server/db/inventory.db';
 import AddTask from './AddTask';
-import EditTask from './EditTask';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-import { ADD_ITEM, GET_ALL_ITEMS } from './server/actions/actions';
+// import EditTask from './EditTask';
+// import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+// import { Provider, connect } from 'react-redux';
+// import { createStore } from 'redux';
+// import { getAllItems } from './actions/actions.js'
+// import { ADD_ITEM, GET_ALL_ITEMS } from './server/actions/actions';
 
 
 class App extends Component {
@@ -20,6 +21,7 @@ class App extends Component {
     this.deleteItemById = this.deleteItemById.bind(this);
   }
 
+  //keep this
   componentDidMount() {
     this.updateStateFromDb()
   }
@@ -102,25 +104,6 @@ class App extends Component {
   }
 }
 
-// class TODO extends Component {
-//   constructor(props) {
-//     super(props)
-//     this.state = {
-//       isHidden: true
-//     }
-//   }
-
-//   showDescription() {
-//     this.setState({
-//       isHidden: !this.state.isHidden
-//     })
-//   }
-
-//   render() {
-//     return this.props.items.filter(item => item.status === 'ToDo').map( item => <div key={item.id} onClick={this.showDescription.bind(this)}>{item.name}{!this.state.isHidden && <div>{item.description}</div>}</div>)
-//   }
-// }  
-
 function TODO(props) {
   return props.items.filter(item => item.status === 'ToDo').map( item => <div className='toDo'>
     <div className='taskDetails'>
@@ -128,8 +111,11 @@ function TODO(props) {
         {item.name}
       </div>
       <div className='taskDescription'>{item.description}</div>
-      <EditTask/>
     </div>
+    <div className='editDelete'>
+    <button className='editButton'>Edit</button>
+    <button className='deleteButton' onClick={() => props.deleteItemById(item.id)}>Delete</button>
+  </div>
   </div>)
 }
 
@@ -163,4 +149,5 @@ function DONE(props) {
 </div>)
 }
 
+// export default connect()(App);
 export default App;

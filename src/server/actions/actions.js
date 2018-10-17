@@ -3,7 +3,7 @@ import { getItemsFromFakeXHR, addItemToFakeXHR } from '../db/inventory.db'
 export const ADD_ITEM = 'ADD_ITEM';
 export const GET_ALL_ITEMS = 'GET_ALL_ITEMS';
 
-export function addTask(item) {
+export function addItem(item) {
     return dispatch => {
         addItemToFakeXHR(item)
         .then( ({items}) => {
@@ -15,13 +15,12 @@ export function addTask(item) {
     }
 }
 
-export function getAllTasks() {
+export function getAllItems() {
     return dispatch => {
         getItemsFromFakeXHR()
         .then( items => {
             dispatch({
-                type: GET_ALL_ITEMS,
-                items: items
+                type: GET_ALL_ITEMS
             })
         })
     }

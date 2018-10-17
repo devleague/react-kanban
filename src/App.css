@@ -43,7 +43,7 @@
   height: 100%;
   display: flex;
   justify-content: space-around;
-  align-items: center;
+  align-items: flex-start;
   border: 5px solid blue;
   background-color: cornflowerblue;
   border-radius: 9px;
