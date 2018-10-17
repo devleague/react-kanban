@@ -68,7 +68,7 @@ renderItemList() {
   } else {
     return <div><p> Error </p></div>
   }
-}
+};
 
 
 

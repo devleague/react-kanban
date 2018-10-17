@@ -60,6 +60,7 @@ componentDidMount() {
   .catch( err => {
     console.log('err', err)
   })
+}
 
 renderItemList() {
   if (this.state.hasItems) {
@@ -67,7 +68,7 @@ renderItemList() {
   } else {
     return <div><p> Error </p></div>
   }
-}
+};
 
 render() {    
   const Section = () => (

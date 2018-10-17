@@ -84,7 +84,7 @@ renderItemList() {
   } else {
     return <div><p> Error </p></div>
   }
-}
+};
 
 renderUserList() {
   if (this.state.hasItems) {
@@ -92,7 +92,7 @@ renderUserList() {
   } else {
     return <div><p> Error </p></div>
   }
-}
+};
 
 render() {    
 const Section = () => (

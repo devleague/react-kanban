@@ -99,18 +99,16 @@ app.post('/newtask', (req, res) => {
 console.log("\nreq.body:", req.body);
 
 // For cards_table
-const newTask = {
-  title: req.body.title,
-  body: req.body.body,
-  priority_id: req.body.priority_id,
-  status_id: req.body.status_id
-  // created_by: req.body.created_by,
-  // assigned_to: req.body.assigned_to
-};
-console.log("\nNew Task:", newTask);
 
 CardModel
-  .forge(newTask)
+  .forge({
+    title: req.body.title,
+    body: req.body.body,
+    priority_id: req.body.priority_id,
+    status_id: req.body.status_id
+    // created_by: req.body.created_by,
+    // assigned_to: req.body.assigned_to
+  })
   .save()
   .then(() => {
     return CardModel
@@ -128,15 +126,13 @@ CardModel
 
 app.post('/newtask', (req, res) => {
 // For users_table
-const createdAssignedUser = {
-  first_name: req.body.first_name,
-  last_name: req.body.last_name,
-  email: req.body.email
-};
-console.log("\nPOST for assigned_to and created_by:", createdAssignedUser);
 
 UserModel
-  .forge(createdAssignedUser)
+  .forge({
+    first_name: req.body.first_name,
+    last_name: req.body.last_name,
+    email: req.body.email
+  })
   .save()
   .then(() => {
     return UserModel
