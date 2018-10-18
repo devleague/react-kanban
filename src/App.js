@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import './App.css';
 import './container/Container.css'
 
-// import initialItemsFromDB, { getItemsFromDB, addItemsToDB, deleteItemByIdFromDB } from './db/database.db';
+import initialItemsFromDB, { getItemsFromDB, addItemsToDB, deleteItemByIdFromDB } from './db/database.db';
 
-import initialItemsFromDB from './db/database.db'
-// import Form from './form/Form';
+// import initialItemsFromDB from './db/database.db'
+import Form from './form/Form';
 
 import Container from './container/Container';
 // import InQueue from './queue/Queue';
@@ -21,33 +21,33 @@ class App extends Component {
     }
   }
 
-  // componentDidMount = () => {
-  //   this.updateStateFromDB()
-  // }
+  componentDidMount = () => {
+    this.updateStateFromDB()
+  }
 
-  // updateStateFromDB = () => {
-  //   getItemsFromDB()
-  //     .then(items => {
-  //       this.setState({ items }, () => {
-  //         console.log('this.state', this.state)
-  //       })
-  //   })
-  // }
+  updateStateFromDB = () => {
+    getItemsFromDB()
+      .then(items => {
+        this.setState({ items }, () => {
+          console.log('this.state', this.state)
+        })
+    })
+  }
 
-  // addItem =(item) => {
-  //   addItemsToDB(item)
-  //     .then(items => {
-  //     this.setState({items})
-  //   })
-  // }
+  addItem =(item) => {
+    addItemsToDB(item)
+      .then(items => {
+      this.setState({items})
+    })
+  }
 
-  // deleteItemBId = (itemId) => {
-  //   console.log('Deleted')
-  //   deleteItemByIdFromDB(itemId)
-  //     .then(result => {
-  //     this.updateStateFromDB()
-  //   })
-  // }
+  deleteItemBId = (itemId) => {
+    console.log('Deleted')
+    deleteItemByIdFromDB(itemId)
+      .then(result => {
+      this.updateStateFromDB()
+    })
+  }
 
 
   render() {
@@ -82,6 +82,7 @@ class App extends Component {
              Done
             </div>  
         </div> */}
+        <Form />
         </div>
       </header>  
     )
