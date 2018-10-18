@@ -2,11 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import './container/Container.css'
 
-import { getAllItems } from './actions/actions.js'
-
 import initialItemsFromDB, { getItemsFromDB, addItemsToDB, deleteItemByIdFromDB } from './db/database.db';
-
-import { connect } from 'react-redux'
 
 // import initialItemsFromDB from './db/database.db'
 import Form from './form/Form';
