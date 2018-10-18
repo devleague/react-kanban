@@ -16,7 +16,7 @@ export const Tasks = props => {
         <div className='taskDescription'>{props.item.description}</div>
         <div className='editDelete'>
             <button className='editButton'>Edit</button>
-            <button className='deleteButton' onClick={this.deleteItemById(props.item.id)}>Delete</button>
+            <button className='deleteButton'>Delete</button>
         </div>
     </div>)
 } 
