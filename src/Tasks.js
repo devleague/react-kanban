@@ -2,54 +2,23 @@ import React, { Component } from 'react';
 import './App.css';
 import { getItemsFromFakeXHR, addItemToFakeXHR, deleteItemByIdFromFakeXHR, editItemByIdFromFakeXHR } from './server/db/inventory.db';
 
-class Tasks extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-        items: []
-    }
-    this.updateStateFromDb = this.updateStateFromDb.bind(this);
-  }
-
-  componentDidMount() {
-    this.updateStateFromDb()
-  }
-
-  updateStateFromDb() {
-    getItemsFromFakeXHR()
-      .then( items => {
-        this.setState({items}, () => {
-        console.log('this.state', this.state)
-      })
-    })
-  }
-
-  getItemById(itemId) {
-    getItemsFromFakeXHR(itemId)
-    .then( result => {
-      console.log('okay?', itemId)
-      console.log('GOTTEN');
-    })
-  }
-
-  deleteItemById(itemId) {
-    console.log('BALETED')
+function deleteItemById(itemId) {
     deleteItemByIdFromFakeXHR(itemId)
     .then( result => {
+      console.log('deleted');
       this.updateStateFromDb()
     })
-  }
+}
 
-  render() {
-    return this.state.items.map( item => <div className='task'>
-        <div className='taskName'>{item.name}</div>
-        <div className='taskDescription'>{item.description}</div>
+export const Tasks = props => {
+    return (<div className='task'>
+    <div className='taskName'>{props.item.name}</div>
+        <div className='taskDescription'>{props.item.description}</div>
         <div className='editDelete'>
             <button className='editButton'>Edit</button>
-            <button className='deleteButton' >Delete</button>
+            <button className='deleteButton' onClick={this.deleteItemById(props.item.id)}>Delete</button>
         </div>
     </div>)
-  }
-}  
+} 
 
 export default Tasks;

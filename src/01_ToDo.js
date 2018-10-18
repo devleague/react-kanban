@@ -7,12 +7,14 @@ class TODO extends Component {
   constructor(props) {
     super(props)
     this.state = {
+        items: []
     }
   }
 
   render() {
-    return this.props.items.filter(item => item.status === 'ToDo').map( item => /*<div key={item.id}>{item.name}{!this.state.isHidden && <div>{item.description}</div>}</div>*/<Tasks/>)
+    return this.props.items.filter(item => item.status === 'ToDo').map(
+     item => <div key={item.id} className='toDo'><Tasks item={item}/></div>)
   }
-}  
+}   
 
 export default TODO;

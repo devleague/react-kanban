@@ -43,7 +43,6 @@ class AddTask extends Component {
   }
 
   render() {
-    console.log(this.isHidden);
     return (
       <div id='addForm'>
        {!this.state.isHidden && <button onClick={this.toggleHidden.bind(this)}>Add New Task</button>}
