@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { format } from 'path';
 
+import { connect } from 'react-redux';
+import { addItem } from '../actions/actions.js'
+
 class Form extends Component {
     constructor(props) {
         super(props)
