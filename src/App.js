@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 // import logo from './logo.svg';
 import './App.css';
+// import axios from 'axios';
+
 import Top from './components/top.jsx';
 import Queue from './components/queue.jsx';
 import InProgress from './components/inProgress.jsx';
@@ -27,15 +29,28 @@ class App extends Component {
       carditems: [],
       hasItems: true
     }
+    // this.handleDelete = this.handleDelete.bind(this)
   }
 
-  handleDelete = (carditems) => {
-    this.status_id = carditems.status_id
-    this.title = carditems.title
-    this.card_id = carditems.card_id
-    this.props.setState(this.state)
-  }
+// removeItemTask = (item) => {
 
+//   axios
+//     .delete('/delete', item)
+//     .then(item => {
+//       console.log('DELETE FROM AXIOS', item)
+//     })
+//     .catch(err => {
+//       console.log('AXIOS DELETE ERROR: ', err)
+//     })
+// }  
+
+
+//   handleDelete = (carditems) => {
+//     this.card_id = carditems.card_id
+//     console.log("delete me!!!")
+//   }
+
+  
   render() {
     return (
       <div>
@@ -45,8 +60,7 @@ class App extends Component {
         <div style={catWrapperDivStyle}>
           <div style={catDivStyle}>
             <Queue items={this.props.items} />
-            <button onClick={this.handleDelete} id="delete" type="button">Delete</button>
-
+            {/* <button onClick={this.handleDelete} id="delete" type="button">Delete</button> */}
           </div>
           <div style={catDivStyle}>
             <InProgress items={this.props.items} />
@@ -61,3 +75,4 @@ class App extends Component {
 }
 
 export default App;
+////// BACK UP /////

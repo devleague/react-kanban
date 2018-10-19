@@ -155,8 +155,11 @@ function theStatus() {
           <p>Description:{props.body}</p>
           Priority: {thePriority()} <br />
           Status: {theStatus()} <br />
-          Created by: {props.created_by} <br />
-          Assigned to: {props.assigned_to} <br />
+          Created by: {`${props.created_by.first_name} ${props.created_by.last_name}`} <br />
+          Assigned to: {`${props.assigned_to.first_name} ${props.assigned_to.last_name}`} <br />
+          <button id="edit" type="button">Edit</button>
+          <button id="delete" type="button">Delete</button>
+
          </div>
         }
   }

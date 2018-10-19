@@ -35,19 +35,27 @@ class Queue extends Component {
       carditems: [],
       hasItems: true
     }
+    this.removeItemTask = this.removeItemTask.bind(this)
   }
 
-// removeItemTask = (item) => {
+  removeItemTask = (item) => {
 
-//   axios
-//     .put('/delete', item)
-//     .then(item => {
-//       console.log('RMFI log', item)
-//     })
-//     .catch(err => {
-//       console.log('delete error: ', err)
-//     })
-// }  
+  axios
+    .delete(`/delete/${item}`)
+    .then(item => {
+      console.log('DELETE FROM AXIOS', item)
+      this.setState( {items: item.data} )
+    })
+    .catch(err => {
+      console.log('AXIOS DELETE ERROR: ', err)
+    })
+  }
+    
+  // handleDelete = (carditems) => {
+  //   this.card_id = carditems.card_id
+  //   console.log("delete me!!!")
+  // }
+  
 
 addItemTask = (getNewTask) => {
   axios
@@ -162,6 +170,8 @@ function theStatus() {
 
 /* End Helpers */
 
+
+
 /* Do not display if status is not 'Done' */
   if (props.status_id !== 10) {
     return null
@@ -171,9 +181,11 @@ function theStatus() {
           <p>Description:{props.body}</p>
           Priority: {thePriority()} <br />
           Status: {theStatus()} <br />
-          Created by: {props.created_by} <br />
-          Assigned to: {props.assigned_to} <br />
-
+          Created by: {`${props.created_by.first_name} ${props.created_by.last_name}`} <br />
+          Assigned to: {`${props.assigned_to.first_name} ${props.assigned_to.last_name}`} <br />
+          <button id="edit" type="button">Edit</button>
+          <button id="delete" type="button">Delete</button>
+          {/* <button onClick={ () => props.removeItemTask(props.card_id)} id="delete" type="button">Delete</button> */}
          </div>
         }
 }  

@@ -74,7 +74,7 @@ class ItemForm extends Component {
             <input onChange={this.handleChange} type="text" name="assigned_to"/>
           </label> <br />
   
-          <input type="submit" onClick="return false"/>
+          <input type="submit"/>
         </form>
       )
     }

@@ -64,7 +64,7 @@ app.get('/statusnames', (req, res) => {
 app.get('/carditems', (req, res) => {
 
   CardModel
-    .fetchAll()
+    .fetchAll({withRelated: ["priority_id", "status_id", "created_by", "assigned_to"]})
     .then(carditems => {
       res.json(carditems.serialize())
       console.log('carditems: ', carditems)

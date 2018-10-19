@@ -1,19 +1,23 @@
 const bookshelf = require('./bookshelf');
 const UserModel = require('./UserModel.js');
+const StatusModel = require('./StatusModel.js');
+const PriorityModel = require('./PriorityModel.js');
 
 
 const CardModel = bookshelf.Model.extend({
     tableName: 'cards_table',
-    // createdByUser: function() {
-    //     return this.belongsTo(UserModel.tableName('users_table').idAttribute('user_id'));
-    // },
-    // createdByUser: function() { return UserModel, "first_name" },
-    // createdByUser: function(){
-    //     return this.belongsTo(UserModel.tableName('users_table').idAttribute('first_name'))
-    // },
-    // assignedToUser: function(){
-    //     return this.belongsTo(UserModel.tableName('users_table').idAttribute('first_name'))
-    // },
+    priority_id: function () {
+        return this.belongsTo(PriorityModel, "priorities_id");
+      },
+      status_id: function () {
+        return this.belongsTo(StatusModel, "statuses_id");
+      },
+      created_by: function () {
+        return this.belongsTo(UserModel, "created_by");
+      },
+      assigned_to: function () {
+        return this.belongsTo(UserModel, "assigned_to");
+      },
     idAttribute: 'card_id',   
     // idAttribute: 'created_by',   
 
