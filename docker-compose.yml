@@ -1,0 +1,5 @@
+version: '3'
+services:
+  react-inventory:
+    build: .
+    image: abbyz/react-kanban:local

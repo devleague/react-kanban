@@ -1,0 +1,66 @@
+/* .App {
+  text-align: center;
+} */
+
+.App-header {
+  /* background-color: #282c34; */
+  min-height: 4vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  font-size: calc(1px + 1vmin);
+  color: white;
+  padding: 0 10px;
+  text-transform: uppercase;
+}
+#newTask {
+  border: 1px solid white;
+  background-color: #282c34;
+  color: white;
+  text-transform: uppercase;
+  
+}
+body{
+  font-family: 'Handlee', cursive;
+
+}
+.container{
+  display:flex;
+  flex-direction: row;
+  align-items: top;
+  justify-content: space-around;
+  min-height: 70vh;
+
+}
+
+.progress{
+  width:33%;
+  border-right: 1px solid #282c34;
+  text-align: center;
+}
+.card{
+  background-color: #61dafb;
+  width: 70%;
+  margin: 0 auto;
+}
+.progress h3{
+  text-transform: uppercase;
+
+}
+.progress button {
+  margin: 5px;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
