@@ -81,16 +81,7 @@ app.get('/carditems', (req, res) => {
 // Add New Task //
 app.post('/newtask', (req, res) => {
 console.log("\nreq.body:", req.body);
-let task = {};
-task.priority_id = req.body.priority_id;
-task.status_id = req.body.status_id;
-task.created_by = req.body.created_by;
-task.assigned_to = req.body.assigned_to;
-
-console.log(task);
-
 // For cards_table
-
 CardModel
   .forge({
     // card_id: Math.floor((Math.random() * 1256) + 1),
@@ -104,7 +95,7 @@ CardModel
   .save()
   .then(() => {
     return CardModel
-      .fetchAll()
+      .fetchAll({withRelated: ["priority_id", "status_id", "created_by", "assigned_to"]})
       .then(carditems => {
         res.json(carditems.serialize());
       })

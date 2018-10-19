@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import axios from 'axios';
-// import helpers from './helpers/helpers.jsx';
-import ItemForm from './newTask.jsx';
+import helpers from './helpers/helpers.jsx';
+// import ItemForm from './newTask.jsx';
 
 
 
@@ -38,7 +37,7 @@ class Queue extends Component {
     this.removeItemTask = this.removeItemTask.bind(this)
   }
 
-  removeItemTask = (item) => {
+removeItemTask = (item) => {
 
   axios
     .delete(`/delete/${item}`)
@@ -57,25 +56,7 @@ class Queue extends Component {
   // }
   
 
-addItemTask = (getNewTask) => {
-  axios
-  .post('/newtask', getNewTask)
-      .then(itemsData => {
-        console.log("\nitemsData.data:", itemsData.data);
-        this.setState({ itemsData: itemsData.data })
-      })
-      .catch(err => {
-        console.log("ERROR", err);
-      })  
-}
-
 componentDidMount() {
-  // getItemsFromFakeXHR()
-  //   .then( items => {
-  //     this.setState({ items })
-  //   }, function() {
-  //     console.log('this.state updated', this.state)
-  //   })
   axios
   .get('/carditems')
   .then( carditems => {
@@ -102,17 +83,6 @@ const Section = () => (
     <div style={{padding: '40px'}}>
         <div>
           <ItemList path="/carditems" carditems={this.state.carditems}/><br />
-          <Router>
-            <div>
-                <Link className="App-title" to="/carditems">Items</Link>
-              <Route path="/carditems" component={ () => <ItemList items={this.state.items}/>}/>
-                <Link to="/newtask">
-                  <button id="newTask" type="button">+ NEW TASK</button>
-                </Link>
-                <Route path="/newtask" component={() => <ItemForm addItemTask={this.addItemTask} />} />
-                </div>
-          </Router>
-          {/* <ItemForm /> */}
         </div>
     </div>
   </div>

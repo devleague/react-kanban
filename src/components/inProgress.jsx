@@ -151,7 +151,7 @@ function theStatus() {
     return null
   } else { 
   return  <div style={progressCardStyles}>
-          <h3 align="center">{props.title} </h3><br />
+          <h3 align="center">{props.title} </h3>
           <p>Description:{props.body}</p>
           Priority: {thePriority()} <br />
           Status: {theStatus()} <br />

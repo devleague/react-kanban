@@ -24,6 +24,8 @@
   },
   "homepage": "https://github.com/rcjmedia/react-kanban#readme",
   "dependencies": {
+    "@progress/kendo-react-dropdowns": "^2.3.0",
+    "@progress/kendo-react-intl": "^2.3.0",
     "axios": "^0.18.0",
     "bcrypt": "^3.0.1",
     "bookshelf": "^0.13.3",

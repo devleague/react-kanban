@@ -5,7 +5,7 @@
 /* Helpers */ 
 
 const helpers = {
-  helper1: function(){
+  helper1: function(props){
     let statusQueue = 10
     let statusInProgress = 50;
     let statusDone = 90;
@@ -18,9 +18,17 @@ const helpers = {
           return "Done"
         }
   },
-  // helper2: function(){
+  helper2: function(props){
+    let priorityVar = props.priority_id;
 
-  // }
+    if (priorityVar === 111) {
+      return "Low"
+    } else if (priorityVar === 555) {
+        return "Medium"
+      } else if (priorityVar === 999) {
+          return "High"
+        }      
+  }
 }
 
 // export function thePriority(props) {
