@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './App.css';
 import { getItemsFromFakeXHR, addItemToFakeXHR, deleteItemByIdFromFakeXHR, editItemByIdFromFakeXHR } from './server/db/inventory.db';
-import { getAllItems } from './actions/actions';
+import { getAllItems, addItem } from './actions/actions';
 import AddTask from './AddTask';
 import TODO from './01_ToDo';
 import DOING from './02_Doing';
@@ -50,12 +50,14 @@ class App extends Component {
     })
   }
 
-  addItem(item) {
-    addItemToFakeXHR(item)
-    .then( items => {
-      this.setState( { items })
-      console.log('added', items);
-    })
+  addItem() {
+    // addItemToFakeXHR(item)
+    // .then( items => {
+    //   this.setState( { items })
+    //   console.log('added', items);
+    // })
+    console.log('add?', this.props);
+    this.props.items.addItem();
   }
 
   deleteItemById(itemId) {
@@ -81,7 +83,6 @@ class App extends Component {
 
   render() {
     const { items } = this.props
-    console.log('dis', items);
     return (
       <div id='kanban'>
       <div id='tasks'>

@@ -53,10 +53,10 @@ class EditTask extends Component {
       </div>
       <form onSubmit={this.handleSubmit}>
         <label> Task Name:
-          <input onChange={this.handleChange} name="name" type="text" defaultValue={this.props.task.name}/>
+          <input onChange={this.handleChange} name="name" type="text" defaultValue={this.props.task.title}/>
         </label> 
         <label> Task Description:
-          <input onChange={this.handleChange} name="description" defaultValue={this.props.task.description} type="text"/>
+          <input onChange={this.handleChange} name="description" defaultValue={this.props.task.body} type="text"/>
         </label>
         <label> Task Status:
           <select onChange={this.handleChange} name="status" defaultValue={this.props.task.status}>

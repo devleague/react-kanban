@@ -5,28 +5,28 @@ export const GET_ALL_ITEMS = 'GET_ALL_ITEMS';
 export const EDIT_ITEM = 'EDIT_ITEM';
 export const DELETE_ITEM = 'DELETE_ITEM';
 
-export function addItem(item) {
+export function addItem() {
     return dispatch => {
-        addItemToFakeXHR(item)
-        .then( (item) => {
+        axios.post('http://localhost:8989/add')
+        .then( item => {
             dispatch({
                 type: ADD_ITEM,
-                task: item 
+                task: item.data 
             })
+        })
+        .catch( err => {
+            console.log('action err', err);
+        });
+        dispatch({
+            type: ADD_ITEM,
+            task: []
         })
     }
 }
 
 export function getAllItems() {
     return dispatch => {
-        // getItemsFromFakeXHR()
-        // .then( items => {
-        //     dispatch({
-        //         type: GET_ALL_ITEMS,
-        //         task: items
-        //     })
-        // })
-        axios.get('http://localhost:8989/cards')
+        axios.get('http://localhost:8989/')
         .then(items => {
             dispatch({ 
                 type: GET_ALL_ITEMS,

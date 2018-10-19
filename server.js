@@ -7,7 +7,7 @@ const cors = require('cors');
 
 app.use(cors());
 
-app.get('/cards', (req, res) => {
+app.get('/', (req, res) => {
     Card
     .fetchAll()
     .then( result => {
@@ -17,6 +17,25 @@ app.get('/cards', (req, res) => {
     .catch( err => {
         console.log('err', err);
         res.json('err');
+    })
+})
+
+app.post('/add', (req, res) => {
+    // const { id } = req.params;
+    const payload = {
+        title: req.body.title,
+        description: req.body.description,
+        status: req.body.status
+    }
+    Card
+    .forge(payload)
+    .save()
+    .then( result => {
+        res.json(result.serialize())
+    })
+    .catch( err => {
+        console.log('err', err)
+        res.json(err);
     })
 })
 
