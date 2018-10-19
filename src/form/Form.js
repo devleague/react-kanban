@@ -11,30 +11,26 @@ class Form extends Component {
             title: null, 
             body: null, 
             priority: null, 
-            status: null, 
-            created_by: null, 
-            assigned_to: null
+            status: null
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
     }
 
     handleSubmit(e) {
-        e.preventDefault();
-        this.props.addItem(this.state)
+        e.preventDefault()
+        console.log('submitted', this.state)
+        this.props.dispatch(addItem(this.state));
     }
 
     handleChange(e) {
-        const target = e.target;
-        const value = target.value; 
-        const title = target.title;
-        console.log("value", value)
-        console.log("Title", title)
+        e.preventDefault()
+
+        const { name, value } = e.target
         this.setState({
-            [title]: value
-        }, () => {
-            console.log('state', this.state)
+            [name] : value
         })
+        
     }
 
     render() {
@@ -66,4 +62,4 @@ class Form extends Component {
     }
 }
 
-export default Form
+export default connect()(Form)

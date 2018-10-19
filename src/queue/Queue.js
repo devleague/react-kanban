@@ -2,6 +2,9 @@
 import React from 'react';
 import '../App.css';
 
+import { connect } from 'react-redux';
+
+
 const InQueue = (props) => {
     console.log("InQueue props", props)
     return props.items.filter(queueItem => queueItem.status === "in queue").map(queueItem => 
@@ -39,9 +42,17 @@ const InQueue = (props) => {
                     Done
                 </option>
             </select>
-            
+
         </div>    
     )
 }
  
-export default InQueue;
+const mapStateToProps = state => {
+    return {
+        items: state,
+        test: 'working?'
+    }
+}
+
+// export default InQueue
+export default connect(mapStateToProps)(InQueue);

@@ -24,8 +24,9 @@ class App extends Component {
     }
   }
 
-  componentDidMount = () => {
-    this.props.getAllItems()
+  componentDidMount() {
+    console.log('this.props', this.props)
+    this.props.dispatch(getAllItems());
   }
 
   // updateStateFromDB = () => {
@@ -103,4 +104,4 @@ const mapStateToProps = storeState => ({ items: storeState })
 
 const ConnectedApp = connect(mapStateToProps, { getAllItems })(App);
 
-export default App;
+export default connect()(App);

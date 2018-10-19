@@ -7,6 +7,7 @@ import InQueue from '../queue/Queue';
 import InProgress from '../progress/Progress';
 import Done from '../done/Done';
 
+// import { connect } from 'react-redux';
 
 class Container extends Component {
     constructor(props) {
@@ -18,6 +19,7 @@ class Container extends Component {
 
     render() {
         const { items } = this.state;
+        // console.log('container props', props)
 
         return (
             <div className="Container">
@@ -50,4 +52,13 @@ class Container extends Component {
     }
 }
 
-export default Container;
+// const mapStateToProps = state => {
+//     return {
+//         items: state, 
+//         test: 'is it working?'
+//     }
+// }
+
+// export default connect(mapStateToProps)(Container);
+
+export default Container
