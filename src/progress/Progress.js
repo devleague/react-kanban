@@ -2,7 +2,7 @@ import React from 'react';
 import '../App.css';
 
 const InProgress = (props) => {
-    console.log("Progress props", props.items.filter(item => item.status === "in progress"))
+    console.log("Progress props", props.items.filter(item => item.status === "in-progress"))
     return props.items.filter(progressItem => 
         progressItem.status === "in progress").map(progressItem => 
         <div key={progressItem.id} className="InProgress">

@@ -6,8 +6,8 @@ import { connect } from 'react-redux';
 
 
 const InQueue = (props) => {
-    console.log("InQueue props", props)
-    return props.items.filter(queueItem => queueItem.status === "in queue").map(queueItem => 
+    console.log("InQueue props", props.items.filter(item => item.status === "in-queue"))
+    return props.items.filter(queueItem => queueItem.status === "in-queue").map(queueItem => 
         <div key={queueItem.id} className="InQueue">
             <h4 className="item-title">    {queueItem.title}
             </h4>

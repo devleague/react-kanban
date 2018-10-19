@@ -26,7 +26,11 @@ class Form extends Component {
     handleChange(e) {
         e.preventDefault()
 
-        const { name, value } = e.target
+        // const { name, value } = e.target
+        const target = e.target
+        const value = target.value
+        const name = target.name
+
         this.setState({
             [name] : value
         })

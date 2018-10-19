@@ -5,7 +5,7 @@ const initialItemsFromDB = [
         title: 'Make Better Styles',
         body: '[body description here]',
         priority: 'medium',
-        status: 'in queue',
+        status: 'in-queue',
         created_by: 'Renee',
         assigned_to: 'Jon'
     },
@@ -13,7 +13,7 @@ const initialItemsFromDB = [
         id: 2,
         title: 'Make Even Better Styles', body: '[other body description here]',
         priority: 'low',
-        status: 'in progress',
+        status: 'in-progress',
         created_by: 'Renee',
         assigned_to: 'Jon'
     },
@@ -31,7 +31,7 @@ const initialItemsFromDB = [
         title: 'Do More Of The Styling',
         body: '[insert body description here]',
         priority: 'low', 
-        status: 'in queue', 
+        status: 'in-queue', 
         created_by: 'Renee', 
         assigned_to: 'Jon'
     }
