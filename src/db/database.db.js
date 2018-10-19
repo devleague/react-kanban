@@ -13,7 +13,7 @@ const initialItemsFromDB = [
         id: 2,
         title: 'Make Even Better Styles', body: '[other body description here]',
         priority: 'low',
-        status: 'in-progress',
+        status: 'in progress',
         created_by: 'Renee',
         assigned_to: 'Jon'
     },
