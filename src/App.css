@@ -28,19 +28,22 @@
 
 #bigContainer {
   display: flex;
+  background-color: cornflowerblue;
 }
 
 .cardContainer {
   height: 500px;
-  width: 600 px; /*why is this invalid in css?*/
-  /* padding: 100px; */
-  border: 1px solid grey;
+  width: 100%; /*why is this invalid in css?*/
+  border-top: 1px solid grey;
+  border-left: 1px solid grey;
+  border-right: 1px solid grey;
 }
 
 .cards {
   border: 2px solid green;
   border-radius: 10px;
   background-color: rgb(206, 202, 202);
+  font-size: 12px;
 }
 
 @keyframes App-logo-spin {

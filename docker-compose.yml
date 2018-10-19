@@ -1,0 +1,5 @@
+version: '3'
+services:
+  react-inventory:
+    build: .
+    image: jhdev808/react-kanban:${IMAGE_VERSION}-local

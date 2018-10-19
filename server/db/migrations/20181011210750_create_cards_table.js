@@ -3,11 +3,10 @@ exports.up = function(knex, Promise) {
     table.increments();
     table.string('title').notNullable();
     table.string('body').notNullable();
-    table.integer('priority_id').references('id').inTable('users');
-    table.integer('status_id').references('id').inTable('users');
-    table.integer('created_by').references('id').inTable('users');
-    table.integer('assigned_to').references('id').inTable('users');
-    table.boolean('is_complete').notNullable().defaultTo(false);
+    table.string('priority').notNullable();
+    table.string('status').notNullable();
+    table.string('createdBy').notNullable();
+    table.string('assignedTo').notNullable();
     table.timestamp('created_at').defaultTo(knex.fn.now());
     table.timestamp('updated_at').defaultTo(knex.fn.now());
   })
