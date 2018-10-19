@@ -5,6 +5,7 @@ import axios from 'axios';
 import ItemForm from './newTask.jsx';
 
 
+
 /* Syles */
 
 const pCatStyle = {
@@ -32,17 +33,28 @@ class Queue extends Component {
     super(props);
     this.state = {
       carditems: [],
-      usernames: [],
       hasItems: true
     }
   }
+
+// removeItemTask = (item) => {
+
+//   axios
+//     .put('/delete', item)
+//     .then(item => {
+//       console.log('RMFI log', item)
+//     })
+//     .catch(err => {
+//       console.log('delete error: ', err)
+//     })
+// }  
 
 addItemTask = (getNewTask) => {
   axios
   .post('/newtask', getNewTask)
       .then(itemsData => {
         console.log("\nitemsData.data:", itemsData.data);
-        this.setState({ carditems: itemsData.data })
+        this.setState({ itemsData: itemsData.data })
       })
       .catch(err => {
         console.log("ERROR", err);
@@ -65,30 +77,11 @@ componentDidMount() {
   .catch( err => {
     console.log('err', err)
   })
-
-  axios
-  .get('/users')
-  .then( users => {
-    console.log("items", users)
-    this.setState({users: users.data})
-  })
-  .catch( err => {
-    console.log('err', err)
-  })
-
 }
 
 renderItemList() {
   if (this.state.hasItems) {
     return <ItemList carditems={this.state.carditems}/>
-  } else {
-    return <div><p> Error </p></div>
-  }
-};
-
-renderUserList() {
-  if (this.state.hasItems) {
-    return <UserList usernames={this.state.usernames} />
   } else {
     return <div><p> Error </p></div>
   }
@@ -101,12 +94,10 @@ const Section = () => (
     <div style={{padding: '40px'}}>
         <div>
           <ItemList path="/carditems" carditems={this.state.carditems}/><br />
-          <UserList path="/users" usernames={this.state.usernames}/>
           <Router>
             <div>
                 <Link className="App-title" to="/carditems">Items</Link>
-              <Route path="/items" component={ () => <ItemList items={this.state.items}/>}/>
-
+              <Route path="/carditems" component={ () => <ItemList items={this.state.items}/>}/>
                 <Link to="/newtask">
                   <button id="newTask" type="button">+ NEW TASK</button>
                 </Link>
@@ -141,17 +132,6 @@ function ItemList(props) {
       />)
 }
 
-function UserList(props) {
-  
-  return props.usernames.map( usernames =>     
-    <UserAssignedCreated
-      user_id={usernames.user_id}
-      first_name={usernames.first_name}
-      last_name={usernames.last_name}
-      email={usernames.email}
-     />)
-}
-
 function Item(props) {
   console.log('props', props)
 
@@ -180,43 +160,23 @@ function theStatus() {
       }
 }
 
-
-
-
 /* End Helpers */
-
 
 /* Do not display if status is not 'Done' */
   if (props.status_id !== 10) {
     return null
   } else { 
   return  <div style={qeueuCardStyles}>
-          <h3 align="center">{props.title} </h3><br />
+          <h3 align="center">{props.title} </h3>
           <p>Description:{props.body}</p>
           Priority: {thePriority()} <br />
           Status: {theStatus()} <br />
           Created by: {props.created_by} <br />
           Assigned to: {props.assigned_to} <br />
+
          </div>
         }
 }  
 
-function UserAssignedCreated(props) {
-
-// function UserCreatedAssigned() {
-//   let userVar = props.created_by || props.assigned_to;
-
-//   if (userVar === props.user_id) {
-//     return props.first_name && ' ' && props.last_name
-//   } 
-// }
-
-
-  
-  return  <div style={qeueuCardStyles}>
-          Created by: {props.first_name} {props.last_name} {props.email} <br />
-          Assigned to: {props.first_name} {props.last_name} {props.email} <br />
-         </div>
-}  
 
 export default Queue;

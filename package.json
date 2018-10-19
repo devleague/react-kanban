@@ -44,10 +44,13 @@
     "passport-local": "^1.0.0",
     "pg": "^7.5.0",
     "react": "^16.5.2",
+    "react-beautiful-dnd": "^9.0.2",
     "react-dom": "^16.5.2",
+    "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
     "react-scripts": "^2.0.4",
     "redis": "^2.8.0",
+    "redux": "^4.0.1",
     "winston": "^3.1.0"
   },
   "browserslist": [

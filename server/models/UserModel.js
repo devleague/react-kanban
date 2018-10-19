@@ -1,4 +1,5 @@
 const bookshelf = require('./bookshelf');
+const CardModel = require('./CardModel.js');
 
 const UserModel = bookshelf.Model.extend({
     tableName: 'users_table',

@@ -1,11 +1,9 @@
 const express = require('express');
 const app = express();
 const PORT = process.env.EXPRESS_CONTAINER_PORT || 5050;
-// const path = require('path');
 const bp = require('body-parser');
 const session = require('express-session');
 const RedisStore = require('connect-redis')(session);
-// const passport = require('passport');
 
 const UserModel = require('./models/UserModel.js');
 const PriorityModel = require('./models/PriorityModel.js');
@@ -19,22 +17,11 @@ app.use(session({
   saveUninitialized: true // 
 }));
 
-// app.use(passport.initialize());
-// app.use(passport.session());
-//app.use(express.static('public'));
 app.use(bp.json());
 app.use(bp.urlencoded({ extended: true }));
 
-
-//app.use(express.static(path.join(__dirname, '../build')));
-
-// app.get('/', (req, res) => {
-//   res.json('hello world')
-// })
-
-
 /* GET Pages */
-app.get('/users', (req,res)=> {
+app.get('/usernames', (req,res)=> {
   UserModel
     .fetchAll()
     .then(items => {
@@ -45,8 +32,6 @@ app.get('/users', (req,res)=> {
       res.json("ERROR");
     })
 })
-
-
 
 app.get('/prioritynames', (req, res) => {
 
@@ -92,22 +77,29 @@ app.get('/carditems', (req, res) => {
 
 /* End GET Pages */
 
-/* PUT Pages*/
-
-//POST
+/* POST Pages*/
+// Add New Task //
 app.post('/newtask', (req, res) => {
 console.log("\nreq.body:", req.body);
+let task = {};
+task.priority_id = req.body.priority_id;
+task.status_id = req.body.status_id;
+task.created_by = req.body.created_by;
+task.assigned_to = req.body.assigned_to;
+
+console.log(task);
 
 // For cards_table
 
 CardModel
   .forge({
+    // card_id: Math.floor((Math.random() * 1256) + 1),
     title: req.body.title,
     body: req.body.body,
     priority_id: req.body.priority_id,
-    status_id: req.body.status_id
-    // created_by: req.body.created_by,
-    // assigned_to: req.body.assigned_to
+    status_id: req.body.status_id,
+    created_by: req.body.created_by,
+    assigned_to: req.body.assigned_to
   })
   .save()
   .then(() => {
@@ -123,30 +115,27 @@ CardModel
   });
 })
 
+/* End POST Pages*/
 
-app.post('/newtask', (req, res) => {
-// For users_table
 
-UserModel
-  .forge({
-    first_name: req.body.first_name,
-    last_name: req.body.last_name,
-    email: req.body.email
-  })
-  .save()
-  .then(() => {
-    return UserModel
-      .fetchAll()
-      .then(usernames => {
-        res.json(usernames.serialize());
-      })
-  })
-  .catch(err => {
-    console.log('POST NEW TASK BACKEND ERROR', err);
-    res.json("RES.JSON ERROR");
-  });
+/* PUT Pages */
+
+// DELETE Works in Postman //
+app.put('/delete', (req, res) => {
+
+  const card_id = req.body.card_id
+
+  CardModel
+    .where({ card_id })
+    .destroy()
+    .then(carditems => {
+      res.json(carditems.serialize())
+    })
+    .catch(err => {
+      console.log('DELETE ERR: ', err)
+    })
+
 })
-
 /* End PUT Pages*/
 
 app.listen(PORT, () => {

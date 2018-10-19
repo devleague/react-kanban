@@ -9,10 +9,10 @@ class ItemForm extends Component {
         body: null,
         priority_id: null,
         status_id: null,
-        first_name: null,
-        last_name: null,
-        email: null
+        created_by: null,
+        assigned_to: null
       }
+      // this.handleChange = this.handleChange.bind(this)
     }
   
     addItemTask = (getNewTask) => {
@@ -22,7 +22,6 @@ class ItemForm extends Component {
             .then(newStateData => {
               console.log("\nserverData.data:", newStateData.data);
               this.setState({ carditems: newStateData.data })
-              this.setState({ usernames: newStateData.data })
             })
             .catch(err => {
               console.log("ERROR", err);
@@ -37,6 +36,7 @@ class ItemForm extends Component {
   
     handleChange = (e) => {
         e.preventDefault();
+        console.log(e)
         const { name, value } = e.target;
         this.setState({
           [name]: value
@@ -55,30 +55,26 @@ class ItemForm extends Component {
           </label> <br />
           <label> Priority:
             <select onChange={this.handleChange} name="priority_id">
-              <option value="111">Low</option>
-              <option value="555">Medium</option>
-              <option value="999">High</option>
+              <option value={111}>Low</option>
+              <option value={555}>Medium</option>
+              <option value={999}>High</option>
             </select>
           </label> <br />
           <label> Status:
             <select onChange={this.handleChange} name="status_id">
-              <option value="10">Queue</option>
-              <option value="50">In Progress</option>
-              <option value="90">Done</option>
+              <option value={10}>Queue</option>
+              <option value={50}>In Progress</option>
+              <option value={90}>Done</option>
             </select>
           </label> <br />
-          <label> By:
-            <input onChange={this.handleChange} type="text" name="first_name"/>
-            <input onChange={this.handleChange} type="text" name="last_name"/>
-            <input onChange={this.handleChange} type="text" name="email"/>
+          <label> Created By:
+            <input onChange={this.handleChange} type="text" name="created_by"/>
           </label> <br />
-          <label> To:
-            <input onChange={this.handleChange} type="text" name="first_name"/>
-            <input onChange={this.handleChange} type="text" name="last_name"/>
-            <input onChange={this.handleChange} type="text" name="email"/>
+          <label> Assigned To:
+            <input onChange={this.handleChange} type="text" name="assigned_to"/>
           </label> <br />
   
-          <input type="submit"/>
+          <input type="submit" onClick="return false"/>
         </form>
       )
     }
