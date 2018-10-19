@@ -80,21 +80,22 @@ class App extends Component {
   }
 
   render() {
-    const { items } = this.state
+    const { items } = this.props
+    console.log('dis', items);
     return (
       <div id='kanban'>
       <div id='tasks'>
             <div className='taskCol'>
               <h1>THINGS TO DO</h1>
-              <TODO updateDB={this.updateStateFromDb} deleteItemById={this.deleteItemById}items={items}/>
+              <TODO updateDB={this.updateStateFromDb} deleteItemById={this.deleteItemById}items={this.props.items}/>
             </div>
             <div className='taskCol'>
               <h1>DOING</h1>
-              <DOING updateDB={this.updateStateFromDb} deleteItemById={this.deleteItemById} items={items}/>
+              <DOING updateDB={this.updateStateFromDb} deleteItemById={this.deleteItemById} items={this.props.items}/>
             </div>
             <div className='taskCol'>
               <h1>DONE</h1>
-              <DONE updateDB={this.updateStateFromDb} deleteItemById={this.deleteItemById} items={items}/>
+              <DONE updateDB={this.updateStateFromDb} deleteItemById={this.deleteItemById} items={this.props.items}/>
             </div>
         </div>
         <br/>
@@ -104,4 +105,10 @@ class App extends Component {
   }
 }
 
-export default connect(null, { getAllItems })(App);
+const mapStateToProps = state => {
+  return {
+    items: state
+  }
+}
+
+export default connect(mapStateToProps, { getAllItems })(App);

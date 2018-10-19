@@ -22,9 +22,10 @@ class Tasks extends Component {
 
 
       render() {
+        console.log('show', this.props)
         return (<div className='task'>
-        <div className='taskName'>{this.props.item.name}</div>
-            <div className='taskDescription'>{this.props.item.description}</div>
+        <div className='taskName'>{this.props.item.title}</div>
+            <div className='taskDescription'>{this.props.item.body}</div>
             {!this.state.editing ? <div className='editDelete'>
                 <button className='editButton' onClick={this.toggleEdit}>Edit</button>
                 <button className='deleteButton' onClick={() => this.props.delete(this.props.item.id)}>Delete</button>

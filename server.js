@@ -3,12 +3,20 @@ const pg = require('pg');
 const Card = require('./src/server/db/models/cards')
 const express = require('express');
 const app = express();
-app.get('/', (req, res) => {
-    console.log('pls');
+const cors = require('cors');
+
+app.use(cors());
+
+app.get('/cards', (req, res) => {
     Card
     .fetchAll()
     .then( result => {
-        return res.JSON(result.serialize())
+        console.log('pls', result);
+        res.json(result.serialize())
+    })
+    .catch( err => {
+        console.log('err', err);
+        res.json('err');
     })
 })
 

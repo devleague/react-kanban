@@ -1,6 +1,5 @@
 import { getItemsFromFakeXHR, addItemToFakeXHR, editItemByIdFromFakeXHR } from '../server/db/inventory.db'
 import axios from 'axios';
-
 export const ADD_ITEM = 'ADD_ITEM';
 export const GET_ALL_ITEMS = 'GET_ALL_ITEMS';
 export const EDIT_ITEM = 'EDIT_ITEM';
@@ -27,11 +26,18 @@ export function getAllItems() {
         //         task: items
         //     })
         // })
-        return axios.get('http://localhost:8989/')
+        axios.get('http://localhost:8989/cards')
         .then(items => {
             dispatch({ 
                 type: GET_ALL_ITEMS,
-                task: items
+                task: items.data
+            })
+        })
+        .catch( err => {
+            console.log('action err', err);
+            dispatch({ 
+                type: GET_ALL_ITEMS,
+                task: []
             })
         })
     }

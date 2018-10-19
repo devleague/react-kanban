@@ -11,7 +11,7 @@ class DONE extends Component {
     }
   
     render() {
-      return this.props.items.filter(item => item.status === 'Done').map(
+      return this.props.items.filter(item => item.status_id === 3).map(
        item => <div key={item.id} className='done'><Tasks item={item} delete={this.props.deleteItemById}/></div>)
     }
   } 
