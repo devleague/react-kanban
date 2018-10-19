@@ -47,7 +47,9 @@ export const addItemToFakeXHR = (item) => new Promise((resolve, reject) => {
 export const getItemByIdFromFakeXHR = (itemId) => new Promise( (resolve, reject) => {
     setTimeout( () => {
       const itemResponse = itemsFromFakeDB.find( item => item.id === itemId);
-      if (itemResponse) { console.log('hi', itemResponse);resolve(itemResponse);}
+      if (itemResponse) { 
+        console.log('hi', itemResponse);
+        resolve(itemResponse);}
       else reject({status: 404, message: 'item not found'})
     }, 500)
   })
@@ -56,8 +58,9 @@ export const getItemByIdFromFakeXHR = (itemId) => new Promise( (resolve, reject)
     setTimeout( () => {
       const itemResponse = itemsFromFakeDB.find( item => item.id === itemId);
       if (itemResponse){
-        console.log('hello', itemResponse);
         itemsFromFakeDB.splice(itemsFromFakeDB.indexOf(itemResponse), 1, info)
+        resolve(itemsFromFakeDB);
+        console.log('edited', itemResponse);
       }
       else reject({status: 404, message: 'item not found'})
     }, 500)

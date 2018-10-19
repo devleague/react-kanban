@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { deleteItemByIdFromFakeXHR } from './server/db/inventory.db';
-import { format } from 'path';
+import { editItem } from './actions/actions';
+import { connect } from 'react-redux';
 
 class EditTask extends Component {
   isHidden = true;
@@ -16,10 +16,19 @@ class EditTask extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
+  componentDidMount() {
+    this.setState({
+      id: this.props.task.id, 
+      name: this.props.task.name, 
+      description: this.props.task.description, 
+      status: this.props.task.status
+    })
+  }
+
   handleSubmit(e) {
     e.preventDefault();
-    this.props.addItem(this.state);
-    this.toggleHidden()
+    this.props.editItem(this.state);
+    this.props.toggleEdit();
   }
 
   handleChange(e) {
@@ -35,41 +44,22 @@ class EditTask extends Component {
     })
   }
 
-  componentWillReceiveProps(nextProps) {
-
-  }
-
-  deleteItemById(itemId) {
-    console.log('BALETED')
-    deleteItemByIdFromFakeXHR(itemId)
-    .then( result => {
-      this.updateStateFromDb()
-    })
-  }
-
-  showUpdate() {
-      this.setState({
-        isHidden: !this.state.isHidden
-      })
-  }
 
   render() {
-    console.log(this.isHidden);
+    console.log('wya', this.props);
     return (
       <div className='editForm'>
       <div className='editDelete'>
-      <button className='editButton'>Edit</button>
-      <button className='deleteButton'>Delete</button>
       </div>
-      {this.state.isHidden && <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleSubmit}>
         <label> Task Name:
-          <input onChange={this.handleChange} name="name" type="text" required/>
+          <input onChange={this.handleChange} name="name" type="text" defaultValue={this.props.task.name}/>
         </label> 
         <label> Task Description:
-          <input onChange={this.handleChange} name="description" type="text"/>
+          <input onChange={this.handleChange} name="description" defaultValue={this.props.task.description} type="text"/>
         </label>
         <label> Task Status:
-          <select onChange={this.handleChange} name="status" required>
+          <select onChange={this.handleChange} name="status" defaultValue={this.props.task.status}>
           <option value="" selected disabled hidden>Choose here</option>
             <option value="ToDo">Thing To Do</option>
             <option value="Doing">Doing</option>
@@ -77,8 +67,8 @@ class EditTask extends Component {
           </select>
         </label>
         <input type="submit" onClick={this.handleSubmit} value="Submit"/>
-        {this.state.isHidden && <button onClick={this.showUpdate.bind(this)}>Cancel</button>}
-      </form>}
+        <button onClick={this.props.toggleEdit}>Cancel</button>
+      </form>
       </div>
     )
   }
@@ -90,4 +80,4 @@ export const showUpdate = () => {
   })
 }
 
-export default EditTask
+export default connect(null, { editItem })(EditTask)

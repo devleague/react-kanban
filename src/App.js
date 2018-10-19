@@ -1,6 +1,9 @@
+import axios from 'axios';
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import './App.css';
 import { getItemsFromFakeXHR, addItemToFakeXHR, deleteItemByIdFromFakeXHR, editItemByIdFromFakeXHR } from './server/db/inventory.db';
+import { getAllItems } from './actions/actions';
 import AddTask from './AddTask';
 import TODO from './01_ToDo';
 import DOING from './02_Doing';
@@ -13,13 +16,15 @@ class App extends Component {
       items: []
     }
     this.addItem = this.addItem.bind(this);
+    this.editItemById = this.editItemById.bind(this);
     this.updateStateFromDb = this.updateStateFromDb.bind(this);
     this.deleteItemById = this.deleteItemById.bind(this);
   }
 
   //keep this
   componentDidMount() {
-    this.updateStateFromDb()
+    // this.updateStateFromDb()
+    this.props.getAllItems()
   }
 
   updateStateFromDb() {
@@ -39,7 +44,8 @@ class App extends Component {
 
   editItemById(itemId) {
     editItemByIdFromFakeXHR(itemId)
-    .then( result => {
+    .then( items => {
+      this.setState( { items } )
       console.log('UPDATED');
     })
   }
@@ -47,7 +53,7 @@ class App extends Component {
   addItem(item) {
     addItemToFakeXHR(item)
     .then( items => {
-      this.setState( {items })
+      this.setState( { items })
       console.log('added', items);
     })
   }
@@ -55,7 +61,6 @@ class App extends Component {
   deleteItemById(itemId) {
     deleteItemByIdFromFakeXHR(itemId)
     .then( result => {
-      console.log('deleted');
       this.updateStateFromDb()
     })
   }
@@ -81,15 +86,15 @@ class App extends Component {
       <div id='tasks'>
             <div className='taskCol'>
               <h1>THINGS TO DO</h1>
-              <TODO items={items}/>
+              <TODO updateDB={this.updateStateFromDb} deleteItemById={this.deleteItemById}items={items}/>
             </div>
             <div className='taskCol'>
               <h1>DOING</h1>
-              <DOING items={items}/>
+              <DOING updateDB={this.updateStateFromDb} deleteItemById={this.deleteItemById} items={items}/>
             </div>
             <div className='taskCol'>
               <h1>DONE</h1>
-              <DONE items={items}/>
+              <DONE updateDB={this.updateStateFromDb} deleteItemById={this.deleteItemById} items={items}/>
             </div>
         </div>
         <br/>
@@ -99,4 +104,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect(null, { getAllItems })(App);

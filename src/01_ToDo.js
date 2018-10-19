@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
 import Tasks from './Tasks';
-import { getItemsFromFakeXHR, addItemToFakeXHR, deleteItemByIdFromFakeXHR, editItemByIdFromFakeXHR } from './server/db/inventory.db';
 
 class TODO extends Component {
   constructor(props) {
@@ -12,8 +11,9 @@ class TODO extends Component {
   }
 
   render() {
+    console.log("HI", this.props)
     return this.props.items.filter(item => item.status === 'ToDo').map(
-     item => <div key={item.id} className='toDo'><Tasks item={item}/></div>)
+     item => <div key={item.id} className='toDo'><Tasks delete={this.props.deleteItemById} updateDB={this.props.updateDB} item={item}/></div>)
   }
 }   
 

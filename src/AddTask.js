@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import { format } from 'path';
 import Logo from './giphy-4.gif';
-import { getItemsFromFakeXHR, addItemToFakeXHR, deleteItemByIdFromFakeXHR } from './server/db/inventory.db';
 
 class AddTask extends Component {
   isHidden = true;
@@ -65,7 +63,7 @@ class AddTask extends Component {
         {this.state.isHidden && <button onClick={this.toggleHidden.bind(this)}>Cancel</button>}
       </form>}
       <br/><br/>
-      {this.state.isHidden && <img src={Logo}/>}
+      {this.state.isHidden && <img src={Logo} alt='boom'/>}
       </div>
     )
   }

@@ -1,9 +1,13 @@
 const bookshelf = require('./bookshelf');
+const Card = require('./cards');
 
-const Users = bookshelf.Model.extend({
+const User = bookshelf.Model.extend({
     tableName: 'users',
     idAttribute: 'id',
-    hasTimestamps: true
+    hasTimestamps: true,
+    card: function() {
+        return this.belongsToMany(Card)
+    }
 });
 
-module.exports = Users;
+module.exports = User;
