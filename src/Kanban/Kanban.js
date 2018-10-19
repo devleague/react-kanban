@@ -2,64 +2,35 @@ import React, { Component } from 'react';
 
 import './Kanban.css';
 
-import data from './Data/data.js';
 import Queue from "./Inqueue/queue.js";
 import Progress from "./Inprogress/progress.js";
 import Done from "./Done/done.js";
+import { connect } from 'react-redux';
+import { toLeft, toRight } from '../actions/actions.js'
 
 
 class Kanban extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      items: data
-    }
+  // constructor(props) {
+  //   super(props)
+  // }
+
+  toRight = (props) => {
+    this.props.dispatch(
+      toRight(props)
+    )
   }
 
-  toRight = (card) => {
-    let arr = this.state.items;
-    let targetArr = this.state.items.filter(item =>
-      item.id === card.id
-    );
-    let updatedArr = this.state.items.filter(item =>
-      item.id === card.id
-    );
-    if (card.status === "In-Queue") {
-      updatedArr[0].status = "In-Progress";
-    } else if (card.status === "In-Progress") {
-      updatedArr[0].status = "Done";
-    }
-    arr.slice(arr.indexOf(targetArr), 1, updatedArr[0]);
-    this.setState({
-      items: arr
-    })
-  }
-
-  toLeft = (card) => {
-    let arr = this.state.items;
-    let targetArr = this.state.items.filter(item =>
-      item.id === card.id
-    );
-    let updatedArr = this.state.items.filter(item =>
-      item.id === card.id
-    );
-    if (card.status === "Done") {
-      updatedArr[0].status = "In-Progress";
-    } else if (card.status === "In-Progress") {
-      updatedArr[0].status = "In-Queue";
-    }
-    arr.slice(arr.indexOf(targetArr), 1, updatedArr[0]);
-    this.setState({
-      items: arr
-    })
+  toLeft = (props) => {
+    this.props.dispatch(
+      toLeft(props)
+    )
   }
 
   render() {
-    const { items } = this.state
+    const { items } = this.props
 
     return (
       <div id="Kanban">
-        {/* <div id="Column-Container" className="Containers"> */}
         <div id="Queue-Title" className="Titles">
           In-Queue
             <div className="Queue-Container">
@@ -84,10 +55,15 @@ class Kanban extends Component {
             </div>
           </div>
         </div>
-        {/* </div> */}
       </div>
     );
   }
 }
 
-export default Kanban;
+const mapStateToProps = state => {
+  return {
+    items: state
+  }
+}
+
+export default connect(mapStateToProps)(Kanban);

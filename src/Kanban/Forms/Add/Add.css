@@ -71,7 +71,7 @@ button:active {
 
 .top{
   display: flex;
-  flex-direction: row;
+  flex-direction: row-reverse;
   justify-content: space-between;
 }
 

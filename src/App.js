@@ -5,17 +5,22 @@ import React, { Component } from 'react';
 import './App.css';
 import './Kanban/Forms/Add/Add.css';
 
-import data from './Kanban/Data/data.js';
 import Kanban from './Kanban/Kanban.js';
 import Add from './Kanban/Forms/Add/Add.js';
+import { getAllCards } from './actions/actions.js'
+
+import { connect } from 'react-redux';
 
 
 class App extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      status: data.map(card => { return card.status })
-    }
+  // constructor(props) {
+  //   super(props)
+  // }
+
+  componentDidMount() {
+    this.props.dispatch(
+      getAllCards()
+    )
   }
 
   render() {
@@ -31,5 +36,4 @@ class App extends Component {
   }
 }
 
-
-export default App;
+export default connect()(App);
