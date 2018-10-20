@@ -11,45 +11,57 @@ const pCatStyle = {
   fontFamily: 'Geneva',
   fontSize: '16px',
   textAlign: 'center',
-  color: 'solid black'
+  color: 'solid black',
+  marginBottom: '-20px'
 };
 
 const qeueuCardStyles = {
   display: 'grid',
-  marginBottom: '25px',
+  marginBottom: '55px',
   padding: '10px',
   backgroundColor: '#9aadb6',
   border: '2px solid black',
-  borderRadius: '10px',
+  borderRadius: '15px 1px 15px 15px',
   boxShadow: '5px 10px 5px #888888'
 };
 
 const lowPriorityColor = {
-  backgroundColor: '#d612cf',
-  color: 'white',
-  borderRadius: '10px',
-  marginTop: '-20px',
-  marginLeft: '325px',
-  boxShadow: '5px 5px 5px #888888'
-
+  backgroundColor: '#9aadb6',
+  color: 'd612cf',
+  borderRadius: '10px 10px 1px 1px',
+  paddingTop: '15px',
+  marginTop: '-34px',
+  marginLeft: '320px',
+  borderTop: '2px solid black',
+  borderLeft: '2px solid black',
+  borderRight: '2px solid black',
+  borderBottom: 'none'
 };
 
 const mediumPriorityColor = {
-  backgroundColor: '#5aaa11',
-  color: 'white',
-  borderRadius: '10px',
-  marginTop: '-20px',
-  marginLeft: '285px',
-  boxShadow: '5px 5px 5px #888888'
+  backgroundColor: '#9aadb6',
+  color: '5aaa11',
+  borderRadius: '10px 10px 1px 1px',
+  paddingTop: '15px',
+  marginTop: '-34px',
+  marginLeft: '320px',
+  borderTop: '2px solid black',
+  borderLeft: '2px solid black',
+  borderRight: '2px solid black',
+  borderBottom: 'none'
 };
 
 const highPriorityColor = {
-  backgroundColor: 'red',
-  color: 'white',
-  borderRadius: '10px',
-  marginTop: '-20px',
+  backgroundColor: '#9aadb6',
+  color: 'red',
+  borderRadius: '10px 10px 1px 1px',
+  paddingTop: '15px',
+  marginTop: '-34px',
   marginLeft: '320px',
-  boxShadow: '5px 5px 5px #888888'
+  borderTop: '2px solid black',
+  borderLeft: '2px solid black',
+  borderRight: '2px solid black',
+  borderBottom: 'none'
 }
 
 /* End Syles */
@@ -154,17 +166,17 @@ function thePriority() {
       }
 }
 
-function theStatus() {
-  let statusVar = props.status_id;
+// function theStatus() {
+//   let statusVar = props.status_id;
 
-  if (statusVar === 10) {
-    return "Queue"
-  } else if (statusVar === 50) {
-      return "In Progress"
-    } else if (statusVar === 90) {
-        return "Done"
-      }
-}
+//   if (statusVar === 10) {
+//     return "Queue"
+//   } else if (statusVar === 50) {
+//       return "In Progress"
+//     } else if (statusVar === 90) {
+//         return "Done"
+//       }
+// }
 
 /* End Helpers */
 
@@ -175,13 +187,26 @@ function theStatus() {
     return null
   } else { 
   return  <div style={qeueuCardStyles}>
-          <h3 align="center"> {thePriority()} </h3>
-          <h3 align="center">{props.title} </h3>
+          <h3 align="center" style={{marginTop: '-15px'}}> {thePriority()} </h3>
+          <h3 align="center" style={{marginTop: '-18px', marginBottom: '-10px', backgroundColor: '#b4b4b4'}}>{props.title} </h3>
           <p>Description:{props.body}</p>
-          <br />
-          Status: {theStatus()} <br />
-          Created by: {`${props.created_by.first_name} ${props.created_by.last_name}`} <br />
-          Assigned to: {`${props.assigned_to.first_name} ${props.assigned_to.last_name}`} <br />
+          {/* <br />
+          Status: {theStatus()} <br /> */}
+          <div style={{display: 'grid', gridTemplateColumns: '1fr 1fr'}}>
+            <div style={{display: 'grid', border: '2px solid blue'}}>
+            Created by:
+            </div>
+            <div style={{display: 'grid', border: '2px solid blue'}}>
+            Assigned to:
+            </div>
+            <div style={{display: 'grid', backgroundColor: '#b4b4b4', borderColor: 'black'}}>
+            {`${props.created_by.first_name} ${props.created_by.last_name}`}
+            </div>
+
+            <div style={{display: 'grid', backgroundColor: '#b4b4b4', borderColor: 'black'}}>
+            {`${props.assigned_to.first_name} ${props.assigned_to.last_name}`}
+            </div>
+          </div>
           <button id="edit" type="button">Edit</button>
           {/* <button id="delete" type="button">Delete</button> */}
           <button onClick={ () => props.removeItemTask(props.card_id)} id="delete" type="button">Delete</button>
