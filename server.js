@@ -72,6 +72,7 @@ app.get("/cards", (req, res) => {
 
 app.post("/add", (req, res) => {
   const info = req.body.state;
+  delete info["modalIsOpen"];
   let data = [];
 
   cards
@@ -109,6 +110,122 @@ app.post("/add", (req, res) => {
     .catch(err => {
       res.json(err);
     })
+})
+
+app.put("/edit/:id", (req, res) => {
+  const { id } = req.params
+  const info = req.body.state;
+  delete info["modalIsOpen"];
+
+  let values = Object.values(info);
+  let keys = Object.keys(info);
+
+  let outValues = values.map((element, i) => {
+    if (element.length === 0) {
+      return i
+    } else {
+      return false
+    }
+  })
+
+  let outKeys = keys.map((element, i) => {
+    if (outValues[i] !== false) {
+      return element
+    }
+  }).filter(element => element !== undefined)
+
+  for (var i = 0; i < outKeys.length; i++) {
+    delete info[outKeys[i]]
+  }
+
+  let data = [];
+
+  cards
+    .where({ id })
+    .fetch()
+    .then(results => {
+      return results.save(info)
+    })
+    .then(results => {
+      cards
+        .fetchAll({ withRelated: ["priority_id", "status_id", "created_by", "assigned_to"] })
+        .then(results => {
+          data.push(results.serialize())
+        })
+        .then(results => {
+          priorities
+            .fetchAll()
+            .then(results => {
+              data.push(results.serialize())
+            })
+        })
+        .then(results => {
+          statuses
+            .fetchAll()
+            .then(results => {
+              data.push(results.serialize())
+            })
+        })
+        .then(results => {
+          users
+            .fetchAll()
+            .then(results => {
+              data.push(results.serialize())
+              res.json(data)
+            })
+        })
+    })
+    .catch(err => {
+      res.json(err);
+    })
+})
+
+app.delete("/delete/:id", (req, res) => {
+  const { id } = req.params
+  let info = {
+    is_deleted: true
+  };
+  let data = [];
+
+  cards
+    .where({ id })
+    .fetch()
+    .then(results => {
+      return results.save(info);
+    })
+    .then(results => {
+      cards
+        .fetchAll({ withRelated: ["priority_id", "status_id", "created_by", "assigned_to"] })
+        .then(results => {
+          data.push(results.serialize())
+        })
+        .then(results => {
+          priorities
+            .fetchAll()
+            .then(results => {
+              data.push(results.serialize())
+            })
+        })
+        .then(results => {
+          statuses
+            .fetchAll()
+            .then(results => {
+              data.push(results.serialize())
+            })
+        })
+        .then(results => {
+          users
+            .fetchAll()
+            .then(results => {
+              data.push(results.serialize())
+              res.json(data)
+            })
+        })
+        .catch(err => {
+          res.json(err);
+        })
+    })
+
 })
 
 app.put("/left/:id", (req, res) => {

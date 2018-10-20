@@ -68,6 +68,15 @@
   text-align: right;
 }
 
+#editOpen{
+  font-size: 2vh;
+}
+
+#deleteOpen{
+  font-size: 2vh;
+}
+
+
 .edit {
   margin-left: 2%;
 }
@@ -93,4 +102,34 @@
   text-align: right;
   margin-right: 1%;
   font-size: 4vh;
+}
+
+#confirmButtons{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.confirmation{
+  width: 10vw;
+  height: 4vh;
+  /* background: linear-gradient(to bottom, #c7c7c7 0%,#c7c7c7 100%); */
+  background-image: url(/assets/box.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: none;
+  border-radius: 5px;
+  position: relative;
+  border-bottom: 0.1vw solid #c7c7c7;
+  color: white;
+  font-weight: 600;
+  text-shadow: 1px 1px 1px rgba(0,0,0,.4);
+  font-size: 3vh;
+  text-align: left;
+  text-indent: 5px;
+  box-shadow: 0px 3px 0px 0px rgba(0,0,0,0);
+  cursor: pointer;
+
+/* Just for presentation */  
+  display: block;
 }

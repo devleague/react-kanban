@@ -1,9 +1,20 @@
 import React from 'react';
 import Modal from 'react-modal';
-import { addCard } from '../../../actions/actions.js'
+import { editCard } from '../../../actions/actions.js'
 import { connect } from 'react-redux';
 
-class Add extends React.Component {
+const customStyles = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)'
+  }
+};
+
+class Edit extends React.Component {
   constructor() {
     super();
 
@@ -20,7 +31,7 @@ class Add extends React.Component {
     this.afterOpenModal = this.afterOpenModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.addCard = this.addCard.bind(this);
+    this.editCard = this.editCard.bind(this);
   }
 
   openModal() {
@@ -34,16 +45,16 @@ class Add extends React.Component {
     this.setState({ modalIsOpen: false });
   }
 
-  addCard(state) {
+  editCard(state, props) {
     this.props.dispatch(
-      addCard(state)
+      editCard(state, props)
     )
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
     this.setState({ modalIsOpen: false });
-    this.addCard(this.state);
+    this.editCard(this.state, this.props.info);
   }
 
   handleChange = (e) => {
@@ -93,55 +104,58 @@ class Add extends React.Component {
   }
 
   render() {
+    const { info } = this.props
+
     return (
       <div>
-        <button onClick={this.openModal} className="button" id="newOpen">Add a Card</button>
+        <button onClick={this.openModal} className="button" id="editOpen">Edit</button>
         <Modal
           ariaHideApp={false}
           isOpen={this.state.modalIsOpen}
           onAfterOpen={this.afterOpenModal}
           onRequestClose={this.closeModal}
+          style={customStyles}
           contentLabel="Example Modal"
         >
           <div className="top">
             <button onClick={this.closeModal} id="close" className="button">&times;</button>
             <h3>
-              <label id="formTitle">New Card</label>
+              <label id="formTitle">Edit Card</label>
             </h3>
           </div>
           <form >
             <img src="/assets/box.png" alt="" id="boxIcon"></img>
-            <input onChange={this.handleChange} type="text" name="title" id="title" className="inputBars" placeholder="Title of Card" />
+            <input onChange={this.handleChange} type="text" name="title" id="title" className="inputBars" placeholder={info.title} />
             <br />
             <br />
             <img src="/assets/box.png" alt="" id="boxIcon"></img>
-            <input onChange={this.handleChange} type="text" name="body" id="body" className="inputBars" placeholder="Task" />
+            <input onChange={this.handleChange} type="text" name="body" id="body" className="inputBars" placeholder={info.body} />
             <br />
             <br />
             <img src="/assets/box.png" alt="" id="boxIcon"></img>
             <select onChange={this.handleChange} type="text" name="priority_id" id="priority" className="select">
-              <option value="">Please Choose a Priority</option>
+              <option value="">{info.priority_id.name}</option>
               {this.prioritySelection()}
             </select>
             <br />
             <br />
             <img src="/assets/box.png" alt="" id="boxIcon"></img>
             <select onChange={this.handleChange} type="text" name="status_id" id="status" className="select">
-              <option value="">Please Choose a Status</option>
+              <option value="">{info.status_id.name}</option>
               {this.statusSelection()}
             </select>
             <br />
             <br />
             <img src="/assets/box.png" alt="" id="boxIcon"></img>
             <select onChange={this.handleChange} type="text" name="created_by" id="createdBy" className="select">
-              <option value="">Created By...</option>
+              <option value="">{`${info.created_by.first_name} ${info.created_by.last_name}`}</option>
               {this.userSelection()}
             </select>
             <br />
             <br />
             <img src="/assets/box.png" alt="" id="boxIcon"></img>
             <select onChange={this.handleChange} type="text" name="assigned_to" id="assignedTo" className="select">
-              <option value="">Assigned To...</option>
+              <option value="">{`${info.assigned_to.first_name} ${info.assigned_to.last_name}`}</option>
               {this.userSelection()}
             </select>
             <br />
@@ -162,4 +176,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(Add);
+export default connect(mapStateToProps)(Edit);

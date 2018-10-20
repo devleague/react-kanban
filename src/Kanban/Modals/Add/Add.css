@@ -14,7 +14,7 @@
 }
 
 #submitButton {
-    width: 8vw;
+    width: 10vw;
     height: 4vh;
     /* background: linear-gradient(to bottom, #c7c7c7 0%,#c7c7c7 100%); */
     background-image: url(/assets/box.png);
@@ -56,6 +56,11 @@ button:active {
 .button{
   border: none;
   background: transparent;
+  padding-left: 0%;
+}
+
+.title{
+  text-align: left;
 }
 
 .select {
@@ -75,8 +80,23 @@ button:active {
   justify-content: space-between;
 }
 
+.bodyModal{
+  /* display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between; */
+  text-align: left;
+}
+
 #close{
   display: flex;
   font-size: 5vh;
   align-self: flex-start;
+}
+
+#closeBody{
+  display: flex;
+  font-size: 5vh;
+  position: absolute;
+  left: 92%;
+  top: 5%;
 }
