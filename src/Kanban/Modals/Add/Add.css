@@ -97,6 +97,6 @@ button:active {
   display: flex;
   font-size: 5vh;
   position: absolute;
-  left: 92%;
+  right: 2%;
   top: 5%;
 }
