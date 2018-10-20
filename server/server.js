@@ -50,6 +50,22 @@ app.post('/newCard', (req, res) => {
     })
 })  
 
+  app.delete('/delete/:id', (req, res) => {
+    let { id } = req.params;
+    Cards
+    .where({ id })
+    .destroy()
+    .then(() => {
+      return Cards
+      .fetchAll()
+      .then( deleteResult => {
+        res.json(deleteResult.serialize())
+      })
+      .catch(err => {
+        console.log('err', err)
+      })
+    })
+  })
   // res.json({
   //   items: [{
   //     id: 1,
@@ -107,6 +123,40 @@ app.post('/newCard', (req, res) => {
   //   }]
   // })
 })
+
+app.put("/edit/:id", (req, res) => {
+  // console.log("\n---> Backend PUT /editTask");
+  // console.log("\nBackend - PUT req.params:", req.params);
+  // console.log("\nBackend - PUT req.body:", req.body);
+  // console.log('req.params', req.params)
+
+  const updatedTask = {
+    title: req.body.title,
+    body: req.body.body,
+    priority: req.body.priority,
+    status: req.body.status,
+    createdBy: req.body.createdBy,
+    assignedTo: req.body.assignedTo
+  }
+
+  Cards
+    .where('id', req.params.id)
+    .fetch()
+    .then(results => {
+      console.log("\nBackend - PUT results:", results);
+      results.save(updatedTask);
+      return Cards.fetchAll()
+    })
+    .then(tasks => {
+      res.json(tasks.serialize());
+    })
+    .catch(err => {
+      console.log("Backend PUT didn't work");
+      res.json("FAILED");
+    })
+
+})
+
 
 app.listen(PORT, () => {
   console.log(`Listening on ${PORT}...`)
