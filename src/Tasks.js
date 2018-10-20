@@ -22,7 +22,6 @@ class Tasks extends Component {
 
 
       render() {
-        console.log('show', this.props)
         return (<div className='task'>
         <div className='taskName'>{this.props.item.title}</div>
             <div className='taskDescription'>{this.props.item.body}</div>

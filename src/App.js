@@ -15,7 +15,7 @@ class App extends Component {
     this.state = {
       items: []
     }
-    this.addItem = this.addItem.bind(this);
+    // this.addItem = this.addItem.bind(this);
     this.editItemById = this.editItemById.bind(this);
     this.updateStateFromDb = this.updateStateFromDb.bind(this);
     this.deleteItemById = this.deleteItemById.bind(this);
@@ -50,35 +50,11 @@ class App extends Component {
     })
   }
 
-  addItem() {
-    // addItemToFakeXHR(item)
-    // .then( items => {
-    //   this.setState( { items })
-    //   console.log('added', items);
-    // })
-    console.log('add?', this.props);
-    this.props.items.addItem();
-  }
-
   deleteItemById(itemId) {
     deleteItemByIdFromFakeXHR(itemId)
     .then( result => {
       this.updateStateFromDb()
     })
-  }
-
-  onMouseEnterHandler() {
-    this.setState({
-      hover: true
-    });
-    console.log('enter hover');
-  }
-
-  onMouseLeaveHandler() {
-    this.setState({
-      hover: false
-    });
-    console.log('leave hover');
   }
 
   render() {
@@ -100,7 +76,7 @@ class App extends Component {
             </div>
         </div>
         <br/>
-        <AddTask addItem={this.addItem}/>
+        <AddTask addItem={this.addItem} items={this.props.items}/>
       </div>
     );
   }
@@ -112,4 +88,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, { getAllItems })(App);
+export default connect(mapStateToProps, { getAllItems, addItem })(App);

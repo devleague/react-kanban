@@ -5,10 +5,12 @@ export const GET_ALL_ITEMS = 'GET_ALL_ITEMS';
 export const EDIT_ITEM = 'EDIT_ITEM';
 export const DELETE_ITEM = 'DELETE_ITEM';
 
-export function addItem() {
+export function addItem(item) {
     return dispatch => {
-        axios.post('http://localhost:8989/add')
+        console.log('axios item', item);
+        axios.post('http://localhost:8989/add', item)
         .then( item => {
+            console.log('axios item 2', item);
             dispatch({
                 type: ADD_ITEM,
                 task: item.data 
@@ -17,10 +19,6 @@ export function addItem() {
         .catch( err => {
             console.log('action err', err);
         });
-        dispatch({
-            type: ADD_ITEM,
-            task: []
-        })
     }
 }
 

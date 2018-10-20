@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Logo from './giphy-4.gif';
+import { addItem } from './actions/actions';
+import { connect } from 'react-redux';
 
 class AddTask extends Component {
   isHidden = true;
@@ -7,7 +9,7 @@ class AddTask extends Component {
     super(props)
     this.state = {
       id: null,
-      name: null,
+      title: null,
       description: null,
       status: null,
     }
@@ -16,6 +18,7 @@ class AddTask extends Component {
   }
 
   handleSubmit(e) {
+    console.log('add task', this.props) //{items:[array(3)]}
     e.preventDefault();
     this.props.addItem(this.state);
     this.toggleHidden()
@@ -41,12 +44,13 @@ class AddTask extends Component {
   }
 
   render() {
+    console.log('prop?', this.props);
     return (
       <div id='addForm'>
        {!this.state.isHidden && <button onClick={this.toggleHidden.bind(this)}>Add New Task</button>}
       {this.state.isHidden && <form onSubmit={this.handleSubmit}>
         <label> Task Name:
-          <input onChange={this.handleChange} name="name" type="text"/>
+          <input onChange={this.handleChange} name="title" type="text"/>
         </label> 
         <label> Task Description:
           <input onChange={this.handleChange} name="description" type="text"/>
@@ -69,4 +73,5 @@ class AddTask extends Component {
   }
 }
 
-export default AddTask;
+
+export default connect(null, { addItem })(AddTask);

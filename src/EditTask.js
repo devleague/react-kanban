@@ -8,7 +8,7 @@ class EditTask extends Component {
     super(props)
     this.state = {
       id: null,
-      name: null,
+      title: null,
       description: null,
       status: null,
     }
@@ -19,7 +19,7 @@ class EditTask extends Component {
   componentDidMount() {
     this.setState({
       id: this.props.task.id, 
-      name: this.props.task.name, 
+      title: this.props.task.title, 
       description: this.props.task.description, 
       status: this.props.task.status
     })
@@ -53,7 +53,7 @@ class EditTask extends Component {
       </div>
       <form onSubmit={this.handleSubmit}>
         <label> Task Name:
-          <input onChange={this.handleChange} name="name" type="text" defaultValue={this.props.task.title}/>
+          <input onChange={this.handleChange} name="title" type="text" defaultValue={this.props.task.title}/>
         </label> 
         <label> Task Description:
           <input onChange={this.handleChange} name="description" defaultValue={this.props.task.body} type="text"/>

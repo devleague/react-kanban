@@ -2,19 +2,19 @@
 
 let itemsFromFakeDB = [{
     id: 1,
-    name: 'Eat Fud',
+    title: 'Eat Fud',
     description: 'CUZ IM HUNGRY',
     status: 'ToDo'
 },
 {
     id: 2,
-    name: 'Chase Paper',
+    title: 'Chase Paper',
     description: 'CUZ IM POOR',
     status: 'Doing'
 },
 {
     id: 3,
-    name: 'Kanak',
+    title: 'Kanak',
     description: 'CUZ IM TIRED',
     status: 'Done'
 }]
