@@ -2,14 +2,12 @@ import { GET_ALL_CARDS, ADD_CARD } from '../actions/actions.js'
 
 
 const cardReducer = (state = [], action) => {
-    // console.log('REDUCER ACTION: ', action)
-    // console.log('CURRENT STATE:', state)
     switch (action.type) {
         case GET_ALL_CARDS:
-            console.log('action.playload in GET_ALL_CARDS reducer', action.payload)
-            return action.payload
+            console.log('action.payload in GET_ALL_ITEMS reducer', action.cards)
+            return action.cards
         case ADD_CARD:
-            return [...state, action.payload]
+            return [...state, action.cards]
         default:
             return state
     }

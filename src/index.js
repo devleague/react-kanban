@@ -12,8 +12,8 @@ import reducers from './reducers/reducers.js';
 
 const store = createStore(
     reducers,
-    applyMiddleware(ReduxThunk)
-    // window._REDUX_DEVTOOLS_EXTENSION_ && window._REDUX_DEVTOOLS_EXTENSION_(),
+    applyMiddleware(ReduxThunk),
+    window._REDUX_DEVTOOLS_EXTENSION_ && window._REDUX_DEVTOOLS_EXTENSION_(),
 )
 ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));
 

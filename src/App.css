@@ -1,18 +1,24 @@
-/* .App {
+.App {
   text-align: center;
-} */
+}
 
 .App-header {
-  /* background-color: #282c34; */
-  min-height: 4vh;
+  background-color: #282c34;
+  min-height: 6vh;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  font-size: calc(1px + 1vmin);
+  font-size: calc(2px + 1vmin);
   color: white;
   padding: 0 10px;
   text-transform: uppercase;
+}
+.App-title{
+  color:white;
+  text-decoration: none;
+  font-size: 20px;
+
 }
 #newTask {
   border: 1px solid white;
@@ -33,7 +39,11 @@ body{
   min-height: 70vh;
 
 }
-
+.card_inprogress{
+  background-color: pink;
+  width: 30%;
+  margin: 0 auto;
+}
 .progress{
   width:33%;
   border-right: 1px solid #282c34;
@@ -41,7 +51,7 @@ body{
 }
 .card{
   background-color: #61dafb;
-  width: 70%;
+  width: 30%;
   margin: 0 auto;
 }
 .progress h3{
@@ -52,9 +62,9 @@ body{
   margin: 5px;
 }
 
-.App-link {
+/* .App-link {
   color: #61dafb;
-}
+} */
 
 @keyframes App-logo-spin {
   from {
