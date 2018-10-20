@@ -15,7 +15,6 @@ class App extends Component {
     this.state = {
       items: []
     }
-    // this.addItem = this.addItem.bind(this);
     this.editItemById = this.editItemById.bind(this);
     this.updateStateFromDb = this.updateStateFromDb.bind(this);
     this.deleteItemById = this.deleteItemById.bind(this);
@@ -23,7 +22,6 @@ class App extends Component {
 
   //keep this
   componentDidMount() {
-    // this.updateStateFromDb()
     this.props.getAllItems()
   }
 

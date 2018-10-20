@@ -9,8 +9,8 @@ class EditTask extends Component {
     this.state = {
       id: null,
       title: null,
-      description: null,
-      status: null,
+      body: null,
+      status_id: null,
     }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -20,8 +20,8 @@ class EditTask extends Component {
     this.setState({
       id: this.props.task.id, 
       title: this.props.task.title, 
-      description: this.props.task.description, 
-      status: this.props.task.status
+      body: this.props.task.body, 
+      status_id: this.props.task.status
     })
   }
 
@@ -56,14 +56,14 @@ class EditTask extends Component {
           <input onChange={this.handleChange} name="title" type="text" defaultValue={this.props.task.title}/>
         </label> 
         <label> Task Description:
-          <input onChange={this.handleChange} name="description" defaultValue={this.props.task.body} type="text"/>
+          <input onChange={this.handleChange} name="body" defaultValue={this.props.task.body} type="text"/>
         </label>
         <label> Task Status:
           <select onChange={this.handleChange} name="status" defaultValue={this.props.task.status}>
           <option value="" selected disabled hidden>Choose here</option>
-            <option value="ToDo">Thing To Do</option>
-            <option value="Doing">Doing</option>
-            <option value="Done">Done</option>
+            <option value="1">Thing To Do</option>
+            <option value="2">Doing</option>
+            <option value="3">Done</option>
           </select>
         </label>
         <input type="submit" onClick={this.handleSubmit} value="Submit"/>
@@ -72,12 +72,6 @@ class EditTask extends Component {
       </div>
     )
   }
-}
-
-export const showUpdate = () => {
-  this.setState({
-    isHidden: !this.state.isHidden
-  })
 }
 
 export default connect(null, { editItem })(EditTask)

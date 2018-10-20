@@ -28,13 +28,16 @@ app.post('/add', (req, res) => {
     console.log('pls', req.body)
     const payload = {
         title: req.body.title,
-        description: req.body.description,
-        status: req.body.status
+        body: req.body.body,
+        status_id: req.body.status,
+        priority_id: 1,
+        created_by: 1,
+        assigned_to: 1
     }
     console.log('payload', payload);
-    return new Card
-    // .forge(payload)
-    .save(payload)
+    Card
+    .forge(payload)
+    .save()
     .then( result => {
         console.log('serialize?', result);
         res.json(result.serialize())

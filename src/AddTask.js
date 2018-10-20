@@ -10,15 +10,15 @@ class AddTask extends Component {
     this.state = {
       id: null,
       title: null,
-      description: null,
-      status: null,
+      body: null,
+      status_id: null
     }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
 
   handleSubmit(e) {
-    console.log('add task', this.props) //{items:[array(3)]}
+    console.log('add task', this.props)
     e.preventDefault();
     this.props.addItem(this.state);
     this.toggleHidden()
@@ -53,14 +53,14 @@ class AddTask extends Component {
           <input onChange={this.handleChange} name="title" type="text"/>
         </label> 
         <label> Task Description:
-          <input onChange={this.handleChange} name="description" type="text"/>
+          <input onChange={this.handleChange} name="body" type="text"/>
         </label>
         <label> Task Status:
           <select onChange={this.handleChange} name="status">
           <option value="" selected disabled hidden>Choose here</option>
-            <option value="ToDo">Thing To Do</option>
-            <option value="Doing">Doing</option>
-            <option value="Done">Done</option>
+            <option value="1" >Thing To Do</option>
+            <option value="2">Doing</option>
+            <option value="3">Done</option>
           </select>
         </label>
         <input type="submit" onClick={this.handleSubmit} value="Submit"/>
