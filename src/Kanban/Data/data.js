@@ -1,44 +1,22 @@
-const data = [
-  {
-    id: 1,
-    title: "Finish Monthly Financial Highlights",
-    body: "Update for draft 2 pending suggested changes from reviewier",
-    priority: "High",
-    status: "In-Progress",
-    createdBy: "Amy",
-    assignedTo: "Wymin",
-    isDeleted: false
-  },
-  {
-    id: 2,
-    title: "Statistical Report",
-    body: "Update for current month end",
-    priority: "Medium",
-    status: "Done",
-    createdBy: "Amy",
-    assignedTo: "Amberly",
-    isDeleted: false
-  },
-  {
-    id: 3,
-    title: "Daily Deposit Reconciliation",
-    body: "Daily update",
-    priority: "Low",
-    status: "In-Queue",
-    createdBy: "Amy",
-    assignedTo: "Wymin",
-    isDeleted: false
-  },
-  {
-    id: 4,
-    title: "Quarterly Call Report",
-    body: "Create Call Report",
-    priority: "High",
-    status: "In-Queue",
-    createdBy: "Alvin",
-    assignedTo: "Amy",
-    isDeleted: false
-  }
-]
+// const express = require('express');
+// const app = express();
+// const knex = require('./knex/knex.js');
 
-export default data;
+// const cards = require('./knex/models/cards.js');
+// const priorities = require('./knex/models/priorities.js');
+// const statuses = require('./knex/models/statuses.js');
+// const users = require('./knex/models/users.js');
+
+// app.get("/cards", (req, res) => {
+//   cards
+//     .fetchAll({ withRelated: ["priority_id", "status_id", "created_by", "assigned_to"] })
+//     .then(results =>
+//       results.serailize()
+//     )
+//     .catch(err => {
+//       res.json(err);
+//     })
+// })
+
+
+// export default data;

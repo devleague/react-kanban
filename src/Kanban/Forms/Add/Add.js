@@ -1,13 +1,19 @@
 import React from 'react';
 import Modal from 'react-modal';
 import { addCard } from '../../../actions/actions.js'
+import { connect } from 'react-redux';
 
 class Add extends React.Component {
   constructor() {
     super();
 
     this.state = {
-      modalIsOpen: false
+      title: '',
+      body: '',
+      priority_id: '',
+      status_id: '',
+      created_by: '',
+      assigned_to: ''
     };
 
     this.openModal = this.openModal.bind(this);
@@ -22,24 +28,68 @@ class Add extends React.Component {
   }
 
   afterOpenModal() {
-    // references are now sync'd and can be accessed.
-    // this.subtitle.style.color = '#f00';
   }
 
   closeModal() {
     this.setState({ modalIsOpen: false });
   }
 
-  addCard() {
+  addCard(state) {
     this.props.dispatch(
-      addCard()
+      addCard(state)
     )
   }
 
-  handleSubmit(e) {
+  handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Hi", this.state);
-    this.addCard();
+    this.setState({ modalIsOpen: false });
+    this.addCard(this.state);
+  }
+
+  handleChange = (e) => {
+    const target = e.target
+    const value = target.value;
+    const name = target.name;
+    this.setState({
+      [name]: e.target.value
+    }, () => {
+    })
+  }
+
+  prioritySelection = () => {
+    const { items } = this.props
+    if (items[1] === undefined) {
+      return (
+        <option>Empty</option>
+      )
+    } else {
+      let info = items[1]
+      return info.map(line => <option key={line.id} value={line.id}>{line.name}</option>)
+    }
+  }
+
+  statusSelection = () => {
+    const { items } = this.props
+    if (items[2] === undefined) {
+      return (
+        <option>Empty</option>
+      )
+    } else {
+      let info = items[2]
+      return info.map(line => <option key={line.id} value={line.id}>{line.name}</option>)
+    }
+  }
+
+  userSelection = () => {
+    const { items } = this.props
+    if (items[3] === undefined) {
+      return (
+        <option>Empty</option>
+      )
+    } else {
+      let info = items[3]
+      return info.map(line => <option key={line.id} value={line.id}>{line.first_name} {line.last_name}</option>)
+    }
   }
 
   render() {
@@ -47,6 +97,7 @@ class Add extends React.Component {
       <div>
         <button onClick={this.openModal} className="button" id="newOpen">Add a Card</button>
         <Modal
+          ariaHideApp={false}
           isOpen={this.state.modalIsOpen}
           onAfterOpen={this.afterOpenModal}
           onRequestClose={this.closeModal}
@@ -58,43 +109,45 @@ class Add extends React.Component {
               <label id="formTitle">New Card</label>
             </h3>
           </div>
-          <form>
+          <form >
             <img src="/assets/box.png" alt="" id="boxIcon"></img>
-            <input type="text" name="title" id="title" className="inputBars" placeholder="Title of Card"></input>
-            <br />
-            <br />
-            <img src="/assets/box.png" alt="" id="boxIcon"></img>
-            <input type="text" name="body" id="body" className="inputBars" placeholder="Task"></input>
+            <input onChange={this.handleChange} type="text" name="title" id="title" className="inputBars" placeholder="Title of Card" />
             <br />
             <br />
             <img src="/assets/box.png" alt="" id="boxIcon"></img>
-            <select type="text" name="priority" id="priority" className="select">
+            <input onChange={this.handleChange} type="text" name="body" id="body" className="inputBars" placeholder="Task" />
+            <br />
+            <br />
+            <img src="/assets/box.png" alt="" id="boxIcon"></img>
+            <select onChange={this.handleChange} type="text" name="priority_id" id="priority" className="select">
               <option value="">Please Choose a Priority</option>
-              <option value="low">Low</option>
-              <option value="medium">Medium</option>
-              <option value="high">High</option>
+              {this.prioritySelection()}
             </select>
             <br />
             <br />
             <img src="/assets/box.png" alt="" id="boxIcon"></img>
-            <select type="text" name="status" id="status" className="select">
+            <select onChange={this.handleChange} type="text" name="status_id" id="status" className="select">
               <option value="">Please Choose a Status</option>
-              <option value="In-Queue">In-Queue</option>
-              <option value="In-Progress">In-Progress</option>
-              <option value="Done">Done</option>
+              {this.statusSelection()}
             </select>
             <br />
             <br />
             <img src="/assets/box.png" alt="" id="boxIcon"></img>
-            <input type="text" name="createdBy" id="createdBy" className="inputBars" placeholder="Created By..."></input>
+            <select onChange={this.handleChange} type="text" name="created_by" id="createdBy" className="select">
+              <option value="">Created By...</option>
+              {this.userSelection()}
+            </select>
             <br />
             <br />
             <img src="/assets/box.png" alt="" id="boxIcon"></img>
-            <input type="text" name="assignedTo" id="assignedTo" className="inputBars" placeholder="Assigned To..."></input>
+            <select onChange={this.handleChange} type="text" name="assigned_to" id="assignedTo" className="select">
+              <option value="">Assigned To...</option>
+              {this.userSelection()}
+            </select>
             <br />
             <br />
             <label>
-              <input type="submit" value="Submit" id="submitButton" onSubmit={() => this.handleSubmit()}></input>
+              <input type="submit" value="Submit" id="submitButton" onClick={this.handleSubmit}></input>
             </label>
           </form>
         </Modal>
@@ -103,31 +156,10 @@ class Add extends React.Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    items: state
+  }
+}
 
-// const Add = (props) => (
-//   <Popup trigger={<button className="button" id="newOpen"> Add a Card </button>} modal>
-//     {close => (
-//       <div className="modal">
-//         <div className="top">
-//           <h3>
-//             <label id="formTitle">New Card</label>
-//           </h3>
-//           <button
-//             id="close"
-//             className="button"
-//             onClick={() => {
-//               close();
-//             }}
-//           >
-//             &times;
-//           </button>
-//         </div>
-//         <div className="content">
-
-//         </div>
-//       </div>
-//     )}
-//   </Popup>
-// );
-
-export default Add;
+export default connect(mapStateToProps)(Add);

@@ -37,26 +37,84 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // app.set('view engine', '.hbs');
 
 app.get("/cards", (req, res) => {
+  let data = [];
   cards
     .fetchAll({ withRelated: ["priority_id", "status_id", "created_by", "assigned_to"] })
     .then(results =>
-      res.json(results.serialize())
+      data.push(results.serialize())
     )
+    .then(results => {
+      priorities
+        .fetchAll()
+        .then(results => {
+          data.push(results.serialize())
+        })
+    })
+    .then(results => {
+      statuses
+        .fetchAll()
+        .then(results => {
+          data.push(results.serialize())
+        })
+    })
+    .then(results => {
+      users
+        .fetchAll()
+        .then(results => {
+          data.push(results.serialize())
+          res.json(data)
+        })
+    })
     .catch(err => {
       res.json(err);
     })
 })
 
 app.post("/add", (req, res) => {
-  console.log("HIHIHI")
-  const info = req.body;
-  console.log("INFOINFO", info);
-  res.send("HI");
+  const info = req.body.state;
+  let data = [];
+
+  cards
+    .forge(info)
+    .save()
+    .then(results => {
+      cards
+        .fetchAll({ withRelated: ["priority_id", "status_id", "created_by", "assigned_to"] })
+        .then(results => {
+          data.push(results.serialize())
+        })
+        .then(results => {
+          priorities
+            .fetchAll()
+            .then(results => {
+              data.push(results.serialize())
+            })
+        })
+        .then(results => {
+          statuses
+            .fetchAll()
+            .then(results => {
+              data.push(results.serialize())
+            })
+        })
+        .then(results => {
+          users
+            .fetchAll()
+            .then(results => {
+              data.push(results.serialize())
+              res.json(data)
+            })
+        })
+    })
+    .catch(err => {
+      res.json(err);
+    })
 })
 
 app.put("/left/:id", (req, res) => {
   const { id } = req.params
   let info = {};
+  let data = [];
 
   cards
     .where({ id })
@@ -79,9 +137,31 @@ app.put("/left/:id", (req, res) => {
     .then(results => {
       cards
         .fetchAll({ withRelated: ["priority_id", "status_id", "created_by", "assigned_to"] })
-        .then(results =>
-          res.json(results.serialize())
-        )
+        .then(results => {
+          data.push(results.serialize())
+        })
+        .then(results => {
+          priorities
+            .fetchAll()
+            .then(results => {
+              data.push(results.serialize())
+            })
+        })
+        .then(results => {
+          statuses
+            .fetchAll()
+            .then(results => {
+              data.push(results.serialize())
+            })
+        })
+        .then(results => {
+          users
+            .fetchAll()
+            .then(results => {
+              data.push(results.serialize())
+              res.json(data)
+            })
+        })
     })
     .catch(err => {
       res.json(err);
@@ -91,12 +171,12 @@ app.put("/left/:id", (req, res) => {
 app.put("/right/:id", (req, res) => {
   const { id } = req.params
   let info = {};
+  let data = [];
 
   cards
     .where({ id })
     .fetch()
     .then(results => {
-      console.log(results.attributes.status_id, "TELLME");
       switch (results.attributes.status_id) {
         case 1:
           info = {
@@ -109,19 +189,41 @@ app.put("/right/:id", (req, res) => {
           }
           break;
       }
-      console.log("INFOTELLME", info)
       return results.save(info);
     })
     .then(results => {
       cards
         .fetchAll({ withRelated: ["priority_id", "status_id", "created_by", "assigned_to"] })
-        .then(results =>
-          res.json(results.serialize())
-        )
+        .then(results => {
+          data.push(results.serialize())
+        })
+        .then(results => {
+          priorities
+            .fetchAll()
+            .then(results => {
+              data.push(results.serialize())
+            })
+        })
+        .then(results => {
+          statuses
+            .fetchAll()
+            .then(results => {
+              data.push(results.serialize())
+            })
+        })
+        .then(results => {
+          users
+            .fetchAll()
+            .then(results => {
+              data.push(results.serialize())
+              res.json(data)
+            })
+        })
+        .catch(err => {
+          res.json(err);
+        })
     })
-    .catch(err => {
-      res.json(err);
-    })
+
 })
 
 app.get('*', (req, res) => {
