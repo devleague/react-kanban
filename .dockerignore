@@ -1,0 +1,8 @@
+# Node files
+node_modules/
+
+# Hidden files
+.env*
+
+# Docker files
+[Dd]ocker*
