@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import Moment from 'moment';
 // import helpers from './helpers/helpers.jsx';
 
 
@@ -25,7 +26,7 @@ const qeueuCardStyles = {
 
 const lowPriorityColor = {
   backgroundColor: '#9aadb6',
-  color: 'd612cf',
+  color: '#d612cf',
   borderRadius: '10px 10px 1px 1px',
   paddingTop: '15px',
   marginTop: '-34px',
@@ -38,7 +39,7 @@ const lowPriorityColor = {
 
 const mediumPriorityColor = {
   backgroundColor: '#9aadb6',
-  color: '5aaa11',
+  color: 'darkblue',
   borderRadius: '10px 10px 1px 1px',
   paddingTop: '15px',
   marginTop: '-34px',
@@ -61,6 +62,14 @@ const highPriorityColor = {
   borderRight: '2px solid black',
   borderBottom: 'none'
 }
+
+const taskEditStyle = {
+  fontFamily: 'Geneva',
+  fontSize: '10px',
+  textAlign: 'right',
+  backgroundColor: '#9aadb6',
+  border: 'none'
+};
 
 /* End Syles */
 
@@ -136,7 +145,7 @@ function ItemList(props) {
   
   return props.carditems.map( carditem => 
     <Item 
-      key={carditem.card_id} 
+      card_id={carditem.card_id} 
       title={carditem.title} 
       body={carditem.body}
       priority_id={carditem.priority_id}
@@ -162,17 +171,17 @@ function thePriority() {
       }
 }
 
-function theStatus() {
-  let statusVar = props.status_id;
+// function theStatus() {
+//   let statusVar = props.status_id;
 
-  if (statusVar === 10) {
-    return "Queue"
-  } else if (statusVar === 50) {
-      return "In Progress"
-    } else if (statusVar === 90) {
-        return "Done"
-      }
-}
+//   if (statusVar === 10) {
+//     return "Queue"
+//   } else if (statusVar === 50) {
+//       return "In Progress"
+//     } else if (statusVar === 90) {
+//         return "Done"
+//       }
+// }
 
 // function userCreatedAssigned() {
 //   let userVar = props.created_by || props.assigned_to;
@@ -185,35 +194,41 @@ function theStatus() {
 
 /* End Helpers */
 
-
+// const dateString = Date(props.created_at).toString();
+const date = Date(props.created_at);
+const formattedDate = Moment(date).format("LL");
 /* Do not display if status is not 'Done' */
   if (props.status_id !== 50) {
     return null
   } else { 
     return  <div style={qeueuCardStyles}>
     <h3 align="center" style={{marginTop: '-15px'}}> {thePriority()} </h3>
-    <h3 align="center" style={{marginTop: '-2px', marginBottom: '-10px', backgroundColor: '#b4b4b4'}}>{props.title} </h3>
-    <p>Description:{props.body}</p>
-    {/* <br />
-    Status: {theStatus()} <br /> */}
+    <h3 align="center" style={{marginTop: '-5px', marginBottom: '4px', backgroundColor: '#b4b4b4'}}>{props.title} </h3>
+    <div>
+    <font style={{fontWeight: 'bold'}}>Task ID:</font>  {props.card_id}
+    </div>  
+    <div>
+    <font style={{fontWeight: 'bold'}}>Assigned To:</font> {`${props.assigned_to.first_name} ${props.assigned_to.last_name}`}
+    </div>
+    <br />
+    <br />
+    <div>
+    <font style={{fontWeight: 'bold'}}>Description:</font> {props.body}
+    </div>
+    <br />
     <div style={{display: 'grid', gridTemplateColumns: '1fr 1fr'}}>
-      <div style={{display: 'grid', border: '2px solid blue'}}>
-      Created by:
+      <div style={{display: 'grid'}}>
+      <font style={{fontWeight: 'bold'}}>Created:</font> {formattedDate} 
       </div>
-      <div style={{display: 'grid', border: '2px solid blue'}}>
-      Assigned to:
-      </div>
-      <div style={{display: 'grid', backgroundColor: '#b4b4b4', borderColor: 'black'}}>
-      {`${props.created_by.first_name} ${props.created_by.last_name}`}
-      </div>
-
-      <div style={{display: 'grid', backgroundColor: '#b4b4b4', borderColor: 'black'}}>
-      {`${props.assigned_to.first_name} ${props.assigned_to.last_name}`}
+      <div style={{display: 'grid'}}>
+      <font style={{fontWeight: 'bold'}}>By:</font> {`${props.created_by.first_name} ${props.created_by.last_name}`}  
       </div>
     </div>
-    <button id="edit" type="button">Edit</button>
+    {/* <br />
+    Status: {theStatus()} <br /> */}
+    <button style={taskEditStyle} id="edit" type="button">Edit</button>
     {/* <button id="delete" type="button">Delete</button> */}
-    <button onClick={ () => props.removeItemTask(props.card_id)} id="delete" type="button">Delete</button>
+    <button style={taskEditStyle} onClick={ () => props.removeItemTask(props.card_id)} id="delete" type="button">Delete</button>
    </div>
 
   }

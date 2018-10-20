@@ -1,0 +1,1 @@
+{"ast":null,"code":"import { CURRENCY, ACCOUNTING } from '../common/constants';\nexport default function isCurrencyStyle(style) {\n  return style === CURRENCY || style === ACCOUNTING;\n}","map":null,"metadata":{},"sourceType":"module"}

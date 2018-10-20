@@ -1,0 +1,1 @@
+{"ast":null,"code":"export default function removeScroll(rect, scroll) {\n  return {\n    top: rect.top - scroll.y,\n    left: rect.left - scroll.x,\n    height: rect.height,\n    width: rect.width\n  };\n}","map":null,"metadata":{},"sourceType":"module"}

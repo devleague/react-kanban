@@ -1,0 +1,1 @@
+{"ast":null,"code":"export default function isString(value) {\n  return typeof value === \"string\";\n}","map":null,"metadata":{},"sourceType":"module"}

@@ -1,0 +1,1 @@
+{"ast":null,"code":"export default function isNumber(value) {\n  return typeof value === \"number\";\n}","map":null,"metadata":{},"sourceType":"module"}

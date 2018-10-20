@@ -67,12 +67,12 @@ render() {
         </select>
       </label>
       <label> Created By:
-        {/* <input onChange={this.handleChange} type="text" name="created_by"/> */}
-        <DropDownList data={this.created_by} />
+        <input onChange={this.handleChange} type="text" name="created_by"/>
+        {/* <DropDownList data={this.created_by} /> */}
       </label>
       <label> Assigned To:
-        {/* <input onChange={this.handleChange} type="text" name="assigned_to"/> */}
-        <DropDownList data={this.created_by} />
+        <input onChange={this.handleChange} type="text" name="assigned_to"/>
+        {/* <DropDownList data={this.created_by} /> */}
       </label>
 
       <input type="submit"/>

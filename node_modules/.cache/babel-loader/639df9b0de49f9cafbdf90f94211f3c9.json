@@ -1,0 +1,1 @@
+{"ast":null,"code":"export default function ownerDocument(element) {\n  return element.ownerDocument || element.document || element;\n}","map":null,"metadata":{},"sourceType":"module"}

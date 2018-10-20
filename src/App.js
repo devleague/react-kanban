@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 // import logo from './logo.svg';
 import './App.css';
 // import axios from 'axios';
-
+import { connect } from 'react-redux';
 import Top from './components/top.jsx';
 import Queue from './components/queue.jsx';
 import InProgress from './components/inProgress.jsx';
