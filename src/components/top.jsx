@@ -27,7 +27,7 @@ const divLogoStyle = {
 
 const divNewTaskStyle = {
   background: '#343d51',
-  paddingRight: '10px',
+  paddingRight: '10px'
 };
 
 const pLogoStyle = {
@@ -43,9 +43,9 @@ const pNewTaskStyle = {
   fontFamily: 'Geneva',
   fontSize: '12px',
   textAlign: 'center',
-  padding: '10px',
-  border: '1px solid white',
-  color: 'white'
+  padding: '10px'
+  // border: '1px solid white',
+  // color: 'white'
 };
 
 /* End Syles */

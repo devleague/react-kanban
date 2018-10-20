@@ -11,18 +11,46 @@ const pCatStyle = {
   fontFamily: 'Geneva',
   fontSize: '16px',
   textAlign: 'center',
-  color: 'gray'
+  color: 'solid black'
 };
 
 const qeueuCardStyles = {
   display: 'grid',
   marginBottom: '25px',
   padding: '10px',
-  backgroundColor: '#ffbc3f',
+  backgroundColor: '#9aadb6',
   border: '2px solid black',
   borderRadius: '10px',
   boxShadow: '5px 10px 5px #888888'
 };
+
+const lowPriorityColor = {
+  backgroundColor: '#d612cf',
+  color: 'white',
+  borderRadius: '10px',
+  marginTop: '-20px',
+  marginLeft: '325px',
+  boxShadow: '5px 5px 5px #888888'
+
+};
+
+const mediumPriorityColor = {
+  backgroundColor: '#5aaa11',
+  color: 'white',
+  borderRadius: '10px',
+  marginTop: '-20px',
+  marginLeft: '285px',
+  boxShadow: '5px 5px 5px #888888'
+};
+
+const highPriorityColor = {
+  backgroundColor: 'red',
+  color: 'white',
+  borderRadius: '10px',
+  marginTop: '-20px',
+  marginLeft: '320px',
+  boxShadow: '5px 5px 5px #888888'
+}
 
 /* End Syles */
 
@@ -37,13 +65,13 @@ class Queue extends Component {
     this.removeItemTask = this.removeItemTask.bind(this)
   }
 
-removeItemTask = (item) => {
+removeItemTask = (card_id) => {
 
   axios
-    .delete(`/delete/${item}`)
-    .then(item => {
-      console.log('DELETE FROM AXIOS', item)
-      this.setState( {items: item.data} )
+    .delete(`/delete/${card_id}`)
+    .then(carditems => {
+      console.log('DELETE FROM AXIOS', carditems)
+      this.setState( {carditems: carditems.data} )
     })
     .catch(err => {
       console.log('AXIOS DELETE ERROR: ', err)
@@ -118,11 +146,11 @@ function thePriority() {
   let priorityVar = props.priority_id;
 
   if (priorityVar === 111) {
-    return "Low"
+    return <p style={lowPriorityColor}>Low</p>
   } else if (priorityVar === 555) {
-      return "Medium"
+      return <p style={mediumPriorityColor}>Medium</p>
     } else if (priorityVar === 999) {
-        return "High"
+        return <p style={highPriorityColor}>High</p>
       }
 }
 
@@ -147,16 +175,18 @@ function theStatus() {
     return null
   } else { 
   return  <div style={qeueuCardStyles}>
+          <h3 align="center"> {thePriority()} </h3>
           <h3 align="center">{props.title} </h3>
           <p>Description:{props.body}</p>
-          Priority: {thePriority()} <br />
+          <br />
           Status: {theStatus()} <br />
           Created by: {`${props.created_by.first_name} ${props.created_by.last_name}`} <br />
           Assigned to: {`${props.assigned_to.first_name} ${props.assigned_to.last_name}`} <br />
           <button id="edit" type="button">Edit</button>
-          <button id="delete" type="button">Delete</button>
-          {/* <button onClick={ () => props.removeItemTask(props.card_id)} id="delete" type="button">Delete</button> */}
+          {/* <button id="delete" type="button">Delete</button> */}
+          <button onClick={ () => props.removeItemTask(props.card_id)} id="delete" type="button">Delete</button>
          </div>
+         
         }
 }  
 

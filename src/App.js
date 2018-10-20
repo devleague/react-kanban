@@ -10,14 +10,15 @@ import Done from './components/done.jsx';
 
 /* Syles */
 const catWrapperDivStyle = {
+  backgroundColor: '#d1d7da',
   display: 'grid',
   gridTemplateColumns: '1fr 1fr 1fr'
 };
 
 const catDivStyle = {
   display: 'grid',
-  borderRight: '1px solid gray',
-  borderLeft: 'none',
+  borderRight: '3px solid gray',
+  borderLeft: '3px solid gray',
   borderBottom: 'none'
 };
 /* End Syles */

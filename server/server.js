@@ -111,7 +111,61 @@ CardModel
 
 /* PUT Pages */
 
-// DELETE Works in Postman //
+//PUT ---- Tested and Confirmed that this works in Postman
+app.put("/edit", (req, res) => {
+  console.log("\nServer - PUT/Edit /edit");
+  // console.log("\nBackend - PUT req.params:", req.params);
+  console.log("\n\nServer - PUT/Edit req.body:", req.body);
+
+  // const { id } = req.params;
+  // console.log("\n Check id:", id);
+
+  CardModel
+    .where('card_id', req.body.card_id)
+    .fetch({withRelated: ["priority_id", "status_id", "created_by", "assigned_to"]})
+    .then(results => {
+      console.log("\nServer - PUT/Edit results:", results);
+      results.save({
+        title: req.body.title,
+        body: req.body.body,
+        priority_id: req.body.priority_id,
+        status_id: req.body.status_id,
+        created_by: req.body.created_by,
+        assigned_to: req.body.assigned_to
+      });
+      return CardModel.fetchAll({withRelated: ["priority_id", "status_id", "created_by", "assigned_to"]})
+    })
+    .then(tasks => {
+      res.json(tasks.serialize());
+    })
+    .catch(err => {
+      console.log("\nServer - PUT/Edit ERROR");
+      res.json("FAILED");
+    })
+
+})
+
+//DELETE
+// app.put("/delete", (req, res) => {
+//   console.log("\n---> Backend DELETE /deleteTask");
+//   console.log("\nBackend - DELETE req.body:", req.body);
+//   CardModel
+//     .where("id", req.body.card_id)
+//     .destroy()
+//     .then(() => {
+//       console.log("\nDelete is working!!");
+//       return CardModel.fetchAll({withRelated: ["priority_id", "status_id", "created_by", "assigned_to"]})
+//     })
+//     .then(carditems => {
+//       res.json(carditems.serialize());
+//     })
+//     .catch(err => {
+//       console.log('error, err');
+//     })
+// })
+
+
+// DELETE  ---- Tested and Confirmed that this works in Postman
 app.put('/delete', (req, res) => {
 
   const card_id = req.body.card_id
