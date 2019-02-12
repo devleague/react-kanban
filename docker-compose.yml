@@ -1,0 +1,6 @@
+version: "3"
+services:
+  express-server:
+    build: .
+    image: ${DOCKERHUB_NAME}/${IMAGE_NAME}/${IMAGE_VERSION}
+    env_file: .env
