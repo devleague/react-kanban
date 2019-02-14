@@ -15,8 +15,11 @@
     "pg": "^7.8.0",
     "react": "^16.8.1",
     "react-dom": "^16.8.1",
-    "react-scripts": "2.1.5"
+    "react-redux": "^6.0.0",
+    "react-scripts": "2.1.5",
+    "redux": "^4.0.1"
   },
+  "proxy": "https://localhost:8080",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

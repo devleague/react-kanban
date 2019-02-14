@@ -4,7 +4,6 @@ const passport = require('passport');
 const bcrypt = require('bcryptjs');
 const LocalStrategy = require('passport-local');
 const bodyParser = require('body-parser');
-const methodOverride = require('method-override');
 const kanban = require('./routes/kanban');
 const knex = require('./database/knex');
 const redis = require('connect-redis')(session);
@@ -25,20 +24,15 @@ app.use(session({
   saveUninitialized: false
 }));
 
-app.use(methodOverride('_method'));
-
-// PASSPORT STUFFFFFFFFFF
 app.use(passport.initialize());
 app.use(passport.session());
 
-// after login
 passport.serializeUser((user, done) => {
   return done(null, {
     id: user.id
   });
 });
 
-// after every request
 passport.deserializeUser((user, done) => {
   new User({ id: user.id }).fetch()
     .then(dbUser => {
@@ -80,7 +74,7 @@ passport.use(new LocalStrategy(function (username, password, done) {
 }));
 
 app.get('/register', function (req, res) {
-  res.render('auth/register');
+  res.json();
 });
 
 app.post('/register', (req, res) => {
@@ -90,34 +84,36 @@ app.post('/register', (req, res) => {
       if (err) { console.log(err); }
       return new User({
         username: req.body.username,
-        password: hash
+        password: hash,
+        first_name: req.body.first_name,
+        last_name: req.body.last_name,
+        email: req.body.email
       })
         .save()
         .then((user) => {
-          res.redirect('/login');
+          res.json();
         })
         .catch((err) => {
           console.log(err);
-          return res.send('Error Creating account');
+          return res.json();
         });
     });
   });
 });
 
-app.get('/login', function (req, res) {
+app.post('/login', passport.authenticate('local'), function (req, res) {
+  res.json({ success: true });
 });
-
-app.post('/login', passport.authenticate('local', {
-}));
 
 app.get('/logout', isAuthenticated, (req, res) => {
   req.logout();
+  res.json({ success: true });
 });
 
 function isAuthenticated(req, res, next) {
   if (req.isAuthenticated()) { next(); }
   else {
-    { next(); };
+    res.json({ success: false, error: 'not authenticated' });
   };
 };
 
