@@ -75,8 +75,8 @@ class AddCard extends Component {
       created_by: '0',
       assigned_to: '0'
     });
-
-    this.props.show();
+    this.props.showCard();
+    this.props.close();
   };
 
   handleClick = (e) => {

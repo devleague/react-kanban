@@ -11,7 +11,7 @@ const StatusSection = (props) => {
           {title}
         </div>
       </div>
-      <CardList cards={cards} />
+      <CardList cards={cards} showCard={props.showCard} />
     </div>
   );
 };

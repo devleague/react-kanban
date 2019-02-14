@@ -2,11 +2,11 @@ import React from 'react';
 import './Header.scss'
 
 const Header = (props) => {
-  const { title } = props;
+  const { title, show } = props;
   return (
     <header>
       <div className="title">{title}</div>
-      <div className="addBtn" onClick={props.show}>Add Card</div>
+      <div className="addBtn" onClick={show}>Add Card</div>
     </header>
   );
 };

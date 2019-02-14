@@ -1,5 +1,5 @@
 import React from 'react';
-import Card from '../Card';
+import Card from '../../containers/Card';
 
 const CardList = (props) => {
   const cardList = props.cards.map((card) => {
@@ -11,6 +11,7 @@ const CardList = (props) => {
         status_id={card.status_id}
         created_by={card.created_by}
         assigned_to={card.assigned_to}
+        showCard={props.showCard}
       />
     );
   });

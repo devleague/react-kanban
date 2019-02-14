@@ -2,8 +2,36 @@ import React, { Component } from 'react';
 import './KanbanBoard.scss';
 import StatusSection from '../../components/StatusSection';
 import { connect } from 'react-redux';
+import AddCard from '../AddCard';
+import Header from '../../components/Header';
+import CardDetail from '../CardDetail';
 
 class KanbanBoard extends Component {
+  state = {
+    addFormOpen: false,
+    detailOpen: false
+  };
+
+  toggleForm = () => {
+    this.setState(prevState => {
+      return { addFormOpen: !prevState.addFormOpen };
+    });
+  };
+
+  closeForm = () => {
+    this.setState({ addFormOpen: false });
+  };
+
+  toggleDetail = () => {
+    this.setState(prevState => {
+      return { detailOpen: !prevState.detailOpen };
+    });
+  };
+
+  closeDetail = () => {
+    this.setState({ detailOpen: false });
+  };
+
   render() {
     let queue = [];
     let inProgress = [];
@@ -27,20 +55,28 @@ class KanbanBoard extends Component {
     });
 
     return (
-      <div className="kanbanContainer">
-        <StatusSection title='Queue' cards={queue} />
+      <>
+        <Header title='Kanban' show={this.toggleForm} />
 
-        <StatusSection title='In_Progress' cards={inProgress} />
+        <div className="kanbanContainer">
 
-        <StatusSection title='Completed' cards={completed} />
-      </div>
+          <StatusSection title='Queue' cards={queue} showCard={this.toggleDetail} />
+
+          <StatusSection title='In_Progress' cards={inProgress} showCard={this.toggleDetail} />
+
+          <StatusSection title='Completed' cards={completed} showCard={this.toggleDetail} />
+
+          {this.state.addFormOpen ? <AddCard close={this.closeForm} showCard={this.toggleDetail} /> : null}
+
+          {this.state.detailOpen ? <CardDetail closeCard={this.closeDetail} /> : null}
+
+        </div>
+      </>
     );
   };
 };
 
 const mapStateToProps = (state) => {
-  console.log(state.cards);
-
   return {
     cards: state.cards
   };

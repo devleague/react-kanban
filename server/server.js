@@ -12,13 +12,13 @@ const app = express();
 const PORT = process.env.SERVER_PORT;
 const ENV = process.env.NODE_ENV;
 const SESSION_SECRET = process.env.SESSION_SECRET;
-const REDIS = process.env.REDIS_HOST + ':' + process.env.REDIS_HOST_PORT;
+const REDIS_URI = process.env.REDIS_HOST + ':' + process.env.REDIS_HOST_PORT;
 const saltRounds = 12;
 
 app.use(express.static('./public'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(session({
-  store: new redis({ url: REDIS, logErrors: true }),
+  store: new redis({ url: REDIS_URI, logErrors: true }),
   secret: SESSION_SECRET,
   resave: false,
   saveUninitialized: false
@@ -73,10 +73,6 @@ passport.use(new LocalStrategy(function (username, password, done) {
     });
 }));
 
-app.get('/register', function (req, res) {
-  res.json();
-});
-
 app.post('/register', (req, res) => {
   bcrypt.genSalt(saltRounds, (err, salt) => {
     if (err) { console.log(err); }
@@ -91,11 +87,11 @@ app.post('/register', (req, res) => {
       })
         .save()
         .then((user) => {
-          res.json();
+          res.json({ success: true });
         })
         .catch((err) => {
           console.log(err);
-          return res.json();
+          return res.status(500).json({ success: false, error: err });
         });
     });
   });
@@ -113,7 +109,7 @@ app.get('/logout', isAuthenticated, (req, res) => {
 function isAuthenticated(req, res, next) {
   if (req.isAuthenticated()) { next(); }
   else {
-    res.json({ success: false, error: 'not authenticated' });
+    res.status(401).json({ success: false, error: 'not authenticated' });
   };
 };
 
