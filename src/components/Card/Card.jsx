@@ -1,5 +1,5 @@
 import React from 'react';
-import './Card.css'
+import './Card.scss'
 
 const Card = (props) => {
   const { title, body, priority_id, created_by, assigned_to } = props;
@@ -7,8 +7,6 @@ const Card = (props) => {
   return (
     <div className="card" data-priority={priority_id}>
       <div>{title}</div>
-      <div>{body}</div>
-      <div>{created_by}</div>
       <div>{assigned_to}</div>
     </div>
   );

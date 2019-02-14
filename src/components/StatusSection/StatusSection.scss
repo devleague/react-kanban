@@ -1,0 +1,28 @@
+.statusContainer{
+  display: flex;
+  flex-flow: row wrap;
+  align-content: flex-start;
+  width:32vw;
+  box-shadow: 2px 2px 4px;
+  border-radius: 5px;
+  margin: .2vw;
+}
+
+#Queue{
+  background-color: lightpink;
+}
+
+#In_Progress{
+  background-color: lightblue;
+}
+
+#Completed{
+  background-color: lightgray;
+}
+
+.containerTitle{
+  width: 33vw;
+  height: 4vw;
+  flex-flow: column;
+  justify-content: space-around;
+}

@@ -1,0 +1,26 @@
+[data-priority='1'] {
+  background-color: red;
+}
+
+[data-priority='2'] {
+  background-color: orange;
+}
+
+[data-priority='3'] {
+  background-color: yellow;
+}
+
+[data-priority='4'] {
+  background-color: green;
+}
+
+.card{
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-around;
+  width: 100px;
+  height: 75px;
+  border-radius: 10px;
+  margin: 1vw;
+  box-shadow: 2px 2px 4px;
+}

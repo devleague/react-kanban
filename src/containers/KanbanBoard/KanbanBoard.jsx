@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './KanbanBoard.css';
+import './KanbanBoard.scss';
 import StatusSection from '../../components/StatusSection';
 import { connect } from 'react-redux';
 
@@ -11,13 +11,13 @@ class KanbanBoard extends Component {
 
     this.props.cards.map((card) => {
       switch (card.status_id) {
-        case 1:
+        case '1':
           queue.push(card)
           break;
-        case 2:
+        case '2':
           inProgress.push(card)
           break;
-        case 3:
+        case '3':
           completed.push(card)
           break;
         default:
@@ -39,6 +39,8 @@ class KanbanBoard extends Component {
 };
 
 const mapStateToProps = (state) => {
+  console.log(state.cards);
+
   return {
     cards: state.cards
   };

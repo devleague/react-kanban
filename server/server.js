@@ -5,20 +5,20 @@ const bcrypt = require('bcryptjs');
 const LocalStrategy = require('passport-local');
 const bodyParser = require('body-parser');
 const kanban = require('./routes/kanban');
-const knex = require('./database/knex');
 const redis = require('connect-redis')(session);
 
 const User = require('./database/models/User');
 const app = express();
-const PORT = process.env.PORT || 8080;
-const ENV = process.env.NODE_ENV || 'development';
-const SESSION_SECRET = process.env.SESSION_SECRET || 'keyboard cat';
+const PORT = process.env.SERVER_PORT;
+const ENV = process.env.NODE_ENV;
+const SESSION_SECRET = process.env.SESSION_SECRET;
+const REDIS = process.env.REDIS_HOST + ':' + process.env.REDIS_HOST_PORT;
 const saltRounds = 12;
 
 app.use(express.static('./public'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(session({
-  store: new redis({ url: 'redis://redis-server:6379', logErrors: true }),
+  store: new redis({ url: REDIS, logErrors: true }),
   secret: SESSION_SECRET,
   resave: false,
   saveUninitialized: false
