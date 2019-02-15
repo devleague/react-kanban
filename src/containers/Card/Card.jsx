@@ -27,7 +27,6 @@ class Card extends Component {
   }
 
   render() {
-    console.log(this.props);
     const { title, priority_id, assigned_to } = this.props;
     const classPriority = `card priority${priority_id}`
     return (
