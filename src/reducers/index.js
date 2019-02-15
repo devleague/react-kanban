@@ -1,4 +1,4 @@
-import { ADD_CARD, SELECT_CARD, DELETE_CARD, EDIT_CARD } from '../actions';
+import { ADD_CARD, SELECT_CARD, DELETE_CARD, EDIT_CARD, STATUS_CARD } from '../actions';
 
 let payloadId = 5;
 
@@ -69,6 +69,18 @@ const cardReducer = (state = initialState, action) => {
       });
       editState.push(action.payload);
       return Object.assign({}, state, { cards: editState });
+    case STATUS_CARD:
+      console.log(action.payload);
+      let statusState = [];
+      state.cards.map(card => {
+        if (card.id === action.payload.id) {
+          card.status_id = action.payload.status_id;
+        }
+        statusState.push(card);
+        return {};
+      });
+
+      return Object.assign({}, state, { cards: statusState });
     default:
       return state;
   };
