@@ -1,6 +1,7 @@
 export const ADD_CARD = 'ADD_CARD';
 export const SELECT_CARD = 'SELECT_CARD';
 export const DELETE_CARD = 'DELETE_CARD';
+export const EDIT_CARD = 'EDIT_CARD';
 
 export function addCard(newCard) {
   return {
@@ -20,5 +21,12 @@ export function deleteCard(cardId) {
   return {
     type: DELETE_CARD,
     payload: cardId
+  };
+};
+
+export function editCard(cardData) {
+  return {
+    type: EDIT_CARD,
+    payload: cardData
   };
 };

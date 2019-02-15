@@ -5,11 +5,13 @@ import { connect } from 'react-redux';
 import AddCard from '../AddCard';
 import Header from '../../components/Header';
 import CardDetail from '../CardDetail';
+import EditCard from '../EditCard';
 
 class KanbanBoard extends Component {
   state = {
     addFormOpen: false,
-    detailOpen: false
+    detailOpen: false,
+    editFormOpen: false
   };
 
   toggleForm = () => {
@@ -20,6 +22,16 @@ class KanbanBoard extends Component {
 
   closeForm = () => {
     this.setState({ addFormOpen: false });
+  };
+
+  toggleEdit = () => {
+    this.setState(prevState => {
+      return { editFormOpen: !prevState.editFormOpen };
+    });
+  };
+
+  closeEdit = () => {
+    this.setState({ editFormOpen: false });
   };
 
   toggleDetail = () => {
@@ -68,7 +80,9 @@ class KanbanBoard extends Component {
 
           {this.state.addFormOpen ? <AddCard close={this.closeForm} showCard={this.toggleDetail} /> : null}
 
-          {this.state.detailOpen ? <CardDetail card={this.props.selectedCard} closeCard={this.closeDetail} /> : null}
+          {this.state.detailOpen ? <CardDetail card={this.props.selectedCard} closeCard={this.closeDetail} showEdit={this.toggleEdit} /> : null}
+
+          {this.state.editFormOpen ? <EditCard card={this.props.selectedCard} closeEdit={this.closeEdit} /> : null}
 
         </div>
       </>

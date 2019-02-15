@@ -1,0 +1,38 @@
+.editCard{
+  display: flex;
+  flex-flow: column nowrap;
+  color: black;
+  background-color: white;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  box-shadow: 5px 5px 10px grey;
+  position: fixed;
+  width: 40vw;
+  height: 35vw;
+  right: 30vw;
+  top: 25vh;
+  h3{
+    margin:0;
+  }
+}
+
+.editForm{
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  width: 30vw;
+  height: 25vw;
+  font-size: 2vw;
+  input{
+    width: 20vw;
+  }
+  textarea{
+    resize: none;
+    width: 20vw;
+  }
+  select{
+    width: 15vw;
+  }
+}

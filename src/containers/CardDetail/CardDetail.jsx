@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import './CardDetail.scss';
 import { connect } from 'react-redux';
-import { deleteCard } from '../../actions';
+import { deleteCard, editCard } from '../../actions';
 
 class CardDetail extends Component {
-
   componentWillMount() {
     document.addEventListener('mousedown', this.handleClick, false);
   };
@@ -20,20 +19,6 @@ class CardDetail extends Component {
     this.props.closeCard();
   };
 
-  editClick = () => {
-    const { id, title, body, priority_id, status_id, created_by, assigned_to } = this.props.card;
-
-    this.props.onSelect({
-      id,
-      title,
-      body,
-      priority_id,
-      status_id,
-      created_by,
-      assigned_to
-    });
-  };
-
   deleteClick = () => {
     const { id } = this.props.card;
 
@@ -44,7 +29,7 @@ class CardDetail extends Component {
   }
 
   render() {
-    const { id, title, body, priority_id, status_id, created_by, assigned_to } = this.props.card;
+    const { title, body, priority_id, status_id, created_by, assigned_to } = this.props.card;
     const classDetail = `cardDetail priority${priority_id}`
     const statusDetail = `status status${status_id}`
     return (
@@ -56,8 +41,9 @@ class CardDetail extends Component {
         <div className="created">Created By: {created_by}</div>
         <div className="optionBox">
           <div className="option" onClick={this.deleteClick}>Delete</div>
-          <div className="option" onClick={this.editClick}>Edit</div>
+          <div className="option" onClick={this.props.showEdit}>Edit</div>
         </div>
+
       </div>
     );
   };
