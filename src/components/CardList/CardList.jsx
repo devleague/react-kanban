@@ -5,6 +5,7 @@ const CardList = (props) => {
   const cardList = props.cards.map((card) => {
     return (
       <Card key={card.id}
+        id={card.id}
         title={card.title}
         body={card.body}
         priority_id={card.priority_id}

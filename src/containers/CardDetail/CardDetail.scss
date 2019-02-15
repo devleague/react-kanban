@@ -3,16 +3,53 @@
   flex-flow: column nowrap;
   color: black;
   background-color: white;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   border-radius: 10px;
   box-shadow: 5px 5px 10px grey;
   position: fixed;
   width: 40vw;
-  height: 35vw;
+  height: 30vw;
   right: 30vw;
   top: 25vh;
   h3{
     margin:0;
   }
+}
+
+.priority1{
+  background-color: red;
+}
+
+.priority2{
+  background-color: orange;
+}
+
+.priority3{
+  background-color: yellow;
+}
+
+.priority4{
+  background-color: green;
+}
+
+.status{
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 6vw;
+  width: 6vw;
+  border-radius: 3vw;
+}
+
+.status1{
+  background-color: lightpink;
+}
+
+.status2{
+  background-color: lightblue;
+}
+
+.status3{
+  background-color: lightgray;
 }

@@ -1,4 +1,4 @@
-import { ADD_CARD } from '../actions';
+import { ADD_CARD, SELECT_CARD } from '../actions';
 
 let payloadId = 5;
 
@@ -48,8 +48,8 @@ const cardReducer = (state = initialState, action) => {
     case ADD_CARD:
       action.payload.id = payloadId++;
       return Object.assign({}, state, { cards: [...state.cards, action.payload] });
-    // case SELECT_CARD:
-    //   break;
+    case SELECT_CARD:
+      return Object.assign({}, state, { selectedCard: action.payload });
     // case CLEAR_CARD:
     //   break;
     default:
