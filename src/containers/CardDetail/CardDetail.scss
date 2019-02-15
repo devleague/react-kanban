@@ -15,6 +15,7 @@
   h3{
     margin:0;
   }
+  font-size: 2vw;
 }
 
 .priority1{
@@ -40,6 +41,7 @@
   height: 6vw;
   width: 6vw;
   border-radius: 3vw;
+  box-shadow: 2px 2px 4px grey;
 }
 
 .status1{
@@ -52,4 +54,20 @@
 
 .status3{
   background-color: lightgray;
+}
+
+.optionBox{
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.option{
+  width: 5vw;
+  height: 3vw;
+  background-color: darkolivegreen;
+  font-size: 2vw;
+  cursor:pointer;
+  margin: 1vw;
+  border-radius: 5px;
+  box-shadow: 2px 2px 4px grey;
 }

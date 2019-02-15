@@ -40,8 +40,8 @@ class CardDetail extends Component {
         <div className="assigned">Assigned to: {assigned_to}</div>
         <div className="created">Created By: {created_by}</div>
         <div className="optionBox">
-          <div onClick={this.deleteClick}>Delete</div>
-          <div onClick={this.editClick}>Edit</div>
+          <div className="option" onClick={this.deleteClick}>Delete</div>
+          <div className="option" onClick={this.editClick}>Edit</div>
         </div>
       </div>
     );

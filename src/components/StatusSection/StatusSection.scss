@@ -3,7 +3,7 @@
   flex-flow: row wrap;
   align-content: flex-start;
   width: 32vw;
-  height: 70vw;
+  height: 88vh;
   box-shadow: 2px 2px 4px;
   border-radius: 5px;
   margin: .5vw;
@@ -25,6 +25,6 @@
 .containerTitle{
   width: 33vw;
   height: 4vw;
-  flex-flow: column;
+  font-size: 3vw;
   justify-content: space-around;
 }
