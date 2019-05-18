@@ -24,10 +24,10 @@ Cards contain information about a task.
 #### Card Properties
 
 A Card has 6 properties:
-  1. A unique identifier, e.g. "Card-Id #001".
+  1. A unique identifier, e.g. "1", "2", "313".
   1. A Title
   1. A Body (task details)
-  1. A priority selection
+  1. A priority selection (Low, Medium, High, Blocker)
   1. A status, the status of a card. Should match the column the card can be found in. Columns: "Queue", "In Progress", or "Done".
   1. A "Created by" field. This should display name of the person who created the task.
   1. An "Assigned to field". This should display the name of the person who is currently working on the task.
@@ -35,7 +35,7 @@ A Card has 6 properties:
 #### Creating a new Card
 There should be a form which is used to create a new Card. When a card is first created we need minimal information, the information needed is:
   - Title (String)
-  - Priority (low, Medium, High, Blocker)
+  - Priority (Low, Medium, High, Blocker)
   - Created By (Full Name)
   - Assigned To (Full Name)
 
@@ -59,7 +59,7 @@ The board you will building will have **3 columns**:
 **caveat: do not try to implement click-and-drag just yet, save it as a stretch goal!**
 
 ### Kanban Board (Main Component)
-A Kanban board contains multiple Columns (and Columns contain Cards). This is the main application component. It is responsible for retreiving data and *passing it down* to other child components.
+A Kanban board contains multiple Columns (and Columns contain Cards). This is the main application component. It is responsible for retrieving data and *passing it down* to other child components.
 
 ### Schemas
 
@@ -95,7 +95,7 @@ A Kanban board contains multiple Columns (and Columns contain Cards). This is th
 |created_at|TS w/ TZ|not null|
 |updated_at|TS w/ TZ|not null|
 
-## Statuses 
+## Statuses
 |Property|Type|Options|
 |---|---|---|
 |id(Pk)|number|serial, not null, unique|
@@ -105,7 +105,7 @@ A Kanban board contains multiple Columns (and Columns contain Cards). This is th
 |updated_at|TS w/ TZ|not null|
 
 ### Server
-Build an Express server which will serve your `index.html` and static assets.
+Build an Express server which will serve your routes, `index.html`, and static assets.
 
 ### Database
 PostgreSQL and Bookshelf ORM. Create a UML Schema for your database, consider [LucidChart](https://www.lucidchart.com/). Add these diagrams to your project.
@@ -115,22 +115,29 @@ Make It Pretty!™
 
 ### Routes
 Your server will have these routes:
+
+#### Backend
   - RESTful API endpoints to create, read, update, and delete kanban cards for your application.
-    - Remember to use MVC architechture: Models, Views, Controllers!
+  - RESTful API endpoint to retrieve and update users to be shown when choosing an assignee while creating a new kanban card.
+  - Remember to use MVC architecture: Models, Views, Controllers!
+
+#### Frontend
   - You will use `react-router` to add FE routes to the application.
 
 |route|action|
 |---|---|
 |/|Show the kanban board|
-|/admin/users|Show a listing of users of the board|
-|/admin/users/new|Show a form to add a new user|
-|/admin/users/:id|Detail view of user **(Stretch goal)**|
-|/admin/users/:id/edit|Show form to let user update information **(Stretch goal)**|
+
 
 ## Stretch Goals
 
+- Figure out how to use `react-router` to add FE routes to the application.
+
 |route|action|
 |---|---|
+|/admin/users|Show a listing of users of the board|
+|/admin/users/:id|User account page|
+|/admin/users/:id/edit|Show form to let user update information|
 |/admin/priorities/|Show list of current priorities|
 |/admin/priorities/new|Show form to add new Priority|
 |/admin/priorities/:id/edit|Show form to update selected Priority|
@@ -138,7 +145,13 @@ Your server will have these routes:
 |/admin/statuses/new|Show form to add new Status|
 |/admin/statuses/:id/edit|Show form to update selected Status|
 
-Add **drag and drop** functionality
+- Add **drag and drop** functionality
+
+- Full Authentication System on Frontend and Backend
+
+- Users creation using a register page and route.
+
+- User can delete their account from their our user account page. Users can only delete their own account and deleting an account must update any cards assigned to them.
 
 #### Responsive Layout
 - create a desktop and mobile view. Tablet view is not needed (possible stretch goal).
