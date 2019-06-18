@@ -82,7 +82,7 @@ A Kanban board contains multiple Columns (and Columns contain Cards). This is th
 |id(Pk)|number|serial, not null, unique|
 |first_name|string|not null|
 |last_name|string|not null|
-|email|string|not null|
+|email|string|not null, unique|
 |created_at|TS w/ TZ|not null|
 |updated_at|TS w/ TZ|not null|
 
