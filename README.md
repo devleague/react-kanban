@@ -104,6 +104,8 @@ A Kanban board contains multiple Columns (and Columns contain Cards). This is th
 |created_at|TS w/ TZ|not null|
 |updated_at|TS w/ TZ|not null|
 
+* Rank determines the position of the Priorities and Statutes when display in either a drop down input or when displaying columns by Statuses.
+
 ### Server
 Build an Express server which will serve your routes, `index.html`, and static assets.
 
